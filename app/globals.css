@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --album-safe-bottom: env(safe-area-inset-bottom, 0px);
+  --album-safe-top: env(safe-area-inset-top, 0px);
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply min-h-dvh bg-black text-stone-100;
+  }
+}
+
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+  img[loading="lazy"] {
+    clip-path: inset(0.6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

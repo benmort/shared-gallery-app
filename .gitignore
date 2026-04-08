@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+.next
+out
+*.log
+data/uploads/*
+!data/uploads/.gitkeep
+data/photos.json
