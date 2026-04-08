@@ -10,17 +10,19 @@ export type Photo = {
   height?: number;
 };
 
-/** Stored on disk in photos.json */
+/** Stored on disk in photos.json, or in Vercel Blob manifest */
 export type PhotoRecord = {
   id: string;
   filename: string;
   uploadedAt: string;
-  /** Filename under data/uploads */
+  /** Filename under data/uploads (filesystem only) */
   storedName: string;
   mime: string;
   blurDataUrl?: string;
   width?: number;
   height?: number;
+  /** Public blob URL when using Vercel Blob storage */
+  publicUrl?: string;
 };
 
 export const ALLOWED_IMAGE_MIMES = new Set([

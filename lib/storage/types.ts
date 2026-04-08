@@ -19,7 +19,7 @@ export function recordToPhoto(r: PhotoRecord): Photo {
   return {
     id: r.id,
     filename: r.filename,
-    url: `/api/photos/${r.id}/file`,
+    url: r.publicUrl ?? `/api/photos/${r.id}/file`,
     uploadedAt: r.uploadedAt,
     blurDataUrl: r.blurDataUrl,
     width: r.width,
