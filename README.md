@@ -33,16 +33,17 @@ Open [http://localhost:3000](http://localhost:3000).
 2. In [Vercel](https://vercel.com), choose **Add New… → Project** and **Import** that repository.
 3. **If this folder lives inside a monorepo** (for example `common-threads/shared-gallery-app`), open **Root Directory** in the import settings and set it to **`shared-gallery-app`** so Vercel runs install/build from here (where `package.json` and `pnpm-lock.yaml` live).
 4. Leave **Framework Preset** as **Next.js** and **Build Command** / **Output** as defaults.
-5. **Enable Vercel Blob** (required for uploads): in the project go to **Storage → Create Database → Blob**, create a store, then **Connect** it to this project. That injects **`BLOB_READ_WRITE_TOKEN`** automatically. Without it, uploads fail with **`EROFS: read-only file system`** because `/var/task` is not writable.
+5. **Enable Vercel Blob** (required for uploads): in the project go to **Storage → Create Database → Blob**, create a store with **Private** access, then **Connect** it to this project. That injects **`BLOB_READ_WRITE_TOKEN`** automatically. Without it, uploads fail with **`EROFS: read-only file system`** because `/var/task` is not writable. (This app uses **private** blobs only; a public-only store is not supported.)
 6. Redeploy if you add Blob after the first deploy.
 
 Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 
 ### Vercel Blob notes
 
-- With **`BLOB_READ_WRITE_TOKEN`** set, [`getPhotoStorage()`](lib/storage/index.ts) uses **Vercel Blob** ([`lib/storage/vercel-blob.ts`](lib/storage/vercel-blob.ts)): images at `album-img/{id}.{ext}` and a JSON manifest at **`album-manifest.json`**. Gallery URLs point at the blob CDN.
+- With **`BLOB_READ_WRITE_TOKEN`** set, [`getPhotoStorage()`](lib/storage/index.ts) uses **Vercel Blob** ([`lib/storage/vercel-blob.ts`](lib/storage/vercel-blob.ts)) with **`access: 'private'`** only. Use a **private** Blob store. Images live at `album-img/{id}.{ext}`, manifest at **`album-manifest.json`**. Full-size images are always served through **`/api/photos/[id]/file`** (server uses the Blob SDK [`get()`](https://vercel.com/docs/vercel-blob/private-storage)).
 - **Server upload body limit** on Vercel is about **4.5 MB** per request; larger files need a [client upload](https://vercel.com/docs/vercel-blob/client-upload) flow (not implemented here).
 - Locally, leave the token unset to keep using **`data/`** on disk.
+- If you previously set **`BLOB_STORE_ACCESS`**, remove it from Vercel env (it is no longer read).
 
 ## Scripts
 
@@ -90,15 +91,15 @@ The boundary is **`PhotoStorage`** in [`lib/storage/types.ts`](lib/storage/types
 
 For another provider (Supabase, S3, Cloudinary), implement the same methods and wire it in **`lib/storage/index.ts`**.
 
-- `list()` → return public `Photo` rows (with `url` pointing at your CDN or signed URLs).
+- `list()` → return `Photo` rows (this app uses same-origin **`/api/photos/[id]/file`** for full images when using Blob).
 - `createFromBuffer()` → upload bytes, persist metadata, return `Photo`.
-- `readFile()` → used by **`/api/photos/[id]/file`** when `Photo.url` still points at that route; blob records set **`publicUrl`** so the gallery uses the CDN directly while the file route can still stream bytes if needed.
+- `readFile()` → used by **`/api/photos/[id]/file`** to stream bytes from storage.
 
 ## Environment variables
 
 | Variable | When |
 | -------- | ---- |
-| `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked Blob store). Omit locally for `./data/` storage. |
+| `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked private Blob store). Omit locally for `./data/` storage. |
 
 See [`.env.example`](.env.example).
 

@@ -21,8 +21,6 @@ export type PhotoRecord = {
   blurDataUrl?: string;
   width?: number;
   height?: number;
-  /** Public blob URL when using Vercel Blob storage */
-  publicUrl?: string;
 };
 
 export const ALLOWED_IMAGE_MIMES = new Set([

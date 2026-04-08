@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { list, put } from "@vercel/blob";
+import { get, put } from "@vercel/blob";
 import sharp from "sharp";
 import type { PhotoRecord } from "../types/photo";
 import { isAllowedImageType, MAX_FILE_BYTES } from "../types/photo";
@@ -10,6 +10,9 @@ import { recordToPhoto } from "./types";
 const MANIFEST_PATH = "album-manifest.json";
 /** Image blobs live under this prefix. */
 const IMG_PREFIX = "album-img/";
+
+/** Private blobs only — requires a [private Vercel Blob store](https://vercel.com/docs/vercel-blob/private-storage). */
+const ACCESS = "private" as const;
 
 async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
   try {
@@ -38,24 +41,13 @@ async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: numb
 
 async function readManifest(token: string): Promise<PhotoRecord[]> {
   try {
-    let cursor: string | undefined;
-    for (;;) {
-      const { blobs, cursor: next, hasMore } = await list({
-        prefix: MANIFEST_PATH,
-        limit: 100,
-        cursor,
-        token,
-      });
-      const meta = blobs.find((b) => b.pathname === MANIFEST_PATH);
-      if (meta) {
-        const res = await fetch(meta.url);
-        if (!res.ok) return [];
-        const data = (await res.json()) as unknown;
-        return Array.isArray(data) ? (data as PhotoRecord[]) : [];
-      }
-      if (!hasMore || !next) return [];
-      cursor = next;
-    }
+    const result = await get(MANIFEST_PATH, { access: ACCESS, token });
+    if (!result || result.statusCode !== 200 || !result.stream) return [];
+    const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
+    const raw = buf.toString("utf8");
+    if (!raw) return [];
+    const data = JSON.parse(raw) as unknown;
+    return Array.isArray(data) ? (data as PhotoRecord[]) : [];
   } catch {
     return [];
   }
@@ -63,7 +55,7 @@ async function readManifest(token: string): Promise<PhotoRecord[]> {
 
 async function writeManifest(records: PhotoRecord[], token: string): Promise<void> {
   await put(MANIFEST_PATH, JSON.stringify(records), {
-    access: "public",
+    access: ACCESS,
     addRandomSuffix: false,
     contentType: "application/json",
     token,
@@ -98,8 +90,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const storedName = `${id}.${ext}`;
       const pathname = `${IMG_PREFIX}${storedName}`;
 
-      const { url: publicUrl } = await put(pathname, buffer, {
-        access: "public",
+      await put(pathname, buffer, {
+        access: ACCESS,
         addRandomSuffix: false,
         contentType: mime,
         token,
@@ -119,7 +111,6 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         blurDataUrl,
         width: meta.width,
         height: meta.height,
-        publicUrl,
       };
 
       const records = await readManifest(token);
@@ -132,11 +123,12 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     async readFile(id: string) {
       const records = await readManifest(token);
       const rec = records.find((r) => r.id === id);
-      if (!rec?.publicUrl) return null;
+      if (!rec) return null;
+      const pathname = `${IMG_PREFIX}${rec.storedName}`;
       try {
-        const res = await fetch(rec.publicUrl);
-        if (!res.ok) return null;
-        const buf = Buffer.from(await res.arrayBuffer());
+        const result = await get(pathname, { access: ACCESS, token });
+        if (!result || result.statusCode !== 200 || !result.stream) return null;
+        const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
         return { buffer: buf, mime: rec.mime };
       } catch {
         return null;
