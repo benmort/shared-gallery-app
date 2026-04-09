@@ -1,9 +1,14 @@
 import { randomUUID } from "crypto";
-import { get, put } from "@vercel/blob";
+import { get, head, put } from "@vercel/blob";
 import sharp from "sharp";
 import type { PhotoRecord } from "../types/photo";
-import { isAllowedImageType, MAX_FILE_BYTES } from "../types/photo";
-import type { PhotoStorage } from "./types";
+import {
+  extensionForMime,
+  isAllowedMediaType,
+  isAllowedVideoType,
+  maxBytesForMime,
+} from "../types/photo";
+import type { PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
 
 /** Single JSON index in the blob store (stable pathname, no random suffix). */
@@ -13,6 +18,13 @@ const IMG_PREFIX = "album-img/";
 
 /** Private blobs only — requires a [private Vercel Blob store](https://vercel.com/docs/vercel-blob/private-storage). */
 const ACCESS = "private" as const;
+
+function parseTotalFromContentRange(header: string | null): number | null {
+  if (!header) return null;
+  const m = header.trim().match(/\/(\d+)\s*$/);
+  if (m) return parseInt(m[1], 10);
+  return null;
+}
 
 async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
   try {
@@ -70,24 +82,31 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       return records.map(recordToPhoto);
     },
 
+    async getFileMeta(id: string) {
+      const records = await readManifest(token);
+      const rec = records.find((r) => r.id === id);
+      if (!rec) return null;
+      const pathname = `${IMG_PREFIX}${rec.storedName}`;
+      try {
+        const h = await head(pathname, { token });
+        return { totalSize: h.size, mime: rec.mime };
+      } catch {
+        return null;
+      }
+    },
+
     async createFromBuffer(input) {
       const { buffer, filename, mime } = input;
-      if (!isAllowedImageType(mime)) {
-        throw new Error("Unsupported image type");
+      if (!isAllowedMediaType(mime)) {
+        throw new Error("Unsupported media type");
       }
-      if (buffer.length > MAX_FILE_BYTES) {
+      const limit = maxBytesForMime(mime);
+      if (buffer.length > limit) {
         throw new Error("File too large");
       }
 
       const id = randomUUID();
-      const ext =
-        mime === "image/png"
-          ? "png"
-          : mime === "image/webp"
-            ? "webp"
-            : mime === "image/gif"
-              ? "gif"
-              : "jpg";
+      const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const pathname = `${IMG_PREFIX}${storedName}`;
 
@@ -98,14 +117,14 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         token,
       });
 
-      const [blurDataUrl, meta] = await Promise.all([
-        makeBlurDataUrl(buffer),
-        readMeta(buffer),
-      ]);
+      const isVideo = isAllowedVideoType(mime);
+      const [blurDataUrl, meta] = isVideo
+        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
+        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
 
       const record: PhotoRecord = {
         id,
-        filename: filename || `photo.${ext}`,
+        filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
         uploadedAt: new Date().toISOString(),
         storedName,
         mime,
@@ -121,16 +140,45 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       return recordToPhoto(record);
     },
 
-    async readFile(id: string) {
+    async readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null> {
       const records = await readManifest(token);
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       const pathname = `${IMG_PREFIX}${rec.storedName}`;
       try {
-        const result = await get(pathname, { access: ACCESS, token });
-        if (!result || result.statusCode !== 200 || !result.stream) return null;
+        if (!range) {
+          const result = await get(pathname, { access: ACCESS, token });
+          if (!result || result.statusCode !== 200 || !result.stream) return null;
+          const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
+          return {
+            buffer: buf,
+            mime: rec.mime,
+            totalSize: result.blob.size,
+            ranged: false,
+          };
+        }
+
+        const result = await get(pathname, {
+          access: ACCESS,
+          token,
+          headers: { Range: `bytes=${range.start}-${range.end}` },
+        });
+        if (!result?.stream) return null;
+
         const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
-        return { buffer: buf, mime: rec.mime };
+        const code = result.statusCode as number;
+
+        if (code === 200) {
+          return { buffer: buf, mime: rec.mime, totalSize: buf.length, ranged: false };
+        }
+
+        if (code === 206) {
+          const totalSize =
+            parseTotalFromContentRange(result.headers.get("content-range")) ?? buf.length;
+          return { buffer: buf, mime: rec.mime, totalSize, ranged: true };
+        }
+
+        return null;
       } catch {
         return null;
       }

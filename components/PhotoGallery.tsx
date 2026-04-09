@@ -47,18 +47,32 @@ export default function PhotoGallery({
           ref={photo.id === lastViewedPhoto ? lastRef : undefined}
           className="after:content group relative mb-4 block w-full cursor-zoom-in break-inside-avoid after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:mb-5"
         >
-          <Image
-            alt={photo.filename}
-            className="transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-            style={{ transform: "translate3d(0, 0, 0)" }}
-            placeholder={photo.blurDataUrl ? "blur" : "empty"}
-            blurDataURL={photo.blurDataUrl}
-            src={photo.url}
-            width={photo.width ?? 720}
-            height={photo.height ?? 480}
-            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            unoptimized
-          />
+          {photo.kind === "video" ? (
+            <video
+              src={photo.url}
+              muted
+              playsInline
+              preload="metadata"
+              className="w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+              style={{ transform: "translate3d(0, 0, 0)" }}
+              width={photo.width ?? 1280}
+              height={photo.height ?? 720}
+              aria-label={photo.filename}
+            />
+          ) : (
+            <Image
+              alt={photo.filename}
+              className="transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+              style={{ transform: "translate3d(0, 0, 0)" }}
+              placeholder={photo.blurDataUrl ? "blur" : "empty"}
+              blurDataURL={photo.blurDataUrl}
+              src={photo.url}
+              width={photo.width ?? 720}
+              height={photo.height ?? 480}
+              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              unoptimized
+            />
+          )}
         </Link>
       ))}
     </div>

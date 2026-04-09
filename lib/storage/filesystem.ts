@@ -1,15 +1,29 @@
 import { randomUUID } from "crypto";
+import { createReadStream } from "fs";
 import fs from "fs/promises";
 import path from "path";
 import sharp from "sharp";
 import type { PhotoRecord } from "../types/photo";
-import { isAllowedImageType, MAX_FILE_BYTES } from "../types/photo";
-import type { PhotoStorage } from "./types";
+import {
+  extensionForMime,
+  isAllowedMediaType,
+  isAllowedVideoType,
+  maxBytesForMime,
+} from "../types/photo";
+import type { PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const UPLOADS_DIR = path.join(DATA_DIR, "uploads");
 const INDEX_PATH = path.join(DATA_DIR, "photos.json");
+
+async function readStreamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
+  const chunks: Buffer[] = [];
+  for await (const chunk of stream) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+  }
+  return Buffer.concat(chunks);
+}
 
 async function ensureDirs(): Promise<void> {
   await fs.mkdir(UPLOADS_DIR, { recursive: true });
@@ -64,38 +78,45 @@ export function createFilesystemStorage(): PhotoStorage {
       return records.map(recordToPhoto);
     },
 
+    async getFileMeta(id: string) {
+      const records = await readIndex();
+      const rec = records.find((r) => r.id === id);
+      if (!rec) return null;
+      const filePath = path.join(UPLOADS_DIR, rec.storedName);
+      try {
+        const stat = await fs.stat(filePath);
+        return { totalSize: stat.size, mime: rec.mime };
+      } catch {
+        return null;
+      }
+    },
+
     async createFromBuffer(input) {
       const { buffer, filename, mime } = input;
-      if (!isAllowedImageType(mime)) {
-        throw new Error("Unsupported image type");
+      if (!isAllowedMediaType(mime)) {
+        throw new Error("Unsupported media type");
       }
-      if (buffer.length > MAX_FILE_BYTES) {
+      const limit = maxBytesForMime(mime);
+      if (buffer.length > limit) {
         throw new Error("File too large");
       }
 
       await ensureDirs();
       const id = randomUUID();
-      const ext =
-        mime === "image/png"
-          ? "png"
-          : mime === "image/webp"
-            ? "webp"
-            : mime === "image/gif"
-              ? "gif"
-              : "jpg";
+      const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const filePath = path.join(UPLOADS_DIR, storedName);
 
       await fs.writeFile(filePath, buffer);
 
-      const [blurDataUrl, meta] = await Promise.all([
-        makeBlurDataUrl(buffer),
-        readMeta(buffer),
-      ]);
+      const isVideo = isAllowedVideoType(mime);
+      const [blurDataUrl, meta] = isVideo
+        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
+        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
 
       const record: PhotoRecord = {
         id,
-        filename: filename || `photo.${ext}`,
+        filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
         uploadedAt: new Date().toISOString(),
         storedName,
         mime,
@@ -111,14 +132,26 @@ export function createFilesystemStorage(): PhotoStorage {
       return recordToPhoto(record);
     },
 
-    async readFile(id: string) {
+    async readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null> {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       const filePath = path.join(UPLOADS_DIR, rec.storedName);
       try {
-        const buffer = await fs.readFile(filePath);
-        return { buffer, mime: rec.mime };
+        const stat = await fs.stat(filePath);
+        const totalSize = stat.size;
+        if (!range) {
+          const buffer = await fs.readFile(filePath);
+          return { buffer, mime: rec.mime, totalSize, ranged: false };
+        }
+        const { start } = range;
+        let { end } = range;
+        if (start >= totalSize) return null;
+        end = Math.min(end, totalSize - 1);
+        if (start > end || start < 0) return null;
+        const stream = createReadStream(filePath, { start, end });
+        const buffer = await readStreamToBuffer(stream);
+        return { buffer, mime: rec.mime, totalSize, ranged: true };
       } catch {
         return null;
       }

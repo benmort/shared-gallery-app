@@ -24,6 +24,14 @@ type Props = {
   closeModal: () => void;
 };
 
+function downloadExt(photo: Photo): string {
+  const fromName = photo.filename.split(".").pop()?.toLowerCase();
+  if (fromName && fromName.length <= 5) {
+    return fromName.replace("jpeg", "jpg");
+  }
+  return photo.kind === "video" ? "mp4" : "jpg";
+}
+
 export default function PhotoLightbox({
   photos,
   index,
@@ -54,13 +62,13 @@ export default function PhotoLightbox({
 
   if (!current) return null;
 
-  const ext =
-    current.filename.split(".").pop()?.toLowerCase().replace("jpeg", "jpg") ||
-    "jpg";
+  const ext = downloadExt(current);
 
   const sharePhoto = async () => {
     const pageUrl = new URL(current.url, window.location.origin).href;
-    const name = current.filename || `photo.${ext}`;
+    const name = current.filename || `${current.kind}.${ext}`;
+    const defaultShareType =
+      current.kind === "video" ? "video/mp4" : "image/jpeg";
 
     try {
       if (typeof navigator !== "undefined" && navigator.share) {
@@ -68,7 +76,7 @@ export default function PhotoLightbox({
           const res = await fetch(current.url);
           const blob = await res.blob();
           const file = new File([blob], name, {
-            type: blob.type || "image/jpeg",
+            type: blob.type || defaultShareType,
           });
           if (navigator.canShare?.({ files: [file] })) {
             await navigator.share({ files: [file], title: name });
@@ -93,6 +101,8 @@ export default function PhotoLightbox({
     }
   };
 
+  const isVideo = current.kind === "video";
+
   return (
     <MotionConfig
       transition={{
@@ -116,17 +126,31 @@ export default function PhotoLightbox({
                 exit="exit"
                 className="relative flex w-full items-center justify-center"
               >
-                <div className="relative aspect-[4/3] w-full max-h-[min(70vh,85dvh)] sm:aspect-[3/2]">
-                  <Image
-                    src={current.url}
-                    alt={current.filename}
-                    fill
-                    priority
-                    className="object-contain"
-                    unoptimized
-                    onLoadingComplete={() => setLoaded(true)}
-                  />
-                </div>
+                {isVideo ? (
+                  <div className="relative flex w-full max-w-5xl items-center justify-center px-1">
+                    <video
+                      key={current.id}
+                      src={current.url}
+                      controls
+                      playsInline
+                      className="max-h-[min(70vh,85dvh)] max-w-full rounded-lg object-contain"
+                      onLoadedData={() => setLoaded(true)}
+                      onCanPlay={() => setLoaded(true)}
+                    />
+                  </div>
+                ) : (
+                  <div className="relative aspect-[4/3] w-full max-h-[min(70vh,85dvh)] sm:aspect-[3/2]">
+                    <Image
+                      src={current.url}
+                      alt={current.filename}
+                      fill
+                      priority
+                      className="object-contain"
+                      unoptimized
+                      onLoadingComplete={() => setLoaded(true)}
+                    />
+                  </div>
+                )}
               </motion.div>
             </AnimatePresence>
           </div>
@@ -141,7 +165,7 @@ export default function PhotoLightbox({
                   className="absolute left-1 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3"
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index - 1)}
-                  aria-label="Previous photo"
+                  aria-label="Previous"
                 >
                   <ChevronLeftIcon className="h-6 w-6" />
                 </button>
@@ -152,7 +176,7 @@ export default function PhotoLightbox({
                   className="absolute right-1 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3"
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index + 1)}
-                  aria-label="Next photo"
+                  aria-label="Next"
                 >
                   <ChevronRightIcon className="h-6 w-6" />
                 </button>
@@ -162,9 +186,9 @@ export default function PhotoLightbox({
                   href={current.url}
                   className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
                   target="_blank"
-                  title="Open full image"
+                  title="Open full size in new tab"
                   rel="noreferrer"
-                  aria-label="Open full image in new tab"
+                  aria-label="Open full size in new tab"
                 >
                   <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                 </a>
@@ -172,19 +196,22 @@ export default function PhotoLightbox({
                   type="button"
                   onClick={() => void sharePhoto()}
                   className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
-                  title="Share image"
-                  aria-label="Share image"
+                  title="Share"
+                  aria-label="Share"
                 >
                   <ShareIcon className="h-5 w-5" />
                 </button>
                 <button
                   type="button"
                   onClick={() =>
-                    downloadPhoto(current.url, current.filename || `photo.${ext}`)
+                    downloadPhoto(
+                      current.url,
+                      current.filename || `${current.kind}.${ext}`,
+                    )
                   }
                   className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
                   title="Download"
-                  aria-label="Download this photo"
+                  aria-label="Download"
                 >
                   <ArrowDownTrayIcon className="h-5 w-5" />
                 </button>
@@ -222,7 +249,7 @@ export default function PhotoLightbox({
                     type="button"
                     key={photo.id}
                     onClick={() => changeIndex(globalIndex)}
-                    aria-label={`View photo ${globalIndex + 1}`}
+                    aria-label={`View item ${globalIndex + 1}`}
                     aria-current={active ? "true" : undefined}
                     className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md sm:h-[4.5rem] sm:w-28 ${
                       active
@@ -230,14 +257,25 @@ export default function PhotoLightbox({
                         : "z-10 opacity-60 hover:opacity-90"
                     }`}
                   >
-                    <Image
-                      alt=""
-                      src={photo.url}
-                      width={180}
-                      height={120}
-                      className="h-full w-full object-cover"
-                      unoptimized
-                    />
+                    {photo.kind === "video" ? (
+                      <video
+                        src={photo.url}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="h-full w-full object-cover"
+                        aria-hidden
+                      />
+                    ) : (
+                      <Image
+                        alt=""
+                        src={photo.url}
+                        width={180}
+                        height={120}
+                        className="h-full w-full object-cover"
+                        unoptimized
+                      />
+                    )}
                   </motion.button>
                 );
               })}

@@ -32,7 +32,7 @@ export default function UploadDropzone({
         ref={inputRef}
         id={inputId}
         type="file"
-        accept="image/jpeg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif"
+        accept="image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/quicktime,.jpg,.jpeg,.png,.webp,.gif,.mp4,.webm,.mov"
         multiple
         className="sr-only"
         disabled={disabled}
@@ -74,14 +74,14 @@ export default function UploadDropzone({
               : "text-sm font-medium text-stone-800"
           }
         >
-          Tap to choose photos
+          Tap to choose photos or videos
         </span>
         <span
           className={
             variant === "onDark" ? "text-xs text-stone-400" : "text-xs text-stone-500"
           }
         >
-          JPEG, PNG, WebP, or GIF — multiple files ok
+          Images or MP4 / WebM / MOV — multiple files ok
         </span>
       </label>
     </div>

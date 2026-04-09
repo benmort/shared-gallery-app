@@ -28,14 +28,25 @@ export default function UploadPreviewList({
           key={item.id}
           className="relative aspect-square overflow-hidden rounded-xl bg-stone-100 shadow-sm"
         >
-          <Image
-            src={item.previewUrl}
-            alt=""
-            fill
-            className="object-cover"
-            unoptimized
-            sizes="120px"
-          />
+          {item.file.type.startsWith("video/") ? (
+            <video
+              src={item.previewUrl}
+              muted
+              playsInline
+              preload="metadata"
+              className="h-full w-full object-cover"
+              aria-hidden
+            />
+          ) : (
+            <Image
+              src={item.previewUrl}
+              alt=""
+              fill
+              className="object-cover"
+              unoptimized
+              sizes="120px"
+            />
+          )}
           <button
             type="button"
             disabled={disabled}

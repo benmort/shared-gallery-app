@@ -7,13 +7,16 @@ import { useMemo, useState } from "react";
 import useKeypress from "react-use-keypress";
 import type { Photo } from "@/lib/types/photo";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
+import { galleryPath } from "@/utils/galleryUrl";
 import PhotoLightbox from "./PhotoLightbox";
 
 type Props = {
   photos: Photo[];
+  /** Keep e.g. `showreel=true` when navigating lightbox / close. */
+  preserveSearchParams?: Record<string, string> | null;
 };
 
-export default function PhotoModal({ photos }: Props) {
+export default function PhotoModal({ photos, preserveSearchParams }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const photoId = searchParams?.get("photoId") ?? null;
@@ -29,7 +32,9 @@ export default function PhotoModal({ photos }: Props) {
 
   const handleClose = () => {
     if (photoId) setLastViewedPhoto(photoId);
-    router.replace("/", { scroll: false });
+    router.replace(galleryPath(null, preserveSearchParams ?? null), {
+      scroll: false,
+    });
   };
 
   const changeIndex = (newIndex: number) => {
@@ -37,7 +42,11 @@ export default function PhotoModal({ photos }: Props) {
     if (newIndex === index) return;
     setDirection(newIndex > index ? 1 : -1);
     const id = photos[newIndex]?.id;
-    if (id) router.replace(`/?photoId=${id}`, { scroll: false });
+    if (id) {
+      router.replace(galleryPath(id, preserveSearchParams ?? null), {
+        scroll: false,
+      });
+    }
   };
 
   useKeypress("ArrowRight", () => {

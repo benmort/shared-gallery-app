@@ -10,6 +10,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        "showreel-marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        "showreel-marquee": "showreel-marquee 180s linear infinite",
+      },
       boxShadow: {
         highlight: "inset 0 0 0 1px rgba(255, 255, 255, 0.05)",
       },

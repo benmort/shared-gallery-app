@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getPhotoStorage } from "@/lib/storage";
-import { isAllowedImageType, MAX_FILE_BYTES } from "@/lib/types/photo";
+import { isAllowedMediaType, maxBytesForMime } from "@/lib/types/photo";
 
 export const dynamic = "force-dynamic";
 
@@ -27,16 +27,17 @@ export async function POST(request: Request) {
 
     for (const file of entries) {
       if (!(file instanceof File) || file.size === 0) continue;
-      if (file.size > MAX_FILE_BYTES) {
+      const mime = file.type || "application/octet-stream";
+      if (!isAllowedMediaType(mime)) {
         return NextResponse.json(
-          { error: `File "${file.name}" exceeds maximum size` },
+          { error: `Unsupported type for "${file.name}"` },
           { status: 400 },
         );
       }
-      const mime = file.type || "application/octet-stream";
-      if (!isAllowedImageType(mime)) {
+      const maxBytes = maxBytesForMime(mime);
+      if (file.size > maxBytes) {
         return NextResponse.json(
-          { error: `Unsupported type for "${file.name}"` },
+          { error: `File "${file.name}" exceeds maximum size` },
           { status: 400 },
         );
       }
@@ -57,7 +58,7 @@ export async function POST(request: Request) {
   } catch (e) {
     const message = e instanceof Error ? e.message : "Upload failed";
     const status =
-      message === "Unsupported image type" || message === "File too large"
+      message === "Unsupported media type" || message === "File too large"
         ? 400
         : 500;
     return NextResponse.json({ error: message }, { status });

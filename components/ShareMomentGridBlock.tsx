@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import { validateImageFile } from "@/lib/client-validate";
+import { validateMediaFile } from "@/lib/client-validate";
 import CameraCapture from "./CameraCapture";
 import EmptyState from "./EmptyState";
 import UploadDropzone from "./UploadDropzone";
@@ -14,9 +14,14 @@ function newPreviewId() {
 
 type Props = {
   onUploadSuccess?: () => void;
+  /** Compact bar for showreel layout (full-width footer). */
+  variant?: "hero" | "showreel";
 };
 
-export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
+export default function ShareMomentGridBlock({
+  onUploadSuccess,
+  variant = "hero",
+}: Props) {
   const [items, setItems] = useState<PreviewItem[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
   const [success, setSuccess] = useState(false);
@@ -28,7 +33,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
     const errs: string[] = [];
     const next: PreviewItem[] = [];
     for (const file of files) {
-      const msg = validateImageFile(file);
+      const msg = validateMediaFile(file);
       if (msg) {
         errs.push(msg);
         continue;
@@ -80,6 +85,77 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
       setUploading(false);
     }
   };
+
+  if (variant === "showreel") {
+    return (
+      <div
+        className="relative w-full border-t border-white/10 bg-black/90 px-3 py-4 pb-[max(1rem,var(--album-safe-bottom))] backdrop-blur-md sm:px-5"
+        aria-label="Add to showreel"
+      >
+        <div className="mx-auto flex w-full max-w-2xl flex-col gap-3">
+          <div className="flex items-center justify-center gap-3">
+            <Image
+              src="/Common-Threads-Logo.png"
+              alt="Common Threads"
+              width={200}
+              height={80}
+              className="h-8 w-auto object-contain opacity-90"
+            />
+            <p className="text-xs text-white/60">
+              New uploads appear in the reel automatically.
+            </p>
+          </div>
+          <section className="flex flex-col gap-3 text-left" aria-label="Upload">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-start">
+              <div className="min-w-0 flex-1">
+                <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
+              </div>
+              <div className="min-w-0 flex-1">
+                <UploadDropzone onFiles={addFiles} disabled={uploading} variant="onDark" />
+              </div>
+            </div>
+            {items.length > 0 && (
+              <UploadPreviewList
+                items={items}
+                onRemove={removeItem}
+                disabled={uploading}
+              />
+            )}
+            {errors.length > 0 && (
+              <div
+                role="alert"
+                className="rounded-xl bg-red-950/50 px-3 py-2 text-sm text-red-100 ring-1 ring-red-500/30"
+              >
+                <ul className="list-inside list-disc space-y-1">
+                  {errors.map((e, i) => (
+                    <li key={i}>{e}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {success && (
+              <p
+                role="status"
+                className="text-center text-sm font-medium text-emerald-300"
+              >
+                Added to the album.
+              </p>
+            )}
+            <button
+              type="button"
+              disabled={uploading || items.length === 0}
+              onClick={() => void upload()}
+              className="min-h-11 w-full rounded-lg border border-white/20 bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              {uploading
+                ? "Uploading…"
+                : `Upload${items.length ? ` (${items.length})` : ""}`}
+            </button>
+          </section>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative mb-4 break-inside-avoid sm:mb-5">
@@ -144,7 +220,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
                 role="status"
                 className="text-center text-sm font-medium text-emerald-300"
               >
-                Photos added to the album.
+                Added to the album.
               </p>
             )}
 

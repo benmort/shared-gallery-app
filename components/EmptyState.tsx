@@ -6,15 +6,15 @@ export default function EmptyState({ variant = "album" }: Props) {
   if (variant === "heroDark") {
     return (
       <p className="text-center text-sm text-white/60">
-        No photos selected yet. Choose from your library or take one with your
-        camera.
+        Nothing selected yet. Choose from your library or use photo / video
+        capture.
       </p>
     );
   }
   if (variant === "home") {
     return (
       <p className="text-center text-sm text-stone-400">
-        No photos selected yet. Choose from your library or take one with your camera.
+        Nothing selected yet. Choose from your library or use photo / video capture.
       </p>
     );
   }
