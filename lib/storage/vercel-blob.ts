@@ -57,6 +57,7 @@ async function writeManifest(records: PhotoRecord[], token: string): Promise<voi
   await put(MANIFEST_PATH, JSON.stringify(records), {
     access: ACCESS,
     addRandomSuffix: false,
+    allowOverwrite: true,
     contentType: "application/json",
     token,
   });
