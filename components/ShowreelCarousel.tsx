@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import type { Photo } from "@/lib/types/photo";
 
 type Props = {
@@ -19,7 +18,7 @@ function loopSlides(photos: Photo[]): Photo[] {
 }
 
 export default function ShowreelCarousel({ photos, loading }: Props) {
-  const list = photos ?? [];
+  const list = (photos ?? []).filter((p) => p.kind === "image");
   const slides = loopSlides(list);
   const hasSlides = slides.length > 0;
 
@@ -38,40 +37,27 @@ export default function ShowreelCarousel({ photos, loading }: Props) {
 
       {!loading && !hasSlides && (
         <p className="absolute left-1/2 top-1/2 z-10 max-w-sm -translate-x-1/2 -translate-y-1/2 px-4 text-center text-sm text-stone-500">
-          No photos yet. Add some below — they will appear here automatically.
+          No photos yet. Add them from the main gallery page.
         </p>
       )}
 
       {hasSlides && (
-        <div className="group relative flex min-h-[min(52dvh,480px)] flex-1 items-center overflow-hidden py-6">
-          <div className="flex w-max animate-showreel-marquee items-stretch gap-4 pl-4 pr-4 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+        <div className="relative flex min-h-0 flex-1 items-center overflow-hidden py-3 sm:py-4">
+          <div className="flex w-max animate-showreel-marquee items-stretch gap-5 pl-5 pr-5 motion-reduce:animate-none sm:gap-6 sm:pl-6 sm:pr-6">
             {slides.map((photo, i) => (
-              <Link
+              <div
                 key={`${photo.id}-${i}`}
-                href={`/?showreel=true&photoId=${photo.id}`}
-                scroll={false}
-                className="relative h-[min(52dvh,480px)] w-[min(78vw,340px)] shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/10 transition hover:ring-amber-400/40 sm:w-[min(72vw,400px)]"
+                className="relative h-[min(78dvh,820px)] w-[min(92vw,720px)] shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/10 sm:h-[min(82dvh,880px)] sm:w-[min(90vw,800px)]"
               >
-                {photo.kind === "video" ? (
-                  <video
-                    src={photo.url}
-                    muted
-                    playsInline
-                    preload="metadata"
-                    className="h-full w-full object-cover"
-                    aria-label={photo.filename}
-                  />
-                ) : (
-                  <Image
-                    src={photo.url}
-                    alt={photo.filename}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 78vw, 400px"
-                    unoptimized
-                  />
-                )}
-              </Link>
+                <Image
+                  src={photo.url}
+                  alt=""
+                  fill
+                  className="pointer-events-none object-cover select-none"
+                  sizes="(max-width: 640px) 92vw, 800px"
+                  unoptimized
+                />
+              </div>
             ))}
           </div>
         </div>

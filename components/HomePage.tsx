@@ -9,6 +9,7 @@ import PhotoModal from "./PhotoModal";
 import ScrollToTop from "./ScrollToTop";
 import ShareMomentGridBlock from "./ShareMomentGridBlock";
 import ShowreelCarousel from "./ShowreelCarousel";
+import ShowreelFooter from "./ShowreelFooter";
 
 export default function HomePage() {
   const router = useRouter();
@@ -89,7 +90,7 @@ export default function HomePage() {
             photos={photos}
             loading={photos === null && !error}
           />
-          <ShareMomentGridBlock variant="showreel" onUploadSuccess={load} />
+          <ShowreelFooter />
         </div>
         {photos && photos.length > 0 && (
           <PhotoModal

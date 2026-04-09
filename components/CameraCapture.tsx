@@ -82,9 +82,11 @@ export default function CameraCapture({
         type="file"
         accept="image/*"
         capture="environment"
-        className="sr-only"
+        className="hidden"
+        tabIndex={-1}
         disabled={disabled}
         onChange={onPhotoChange}
+        aria-hidden
       />
       <input
         ref={videoInputRef}
@@ -92,9 +94,11 @@ export default function CameraCapture({
         type="file"
         accept="video/*"
         capture="environment"
-        className="sr-only"
+        className="hidden"
+        tabIndex={-1}
         disabled={disabled}
         onChange={onVideoChange}
+        aria-hidden
       />
       <p
         className={

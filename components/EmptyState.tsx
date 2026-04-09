@@ -6,15 +6,26 @@ export default function EmptyState({ variant = "album" }: Props) {
   if (variant === "heroDark") {
     return (
       <p className="text-center text-sm text-white/60">
-        Nothing selected yet. Choose from your library or use photo / video
-        capture.
+        <span className="md:hidden">
+          Nothing selected yet. Choose from your library or use photo / video
+          capture.
+        </span>
+        <span className="hidden md:inline">
+          Nothing selected yet. Choose from your library.
+        </span>
       </p>
     );
   }
   if (variant === "home") {
     return (
       <p className="text-center text-sm text-stone-400">
-        Nothing selected yet. Choose from your library or use photo / video capture.
+        <span className="md:hidden">
+          Nothing selected yet. Choose from your library or use photo / video
+          capture.
+        </span>
+        <span className="hidden md:inline">
+          Nothing selected yet. Choose from your library.
+        </span>
       </p>
     );
   }
@@ -25,8 +36,13 @@ export default function EmptyState({ variant = "album" }: Props) {
       </div>
       <h2 className="text-lg font-medium text-stone-100">No photos yet</h2>
       <p className="max-w-xs text-sm leading-relaxed text-stone-400">
-        Be the first to add a moment. Use the card above to upload or capture
-        from your phone.
+        <span className="md:hidden">
+          Be the first to add a moment. Use the card above to upload or capture
+          from your phone.
+        </span>
+        <span className="hidden md:inline">
+          Be the first to add a moment. Use the card above to upload.
+        </span>
       </p>
     </div>
   );
