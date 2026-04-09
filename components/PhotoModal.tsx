@@ -14,9 +14,16 @@ type Props = {
   photos: Photo[];
   /** Keep e.g. `showreel=true` when navigating lightbox / close. */
   preserveSearchParams?: Record<string, string> | null;
+  moderation?: boolean;
+  onPhotosReload?: () => Promise<void>;
 };
 
-export default function PhotoModal({ photos, preserveSearchParams }: Props) {
+export default function PhotoModal({
+  photos,
+  preserveSearchParams,
+  moderation = false,
+  onPhotosReload,
+}: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const photoId = searchParams?.get("photoId") ?? null;
@@ -49,6 +56,37 @@ export default function PhotoModal({ photos, preserveSearchParams }: Props) {
     }
   };
 
+  const preserve = preserveSearchParams ?? null;
+
+  const handleDeletePhoto =
+    moderation && onPhotosReload
+      ? async (photo: Photo) => {
+          const res = await fetch(
+            `/api/photos/${encodeURIComponent(photo.id)}`,
+            { method: "DELETE" },
+          );
+          if (!res.ok) {
+            window.alert("Couldn’t delete this item. Try again.");
+            return;
+          }
+          const idx = photos.findIndex((p) => p.id === photo.id);
+          const remaining = photos.filter((p) => p.id !== photo.id);
+          if (remaining.length === 0) {
+            router.replace(galleryPath(null, preserve), { scroll: false });
+          } else if (idx >= 0 && idx < remaining.length) {
+            router.replace(galleryPath(remaining[idx].id, preserve), {
+              scroll: false,
+            });
+          } else {
+            router.replace(
+              galleryPath(remaining[remaining.length - 1].id, preserve),
+              { scroll: false },
+            );
+          }
+          await onPhotosReload();
+        }
+      : undefined;
+
   useKeypress("ArrowRight", () => {
     if (open && index + 1 < photos.length) changeIndex(index + 1);
   });
@@ -80,6 +118,7 @@ export default function PhotoModal({ photos, preserveSearchParams }: Props) {
           direction={direction}
           changeIndex={changeIndex}
           closeModal={handleClose}
+          onDeletePhoto={handleDeletePhoto}
         />
       </div>
     </Dialog>

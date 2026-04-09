@@ -1,4 +1,4 @@
-/** Build homepage path with optional `showreel` and `photoId` query params. */
+/** Build homepage path with optional `photoId` and preserved query params (e.g. `showreel`, `moderation`). */
 export function galleryPath(
   photoId?: string | null,
   preserve?: Record<string, string> | null,

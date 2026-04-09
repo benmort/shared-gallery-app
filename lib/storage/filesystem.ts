@@ -156,5 +156,20 @@ export function createFilesystemStorage(): PhotoStorage {
         return null;
       }
     },
+
+    async deleteById(id: string) {
+      const records = await readIndex();
+      const rec = records.find((r) => r.id === id);
+      if (!rec) return false;
+      const next = records.filter((r) => r.id !== id);
+      await writeIndex(next);
+      const filePath = path.join(UPLOADS_DIR, rec.storedName);
+      try {
+        await fs.unlink(filePath);
+      } catch {
+        /* file already missing */
+      }
+      return true;
+    },
   };
 }

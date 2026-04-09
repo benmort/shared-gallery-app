@@ -15,17 +15,20 @@ export default function HomePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const showreel = searchParams?.get("showreel") === "true";
-  const preserveShowreel = useMemo(
-    () => (showreel ? ({ showreel: "true" } as Record<string, string>) : null),
-    [showreel],
-  );
+  const moderation = searchParams?.get("moderation") === "true";
+  const preserveUrlParams = useMemo(() => {
+    const p: Record<string, string> = {};
+    if (showreel) p.showreel = "true";
+    if (moderation) p.moderation = "true";
+    return Object.keys(p).length ? p : null;
+  }, [showreel, moderation]);
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const load = useCallback(() => {
+  const load = useCallback((): Promise<void> => {
     setError(null);
-    fetch("/api/photos")
+    return fetch("/api/photos")
       .then((r) => {
         if (!r.ok) throw new Error("bad");
         return r.json();
@@ -54,9 +57,9 @@ export default function HomePage() {
     if (!photoId || photos === null || photos.length === 0) return;
     const ok = photos.some((p) => p.id === photoId);
     if (!ok) {
-      router.replace(galleryPath(null, preserveShowreel), { scroll: false });
+      router.replace(galleryPath(null, preserveUrlParams), { scroll: false });
     }
-  }, [photoId, photos, router, preserveShowreel]);
+  }, [photoId, photos, router, preserveUrlParams]);
 
   const errorBanner = error && photos === null && (
     <div
@@ -95,7 +98,9 @@ export default function HomePage() {
         {photos && photos.length > 0 && (
           <PhotoModal
             photos={photos}
-            preserveSearchParams={preserveShowreel}
+            preserveSearchParams={preserveUrlParams}
+            moderation={moderation}
+            onPhotosReload={load}
           />
         )}
       </>
@@ -109,13 +114,23 @@ export default function HomePage() {
         {errorBanner}
 
         <PhotoGallery
-          lead={<ShareMomentGridBlock onUploadSuccess={load} />}
+          lead={
+            moderation ? null : (
+              <ShareMomentGridBlock onUploadSuccess={load} />
+            )
+          }
           photos={photos}
           photosLoading={photos === null && !error}
+          preserveSearchParams={preserveUrlParams}
         />
 
         {photos && photos.length > 0 && (
-          <PhotoModal photos={photos} preserveSearchParams={preserveShowreel} />
+          <PhotoModal
+            photos={photos}
+            preserveSearchParams={preserveUrlParams}
+            moderation={moderation}
+            onPhotosReload={load}
+          />
         )}
       </main>
     </>

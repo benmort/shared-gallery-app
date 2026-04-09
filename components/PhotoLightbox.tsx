@@ -6,6 +6,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   ShareIcon,
+  TrashIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
@@ -22,6 +23,8 @@ type Props = {
   direction: number;
   changeIndex: (newIndex: number) => void;
   closeModal: () => void;
+  /** Moderation mode: delete control (shown when provided). */
+  onDeletePhoto?: (photo: Photo) => Promise<void>;
 };
 
 function downloadExt(photo: Photo): string {
@@ -38,8 +41,10 @@ export default function PhotoLightbox({
   direction,
   changeIndex,
   closeModal,
+  onDeletePhoto,
 }: Props) {
   const [loaded, setLoaded] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const current = photos[index];
 
   const start = Math.max(0, index - 15);
@@ -102,6 +107,22 @@ export default function PhotoLightbox({
   };
 
   const isVideo = current.kind === "video";
+
+  const deleteCurrent = async () => {
+    if (!onDeletePhoto || deleting) return;
+    if (
+      typeof window !== "undefined" &&
+      !window.confirm("Delete this item permanently?")
+    ) {
+      return;
+    }
+    setDeleting(true);
+    try {
+      await onDeletePhoto(current);
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   return (
     <MotionConfig
@@ -182,6 +203,18 @@ export default function PhotoLightbox({
                 </button>
               )}
               <div className="absolute right-1 top-[max(0.5rem,var(--album-safe-top))] z-50 flex items-center gap-2 sm:right-3 sm:top-3">
+                {onDeletePhoto && (
+                  <button
+                    type="button"
+                    onClick={() => void deleteCurrent()}
+                    disabled={deleting}
+                    className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-red-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center"
+                    title="Delete"
+                    aria-label="Delete"
+                  >
+                    <TrashIcon className="h-5 w-5" />
+                  </button>
+                )}
                 <a
                   href={current.url}
                   className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"

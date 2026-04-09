@@ -1,5 +1,5 @@
 import { randomUUID } from "crypto";
-import { get, head, put } from "@vercel/blob";
+import { del, get, head, put } from "@vercel/blob";
 import sharp from "sharp";
 import type { PhotoRecord } from "../types/photo";
 import {
@@ -182,6 +182,21 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       } catch {
         return null;
       }
+    },
+
+    async deleteById(id: string) {
+      const records = await readManifest(token);
+      const rec = records.find((r) => r.id === id);
+      if (!rec) return false;
+      const pathname = `${IMG_PREFIX}${rec.storedName}`;
+      try {
+        await del(pathname, { token });
+      } catch {
+        /* blob may already be gone */
+      }
+      const next = records.filter((r) => r.id !== id);
+      await writeManifest(next, token);
+      return true;
     },
   };
 }

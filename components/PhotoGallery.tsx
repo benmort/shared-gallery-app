@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRef, useEffect, type ReactNode } from "react";
 import type { Photo } from "@/lib/types/photo";
+import { galleryPath } from "@/utils/galleryUrl";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
 type Props = {
@@ -12,12 +13,15 @@ type Props = {
   lead: ReactNode;
   photos: Photo[] | null;
   photosLoading?: boolean;
+  /** Keep e.g. `moderation=true` on photo tile links */
+  preserveSearchParams?: Record<string, string> | null;
 };
 
 export default function PhotoGallery({
   lead,
   photos,
   photosLoading,
+  preserveSearchParams,
 }: Props) {
   const searchParams = useSearchParams();
   const photoIdOpen = searchParams?.get("photoId") ?? null;
@@ -42,7 +46,7 @@ export default function PhotoGallery({
       {photos?.map((photo) => (
         <Link
           key={photo.id}
-          href={`/?photoId=${photo.id}`}
+          href={galleryPath(photo.id, preserveSearchParams ?? null)}
           scroll={false}
           ref={photo.id === lastViewedPhoto ? lastRef : undefined}
           className="after:content group relative mb-4 block w-full cursor-zoom-in break-inside-avoid after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:mb-5"

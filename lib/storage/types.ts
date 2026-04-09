@@ -31,6 +31,8 @@ export interface PhotoStorage {
   /** Size and MIME for Range requests and headers (no full body read). */
   getFileMeta(id: string): Promise<FileMeta | null>;
   readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null>;
+  /** Remove manifest entry and stored media; returns true if a record existed. */
+  deleteById(id: string): Promise<boolean>;
 }
 
 export function recordToPhoto(r: PhotoRecord): Photo {
