@@ -100,15 +100,6 @@ export default function CameraCapture({
         onChange={onVideoChange}
         aria-hidden
       />
-      <p
-        className={
-          onDark
-            ? "text-center text-xs text-stone-400"
-            : "text-center text-xs text-stone-500"
-        }
-      >
-        Photo and video capture open your device camera app on most phones.
-      </p>
       {fileError && (
         <p
           role="alert"

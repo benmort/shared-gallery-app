@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Photo } from "@/lib/types/photo";
@@ -23,8 +25,20 @@ export default function HomePage() {
     return Object.keys(p).length ? p : null;
   }, [showreel, moderation]);
 
+  /** Home URL without moderation (still preserves showreel when set). */
+  const homeHref = useMemo(() => {
+    const p: Record<string, string> = {};
+    if (showreel) p.showreel = "true";
+    return galleryPath(null, Object.keys(p).length ? p : null);
+  }, [showreel]);
+
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const normalizePhoto = useCallback((p: Photo): Photo => ({
+    ...p,
+    kind: p.kind === "video" ? "video" : "image",
+  }), []);
 
   const load = useCallback((): Promise<void> => {
     setError(null);
@@ -35,18 +49,26 @@ export default function HomePage() {
       })
       .then((data: unknown) => {
         if (!Array.isArray(data)) throw new Error("bad");
-        setPhotos(
-          (data as Photo[]).map((p) => ({
-            ...p,
-            kind: p.kind === "video" ? "video" : "image",
-          })),
-        );
+        setPhotos((data as Photo[]).map(normalizePhoto));
       })
       .catch(() => {
         setError("We couldn’t load photos. Pull to refresh or try again.");
         setPhotos(null);
       });
-  }, []);
+  }, [normalizePhoto]);
+
+  const mergeUploadedPhotos = useCallback(
+    (uploaded: Photo[]) => {
+      if (!uploaded.length) return;
+      const normalized = uploaded.map(normalizePhoto);
+      setPhotos((prev) => {
+        if (!prev) return normalized;
+        const ids = new Set(normalized.map((p) => p.id));
+        return [...normalized, ...prev.filter((p) => !ids.has(p.id))];
+      });
+    },
+    [normalizePhoto],
+  );
 
   useEffect(() => {
     load();
@@ -115,8 +137,23 @@ export default function HomePage() {
 
         <PhotoGallery
           lead={
-            moderation ? null : (
-              <ShareMomentGridBlock onUploadSuccess={load} />
+            moderation ? (
+              <div className="relative mb-4 break-inside-avoid sm:mb-5">
+                <Link
+                  href={homeHref}
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-stone-100 backdrop-blur-sm transition hover:bg-white/10"
+                >
+                  <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden />
+                  Back to home
+                </Link>
+              </div>
+            ) : (
+              <ShareMomentGridBlock
+                onUploadSuccess={(uploaded) => {
+                  if (uploaded?.length) mergeUploadedPhotos(uploaded);
+                  else void load();
+                }}
+              />
             )
           }
           photos={photos}

@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import type { Photo } from "@/lib/types/photo";
 import { variants } from "@/utils/animationVariants";
@@ -45,6 +45,9 @@ export default function PhotoLightbox({
 }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [mobileUiOpen, setMobileUiOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const thumbStripRef = useRef<HTMLDivElement>(null);
   const current = photos[index];
 
   const start = Math.max(0, index - 15);
@@ -54,6 +57,26 @@ export default function PhotoLightbox({
   useEffect(() => {
     setLoaded(false);
   }, [index]);
+
+  useEffect(() => {
+    setMobileUiOpen(false);
+  }, [index]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => setIsMobile(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  useEffect(() => {
+    if (!thumbStripRef.current || isMobile) return;
+    const el = thumbStripRef.current.querySelector<HTMLElement>(
+      `[data-thumb-index="${index}"]`,
+    );
+    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, [index, isMobile, photos.length]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -124,11 +147,13 @@ export default function PhotoLightbox({
     }
   };
 
+  const showChrome = loaded && (!isMobile || mobileUiOpen);
+
   return (
     <MotionConfig
       transition={{
-        x: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 },
+        opacity: { duration: 0.18, ease: [0.32, 0.72, 0, 1] },
+        x: { duration: 0.2, ease: [0.32, 0.72, 0, 1] },
       }}
     >
       <div
@@ -146,9 +171,17 @@ export default function PhotoLightbox({
                 animate="center"
                 exit="exit"
                 className="relative flex w-full items-center justify-center"
+                onClick={() => {
+                  if (!isMobile || isVideo) return;
+                  setMobileUiOpen((v) => !v);
+                }}
               >
                 {isVideo ? (
-                  <div className="relative flex w-full max-w-5xl items-center justify-center px-1">
+                  <div
+                    className={`relative flex w-full max-w-5xl items-center justify-center px-1 ${
+                      isMobile && mobileUiOpen ? "brightness-[0.45]" : ""
+                    } transition-[filter] duration-200`}
+                  >
                     <video
                       key={current.id}
                       src={current.url}
@@ -158,9 +191,21 @@ export default function PhotoLightbox({
                       onLoadedData={() => setLoaded(true)}
                       onCanPlay={() => setLoaded(true)}
                     />
+                    {isMobile && !mobileUiOpen && (
+                      <button
+                        type="button"
+                        className="absolute inset-0 z-10"
+                        aria-label="Show actions"
+                        onClick={() => setMobileUiOpen(true)}
+                      />
+                    )}
                   </div>
                 ) : (
-                  <div className="relative aspect-[4/3] w-full max-h-[min(70vh,85dvh)] sm:aspect-[3/2]">
+                  <div
+                    className={`relative aspect-[4/3] w-full max-h-[min(70vh,85dvh)] sm:aspect-[3/2] ${
+                      isMobile && mobileUiOpen ? "brightness-[0.45]" : ""
+                    } transition-[filter] duration-200`}
+                  >
                     <Image
                       src={current.url}
                       alt={current.filename}
@@ -177,13 +222,13 @@ export default function PhotoLightbox({
           </div>
         </div>
 
-        <div className="absolute inset-0 mx-auto flex max-w-7xl items-center justify-center pointer-events-none">
-          {loaded && (
+        <div className="pointer-events-none absolute inset-0 mx-auto flex max-w-7xl items-center justify-center">
+          {showChrome && (
             <div className="relative h-full w-full max-w-5xl pointer-events-auto">
               {index > 0 && (
                 <button
                   type="button"
-                  className="absolute left-1 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3"
+                  className="absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3 sm:flex"
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index - 1)}
                   aria-label="Previous"
@@ -194,7 +239,7 @@ export default function PhotoLightbox({
               {index + 1 < photos.length && (
                 <button
                   type="button"
-                  className="absolute right-1 top-1/2 z-50 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3"
+                  className="absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3 sm:flex"
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index + 1)}
                   aria-label="Next"
@@ -202,7 +247,14 @@ export default function PhotoLightbox({
                   <ChevronRightIcon className="h-6 w-6" />
                 </button>
               )}
-              <div className="absolute right-1 top-[max(0.5rem,var(--album-safe-top))] z-50 flex items-center gap-2 sm:right-3 sm:top-3">
+              <div
+                className={`absolute z-50 flex flex-wrap items-center justify-end gap-2 sm:right-3 sm:top-3 ${
+                  isMobile
+                    ? "right-2 top-[max(0.5rem,var(--album-safe-top))] max-w-[min(100%,12rem)]"
+                    : "right-1 top-[max(0.5rem,var(--album-safe-top))]"
+                }`}
+                onClick={(e) => e.stopPropagation()}
+              >
                 {onDeletePhoto && (
                   <button
                     type="button"
@@ -248,8 +300,18 @@ export default function PhotoLightbox({
                 >
                   <ArrowDownTrayIcon className="h-5 w-5" />
                 </button>
+                {isMobile && (
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                    aria-label="Close viewer"
+                  >
+                    <XMarkIcon className="h-5 w-5" />
+                  </button>
+                )}
               </div>
-              <div className="absolute left-1 top-[max(0.5rem,var(--album-safe-top))] z-50 sm:left-3 sm:top-3">
+              <div className="absolute left-1 top-[max(0.5rem,var(--album-safe-top))] z-50 hidden sm:left-3 sm:top-3 sm:block">
                 <button
                   type="button"
                   onClick={closeModal}
@@ -264,12 +326,13 @@ export default function PhotoLightbox({
         </div>
 
         <div
-          className="fixed inset-x-0 bottom-0 z-40 overflow-hidden bg-gradient-to-b from-black/0 to-black/60 pb-[max(0.75rem,var(--album-safe-bottom))] pt-4"
+          className="fixed inset-x-0 bottom-0 z-40 hidden overflow-hidden bg-gradient-to-b from-black/0 to-black/60 pb-[max(0.75rem,var(--album-safe-bottom))] pt-4 sm:block"
           style={{ paddingBottom: "max(0.75rem, var(--album-safe-bottom))" }}
         >
           <motion.div
+            ref={thumbStripRef}
             initial={false}
-            className="mx-auto flex h-16 max-w-full gap-0.5 overflow-x-auto px-2 sm:h-20 sm:px-4"
+            className="mx-auto flex h-16 max-w-full gap-1 overflow-x-auto scroll-smooth px-2 sm:h-20 sm:px-4"
           >
             <AnimatePresence initial={false}>
               {windowed.map((photo, i) => {
@@ -278,9 +341,10 @@ export default function PhotoLightbox({
                 return (
                   <motion.button
                     initial={false}
-                    layout
+                    layout={false}
                     type="button"
                     key={photo.id}
+                    data-thumb-index={globalIndex}
                     onClick={() => changeIndex(globalIndex)}
                     aria-label={`View item ${globalIndex + 1}`}
                     aria-current={active ? "true" : undefined}

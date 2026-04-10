@@ -4,6 +4,8 @@ import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { validateMediaFile } from "@/lib/client-validate";
+import type { Photo } from "@/lib/types/photo";
+import { postFormDataWithProgress } from "@/utils/postFormDataWithProgress";
 import CameraCapture from "./CameraCapture";
 import EmptyState from "./EmptyState";
 import UploadDropzone from "./UploadDropzone";
@@ -15,7 +17,7 @@ function newPreviewId() {
 }
 
 type Props = {
-  onUploadSuccess?: () => void;
+  onUploadSuccess?: (photos?: Photo[]) => void;
 };
 
 export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
@@ -23,6 +25,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
   const [errors, setErrors] = useState<string[]>([]);
   const [success, setSuccess] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const addFiles = useCallback((files: File[]) => {
     setErrors([]);
@@ -60,13 +63,19 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
   const upload = async () => {
     if (!items.length || uploading) return;
     setUploading(true);
+    setUploadProgress(0);
     setErrors([]);
     setSuccess(false);
     try {
       const fd = new FormData();
       items.forEach((i) => fd.append("file", i.file));
-      const res = await fetch("/api/photos", { method: "POST", body: fd });
-      const data = (await res.json()) as { error?: string };
+      const res = await postFormDataWithProgress("/api/photos", fd, (r) =>
+        setUploadProgress(r),
+      );
+      const data = (await res.json()) as {
+        error?: string;
+        photos?: Photo[];
+      };
       if (!res.ok) {
         setErrors([data.error || "Upload failed"]);
         return;
@@ -75,16 +84,43 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
       const snapshot = items;
       setItems([]);
       revokeAll(snapshot);
-      onUploadSuccess?.();
+      onUploadSuccess?.(data.photos);
     } catch {
       setErrors(["Something went wrong. Check your connection and try again."]);
     } finally {
       setUploading(false);
+      setUploadProgress(0);
     }
   };
 
   return (
     <div className="relative mb-4 break-inside-avoid sm:mb-5">
+      {uploading && (
+        <div
+          className="fixed inset-0 z-[200] hidden max-[639px]:flex flex-col bg-black/85 backdrop-blur-sm"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(uploadProgress * 100)}
+          aria-label="Upload progress"
+        >
+          <div className="h-1 w-full bg-white/15">
+            <div
+              className="h-full bg-amber-400 transition-[width] duration-150 ease-out"
+              style={{ width: `${Math.max(2, uploadProgress * 100)}%` }}
+            />
+          </div>
+          <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6">
+            <ArrowPathIcon
+              className="h-10 w-10 shrink-0 animate-spin text-white/90"
+              aria-hidden
+            />
+            <p className="text-center text-sm font-medium text-white/95">
+              Uploading…
+            </p>
+          </div>
+        </div>
+      )}
       <div
         className="after:content relative flex min-h-[min(70vh,629px)] flex-col items-center justify-end gap-4 overflow-hidden rounded-xl bg-white/10 px-4 pb-10 pt-36 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-highlight sm:pt-48 lg:pt-64"
         aria-label="Share a moment"
@@ -111,8 +147,8 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
             Share a moment
           </h1>
           <p className="text-pretty text-sm leading-relaxed text-white/75 md:hidden">
-            Add photos to the shared album — from your library or straight from
-            your camera.
+            Add photos and vidfeos to the shared album <br />
+            from your library or straight from your phone.
           </p>
 
           <section className="flex flex-col gap-4 text-left" aria-label="Upload">

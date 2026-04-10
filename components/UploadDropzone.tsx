@@ -81,7 +81,7 @@ export default function UploadDropzone({
             variant === "onDark" ? "text-xs text-stone-400" : "text-xs text-stone-500"
           }
         >
-          Images or MP4 / WebM / MOV — multiple files ok
+          Images or Videos — multiple files ok
         </span>
       </label>
     </div>

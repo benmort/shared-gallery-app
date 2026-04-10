@@ -1,5 +1,14 @@
 import { randomUUID } from "crypto";
-import { del, get, head, put } from "@vercel/blob";
+import {
+  BlobNotFoundError,
+  BlobPreconditionFailedError,
+  BlobServiceNotAvailable,
+  BlobServiceRateLimited,
+  del,
+  get,
+  head,
+  put,
+} from "@vercel/blob";
 import sharp from "sharp";
 import type { PhotoRecord } from "../types/photo";
 import {
@@ -18,6 +27,87 @@ const IMG_PREFIX = "album-img/";
 
 /** Private blobs only — requires a [private Vercel Blob store](https://vercel.com/docs/vercel-blob/private-storage). */
 const ACCESS = "private" as const;
+
+/** Same store-id extraction as `@vercel/blob` `get()` for pathname → URL. */
+function getStoreIdFromToken(t: string): string {
+  const [, , , storeId = ""] = t.split("_");
+  return storeId;
+}
+
+/** `del()` is documented with full blob URLs; pathnames alone can resolve inconsistently for private blobs. */
+function privateBlobUrl(pathname: string, token: string): string {
+  const storeId = getStoreIdFromToken(token);
+  if (!storeId) {
+    throw new Error("Invalid BLOB_READ_WRITE_TOKEN (missing store id)");
+  }
+  return `https://${storeId}.private.blob.vercel-storage.com/${pathname}`;
+}
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+/**
+ * Delete API blob; retries transient failures. `BlobNotFoundError` = already gone (ok).
+ */
+async function deleteBlobMedia(url: string, token: string): Promise<void> {
+  let lastErr: unknown;
+  for (let attempt = 0; attempt < 5; attempt++) {
+    try {
+      await del(url, { token });
+      return;
+    } catch (e) {
+      if (e instanceof BlobNotFoundError) return;
+      lastErr = e;
+      if (e instanceof BlobServiceRateLimited && e.retryAfter) {
+        await sleep(Math.min(e.retryAfter * 1000, 8000));
+        continue;
+      }
+      if (e instanceof BlobServiceNotAvailable) {
+        await sleep(150 * 2 ** attempt);
+        continue;
+      }
+      await sleep(100 * 2 ** attempt);
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
+}
+
+/**
+ * Read–modify–write manifest with optimistic concurrency (`ifMatch` ETag) so concurrent
+ * serverless invocations do not overwrite each other's changes.
+ */
+async function mutateManifest(
+  token: string,
+  mutator: (records: PhotoRecord[]) => PhotoRecord[],
+): Promise<void> {
+  for (let attempt = 0; attempt < 25; attempt++) {
+    let etag: string | undefined;
+    try {
+      const h = await head(MANIFEST_PATH, { token });
+      etag = h.etag;
+    } catch {
+      etag = undefined;
+    }
+    const records = await readManifest(token);
+    const next = mutator(records);
+    try {
+      await put(MANIFEST_PATH, JSON.stringify(next), {
+        access: ACCESS,
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json",
+        token,
+        ifMatch: etag,
+      });
+      return;
+    } catch (e) {
+      if (e instanceof BlobPreconditionFailedError) continue;
+      throw e;
+    }
+  }
+  throw new Error("Failed to update album manifest after concurrent writes");
+}
 
 function parseTotalFromContentRange(header: string | null): number | null {
   if (!header) return null;
@@ -63,16 +153,6 @@ async function readManifest(token: string): Promise<PhotoRecord[]> {
   } catch {
     return [];
   }
-}
-
-async function writeManifest(records: PhotoRecord[], token: string): Promise<void> {
-  await put(MANIFEST_PATH, JSON.stringify(records), {
-    access: ACCESS,
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    contentType: "application/json",
-    token,
-  });
 }
 
 export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
@@ -133,9 +213,16 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         height: meta.height,
       };
 
-      const records = await readManifest(token);
-      records.unshift(record);
-      await writeManifest(records, token);
+      try {
+        await mutateManifest(token, (records) => [record, ...records]);
+      } catch (e) {
+        try {
+          await deleteBlobMedia(privateBlobUrl(pathname, token), token);
+        } catch {
+          /* best-effort rollback */
+        }
+        throw e;
+      }
 
       return recordToPhoto(record);
     },
@@ -189,13 +276,9 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const rec = records.find((r) => r.id === id);
       if (!rec) return false;
       const pathname = `${IMG_PREFIX}${rec.storedName}`;
-      try {
-        await del(pathname, { token });
-      } catch {
-        /* blob may already be gone */
-      }
-      const next = records.filter((r) => r.id !== id);
-      await writeManifest(next, token);
+      const url = privateBlobUrl(pathname, token);
+      await deleteBlobMedia(url, token);
+      await mutateManifest(token, (prev) => prev.filter((r) => r.id !== id));
       return true;
     },
   };
