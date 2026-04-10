@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useRef, useEffect, type ReactNode } from "react";
 import type { Photo } from "@/lib/types/photo";
+import { galleryImageSrcSet } from "@/utils/galleryImageSrcSet";
 import { galleryPath } from "@/utils/galleryUrl";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
@@ -86,6 +87,20 @@ export default function PhotoGallery({
                 width={photo.width ?? 1280}
                 height={photo.height ?? 720}
                 aria-label={photo.filename}
+              />
+            ) : galleryImageSrcSet(photo) ? (
+              // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
+              <img
+                src={photo.thumbUrl ?? photo.url}
+                srcSet={galleryImageSrcSet(photo)}
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                alt={photo.filename}
+                width={photo.width ?? 720}
+                height={photo.height ?? 480}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                style={{ transform: "translate3d(0, 0, 0)" }}
               />
             ) : (
               <Image

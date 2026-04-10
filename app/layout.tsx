@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import RegisterServiceWorker from "@/components/RegisterServiceWorker";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,7 +37,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <RegisterServiceWorker />
+        {children}
+      </body>
     </html>
   );
 }

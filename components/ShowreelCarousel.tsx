@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import type { Photo } from "@/lib/types/photo";
 
 type Props = {
@@ -47,15 +46,15 @@ export default function ShowreelCarousel({ photos, loading }: Props) {
             {slides.map((photo, i) => (
               <div
                 key={`${photo.id}-${i}`}
-                className="relative h-[min(78dvh,820px)] w-[min(92vw,720px)] shrink-0 overflow-hidden rounded-2xl ring-1 ring-white/10 sm:h-[min(82dvh,880px)] sm:w-[min(90vw,800px)]"
+                className="relative h-[min(78dvh,820px)] w-max shrink-0 sm:h-[min(82dvh,880px)]"
               >
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element -- height-anchored intrinsic width; next/image width/height attrs block h-full */}
+                <img
                   src={photo.url}
                   alt=""
-                  fill
-                  className="pointer-events-none object-cover select-none"
-                  sizes="(max-width: 640px) 92vw, 800px"
-                  unoptimized
+                  className="pointer-events-none block h-full w-auto max-w-none select-none rounded-2xl ring-1 ring-white/10"
+                  draggable={false}
+                  decoding="async"
                 />
               </div>
             ))}

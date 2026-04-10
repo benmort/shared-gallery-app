@@ -17,7 +17,7 @@ module.exports = {
         },
       },
       animation: {
-        "showreel-marquee": "showreel-marquee 180s linear infinite",
+        "showreel-marquee": "showreel-marquee 60s linear infinite",
       },
       boxShadow: {
         highlight: "inset 0 0 0 1px rgba(255, 255, 255, 0.05)",

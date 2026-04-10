@@ -66,6 +66,12 @@ export default function PhotoModal({
             { method: "DELETE" },
           );
           if (!res.ok) {
+            if (res.status === 401) {
+              window.alert(
+                "Moderation session expired or missing. Sign in again with the moderation password.",
+              );
+              return;
+            }
             window.alert("Couldn’t delete this item. Try again.");
             return;
           }

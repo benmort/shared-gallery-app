@@ -16,11 +16,16 @@ import {
   useReducedMotion,
 } from "framer-motion";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
 import type { Photo } from "@/lib/types/photo";
+import { lightboxImageSrcSet } from "@/utils/lightboxImageSrcSet";
 import { variants } from "@/utils/animationVariants";
 import downloadPhoto from "@/utils/downloadPhoto";
+
+const FW_RING =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/80";
 
 type Props = {
   photos: Photo[];
@@ -50,6 +55,8 @@ export default function PhotoLightbox({
 }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [mobileUiOpen, setMobileUiOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const thumbStripRef = useRef<HTMLDivElement>(null);
@@ -69,6 +76,10 @@ export default function PhotoLightbox({
   }, [index]);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
     const apply = () => setIsMobile(mq.matches);
     apply();
@@ -83,6 +94,15 @@ export default function PhotoLightbox({
     );
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [index, isMobile, photos.length]);
+
+  useEffect(() => {
+    if (!showDeleteConfirm) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowDeleteConfirm(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [showDeleteConfirm]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -139,14 +159,9 @@ export default function PhotoLightbox({
 
   const isVideo = current.kind === "video";
 
-  const deleteCurrent = async () => {
+  const runDelete = async () => {
     if (!onDeletePhoto || deleting) return;
-    if (
-      typeof window !== "undefined" &&
-      !window.confirm("Delete this item permanently?")
-    ) {
-      return;
-    }
+    setShowDeleteConfirm(false);
     setDeleting(true);
     try {
       await onDeletePhoto(current);
@@ -158,6 +173,7 @@ export default function PhotoLightbox({
   const showChrome = loaded && (!isMobile || mobileUiOpen);
 
   return (
+    <>
     <MotionConfig
       transition={
         reduceMotion
@@ -191,9 +207,26 @@ export default function PhotoLightbox({
                 animate="center"
                 exit="exit"
                 className="relative flex w-full items-center justify-center"
+                role={isMobile && !isVideo ? "button" : undefined}
+                tabIndex={isMobile && !isVideo ? 0 : undefined}
+                aria-expanded={
+                  isMobile && !isVideo ? mobileUiOpen : undefined
+                }
+                aria-label={
+                  isMobile && !isVideo
+                    ? "Show or hide photo actions"
+                    : undefined
+                }
                 onClick={() => {
                   if (!isMobile || isVideo) return;
                   setMobileUiOpen((v) => !v);
+                }}
+                onKeyDown={(e) => {
+                  if (!isMobile || isVideo) return;
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setMobileUiOpen((v) => !v);
+                  }
                 }}
               >
                 {isVideo ? (
@@ -226,15 +259,28 @@ export default function PhotoLightbox({
                       isMobile && mobileUiOpen ? "brightness-[0.45]" : ""
                     } transition-[filter] duration-200`}
                   >
-                    <Image
-                      src={imageFetchUrl}
-                      alt={current.filename}
-                      fill
-                      priority
-                      className="object-contain"
-                      unoptimized
-                      onLoadingComplete={() => setLoaded(true)}
-                    />
+                    {lightboxImageSrcSet(current) ? (
+                      // eslint-disable-next-line @next/next/no-img-element -- responsive srcSet for variants
+                      <img
+                        src={current.displayUrl ?? current.url}
+                        srcSet={lightboxImageSrcSet(current)}
+                        sizes="(max-width: 640px) 100vw, min(90vw, 1280px)"
+                        alt={current.filename}
+                        className="absolute inset-0 h-full w-full object-contain"
+                        onLoad={() => setLoaded(true)}
+                        decoding="async"
+                      />
+                    ) : (
+                      <Image
+                        src={imageFetchUrl}
+                        alt={current.filename}
+                        fill
+                        priority
+                        className="object-contain"
+                        unoptimized
+                        onLoadingComplete={() => setLoaded(true)}
+                      />
+                    )}
                   </div>
                 )}
               </motion.div>
@@ -248,7 +294,7 @@ export default function PhotoLightbox({
               {index > 0 && (
                 <button
                   type="button"
-                  className="absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3 sm:flex"
+                  className={`absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index - 1)}
                   aria-label="Previous"
@@ -259,7 +305,7 @@ export default function PhotoLightbox({
               {index + 1 < photos.length && (
                 <button
                   type="button"
-                  className="absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3 sm:flex"
+                  className={`absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index + 1)}
                   aria-label="Next"
@@ -278,9 +324,9 @@ export default function PhotoLightbox({
                 {onDeletePhoto && (
                   <button
                     type="button"
-                    onClick={() => void deleteCurrent()}
+                    onClick={() => setShowDeleteConfirm(true)}
                     disabled={deleting}
-                    className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-red-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center"
+                    className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-red-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                     title="Delete"
                     aria-label="Delete"
                   >
@@ -289,7 +335,7 @@ export default function PhotoLightbox({
                 )}
                 <a
                   href={current.url}
-                  className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   target="_blank"
                   title="Open full size in new tab"
                   rel="noreferrer"
@@ -300,7 +346,7 @@ export default function PhotoLightbox({
                 <button
                   type="button"
                   onClick={() => void sharePhoto()}
-                  className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   title="Share"
                   aria-label="Share"
                 >
@@ -314,7 +360,7 @@ export default function PhotoLightbox({
                       current.filename || `${current.kind}.${ext}`,
                     )
                   }
-                  className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   title="Download"
                   aria-label="Download"
                 >
@@ -324,7 +370,7 @@ export default function PhotoLightbox({
                   <button
                     type="button"
                     onClick={closeModal}
-                    className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                    className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                     aria-label="Close viewer"
                   >
                     <XMarkIcon className="h-5 w-5" />
@@ -335,7 +381,7 @@ export default function PhotoLightbox({
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center"
+                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   aria-label="Close viewer"
                 >
                   <XMarkIcon className="h-5 w-5" />
@@ -368,7 +414,7 @@ export default function PhotoLightbox({
                     onClick={() => changeIndex(globalIndex)}
                     aria-label={`View item ${globalIndex + 1}`}
                     aria-current={active ? "true" : undefined}
-                    className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md sm:h-[4.5rem] sm:w-28 ${
+                    className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md sm:h-[4.5rem] sm:w-28 ${FW_RING} ${
                       active
                         ? "z-20 ring-2 ring-white ring-offset-2 ring-offset-black/40"
                         : "z-10 opacity-60 hover:opacity-90"
@@ -386,7 +432,7 @@ export default function PhotoLightbox({
                     ) : (
                       <Image
                         alt=""
-                        src={photo.url}
+                        src={photo.thumbUrl ?? photo.url}
                         width={180}
                         height={120}
                         className="h-full w-full object-cover"
@@ -401,5 +447,47 @@ export default function PhotoLightbox({
         </div>
       </div>
     </MotionConfig>
+
+    {mounted &&
+      showDeleteConfirm &&
+      createPortal(
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="delete-confirm-title"
+        >
+          <div className="w-full max-w-sm rounded-xl border border-white/15 bg-stone-900 px-4 py-5 text-stone-100 shadow-xl ring-1 ring-white/10">
+            <h2
+              id="delete-confirm-title"
+              className="text-lg font-semibold text-white"
+            >
+              Delete this item?
+            </h2>
+            <p className="mt-2 text-sm text-stone-400">
+              This cannot be undone. The file will be removed from the album.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-end gap-2">
+              <button
+                type="button"
+                className={`rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-stone-100 transition hover:bg-white/10 ${FW_RING}`}
+                onClick={() => setShowDeleteConfirm(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className={`rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-500 disabled:opacity-50 ${FW_RING}`}
+                disabled={deleting}
+                onClick={() => void runDelete()}
+              >
+                {deleting ? "Deleting…" : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )}
+    </>
   );
 }

@@ -1,9 +1,16 @@
 "use client";
 
+import { Dialog } from "@headlessui/react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import type { Photo } from "@/lib/types/photo";
 import { galleryPath } from "@/utils/galleryUrl";
 import ModerationLogin from "./ModerationLogin";
@@ -42,6 +49,8 @@ export default function HomePage() {
   const [moderationOk, setModerationOk] = useState(!moderation);
   const [moderationConfigured, setModerationConfigured] = useState(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const loadMoreSentinelRef = useRef<HTMLDivElement>(null);
 
   const normalizePhoto = useCallback((p: Photo): Photo => ({
     ...p,
@@ -86,8 +95,11 @@ export default function HomePage() {
       });
   }, [normalizePhoto, photoId]);
 
+  const loadMoreInFlight = useRef(false);
+
   const loadMore = useCallback(() => {
-    if (!photos || photos.length >= total) return;
+    if (loadMoreInFlight.current || !photos || photos.length >= total) return;
+    loadMoreInFlight.current = true;
     void fetch(`/api/photos?offset=${photos.length}&limit=${PAGE}`)
       .then((r) => {
         if (!r.ok) throw new Error("bad");
@@ -104,8 +116,26 @@ export default function HomePage() {
       })
       .catch(() => {
         setError("Couldn’t load more photos.");
+      })
+      .finally(() => {
+        loadMoreInFlight.current = false;
       });
   }, [photos, total, normalizePhoto]);
+
+  useEffect(() => {
+    const el = loadMoreSentinelRef.current;
+    if (!el || photos === null || photos.length >= total) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.length > 0 && entries[0].isIntersecting) {
+          loadMore();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [photos, total, loadMore]);
 
   const mergeUploadedPhotos = useCallback(
     (uploaded: Photo[]) => {
@@ -167,17 +197,8 @@ export default function HomePage() {
     });
   }, []);
 
-  const deleteSelected = useCallback(async () => {
-    const ids = [...selectedIds];
+  const performBulkDelete = useCallback(async (ids: string[]) => {
     if (ids.length === 0) return;
-    if (
-      typeof window !== "undefined" &&
-      !window.confirm(
-        `Delete ${ids.length} selected item${ids.length === 1 ? "" : "s"} permanently?`,
-      )
-    ) {
-      return;
-    }
     const results = await Promise.all(
       ids.map((id) =>
         fetch(`/api/photos/${encodeURIComponent(id)}`, { method: "DELETE" }),
@@ -194,7 +215,14 @@ export default function HomePage() {
     setSelectedIds(new Set());
     setPhotos((prev) => prev?.filter((p) => !remove.has(p.id)) ?? null);
     setTotal((t) => Math.max(0, t - ids.length));
-  }, [selectedIds]);
+  }, []);
+
+  const confirmDeleteSelected = useCallback(async () => {
+    const ids = [...selectedIds];
+    setDeleteConfirmOpen(false);
+    if (ids.length === 0) return;
+    await performBulkDelete(ids);
+  }, [selectedIds, performBulkDelete]);
 
   const errorBanner = error && photos === null && (
     <div
@@ -260,8 +288,15 @@ export default function HomePage() {
             role="alert"
             className="mx-auto mb-6 max-w-lg rounded-xl bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-100 ring-1 ring-amber-500/30"
           >
-            Moderation sign-in is not configured (set MODERATION_SECRET and
-            MODERATION_PASSWORD on the server).
+            <p className="font-medium">Moderation is not configured on this server.</p>
+            <p className="mt-2 text-amber-100/90">
+              Set <code className="rounded bg-black/30 px-1 py-0.5 text-xs">MODERATION_SECRET</code>{" "}
+              (16+ characters) and{" "}
+              <code className="rounded bg-black/30 px-1 py-0.5 text-xs">MODERATION_PASSWORD</code>{" "}
+              (8+ characters). Locally: add them to{" "}
+              <code className="rounded bg-black/30 px-1 py-0.5 text-xs">.env.local</code> and restart
+              the dev server. On Vercel: Project → Settings → Environment Variables, then redeploy.
+            </p>
           </div>
         )}
 
@@ -283,10 +318,10 @@ export default function HomePage() {
               lead={
                 moderation ? (
                   <div className="relative mb-4 break-inside-avoid sm:mb-5">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div className="flex w-full flex-col gap-3">
                       <Link
                         href={homeHref}
-                        className="inline-flex w-fit items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-stone-100 backdrop-blur-sm transition hover:bg-white/10"
+                        className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-stone-100 backdrop-blur-sm transition hover:bg-white/10"
                       >
                         <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden />
                         Back to home
@@ -294,8 +329,8 @@ export default function HomePage() {
                       {moderationActive && selectedIds.size > 0 && (
                         <button
                           type="button"
-                          onClick={() => void deleteSelected()}
-                          className="inline-flex w-fit items-center rounded-lg border border-red-500/40 bg-red-950/50 px-3 py-2 text-sm font-medium text-red-100 transition hover:bg-red-950/80"
+                          onClick={() => setDeleteConfirmOpen(true)}
+                          className="inline-flex w-full items-center justify-center rounded-lg border border-red-500/40 bg-red-950/50 px-3 py-2 text-sm font-medium text-red-100 transition hover:bg-red-950/80"
                         >
                           Delete selected ({selectedIds.size})
                         </button>
@@ -320,11 +355,16 @@ export default function HomePage() {
             />
 
             {photos !== null && photos.length < total && (
-              <div className="mt-8 flex justify-center">
+              <div className="mt-8 flex flex-col items-center gap-4">
+                <div
+                  ref={loadMoreSentinelRef}
+                  className="h-px w-full max-w-md"
+                  aria-hidden
+                />
                 <button
                   type="button"
                   onClick={() => loadMore()}
-                  className="rounded-lg border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-stone-100 transition hover:bg-white/15"
+                  className="rounded-lg border border-white/20 bg-white/10 px-6 py-3 text-sm font-medium text-stone-100 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   Load more ({photos.length} / {total})
                 </button>
@@ -342,6 +382,40 @@ export default function HomePage() {
           />
         )}
       </main>
+
+      <Dialog
+        open={deleteConfirmOpen}
+        onClose={() => setDeleteConfirmOpen(false)}
+        className="relative z-[200]"
+      >
+        <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+        <div className="fixed inset-0 overflow-y-auto overflow-x-hidden">
+          <div className="flex min-h-full items-center justify-center p-3 sm:p-4">
+            <Dialog.Panel className="w-full max-w-md rounded-2xl border border-white/15 bg-zinc-900/95 p-5 shadow-xl ring-1 ring-white/10 sm:p-6">
+              <Dialog.Title className="text-balance text-center text-base font-semibold leading-snug text-stone-100 sm:text-lg">
+                Delete {selectedIds.size} selected item
+                {selectedIds.size === 1 ? "" : "s"} permanently?
+              </Dialog.Title>
+              <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
+                <button
+                  type="button"
+                  onClick={() => setDeleteConfirmOpen(false)}
+                  className="rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-medium text-stone-100 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void confirmDeleteSelected()}
+                  className="rounded-lg border border-red-500/50 bg-red-950/60 px-4 py-2.5 text-sm font-medium text-red-100 transition hover:bg-red-950/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-900"
+                >
+                  Delete
+                </button>
+              </div>
+            </Dialog.Panel>
+          </div>
+        </div>
+      </Dialog>
     </>
   );
 }

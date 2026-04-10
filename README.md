@@ -107,6 +107,13 @@ For another provider (Supabase, S3, Cloudinary), implement the same methods and 
 | Variable | When |
 | -------- | ---- |
 | `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked private Blob store). Omit locally for `./data/` storage. |
+| `MODERATION_SECRET` | **Moderation mode** (`?moderation=true`): at least **16** characters; signs the HTTP-only session cookie. |
+| `MODERATION_PASSWORD` | **Moderation mode**: at least **8** characters; the password operators use to sign in. |
+
+Without both moderation variables, the app shows a warning on the moderation page and moderation login and deletes are disabled.
+
+- **Local:** copy [`.env.example`](.env.example) to **`.env.local`**, set both variables, restart **`pnpm dev`**.
+- **Vercel:** **Project → Settings → Environment Variables**, add both for **Production** (and **Preview** if you use moderation on preview URLs), then **Redeploy**.
 
 See [`.env.example`](.env.example).
 
