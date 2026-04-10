@@ -1,10 +1,18 @@
 import { NextResponse } from "next/server";
 import { parseBytesRange } from "@/lib/http-range";
 import { getPhotoStorage } from "@/lib/storage";
+import type { FileVariant } from "@/lib/storage/types";
 
 export const dynamic = "force-dynamic";
 
 const CACHE = "public, max-age=31536000, immutable";
+
+function variantFromUrl(request: Request): FileVariant {
+  const u = new URL(request.url);
+  const v = u.searchParams.get("variant");
+  if (v === "thumb" || v === "display") return v;
+  return "original";
+}
 
 export async function GET(
   request: Request,
@@ -12,10 +20,11 @@ export async function GET(
 ) {
   const { id } = await context.params;
   const storage = getPhotoStorage();
+  const variant = variantFromUrl(request);
   const rangeHeader = request.headers.get("range");
 
   if (!rangeHeader) {
-    const data = await storage.readFile(id);
+    const data = await storage.readFile(id, undefined, variant);
     if (!data) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
@@ -31,7 +40,7 @@ export async function GET(
   }
 
   if (rangeHeader.includes(",")) {
-    const data = await storage.readFile(id);
+    const data = await storage.readFile(id, undefined, variant);
     if (!data) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
@@ -46,7 +55,7 @@ export async function GET(
     });
   }
 
-  const meta = await storage.getFileMeta(id);
+  const meta = await storage.getFileMeta(id, variant);
   if (!meta) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
@@ -62,7 +71,7 @@ export async function GET(
   }
 
   if (parsed === null) {
-    const data = await storage.readFile(id);
+    const data = await storage.readFile(id, undefined, variant);
     if (!data) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
@@ -77,7 +86,7 @@ export async function GET(
     });
   }
 
-  const data = await storage.readFile(id, parsed);
+  const data = await storage.readFile(id, parsed, variant);
   if (!data) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }

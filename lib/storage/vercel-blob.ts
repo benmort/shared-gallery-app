@@ -10,6 +10,7 @@ import {
   put,
 } from "@vercel/blob";
 import sharp from "sharp";
+import { makeImageDerivatives } from "../image-derivatives";
 import type { PhotoRecord } from "../types/photo";
 import {
   extensionForMime,
@@ -17,7 +18,7 @@ import {
   isAllowedVideoType,
   maxBytesForMime,
 } from "../types/photo";
-import type { PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
+import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
 
 /** Single JSON index in the blob store (stable pathname, no random suffix). */
@@ -155,6 +156,24 @@ async function readManifest(token: string): Promise<PhotoRecord[]> {
   }
 }
 
+function variantStoredName(
+  rec: PhotoRecord,
+  variant: FileVariant,
+): { name: string; mime: string } | null {
+  if (variant === "original") {
+    return { name: rec.storedName, mime: rec.mime };
+  }
+  if (variant === "thumb") {
+    if (!rec.thumbStoredName) return null;
+    return { name: rec.thumbStoredName, mime: "image/webp" };
+  }
+  if (variant === "display") {
+    if (!rec.displayStoredName) return null;
+    return { name: rec.displayStoredName, mime: "image/jpeg" };
+  }
+  return null;
+}
+
 export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
   return {
     async list() {
@@ -162,14 +181,23 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       return records.map(recordToPhoto);
     },
 
-    async getFileMeta(id: string) {
+    async listPaged(offset: number, limit: number) {
+      const records = await readManifest(token);
+      const total = records.length;
+      const slice = records.slice(offset, offset + limit);
+      return { photos: slice.map(recordToPhoto), total };
+    },
+
+    async getFileMeta(id: string, variant: FileVariant = "original") {
       const records = await readManifest(token);
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
-      const pathname = `${IMG_PREFIX}${rec.storedName}`;
+      const pick = variantStoredName(rec, variant);
+      if (!pick) return null;
+      const pathname = `${IMG_PREFIX}${pick.name}`;
       try {
         const h = await head(pathname, { token });
-        return { totalSize: h.size, mime: rec.mime };
+        return { totalSize: h.size, mime: pick.mime };
       } catch {
         return null;
       }
@@ -198,9 +226,29 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       });
 
       const isVideo = isAllowedVideoType(mime);
+      let thumbStoredName: string | undefined;
+      let displayStoredName: string | undefined;
       const [blurDataUrl, meta] = isVideo
         ? [undefined, {}] as [undefined, { width?: number; height?: number }]
         : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
+
+      if (!isVideo) {
+        const { thumb, display } = await makeImageDerivatives(buffer);
+        thumbStoredName = `${id}-thumb.webp`;
+        displayStoredName = `${id}-display.jpg`;
+        await put(`${IMG_PREFIX}${thumbStoredName}`, thumb, {
+          access: ACCESS,
+          addRandomSuffix: false,
+          contentType: "image/webp",
+          token,
+        });
+        await put(`${IMG_PREFIX}${displayStoredName}`, display, {
+          access: ACCESS,
+          addRandomSuffix: false,
+          contentType: "image/jpeg",
+          token,
+        });
+      }
 
       const record: PhotoRecord = {
         id,
@@ -211,6 +259,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         blurDataUrl,
         width: meta.width,
         height: meta.height,
+        thumbStoredName,
+        displayStoredName,
       };
 
       try {
@@ -218,6 +268,18 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
+          if (thumbStoredName) {
+            await deleteBlobMedia(
+              privateBlobUrl(`${IMG_PREFIX}${thumbStoredName}`, token),
+              token,
+            );
+          }
+          if (displayStoredName) {
+            await deleteBlobMedia(
+              privateBlobUrl(`${IMG_PREFIX}${displayStoredName}`, token),
+              token,
+            );
+          }
         } catch {
           /* best-effort rollback */
         }
@@ -227,11 +289,17 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       return recordToPhoto(record);
     },
 
-    async readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null> {
+    async readFile(
+      id: string,
+      range?: ReadFileRange,
+      variant: FileVariant = "original",
+    ): Promise<ReadFileResult | null> {
       const records = await readManifest(token);
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
-      const pathname = `${IMG_PREFIX}${rec.storedName}`;
+      const pick = variantStoredName(rec, variant);
+      if (!pick) return null;
+      const pathname = `${IMG_PREFIX}${pick.name}`;
       try {
         if (!range) {
           const result = await get(pathname, { access: ACCESS, token });
@@ -239,7 +307,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
           return {
             buffer: buf,
-            mime: rec.mime,
+            mime: pick.mime,
             totalSize: result.blob.size,
             ranged: false,
           };
@@ -256,13 +324,13 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         const code = result.statusCode as number;
 
         if (code === 200) {
-          return { buffer: buf, mime: rec.mime, totalSize: buf.length, ranged: false };
+          return { buffer: buf, mime: pick.mime, totalSize: buf.length, ranged: false };
         }
 
         if (code === 206) {
           const totalSize =
             parseTotalFromContentRange(result.headers.get("content-range")) ?? buf.length;
-          return { buffer: buf, mime: rec.mime, totalSize, ranged: true };
+          return { buffer: buf, mime: pick.mime, totalSize, ranged: true };
         }
 
         return null;
@@ -275,11 +343,112 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const records = await readManifest(token);
       const rec = records.find((r) => r.id === id);
       if (!rec) return false;
-      const pathname = `${IMG_PREFIX}${rec.storedName}`;
-      const url = privateBlobUrl(pathname, token);
-      await deleteBlobMedia(url, token);
+      const paths = [
+        `${IMG_PREFIX}${rec.storedName}`,
+        rec.thumbStoredName && `${IMG_PREFIX}${rec.thumbStoredName}`,
+        rec.displayStoredName && `${IMG_PREFIX}${rec.displayStoredName}`,
+      ].filter(Boolean) as string[];
+      for (const p of paths) {
+        try {
+          await deleteBlobMedia(privateBlobUrl(p, token), token);
+        } catch {
+          /* best-effort */
+        }
+      }
       await mutateManifest(token, (prev) => prev.filter((r) => r.id !== id));
       return true;
+    },
+
+    async registerClientUpload(input: {
+      pathname: string;
+      filename: string;
+      mime: string;
+    }) {
+      const { pathname, filename, mime } = input;
+      if (!pathname.startsWith(IMG_PREFIX)) {
+        throw new Error("Invalid upload pathname");
+      }
+      if (!isAllowedMediaType(mime)) {
+        throw new Error("Unsupported media type");
+      }
+      const result = await get(pathname, { access: ACCESS, token });
+      if (!result || result.statusCode !== 200 || !result.stream) {
+        throw new Error("Uploaded blob not found");
+      }
+      const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
+      const limit = maxBytesForMime(mime);
+      if (buffer.length > limit) {
+        throw new Error("File too large");
+      }
+
+      const baseName = pathname.slice(IMG_PREFIX.length);
+      const dot = baseName.lastIndexOf(".");
+      const id = dot > 0 ? baseName.slice(0, dot) : baseName;
+      const storedName = baseName;
+      const extFromName = dot > 0 ? baseName.slice(dot + 1) : extensionForMime(mime);
+
+      const isVideo = isAllowedVideoType(mime);
+      let thumbStoredName: string | undefined;
+      let displayStoredName: string | undefined;
+      const [blurDataUrl, meta] = isVideo
+        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
+        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
+
+      if (!isVideo) {
+        const { thumb, display } = await makeImageDerivatives(buffer);
+        thumbStoredName = `${id}-thumb.webp`;
+        displayStoredName = `${id}-display.jpg`;
+        await put(`${IMG_PREFIX}${thumbStoredName}`, thumb, {
+          access: ACCESS,
+          addRandomSuffix: false,
+          contentType: "image/webp",
+          token,
+        });
+        await put(`${IMG_PREFIX}${displayStoredName}`, display, {
+          access: ACCESS,
+          addRandomSuffix: false,
+          contentType: "image/jpeg",
+          token,
+        });
+      }
+
+      const record: PhotoRecord = {
+        id,
+        filename: filename || (isVideo ? `video.${extFromName}` : `photo.${extFromName}`),
+        uploadedAt: new Date().toISOString(),
+        storedName,
+        mime,
+        blurDataUrl,
+        width: meta.width,
+        height: meta.height,
+        thumbStoredName,
+        displayStoredName,
+      };
+
+      try {
+        await mutateManifest(token, (records) => [record, ...records]);
+      } catch (e) {
+        try {
+          await deleteBlobMedia(privateBlobUrl(pathname, token), token);
+          if (thumbStoredName) {
+            await deleteBlobMedia(
+              privateBlobUrl(`${IMG_PREFIX}${thumbStoredName}`, token),
+              token,
+            );
+          }
+          if (displayStoredName) {
+            await deleteBlobMedia(
+              privateBlobUrl(`${IMG_PREFIX}${displayStoredName}`, token),
+              token,
+            );
+          }
+        } catch {
+          /* best-effort rollback */
+        }
+        throw e;
+      }
+
+      return recordToPhoto(record);
     },
   };
 }

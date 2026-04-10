@@ -1,10 +1,12 @@
 "use client";
 
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { upload as uploadToBlob } from "@vercel/blob/client";
 import Image from "next/image";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { validateMediaFile } from "@/lib/client-validate";
 import type { Photo } from "@/lib/types/photo";
+import { extensionForMime } from "@/lib/types/photo";
 import { postFormDataWithProgress } from "@/utils/postFormDataWithProgress";
 import CameraCapture from "./CameraCapture";
 import EmptyState from "./EmptyState";
@@ -26,6 +28,14 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
   const [success, setSuccess] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [clientBlobUpload, setClientBlobUpload] = useState(false);
+
+  useEffect(() => {
+    void fetch("/api/photos/capabilities")
+      .then((r) => r.json())
+      .then((d: { clientUpload?: boolean }) => setClientBlobUpload(!!d.clientUpload))
+      .catch(() => setClientBlobUpload(false));
+  }, []);
 
   const addFiles = useCallback((files: File[]) => {
     setErrors([]);
@@ -66,9 +76,49 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
     setUploadProgress(0);
     setErrors([]);
     setSuccess(false);
+    const snapshot = items;
     try {
+      if (clientBlobUpload) {
+        const mime = (f: File) => f.type || "application/octet-stream";
+        let doneBytes = 0;
+        const totalBytes = Math.max(
+          1,
+          snapshot.reduce((s, i) => s + i.file.size, 0),
+        );
+        for (const item of snapshot) {
+          const file = item.file;
+          const m = mime(file);
+          const id = crypto.randomUUID();
+          const ext = extensionForMime(m);
+          const pathname = `album-img/${id}.${ext}`;
+          await uploadToBlob(pathname, file, {
+            access: "private",
+            handleUploadUrl: "/api/blob/upload",
+            multipart: file.size > 4_500_000,
+            clientPayload: JSON.stringify({
+              filename: file.name,
+              mime: m,
+            }),
+            onUploadProgress: (p: {
+              loaded: number;
+              total: number;
+              percentage: number;
+            }) => {
+              setUploadProgress((doneBytes + p.loaded) / totalBytes);
+            },
+          });
+          doneBytes += file.size;
+          setUploadProgress(doneBytes / totalBytes);
+        }
+        setSuccess(true);
+        setItems([]);
+        revokeAll(snapshot);
+        onUploadSuccess?.();
+        return;
+      }
+
       const fd = new FormData();
-      items.forEach((i) => fd.append("file", i.file));
+      snapshot.forEach((i) => fd.append("file", i.file));
       const res = await postFormDataWithProgress("/api/photos", fd, (r) =>
         setUploadProgress(r),
       );
@@ -81,7 +131,6 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
         return;
       }
       setSuccess(true);
-      const snapshot = items;
       setItems([]);
       revokeAll(snapshot);
       onUploadSuccess?.(data.photos);
@@ -147,7 +196,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
             Share a moment
           </h1>
           <p className="text-pretty text-sm leading-relaxed text-white/75 md:hidden">
-            Add photos and vidfeos to the shared album <br />
+            Add photos and videos to the shared album <br />
             from your library or straight from your phone.
           </p>
 

@@ -10,7 +10,8 @@ import {
   isAllowedVideoType,
   maxBytesForMime,
 } from "../types/photo";
-import type { PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
+import { makeImageDerivatives } from "../image-derivatives";
+import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
@@ -71,6 +72,12 @@ async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: numb
   }
 }
 
+function variantMime(variant: FileVariant, recMime: string): string {
+  if (variant === "thumb") return "image/webp";
+  if (variant === "display") return "image/jpeg";
+  return recMime;
+}
+
 export function createFilesystemStorage(): PhotoStorage {
   return {
     async list() {
@@ -78,14 +85,29 @@ export function createFilesystemStorage(): PhotoStorage {
       return records.map(recordToPhoto);
     },
 
-    async getFileMeta(id: string) {
+    async listPaged(offset: number, limit: number) {
+      const records = await readIndex();
+      const total = records.length;
+      const slice = records.slice(offset, offset + limit);
+      return { photos: slice.map(recordToPhoto), total };
+    },
+
+    async getFileMeta(id: string, variant: FileVariant = "original") {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
-      const filePath = path.join(UPLOADS_DIR, rec.storedName);
+      if (variant === "thumb" && !rec.thumbStoredName) return null;
+      if (variant === "display" && !rec.displayStoredName) return null;
+      const name =
+        variant === "thumb" && rec.thumbStoredName
+          ? rec.thumbStoredName
+          : variant === "display" && rec.displayStoredName
+            ? rec.displayStoredName
+            : rec.storedName;
+      const filePath = path.join(UPLOADS_DIR, name);
       try {
         const stat = await fs.stat(filePath);
-        return { totalSize: stat.size, mime: rec.mime };
+        return { totalSize: stat.size, mime: variantMime(variant, rec.mime) };
       } catch {
         return null;
       }
@@ -110,9 +132,19 @@ export function createFilesystemStorage(): PhotoStorage {
       await fs.writeFile(filePath, buffer);
 
       const isVideo = isAllowedVideoType(mime);
+      let thumbStoredName: string | undefined;
+      let displayStoredName: string | undefined;
       const [blurDataUrl, meta] = isVideo
         ? [undefined, {}] as [undefined, { width?: number; height?: number }]
         : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
+
+      if (!isVideo) {
+        const { thumb, display } = await makeImageDerivatives(buffer);
+        thumbStoredName = `${id}-thumb.webp`;
+        displayStoredName = `${id}-display.jpg`;
+        await fs.writeFile(path.join(UPLOADS_DIR, thumbStoredName), thumb);
+        await fs.writeFile(path.join(UPLOADS_DIR, displayStoredName), display);
+      }
 
       const record: PhotoRecord = {
         id,
@@ -123,6 +155,8 @@ export function createFilesystemStorage(): PhotoStorage {
         blurDataUrl,
         width: meta.width,
         height: meta.height,
+        thumbStoredName,
+        displayStoredName,
       };
 
       const records = await readIndex();
@@ -132,17 +166,30 @@ export function createFilesystemStorage(): PhotoStorage {
       return recordToPhoto(record);
     },
 
-    async readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null> {
+    async readFile(
+      id: string,
+      range?: ReadFileRange,
+      variant: FileVariant = "original",
+    ): Promise<ReadFileResult | null> {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
-      const filePath = path.join(UPLOADS_DIR, rec.storedName);
+      if (variant === "thumb" && !rec.thumbStoredName) return null;
+      if (variant === "display" && !rec.displayStoredName) return null;
+      const fileName =
+        variant === "thumb" && rec.thumbStoredName
+          ? rec.thumbStoredName
+          : variant === "display" && rec.displayStoredName
+            ? rec.displayStoredName
+            : rec.storedName;
+      const filePath = path.join(UPLOADS_DIR, fileName);
+      const outMime = variantMime(variant, rec.mime);
       try {
         const stat = await fs.stat(filePath);
         const totalSize = stat.size;
         if (!range) {
           const buffer = await fs.readFile(filePath);
-          return { buffer, mime: rec.mime, totalSize, ranged: false };
+          return { buffer, mime: outMime, totalSize, ranged: false };
         }
         const { start } = range;
         let { end } = range;
@@ -151,7 +198,7 @@ export function createFilesystemStorage(): PhotoStorage {
         if (start > end || start < 0) return null;
         const stream = createReadStream(filePath, { start, end });
         const buffer = await readStreamToBuffer(stream);
-        return { buffer, mime: rec.mime, totalSize, ranged: true };
+        return { buffer, mime: outMime, totalSize, ranged: true };
       } catch {
         return null;
       }
@@ -163,11 +210,17 @@ export function createFilesystemStorage(): PhotoStorage {
       if (!rec) return false;
       const next = records.filter((r) => r.id !== id);
       await writeIndex(next);
-      const filePath = path.join(UPLOADS_DIR, rec.storedName);
-      try {
-        await fs.unlink(filePath);
-      } catch {
-        /* file already missing */
+      const paths = [
+        path.join(UPLOADS_DIR, rec.storedName),
+        rec.thumbStoredName && path.join(UPLOADS_DIR, rec.thumbStoredName),
+        rec.displayStoredName && path.join(UPLOADS_DIR, rec.displayStoredName),
+      ].filter(Boolean) as string[];
+      for (const filePath of paths) {
+        try {
+          await fs.unlink(filePath);
+        } catch {
+          /* file already missing */
+        }
       }
       return true;
     },

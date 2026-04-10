@@ -15,6 +15,9 @@ type Props = {
   photosLoading?: boolean;
   /** Keep e.g. `moderation=true` on photo tile links */
   preserveSearchParams?: Record<string, string> | null;
+  moderationMode?: boolean;
+  selectedIds?: Set<string>;
+  onToggleSelect?: (id: string) => void;
 };
 
 export default function PhotoGallery({
@@ -22,6 +25,9 @@ export default function PhotoGallery({
   photos,
   photosLoading,
   preserveSearchParams,
+  moderationMode = false,
+  selectedIds = new Set(),
+  onToggleSelect,
 }: Props) {
   const searchParams = useSearchParams();
   const photoIdOpen = searchParams?.get("photoId") ?? null;
@@ -44,40 +50,59 @@ export default function PhotoGallery({
         </div>
       )}
       {photos?.map((photo) => (
-        <Link
+        <div
           key={photo.id}
-          href={galleryPath(photo.id, preserveSearchParams ?? null)}
-          scroll={false}
-          ref={photo.id === lastViewedPhoto ? lastRef : undefined}
-          className="after:content group relative mb-4 block w-full cursor-zoom-in break-inside-avoid after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:mb-5"
+          className="group relative mb-4 break-inside-avoid sm:mb-5"
         >
-          {photo.kind === "video" ? (
-            <video
-              src={photo.url}
-              muted
-              playsInline
-              preload="metadata"
-              className="w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-              style={{ transform: "translate3d(0, 0, 0)" }}
-              width={photo.width ?? 1280}
-              height={photo.height ?? 720}
-              aria-label={photo.filename}
-            />
-          ) : (
-            <Image
-              alt={photo.filename}
-              className="transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-              style={{ transform: "translate3d(0, 0, 0)" }}
-              placeholder={photo.blurDataUrl ? "blur" : "empty"}
-              blurDataURL={photo.blurDataUrl}
-              src={photo.url}
-              width={photo.width ?? 720}
-              height={photo.height ?? 480}
-              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-              unoptimized
-            />
+          {moderationMode && onToggleSelect && (
+            <label
+              className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <input
+                type="checkbox"
+                checked={selectedIds.has(photo.id)}
+                onChange={() => onToggleSelect(photo.id)}
+                className="h-4 w-4 rounded border-white/40"
+                aria-label={`Select ${photo.filename}`}
+              />
+              Select
+            </label>
           )}
-        </Link>
+          <Link
+            href={galleryPath(photo.id, preserveSearchParams ?? null)}
+            scroll={false}
+            ref={photo.id === lastViewedPhoto ? lastRef : undefined}
+            className="after:content relative block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
+          >
+            {photo.kind === "video" ? (
+              <video
+                src={photo.url}
+                muted
+                playsInline
+                preload="metadata"
+                className="w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                style={{ transform: "translate3d(0, 0, 0)" }}
+                width={photo.width ?? 1280}
+                height={photo.height ?? 720}
+                aria-label={photo.filename}
+              />
+            ) : (
+              <Image
+                alt={photo.filename}
+                className="transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                style={{ transform: "translate3d(0, 0, 0)" }}
+                placeholder={photo.blurDataUrl ? "blur" : "empty"}
+                blurDataURL={photo.blurDataUrl}
+                src={photo.thumbUrl ?? photo.url}
+                width={photo.width ?? 720}
+                height={photo.height ?? 480}
+                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                unoptimized
+              />
+            )}
+          </Link>
+        </div>
       ))}
     </div>
   );

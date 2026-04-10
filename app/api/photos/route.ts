@@ -4,10 +4,20 @@ import { isAllowedMediaType, maxBytesForMime } from "@/lib/types/photo";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const photos = await getPhotoStorage().list();
-    return NextResponse.json(photos);
+    const u = new URL(request.url);
+    const hasPaged =
+      u.searchParams.has("offset") || u.searchParams.has("limit");
+    if (!hasPaged) {
+      const photos = await getPhotoStorage().list();
+      return NextResponse.json(photos);
+    }
+    const offset = Math.max(0, parseInt(u.searchParams.get("offset") || "0", 10) || 0);
+    const limitRaw = parseInt(u.searchParams.get("limit") || "48", 10);
+    const limit = Math.min(Math.max(1, limitRaw || 48), 100);
+    const { photos, total } = await getPhotoStorage().listPaged(offset, limit);
+    return NextResponse.json({ photos, total, offset, limit });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "Failed to list photos" }, { status: 500 });

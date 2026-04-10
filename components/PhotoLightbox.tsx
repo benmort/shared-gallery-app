@@ -9,7 +9,12 @@ import {
   TrashIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { AnimatePresence, motion, MotionConfig } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  MotionConfig,
+  useReducedMotion,
+} from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
@@ -48,6 +53,7 @@ export default function PhotoLightbox({
   const [mobileUiOpen, setMobileUiOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const thumbStripRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
   const current = photos[index];
 
   const start = Math.max(0, index - 15);
@@ -92,6 +98,8 @@ export default function PhotoLightbox({
 
   const ext = downloadExt(current);
 
+  const imageFetchUrl = current.displayUrl ?? current.url;
+
   const sharePhoto = async () => {
     const pageUrl = new URL(current.url, window.location.origin).href;
     const name = current.filename || `${current.kind}.${ext}`;
@@ -101,7 +109,7 @@ export default function PhotoLightbox({
     try {
       if (typeof navigator !== "undefined" && navigator.share) {
         try {
-          const res = await fetch(current.url);
+          const res = await fetch(imageFetchUrl);
           const blob = await res.blob();
           const file = new File([blob], name, {
             type: blob.type || defaultShareType,
@@ -151,10 +159,14 @@ export default function PhotoLightbox({
 
   return (
     <MotionConfig
-      transition={{
-        opacity: { duration: 0.18, ease: [0.32, 0.72, 0, 1] },
-        x: { duration: 0.2, ease: [0.32, 0.72, 0, 1] },
-      }}
+      transition={
+        reduceMotion
+          ? { opacity: { duration: 0.12 } }
+          : {
+              opacity: { duration: 0.18, ease: [0.32, 0.72, 0, 1] },
+              x: { duration: 0.2, ease: [0.32, 0.72, 0, 1] },
+            }
+      }
     >
       <div
         className="relative z-50 flex w-full max-w-7xl flex-col items-center px-2 pt-[max(0.5rem,var(--album-safe-top))] wide:max-h-[min(90vh,100dvh)]"
@@ -166,7 +178,15 @@ export default function PhotoLightbox({
               <motion.div
                 key={current.id}
                 custom={direction}
-                variants={variants}
+                variants={
+                  reduceMotion
+                    ? {
+                        enter: { opacity: 0 },
+                        center: { opacity: 1, x: 0 },
+                        exit: { opacity: 0 },
+                      }
+                    : variants
+                }
                 initial="enter"
                 animate="center"
                 exit="exit"
@@ -207,7 +227,7 @@ export default function PhotoLightbox({
                     } transition-[filter] duration-200`}
                   >
                     <Image
-                      src={current.url}
+                      src={imageFetchUrl}
                       alt={current.filename}
                       fill
                       priority

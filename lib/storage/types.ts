@@ -20,8 +20,12 @@ export type FileMeta = {
  * Swap this implementation for Supabase, S3, Cloudinary, etc.
  * Keep the same surface area for uploads and listing.
  */
+export type FileVariant = "original" | "thumb" | "display";
+
 export interface PhotoStorage {
   list(): Promise<Photo[]>;
+  /** Paginated list (newest first). */
+  listPaged(offset: number, limit: number): Promise<{ photos: Photo[]; total: number }>;
   /** Append one image or video; returns public Photo + persisted record */
   createFromBuffer(input: {
     buffer: Buffer;
@@ -29,19 +33,41 @@ export interface PhotoStorage {
     mime: string;
   }): Promise<Photo>;
   /** Size and MIME for Range requests and headers (no full body read). */
-  getFileMeta(id: string): Promise<FileMeta | null>;
-  readFile(id: string, range?: ReadFileRange): Promise<ReadFileResult | null>;
+  getFileMeta(id: string, variant?: FileVariant): Promise<FileMeta | null>;
+  readFile(
+    id: string,
+    range?: ReadFileRange,
+    variant?: FileVariant,
+  ): Promise<ReadFileResult | null>;
   /** Remove manifest entry and stored media; returns true if a record existed. */
   deleteById(id: string): Promise<boolean>;
+  /** After Vercel Blob client upload completes (blob storage only). */
+  registerClientUpload?(input: {
+    pathname: string;
+    filename: string;
+    mime: string;
+  }): Promise<Photo>;
 }
 
 export function recordToPhoto(r: PhotoRecord): Photo {
+  const base = `/api/photos/${r.id}/file`;
+  const kind = mediaKindFromMime(r.mime);
+  const thumbUrl =
+    kind === "image" && r.thumbStoredName
+      ? `${base}?variant=thumb`
+      : undefined;
+  const displayUrl =
+    kind === "image" && r.displayStoredName
+      ? `${base}?variant=display`
+      : undefined;
   return {
     id: r.id,
     filename: r.filename,
-    url: `/api/photos/${r.id}/file`,
+    url: base,
+    thumbUrl,
+    displayUrl,
     uploadedAt: r.uploadedAt,
-    kind: mediaKindFromMime(r.mime),
+    kind,
     blurDataUrl: r.blurDataUrl,
     width: r.width,
     height: r.height,

@@ -6,6 +6,10 @@ export type Photo = {
   filename: string;
   /** Path to fetch full media (same-origin) */
   url: string;
+  /** Smaller image for grid; falls back to `url` for video or legacy rows */
+  thumbUrl?: string;
+  /** Medium image for lightbox; falls back to `url` */
+  displayUrl?: string;
   uploadedAt: string;
   kind: MediaKind;
   blurDataUrl?: string;
@@ -24,6 +28,10 @@ export type PhotoRecord = {
   blurDataUrl?: string;
   width?: number;
   height?: number;
+  /** Optional WebP thumbnail blob name (same prefix as storedName parent path) */
+  thumbStoredName?: string;
+  /** Optional JPEG display blob name */
+  displayStoredName?: string;
 };
 
 export const ALLOWED_IMAGE_MIMES = new Set([
