@@ -281,6 +281,14 @@ export default function HomePage() {
     <>
       <ScrollToTop />
       <main className="mx-auto max-w-[1960px] px-4 pb-16 pt-4 sm:px-6">
+        <div className="mb-4 flex justify-end">
+          <Link
+            href="/"
+            className="inline-flex items-center rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-stone-100 transition hover:bg-white/10"
+          >
+            Open Summit App
+          </Link>
+        </div>
         {errorBanner}
 
         {moderation && moderationChecked && !moderationConfigured && (

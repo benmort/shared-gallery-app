@@ -1,4 +1,4 @@
-/** Build homepage path with optional `photoId` and preserved query params (e.g. `showreel`, `moderation`). */
+/** Build gallery path with optional `photoId` and preserved query params (e.g. `showreel`, `moderation`). */
 export function galleryPath(
   photoId?: string | null,
   preserve?: Record<string, string> | null,
@@ -11,5 +11,5 @@ export function galleryPath(
   }
   if (photoId) u.set("photoId", photoId);
   const q = u.toString();
-  return q ? `/?${q}` : "/";
+  return q ? `/moments?${q}` : "/moments";
 }

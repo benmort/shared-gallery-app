@@ -58,12 +58,22 @@ Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 
 | Path | Role |
 | ---- | ---- |
-| `app/page.tsx` | Single homepage: masonry grid with **Share a moment** hero as the first cell + photos (`/`) |
-| `app/album/page.tsx` | **Permanent redirect** to `/` (legacy URL) |
-| `app/album/p/[photoId]/page.tsx` | Deep link → `/?photoId=…` |
+| `app/(summit)/page.tsx` | Summit dashboard as default home route (`/`) |
+| `app/(summit)/schedule/page.tsx` | Summit schedule (`/schedule`) |
+| `app/(summit)/speakers/page.tsx` | Speaker directory (`/speakers`) |
+| `app/(summit)/speakers/[id]/page.tsx` | Speaker detail (`/speakers/:id`) |
+| `app/(summit)/events/[id]/page.tsx` | Event detail (`/events/:id`) |
+| `app/(summit)/surveys/page.tsx` | Surveys (`/surveys`) |
+| `app/(summit)/code-conduct/page.tsx` | Code of conduct (`/code-conduct`) |
+| `app/(summit)/security-guidelines/page.tsx` | Security guidelines (`/security-guidelines`) |
+| `app/summits/page.tsx` | Legacy `/summits` redirect to `/` |
+| `app/moments/page.tsx` | Main gallery page: masonry grid with **Share a moment** hero as the first cell + photos (`/moments`) |
+| `app/album/page.tsx` | **Permanent redirect** to `/moments` (legacy URL) |
+| `app/album/p/[photoId]/page.tsx` | Deep link → `/moments?photoId=…` |
 | `app/api/photos/route.ts` | `GET` list, `POST` multipart upload |
 | `app/api/photos/[id]/file/route.ts` | Serve media bytes (`200` / `206` Range) |
 | `lib/storage/` | `PhotoStorage`: filesystem locally, **Vercel Blob** when `BLOB_READ_WRITE_TOKEN` is set |
+| `lib/summit/` | Summit singleton data loader, context helpers, domain mappings |
 | `lib/types/photo.ts` | `Photo` model + validation limits |
 | `components/` | Upload hero, camera, gallery, lightbox, scroll-to-top |
 
@@ -75,7 +85,7 @@ The project started from the Next.js **`with-cloudinary`** (Vercel “Image Gall
 
 **Removed or replaced:** Cloudinary URLs, Pages Router, `getStaticProps` image search, imagemin blur URLs, Twitter share, marketing hero/footer.
 
-**New:** App Router, local **filesystem** storage behind a **`PhotoStorage`** interface, **POST** uploads with **sharp**-generated blur placeholders, UUID photo ids, one-page gallery with starter-style hero card, lightbox via `/?photoId=<uuid>` (plus `/album/p/<uuid>` → `/?photoId=`).
+**New:** App Router, local **filesystem** storage behind a **`PhotoStorage`** interface, **POST** uploads with **sharp**-generated blur placeholders, UUID photo ids, one-page gallery with starter-style hero card, lightbox via `/moments?photoId=<uuid>` (plus `/album/p/<uuid>` → `/moments?photoId=`).
 
 ## Mobile camera behavior
 
@@ -117,6 +127,19 @@ Without both moderation variables, the app shows a warning on the moderation pag
 
 See [`.env.example`](.env.example).
 
+## Summit stub data
+
+- Summit pages read from a single local JSON file: [`lib/summit/data/data.json`](lib/summit/data/data.json).
+- The service layer normalizes this fixture in [`lib/summit/stub-data.ts`](lib/summit/stub-data.ts), then exposes it through [`lib/summit/service.ts`](lib/summit/service.ts).
+- The app is intentionally singleton: one summit only, no summit selection UI or API.
+
+## Summit migration operations
+
+- Architecture: [`docs/summit-migration/architecture.md`](docs/summit-migration/architecture.md)
+- Parity checklist: [`docs/summit-migration/parity-checklist.md`](docs/summit-migration/parity-checklist.md)
+- Rollout/rollback runbook: [`docs/summit-migration/rollout-runbook.md`](docs/summit-migration/rollout-runbook.md)
+- Native decommission notes: [`docs/summit-migration/decommission-native.md`](docs/summit-migration/decommission-native.md)
+
 ## Manual QA checklist
 
 - [ ] Upload one and multiple images from the library; thumbnails and upload bar behave well on a narrow screen.
@@ -128,7 +151,7 @@ See [`.env.example`](.env.example).
 - [ ] **Back / forward** browser navigation with `?photoId=`.
 - [ ] Swipe, filmstrip taps, **arrow keys**, **Escape** to close.
 - [ ] **Download** and **open full image** in a new tab.
-- [ ] Deep link `/album/p/<uuid>` opens the same lightbox as `/?photoId=<uuid>`.
+- [ ] Deep link `/album/p/<uuid>` opens the same lightbox as `/moments?photoId=<uuid>`.
 
 ## License
 

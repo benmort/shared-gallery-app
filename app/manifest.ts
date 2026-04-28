@@ -2,10 +2,10 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Event album",
-    short_name: "Album",
+    name: "Common Threads",
+    short_name: "Common Threads",
     description:
-      "Share photos from the day — upload from your phone and browse the album.",
+      "Common Threads summit platform for schedule, speakers, organisations, and community moments.",
     start_url: "/",
     display: "standalone",
     background_color: "#000000",

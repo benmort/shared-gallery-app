@@ -6,20 +6,23 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   ),
-  title: "Event album",
+  title: {
+    default: "Common Threads",
+    template: "%s | Common Threads",
+  },
   description:
-    "Share photos from the day — upload from your phone and browse the album.",
+    "Common Threads summit platform for schedule, speakers, organisations, and community moments.",
   openGraph: {
-    title: "Event album",
+    title: "Common Threads",
     description:
-      "Share photos from the day — upload from your phone and browse the album.",
+      "Common Threads summit platform for schedule, speakers, organisations, and community moments.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Event album",
+    title: "Common Threads",
     description:
-      "Share photos from the day — upload from your phone and browse the album.",
+      "Common Threads summit platform for schedule, speakers, organisations, and community moments.",
   },
 };
 

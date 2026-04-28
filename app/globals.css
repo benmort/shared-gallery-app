@@ -10,9 +10,10 @@
 @layer base {
   html {
     @apply antialiased;
+    overflow-x: hidden;
   }
   body {
-    @apply min-h-dvh bg-black text-stone-100;
+    @apply min-h-dvh overflow-x-hidden bg-black text-stone-100;
   }
 }
 

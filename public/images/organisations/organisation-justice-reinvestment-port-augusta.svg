@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="512" viewBox="0 0 1024 512" role="img" aria-label="Justice Reinvestment Port Augusta logo placeholder">
+  <rect width="1024" height="512" fill="hsl(335 56% 42%)" />
+  <rect x="24" y="24" width="976" height="464" rx="28" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.25)" />
+  <text x="64" y="248" fill="white" font-family="Inter, Arial, sans-serif" font-size="112" font-weight="700">JRP</text>
+  <text x="64" y="332" fill="white" font-family="Inter, Arial, sans-serif" font-size="44" font-weight="500">Justice Reinvestment Port Augusta</text>
+</svg>

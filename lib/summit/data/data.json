@@ -1,0 +1,3321 @@
+{
+  "summits": [
+    {
+      "id": "common-threads-summit-2026",
+      "fields": {
+        "Name": "Common Threads Summit 2026: The Next Horizon",
+        "Location": "Adelaide, South Australia",
+        "Start Date": "2026-05-12",
+        "End Date": "2026-05-14"
+      }
+    }
+  ],
+  "speakers": [
+    {
+      "id": "speaker-ngarra-murray",
+      "fields": {
+        "Full Name": "Ngarra Murray",
+        "Title": "Featured speaker: all-in plenary",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-ngarra-murray.jpeg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-26"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-dr-anne-poelina",
+      "fields": {
+        "Full Name": "Dr Anne Poelina",
+        "Title": "Featured speaker: plenary session",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-dr-anne-poelina.png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-27"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-celeste-liddle",
+      "fields": {
+        "Full Name": "Celeste Liddle",
+        "Title": "Featured speaker: morning plenary",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-celeste-liddle.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-28"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-leeroy-bilney",
+      "fields": {
+        "Full Name": "Leeroy Bilney",
+        "Title": "Featured speaker: afternoon plenary",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-leeroy-bilney.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ],
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-29"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-josie-alec",
+      "fields": {
+        "Full Name": "Josie Alec",
+        "Title": "Featured speaker: opening plenary",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-josie-alec.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T09:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-30"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-karina-lester",
+      "fields": {
+        "Full Name": "Karina Lester",
+        "Title": "Featured speaker: skills workshops",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-karina-lester.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ],
+        "Venue Name": [
+          "Workshop Hub"
+        ],
+        "Room/Area": "Workshop Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-31"
+        ],
+        "Talk Format": [
+          "Workshop"
+        ]
+      }
+    },
+    {
+      "id": "speaker-dr-jackie-huggins",
+      "fields": {
+        "Full Name": "Dr Jackie Huggins",
+        "Title": "Featured speaker: morning breakouts",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-dr-jackie-huggins.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-32"
+        ],
+        "Talk Format": [
+          "Breakout"
+        ]
+      }
+    },
+    {
+      "id": "speaker-larissa-baldwin-roberts",
+      "fields": {
+        "Full Name": "Larissa Baldwin-Roberts",
+        "Title": "Featured speaker: afternoon breakouts",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-larissa-baldwin-roberts.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-33"
+        ],
+        "Talk Format": [
+          "Breakout"
+        ]
+      }
+    },
+    {
+      "id": "speaker-mililma-may",
+      "fields": {
+        "Full Name": "Mililma May",
+        "Title": "Featured speaker: campaign strategies breakouts",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Featured speaker for Common Threads Summit 2026.",
+        "Description": "Speaker profile from the summit agenda overview.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-mililma-may.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ],
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Breakout"
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "event-2026-05-12-arrival-registration",
+      "fields": {
+        "Title": "Arrival and registration",
+        "Venue Name": [
+          "Registration Desk"
+        ],
+        "Description": "Summit check-in and attendee registration.",
+        "Tags": [
+          "Logistics"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-arrival-registration/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T08:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T09:30:00+09:30"
+        ],
+        "Room/Area": "Main Foyer",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-1"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-welcome-country-intro",
+      "fields": {
+        "Title": "Welcome to Country and introduction to Common Threads",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Opening session and formal welcome.",
+        "Tags": [
+          "Opening",
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-welcome-country/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T11:00:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-2"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-morning-tea",
+      "fields": {
+        "Title": "Morning tea",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Refreshment break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-tea-day1/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-3"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-morning-plenary-political-moment",
+      "fields": {
+        "Title": "Morning plenary - the political moment we are in",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "All-in plenary session for shared context and strategy.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-plenary-day1/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-4"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-lunch",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Lunch break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-lunch-day1/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T14:00:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-5"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-regional-breakouts",
+      "fields": {
+        "Title": "Regional breakouts - relationship-building and reflections",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Description": "Regional breakout sessions for relationship-building and reflection.",
+        "Tags": [
+          "Breakouts"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-regional-breakouts/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T15:00:00+09:30"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-6"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-afternoon-tea",
+      "fields": {
+        "Title": "Afternoon tea",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Refreshment break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-afternoon-tea-day1/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-7"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-afternoon-plenary-women-leading",
+      "fields": {
+        "Title": "Afternoon plenary - women leading frontline fights for justice",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Plenary focused on leadership and frontline justice campaigns.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-afternoon-plenary-day1/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-8"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-close-day-one",
+      "fields": {
+        "Title": "Close of day one",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Day one wrap-up.",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-close-day-one/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:30:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-9"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-12-optional-social-dinner",
+      "fields": {
+        "Title": "Optional social dinner",
+        "Venue Name": [
+          "Social Venue"
+        ],
+        "Description": "Optional evening social dinner for attendees.",
+        "Tags": [
+          "Social"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-social-dinner/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T17:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T19:00:00+09:30"
+        ],
+        "Room/Area": "Offsite Dinner Venue",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-10"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-morning-plenary-treaty-rights-representation",
+      "fields": {
+        "Title": "Morning plenary - towards Treaty, rights and representation",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Morning plenary on Treaty, rights and representation.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-plenary-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-11"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-morning-tea",
+      "fields": {
+        "Title": "Morning tea",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Refreshment break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-tea-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-12"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-morning-breakouts-organising-communities",
+      "fields": {
+        "Title": "Morning breakouts - organising our communities for Treaty and justice",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Description": "Breakout sessions focused on community organising for Treaty and justice.",
+        "Tags": [
+          "Breakouts"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-breakouts-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-13"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-lunch",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Lunch break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-lunch-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-14"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-afternoon-plenary-caring-country",
+      "fields": {
+        "Title": "Afternoon plenary - caring for Country",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Afternoon plenary on caring for Country.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-afternoon-plenary-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-15"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-afternoon-tea",
+      "fields": {
+        "Title": "Afternoon tea",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Refreshment break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-afternoon-tea-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-16"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-afternoon-breakouts-climate-justice",
+      "fields": {
+        "Title": "Afternoon breakouts - big ideas for climate justice and protecting Country",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Description": "Breakouts on climate justice and protecting Country.",
+        "Tags": [
+          "Breakouts"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-afternoon-breakouts-day2/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-17"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-13-close-day-two",
+      "fields": {
+        "Title": "Close of day two",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Day two wrap-up.",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-close-day-two/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:30:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-18"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-opening-plenary-collaboration-action",
+      "fields": {
+        "Title": "Opening plenary - big ideas for collaboration and action",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Opening plenary focused on collaboration and action.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-opening-plenary-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T09:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-19"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-morning-tea",
+      "fields": {
+        "Title": "Morning tea",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Refreshment break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-tea-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-20"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-morning-breakouts-campaign-strategies",
+      "fields": {
+        "Title": "Morning breakouts - collaborative campaign strategies",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "Description": "Breakout sessions on collaborative campaign strategy.",
+        "Tags": [
+          "Breakouts"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-morning-breakouts-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ],
+        "Room/Area": "Multiple Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-21"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-lunch",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "Description": "Lunch break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-lunch-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ],
+        "Room/Area": "Catering Area",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-22"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-skills-workshops",
+      "fields": {
+        "Title": "Skills workshops - organising, messaging and media training",
+        "Venue Name": [
+          "Workshop Hub"
+        ],
+        "Description": "Practical skills sessions including organising, messaging and media training.",
+        "Tags": [
+          "Workshops"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-skills-workshops-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ],
+        "Room/Area": "Workshop Rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-23"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-closing-reflections",
+      "fields": {
+        "Title": "Closing reflections and staying connected",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "Description": "Closing reflections and next steps for staying connected.",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-closing-reflections-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T15:30:00+09:30"
+        ],
+        "Room/Area": "Main Stage",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-24"
+        ]
+      }
+    },
+    {
+      "id": "event-2026-05-14-end-summit",
+      "fields": {
+        "Title": "End of Summit and departure option to airport",
+        "Venue Name": [
+          "Transport Hub"
+        ],
+        "Description": "Summit close and optional departure transfer to the airport.",
+        "Tags": [
+          "Logistics",
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-end-summit-day3/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T16:00:00+09:30"
+        ],
+        "Room/Area": "Departure Desk",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-25"
+        ]
+      }
+    }
+  ],
+  "schedule": [
+    {
+      "id": "schedule-slot-1",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Registration Desk"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T08:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T09:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-2",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T11:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-3",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-4",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-5",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T14:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-6",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T15:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-7",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-8",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-9",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-10",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Social Venue"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T17:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T19:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-11",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-12",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-13",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-14",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-15",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-16",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-17",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-18",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-19",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T09:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-20",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-21",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-22",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Dining Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-23",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Workshop Hub"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-24",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T15:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-25",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Transport Hub"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T16:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-26",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T13:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-27",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-12T15:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-12T17:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-28",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T09:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T11:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-29",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T14:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-30",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Plenary Hall"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T09:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T10:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-31",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Workshop Hub"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T13:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T14:30:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-32",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T11:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T13:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-33",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T16:00:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:00:00+09:30"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-34",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": [
+          "Breakout Rooms"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:30:00+09:30"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:00:00+09:30"
+        ]
+      }
+    }
+  ],
+  "venues": [
+    {
+      "id": "venue-plenary-hall",
+      "fields": {
+        "Name": "Plenary Hall",
+        "Subtitle": "All-in plenaries and shared sessions",
+        "Location": "Adelaide, South Australia",
+        "Address": "Summit venue details shared with attendees",
+        "Phone": "+61 8 0000 0000",
+        "Email": "summit@commonthreads.org.au",
+        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Description": "Main venue for plenary sessions and closing reflections.",
+        "Instructions": "Arrive with your summit registration confirmation.",
+        "Tags": [
+          "Plenary",
+          "Accessible"
+        ],
+        "Image": [
+          {
+            "url": "https://picsum.photos/seed/venue-plenary-hall/1200/800"
+          }
+        ]
+      }
+    },
+    {
+      "id": "venue-breakout-rooms",
+      "fields": {
+        "Name": "Breakout Rooms",
+        "Subtitle": "Issue and regional breakout sessions",
+        "Location": "Adelaide, South Australia",
+        "Address": "Within summit venue campus",
+        "Phone": "+61 8 0000 0000",
+        "Email": "summit@commonthreads.org.au",
+        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Description": "Dedicated rooms for breakouts and collaborative campaign work.",
+        "Instructions": "Room allocations are announced during each session block.",
+        "Tags": [
+          "Breakouts"
+        ],
+        "Image": [
+          {
+            "url": "https://picsum.photos/seed/venue-breakout-rooms/1200/800"
+          }
+        ]
+      }
+    },
+    {
+      "id": "venue-workshop-hub",
+      "fields": {
+        "Name": "Workshop Hub",
+        "Subtitle": "Skills sessions and practical training",
+        "Location": "Adelaide, South Australia",
+        "Address": "Within summit venue campus",
+        "Phone": "+61 8 0000 0000",
+        "Email": "summit@commonthreads.org.au",
+        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Description": "Workshop area for organising, messaging and media training sessions.",
+        "Instructions": "Bring materials for interactive activities.",
+        "Tags": [
+          "Workshops"
+        ],
+        "Image": [
+          {
+            "url": "https://picsum.photos/seed/venue-workshop-hub/1200/800"
+          }
+        ]
+      }
+    }
+  ],
+  "crew": [
+    {
+      "id": "crew-summit-operations",
+      "fields": {
+        "Shortname": "Operations Team",
+        "Role": "On-site support",
+        "Bio": "Coordinates registration, room logistics and attendee support throughout summit days.",
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/crew-operations-team/640/640"
+          }
+        ],
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Operations"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Work Email [Network Data]": "summit@commonthreads.org.au",
+        "Phone [Network Data]": "+61 8 0000 0000",
+        "Slack": "https://www.commonthreads.org.au/contact",
+        "Whatsapp": "https://www.commonthreads.org.au/contact",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-summit-safety",
+      "fields": {
+        "Shortname": "Safety Team",
+        "Role": "Participant safety and wellbeing",
+        "Bio": "Supports participant safety processes and incident response.",
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/crew-safety-team/640/640"
+          }
+        ],
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Safety"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Work Email [Network Data]": "summit@commonthreads.org.au",
+        "Phone [Network Data]": "+61 8 0000 0000",
+        "Slack": "https://www.commonthreads.org.au/contact",
+        "Whatsapp": "https://www.commonthreads.org.au/contact",
+        "Languages": [
+          "English"
+        ]
+      }
+    }
+  ],
+  "attractions": [
+    {
+      "id": "attraction-optional-social-dinner",
+      "fields": {
+        "Title": "Optional social dinner",
+        "Description": "Optional social dinner after day one for attendees who want to connect informally.",
+        "Tags": [
+          "Social",
+          "Optional"
+        ],
+        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Image": [
+          {
+            "url": "https://picsum.photos/seed/attraction-social-dinner/1200/800"
+          }
+        ]
+      }
+    }
+  ],
+  "organisations": [
+    {
+      "id": "organisation-common-threads",
+      "fields": {
+        "Name": "Common Threads",
+        "Country": "Australia",
+        "Summary": "Common Threads is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-common-threads.png"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-common-threads.png"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-sosblak-australia-sa",
+      "fields": {
+        "Name": "SOSBlak Australia SA",
+        "Country": "Australia",
+        "Summary": "SOSBlak Australia SA is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-no-underground-coal-gasification-leigh-creek",
+      "fields": {
+        "Name": "No Underground Coal Gasification at Leigh Creek",
+        "Country": "Australia",
+        "Summary": "No Underground Coal Gasification at Leigh Creek is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-pormpuraaw-aboriginal-shire-council",
+      "fields": {
+        "Name": "Pormpuraaw Aboriginal Shire Council",
+        "Country": "Australia",
+        "Summary": "Pormpuraaw Aboriginal Shire Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-lake-tyers-aboriginal-trust",
+      "fields": {
+        "Name": "Lake Tyers Aboriginal Trust",
+        "Country": "Australia",
+        "Summary": "Lake Tyers Aboriginal Trust is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-university-of-adelaide",
+      "fields": {
+        "Name": "University of Adelaide",
+        "Country": "Australia",
+        "Summary": "University of Adelaide is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-university-of-adelaide.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-university-of-adelaide.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-mandingalby-yidinji-aboriginal-corporation",
+      "fields": {
+        "Name": "Mandingalby Yidinji Aboriginal Corporation",
+        "Country": "Australia",
+        "Summary": "Mandingalby Yidinji Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-nanum-wungthim-land-sea-management-group",
+      "fields": {
+        "Name": "Nanum Wungthim Land & Sea Management Group",
+        "Country": "Australia",
+        "Summary": "Nanum Wungthim Land & Sea Management Group is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-lachlan-kalari-river-aboriginal-water-council",
+      "fields": {
+        "Name": "Lachlan Kalari River Aboriginal Water Council",
+        "Country": "Australia",
+        "Summary": "Lachlan Kalari River Aboriginal Water Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-government-architect-nsw",
+      "fields": {
+        "Name": "Government Architect NSW",
+        "Country": "Australia",
+        "Summary": "Government Architect NSW is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-government-architect-nsw.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-government-architect-nsw.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-lachlan-kalari-river-aboriginal-water-committee",
+      "fields": {
+        "Name": "Lachlan Kalari River Aboriginal Water Committee",
+        "Country": "Australia",
+        "Summary": "Lachlan Kalari River Aboriginal Water Committee is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-committee.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-committee.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-full-stop-australia",
+      "fields": {
+        "Name": "Full Stop Australia",
+        "Country": "Australia",
+        "Summary": "Full Stop Australia is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-full-stop-australia.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-full-stop-australia.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-change-the-record",
+      "fields": {
+        "Name": "Change the Record",
+        "Country": "Australia",
+        "Summary": "Change the Record is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-change-the-record.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-change-the-record.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-wenlock-catchment-management-group-inc",
+      "fields": {
+        "Name": "Wenlock Catchment Management Group Inc",
+        "Country": "Australia",
+        "Summary": "Wenlock Catchment Management Group Inc is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-mounty-aboriginal-youth-community-service",
+      "fields": {
+        "Name": "Mounty Aboriginal Youth and Community Service",
+        "Country": "Australia",
+        "Summary": "Mounty Aboriginal Youth and Community Service is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-western-sydney-watch-committee",
+      "fields": {
+        "Name": "Western Sydney Watch Committee",
+        "Country": "Australia",
+        "Summary": "Western Sydney Watch Committee is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-western-sydney-watch-committee.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-western-sydney-watch-committee.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-our-islands-our-home",
+      "fields": {
+        "Name": "Our Islands Our Home",
+        "Country": "Australia",
+        "Summary": "Our Islands Our Home is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-our-islands-our-home.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-our-islands-our-home.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-mehi-centre",
+      "fields": {
+        "Name": "Mehi Centre",
+        "Country": "Australia",
+        "Summary": "Mehi Centre is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-mehi-centre.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-mehi-centre.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-martuwarra-fitzroy-river-council",
+      "fields": {
+        "Name": "Martuwarra Fitzroy River Council",
+        "Country": "Australia",
+        "Summary": "Martuwarra Fitzroy River Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-national-tertiary-education-union",
+      "fields": {
+        "Name": "National Tertiary Education Union",
+        "Country": "Australia",
+        "Summary": "National Tertiary Education Union is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-national-tertiary-education-union.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-national-tertiary-education-union.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-fishers-oysters-pty-ltd",
+      "fields": {
+        "Name": "Fisher's Oysters Pty Ltd",
+        "Country": "Australia",
+        "Summary": "Fisher's Oysters Pty Ltd is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-first-peoples-assembly-victoria",
+      "fields": {
+        "Name": "First Peoples' Assembly of Victoria",
+        "Country": "Australia",
+        "Summary": "First Peoples' Assembly of Victoria is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-first-peoples-assembly-victoria.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-first-peoples-assembly-victoria.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-australian-conservation-foundation",
+      "fields": {
+        "Name": "Australian Conservation Foundation",
+        "Country": "Australia",
+        "Summary": "Australian Conservation Foundation is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-australian-conservation-foundation.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-australian-conservation-foundation.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-limestone-coast-landscape-board",
+      "fields": {
+        "Name": "Limestone Coast Landscape Board",
+        "Country": "Australia",
+        "Summary": "Limestone Coast Landscape Board is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-limestone-coast-landscape-board.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-limestone-coast-landscape-board.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-strait-climate-action",
+      "fields": {
+        "Name": "Strait Climate Action",
+        "Country": "Australia",
+        "Summary": "Strait Climate Action is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-strait-climate-action.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-strait-climate-action.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-north-queensland-land-council",
+      "fields": {
+        "Name": "North Queensland Land Council",
+        "Country": "Australia",
+        "Summary": "North Queensland Land Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-north-queensland-land-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-north-queensland-land-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-wardliparingga-sahmri",
+      "fields": {
+        "Name": "Wardliparingga - SAHMRI",
+        "Country": "Australia",
+        "Summary": "Wardliparingga - SAHMRI is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-wardliparingga-sahmri.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-wardliparingga-sahmri.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-tribes-united",
+      "fields": {
+        "Name": "Tribes United",
+        "Country": "Australia",
+        "Summary": "Tribes United is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-tribes-united.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-tribes-united.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-social-reinvestment-wa",
+      "fields": {
+        "Name": "Social Reinvestment WA",
+        "Country": "Australia",
+        "Summary": "Social Reinvestment WA is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-social-reinvestment-wa.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-social-reinvestment-wa.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-human-rights-law-centre",
+      "fields": {
+        "Name": "Human Rights Law Centre",
+        "Country": "Australia",
+        "Summary": "Human Rights Law Centre is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-human-rights-law-centre.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-human-rights-law-centre.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-queensland-teachers-union",
+      "fields": {
+        "Name": "Queensland Teachers' Union",
+        "Country": "Australia",
+        "Summary": "Queensland Teachers' Union is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-queensland-teachers-union.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-queensland-teachers-union.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-tasmanian-aboriginal-centre",
+      "fields": {
+        "Name": "Tasmanian Aboriginal Centre",
+        "Country": "Australia",
+        "Summary": "Tasmanian Aboriginal Centre is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-ards-aboriginal-corporation",
+      "fields": {
+        "Name": "ARDS Aboriginal Corporation",
+        "Country": "Australia",
+        "Summary": "ARDS Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-ards-aboriginal-corporation.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-ards-aboriginal-corporation.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-the-nurse-on-foot",
+      "fields": {
+        "Name": "The Nurse On Foot",
+        "Country": "Australia",
+        "Summary": "The Nurse On Foot is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-mob-made-media-communications-agency",
+      "fields": {
+        "Name": "Mob Made Media & Communications Agency",
+        "Country": "Australia",
+        "Summary": "Mob Made Media & Communications Agency is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-mob-made-media-communications-agency.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-mob-made-media-communications-agency.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-first-australians-capital",
+      "fields": {
+        "Name": "First Australians Capital",
+        "Country": "Australia",
+        "Summary": "First Australians Capital is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-first-australians-capital.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-first-australians-capital.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-invasive-species-council",
+      "fields": {
+        "Name": "Invasive Species Council",
+        "Country": "Australia",
+        "Summary": "Invasive Species Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-invasive-species-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-invasive-species-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-pitta-pitta-aboriginal-corporation-rntbc",
+      "fields": {
+        "Name": "Pitta Pitta Aboriginal Corporation RNTBC",
+        "Country": "Australia",
+        "Summary": "Pitta Pitta Aboriginal Corporation RNTBC is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-pitta-pitta-aboriginal-corporation-rntbc.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-pitta-pitta-aboriginal-corporation-rntbc.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-aboriginal-housing-office",
+      "fields": {
+        "Name": "Aboriginal Housing Office",
+        "Country": "Australia",
+        "Summary": "Aboriginal Housing Office is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-katji-yanun",
+      "fields": {
+        "Name": "Katji Yanun",
+        "Country": "Australia",
+        "Summary": "Katji Yanun is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-katji-yanun.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-katji-yanun.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-justice-reinvestment-port-augusta",
+      "fields": {
+        "Name": "Justice Reinvestment Port Augusta",
+        "Country": "Australia",
+        "Summary": "Justice Reinvestment Port Augusta is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-justice-for-walker",
+      "fields": {
+        "Name": "Justice for Walker",
+        "Country": "Australia",
+        "Summary": "Justice for Walker is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-justice-for-walker.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-justice-for-walker.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-pukatja-community",
+      "fields": {
+        "Name": "Pukatja Community",
+        "Country": "Australia",
+        "Summary": "Pukatja Community is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-pukatja-community.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-pukatja-community.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-national-disability-insurance-scheme",
+      "fields": {
+        "Name": "National Disability Insurance Scheme",
+        "Country": "Australia",
+        "Summary": "National Disability Insurance Scheme is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-seed-mob",
+      "fields": {
+        "Name": "Seed Mob",
+        "Country": "Australia",
+        "Summary": "Seed Mob is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-seed-mob.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-seed-mob.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-pacific-australian-emerging-leaders-network",
+      "fields": {
+        "Name": "Pacific Australian Emerging Leaders Network",
+        "Country": "Australia",
+        "Summary": "Pacific Australian Emerging Leaders Network is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-pacific-australian-emerging-leaders-network.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-pacific-australian-emerging-leaders-network.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-murrie-connections",
+      "fields": {
+        "Name": "Murrie Connections",
+        "Country": "Australia",
+        "Summary": "Murrie Connections is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-murrie-connections.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-murrie-connections.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-mapoon-aboriginal-shire-council",
+      "fields": {
+        "Name": "Mapoon Aboriginal Shire Council",
+        "Country": "Australia",
+        "Summary": "Mapoon Aboriginal Shire Council is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-mapoon-aboriginal-shire-council.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-mapoon-aboriginal-shire-council.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-deadly-inspiring-youth-doing-good-atsi-corporation",
+      "fields": {
+        "Name": "Deadly Inspiring Youth Doing Good ATSI Corporation",
+        "Country": "Australia",
+        "Summary": "Deadly Inspiring Youth Doing Good ATSI Corporation is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-aboriginal-community-connect",
+      "fields": {
+        "Name": "Aboriginal Community Connect",
+        "Country": "Australia",
+        "Summary": "Aboriginal Community Connect is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-aboriginal-community-connect.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-aboriginal-community-connect.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-australian-progress",
+      "fields": {
+        "Name": "Australian Progress",
+        "Country": "Australia",
+        "Summary": "Australian Progress is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-australian-progress.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-australian-progress.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-thriving-families-sa",
+      "fields": {
+        "Name": "Thriving Families SA",
+        "Country": "Australia",
+        "Summary": "Thriving Families SA is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-thriving-families-sa.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-thriving-families-sa.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-brisbane-blacks",
+      "fields": {
+        "Name": "Brisbane Blacks",
+        "Country": "Australia",
+        "Summary": "Brisbane Blacks is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-brisbane-blacks.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-brisbane-blacks.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-end-toxic-prisons-campaign",
+      "fields": {
+        "Name": "End Toxic Prisons Campaign",
+        "Country": "Australia",
+        "Summary": "End Toxic Prisons Campaign is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-end-toxic-prisons-campaign.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-end-toxic-prisons-campaign.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-first-nations-futures",
+      "fields": {
+        "Name": "First Nations Futures",
+        "Country": "Australia",
+        "Summary": "First Nations Futures is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-first-nations-futures.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-first-nations-futures.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-woven-project",
+      "fields": {
+        "Name": "Woven Project",
+        "Country": "Australia",
+        "Summary": "Woven Project is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-woven-project.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-woven-project.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-charles-campbell-college",
+      "fields": {
+        "Name": "Charles Campbell College",
+        "Country": "Australia",
+        "Summary": "Charles Campbell College is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-charles-campbell-college.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-charles-campbell-college.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-digital-storytellers",
+      "fields": {
+        "Name": "Digital Storytellers",
+        "Country": "Australia",
+        "Summary": "Digital Storytellers is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-digital-storytellers.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-digital-storytellers.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-gomeroi-traditional-owners-aboriginal-corporation",
+      "fields": {
+        "Name": "Gomeroi Traditional Owners Aboriginal Corporation",
+        "Country": "Australia",
+        "Summary": "Gomeroi Traditional Owners Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-bama-connect-consultant",
+      "fields": {
+        "Name": "Bama Connect Consultant",
+        "Country": "Australia",
+        "Summary": "Bama Connect Consultant is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-bama-connect-consultant.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-bama-connect-consultant.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "organisation-cfn",
+      "fields": {
+        "Name": "CFN",
+        "Country": "Australia",
+        "Summary": "CFN is a real Australian organisation listed by summit participants.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Timezones": [
+          "AEST"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-cfn.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-cfn.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "sponsor-common-threads-community",
+      "fields": {
+        "Name": "Common Threads Community",
+        "Level": "Community",
+        "Description": "Community supporters helping make Summit 2026 possible.",
+        "URL": "https://www.commonthreads.org.au",
+        "Logo": [
+          {
+            "url": "https://picsum.photos/seed/sponsor-common-threads-community/800/500"
+          }
+        ]
+      }
+    }
+  ],
+  "surveys": [
+    {
+      "id": "survey-day-feedback",
+      "fields": {
+        "Name": "Summit session feedback",
+        "Description": "Share feedback on sessions, logistics and support.",
+        "Url": "https://www.commonthreads.org.au/contact"
+      }
+    },
+    {
+      "id": "survey-overall-experience",
+      "fields": {
+        "Name": "Overall summit experience",
+        "Description": "Help shape future Common Threads summits.",
+        "Url": "https://www.commonthreads.org.au/contact"
+      }
+    }
+  ],
+  "codeConduct": {
+    "id": "code-conduct-2026",
+    "fields": {
+      "Content Body": "Common Threads Summit is committed to a safe, inclusive and respectful environment for all participants.\\n\\nWe expect everyone to engage in good faith, listen respectfully and avoid harassment, discrimination or harmful conduct.\\n\\nIf you experience or witness a concern, contact the summit safety team immediately."
+    }
+  },
+  "securityGuidelines": {
+    "id": "security-guidelines-2026",
+    "fields": {
+      "Content Body": "Use strong passwords and multi-factor authentication on devices used during summit days.\\n\\nDo not share personal or sensitive details in public channels.\\n\\nReport suspicious digital activity to summit crew straight away."
+    }
+  },
+  "map": {
+    "id": "summit-map-2026",
+    "fields": {
+      "Content Asset": [
+        "https://www.commonthreads.org.au/summit-2026/agenda-overview"
+      ]
+    }
+  }
+}

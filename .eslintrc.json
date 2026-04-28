@@ -1,4 +1,27 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "ignorePatterns": ["next-env.d.ts", ".next", "node_modules"]
+  "ignorePatterns": ["next-env.d.ts", ".next", "node_modules"],
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "react-native",
+            "message": "Use web components in summit-web; react-native imports are not allowed."
+          },
+          {
+            "name": "expo",
+            "message": "Use web-safe modules in summit-web; expo root imports are not allowed."
+          }
+        ],
+        "patterns": [
+          {
+            "group": ["react-native-*", "expo-*"],
+            "message": "Native-only packages are blocked in summit-web."
+          }
+        ]
+      }
+    ]
+  }
 }
