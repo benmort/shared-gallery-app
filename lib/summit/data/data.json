@@ -15,12 +15,12 @@
       "id": "speaker-ngarra-murray",
       "fields": {
         "Full Name": "Ngarra Murray",
-        "Title": "Featured speaker: all-in plenary",
+        "Title": "Keynote speaker: Treaty, rights and representation",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Keynote speaker at Common Threads Summit 2026.",
+        "Description": "Keynote speaker for the Day 2 morning plenary on Treaty, rights and representation.",
         "Tags": [
           "Speaker"
         ],
@@ -30,21 +30,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-26"
+          "schedule-slot-13"
         ],
         "Talk Format": [
-          "Plenary"
+          "Keynote"
         ]
       }
     },
@@ -52,12 +52,12 @@
       "id": "speaker-dr-anne-poelina",
       "fields": {
         "Full Name": "Dr Anne Poelina",
-        "Title": "Featured speaker: plenary session",
+        "Title": "Keynote speaker: Climate justice and protecting Country",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Keynote speaker at Common Threads Summit 2026.",
+        "Description": "Keynote speaker for the Day 2 afternoon plenary on climate justice and protecting Country.",
         "Tags": [
           "Speaker"
         ],
@@ -67,21 +67,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-13T15:00:00+10:00"
         ],
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-27"
+          "schedule-slot-17"
         ],
         "Talk Format": [
-          "Plenary"
+          "Keynote"
         ]
       }
     },
@@ -89,12 +89,12 @@
       "id": "speaker-celeste-liddle",
       "fields": {
         "Full Name": "Celeste Liddle",
-        "Title": "Featured speaker: morning plenary",
+        "Title": "Keynote speaker: the moment we are in",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Keynote speaker at Common Threads Summit 2026.",
+        "Description": "Keynote speaker for the Day 1 opening plenary.",
         "Tags": [
           "Speaker"
         ],
@@ -104,21 +104,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T09:30:00+09:30"
+          "2026-05-12T11:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-12T13:00:00+10:00"
         ],
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-28"
+          "schedule-slot-5"
         ],
         "Talk Format": [
-          "Plenary"
+          "Keynote"
         ]
       }
     },
@@ -126,12 +126,12 @@
       "id": "speaker-leeroy-bilney",
       "fields": {
         "Full Name": "Leeroy Bilney",
-        "Title": "Featured speaker: afternoon plenary",
+        "Title": "Lightning talk contributor",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Lightning talk contributor in the Day 2 morning plenary block.",
         "Tags": [
           "Speaker"
         ],
@@ -141,21 +141,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-29"
+          "schedule-slot-13"
         ],
         "Talk Format": [
-          "Plenary"
+          "Lightning Talk"
         ]
       }
     },
@@ -163,12 +163,12 @@
       "id": "speaker-josie-alec",
       "fields": {
         "Full Name": "Josie Alec",
-        "Title": "Featured speaker: opening plenary",
+        "Title": "Lightning talk contributor",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Lightning talk contributor in the Day 2 afternoon plenary block.",
         "Tags": [
           "Speaker"
         ],
@@ -178,21 +178,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T09:00:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
+          "2026-05-13T15:00:00+10:00"
         ],
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-30"
+          "schedule-slot-17"
         ],
         "Talk Format": [
-          "Plenary"
+          "Lightning Talk"
         ]
       }
     },
@@ -200,12 +200,12 @@
       "id": "speaker-karina-lester",
       "fields": {
         "Full Name": "Karina Lester",
-        "Title": "Featured speaker: skills workshops",
+        "Title": "Lightning talk contributor",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Lightning talk contributor in the Day 2 afternoon plenary block.",
         "Tags": [
           "Speaker"
         ],
@@ -215,21 +215,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
+          "2026-05-13T15:00:00+10:00"
         ],
         "Venue Name": [
-          "Workshop Hub"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Workshop Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-31"
+          "schedule-slot-17"
         ],
         "Talk Format": [
-          "Workshop"
+          "Lightning Talk"
         ]
       }
     },
@@ -237,12 +237,12 @@
       "id": "speaker-dr-jackie-huggins",
       "fields": {
         "Full Name": "Dr Jackie Huggins",
-        "Title": "Featured speaker: morning breakouts",
+        "Title": "Lightning talk contributor",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Lightning talk contributor in the Day 2 morning plenary block.",
         "Tags": [
           "Speaker"
         ],
@@ -252,21 +252,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
         "Venue Name": [
-          "Breakout Rooms"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Room/Area": "Multiple Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-32"
+          "schedule-slot-13"
         ],
         "Talk Format": [
-          "Breakout"
+          "Lightning Talk"
         ]
       }
     },
@@ -274,12 +274,12 @@
       "id": "speaker-larissa-baldwin-roberts",
       "fields": {
         "Full Name": "Larissa Baldwin-Roberts",
-        "Title": "Featured speaker: afternoon breakouts",
+        "Title": "Opening remarks",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Delivered opening remarks in the Day 1 introduction to Common Threads.",
         "Tags": [
           "Speaker"
         ],
@@ -289,21 +289,21 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
+          "2026-05-12T10:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
+          "2026-05-12T11:00:00+10:00"
         ],
         "Venue Name": [
-          "Breakout Rooms"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Room/Area": "Multiple Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-33"
+          "schedule-slot-3"
         ],
         "Talk Format": [
-          "Breakout"
+          "Plenary"
         ]
       }
     },
@@ -311,12 +311,12 @@
       "id": "speaker-mililma-may",
       "fields": {
         "Full Name": "Mililma May",
-        "Title": "Featured speaker: campaign strategies breakouts",
+        "Title": "Panel discussion contributor",
         "Organisation": [
           "Common Threads Summit"
         ],
-        "Bio": "Featured speaker for Common Threads Summit 2026.",
-        "Description": "Speaker profile from the summit agenda overview.",
+        "Bio": "Speaker at Common Threads Summit 2026.",
+        "Description": "Panel discussion contributor in the Day 1 afternoon plenary on frontline movements for justice.",
         "Tags": [
           "Speaker"
         ],
@@ -326,49 +326,49 @@
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
+          "2026-05-12T15:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
+          "2026-05-12T17:00:00+10:00"
         ],
         "Venue Name": [
-          "Breakout Rooms"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Room/Area": "Multiple Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-34"
+          "schedule-slot-9"
         ],
         "Talk Format": [
-          "Breakout"
+          "Panel"
         ]
       }
     }
   ],
   "events": [
     {
-      "id": "event-2026-05-12-arrival-registration",
+      "id": "event-day1-doors-open-registration",
       "fields": {
-        "Title": "Arrival and registration",
+        "Title": "Doors open for registration",
         "Venue Name": [
-          "Registration Desk"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Summit check-in and attendee registration.",
+        "Description": "Arrival, registration, and check-in for all delegates.",
         "Tags": [
           "Logistics"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-arrival-registration/640/640"
+            "url": "https://picsum.photos/seed/event-day1-doors-open-registration/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T08:30:00+09:30"
+          "2026-05-12T08:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T09:30:00+09:30"
+          "2026-05-12T09:30:00+10:00"
         ],
-        "Room/Area": "Main Foyer",
+        "Room/Area": "Registration desk",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-1"
@@ -376,29 +376,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-welcome-country-intro",
+      "id": "event-day1-welcome-country",
       "fields": {
-        "Title": "Welcome to Country and introduction to Common Threads",
+        "Title": "Welcome to Country",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Opening session and formal welcome.",
+        "Description": "Formal Welcome to Country to open the summit gathering.",
         "Tags": [
-          "Opening",
-          "Plenary"
+          "Opening"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-welcome-country/640/640"
+            "url": "https://picsum.photos/seed/event-day1-welcome-country/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T09:30:00+09:30"
+          "2026-05-12T09:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T11:00:00+09:30"
+          "2026-05-12T10:00:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-2"
@@ -406,28 +405,29 @@
       }
     },
     {
-      "id": "event-2026-05-12-morning-tea",
+      "id": "event-day1-introduction-common-threads",
       "fields": {
-        "Title": "Morning tea",
+        "Title": "Introduction to Common Threads",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Refreshment break.",
+        "Description": "MC introduction: Narelda Jacobs\nOpening remarks: Larissa Baldwin-Roberts\nIntroductions and reflections at tables.",
         "Tags": [
-          "Break"
+          "Opening",
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-morning-tea-day1/640/640"
+            "url": "https://picsum.photos/seed/event-day1-introduction-common-threads/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:00:00+09:30"
+          "2026-05-12T10:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-12T11:00:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-3"
@@ -435,28 +435,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-morning-plenary-political-moment",
+      "id": "event-day1-morning-tea",
       "fields": {
-        "Title": "Morning plenary - the political moment we are in",
+        "Title": "Morning tea",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "All-in plenary session for shared context and strategy.",
+        "Description": "Morning tea break.",
         "Tags": [
-          "Plenary"
+          "Break"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-morning-plenary-day1/640/640"
+            "url": "https://picsum.photos/seed/event-day1-morning-tea/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-12T11:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-12T11:30:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Catering foyer",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-4"
@@ -464,28 +464,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-lunch",
+      "id": "event-day1-opening-plenary",
       "fields": {
-        "Title": "Lunch",
+        "Title": "Opening plenary: the moment we're in",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Lunch break.",
+        "Description": "Keynote speaker: Celeste Liddle\nPanel discussion on the political moment and movement context.",
         "Tags": [
-          "Break"
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-lunch-day1/640/640"
+            "url": "https://picsum.photos/seed/event-day1-opening-plenary/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-12T11:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T14:00:00+09:30"
+          "2026-05-12T13:00:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-5"
@@ -493,28 +493,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-regional-breakouts",
+      "id": "event-day1-lunch",
       "fields": {
-        "Title": "Regional breakouts - relationship-building and reflections",
+        "Title": "Lunch",
         "Venue Name": [
-          "Breakout Rooms"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Regional breakout sessions for relationship-building and reflection.",
+        "Description": "Lunch break.",
         "Tags": [
-          "Breakouts"
+          "Break"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-regional-breakouts/640/640"
+            "url": "https://picsum.photos/seed/event-day1-lunch/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T14:00:00+09:30"
+          "2026-05-12T13:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T15:00:00+09:30"
+          "2026-05-12T14:00:00+10:00"
         ],
-        "Room/Area": "Multiple Rooms",
+        "Room/Area": "Dining hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-6"
@@ -522,28 +522,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-afternoon-tea",
+      "id": "event-day1-breakout-state-region",
       "fields": {
-        "Title": "Afternoon tea",
+        "Title": "Breakout discussions by state / region",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Refreshment break.",
+        "Description": "Regional discussions to map local priorities and campaign context.",
         "Tags": [
-          "Break"
+          "Breakout"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-afternoon-tea-day1/640/640"
+            "url": "https://picsum.photos/seed/event-day1-breakout-state-region/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:00:00+09:30"
+          "2026-05-12T14:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-12T15:00:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Breakout rooms",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-7"
@@ -551,28 +551,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-afternoon-plenary-women-leading",
+      "id": "event-day1-afternoon-tea",
       "fields": {
-        "Title": "Afternoon plenary - women leading frontline fights for justice",
+        "Title": "Afternoon tea",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Plenary focused on leadership and frontline justice campaigns.",
+        "Description": "Afternoon tea break.",
         "Tags": [
-          "Plenary"
+          "Break"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-afternoon-plenary-day1/640/640"
+            "url": "https://picsum.photos/seed/event-day1-afternoon-tea/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-12T15:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-12T15:30:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Catering foyer",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-8"
@@ -580,28 +580,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-close-day-one",
+      "id": "event-day1-afternoon-plenary-frontline",
       "fields": {
-        "Title": "Close of day one",
+        "Title": "Afternoon plenary - frontline movements for justice",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Day one wrap-up.",
+        "Description": "Panel discussion: Ruby Wharton, Mililma May, Megan Krakouer.",
         "Tags": [
-          "Closing"
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-close-day-one/640/640"
+            "url": "https://picsum.photos/seed/event-day1-afternoon-plenary-frontline/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-12T15:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:30:00+09:30"
+          "2026-05-12T17:00:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-9"
@@ -609,28 +609,28 @@
       }
     },
     {
-      "id": "event-2026-05-12-optional-social-dinner",
+      "id": "event-day1-plenary-concludes",
       "fields": {
-        "Title": "Optional social dinner",
+        "Title": "Plenary concludes",
         "Venue Name": [
-          "Social Venue"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Optional evening social dinner for attendees.",
+        "Description": "Day 1 plenary closes.",
         "Tags": [
-          "Social"
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-social-dinner/640/640"
+            "url": "https://picsum.photos/seed/event-day1-plenary-concludes/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T17:30:00+09:30"
+          "2026-05-12T17:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T19:00:00+09:30"
+          "2026-05-12T18:00:00+10:00"
         ],
-        "Room/Area": "Offsite Dinner Venue",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-10"
@@ -638,28 +638,28 @@
       }
     },
     {
-      "id": "event-2026-05-13-morning-plenary-treaty-rights-representation",
+      "id": "event-day1-optional-group-dinner",
       "fields": {
-        "Title": "Morning plenary - towards Treaty, rights and representation",
+        "Title": "Optional group dinner",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
-        "Description": "Morning plenary on Treaty, rights and representation.",
+        "Description": "Optional group dinner for delegates and guests.",
         "Tags": [
-          "Plenary"
+          "Social"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-morning-plenary-day2/640/640"
+            "url": "https://picsum.photos/seed/event-day1-optional-group-dinner/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T09:30:00+09:30"
+          "2026-05-12T18:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-12T20:00:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Offsite dinner venue",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-11"
@@ -667,28 +667,28 @@
       }
     },
     {
-      "id": "event-2026-05-13-morning-tea",
+      "id": "event-day2-doors-open",
       "fields": {
-        "Title": "Morning tea",
+        "Title": "Doors open",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Refreshment break.",
+        "Description": "Venue opens for Day 2 arrivals.",
         "Tags": [
-          "Break"
+          "Logistics"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-morning-tea-day2/640/640"
+            "url": "https://picsum.photos/seed/event-day2-doors-open/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-13T08:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Registration desk",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-12"
@@ -696,28 +696,28 @@
       }
     },
     {
-      "id": "event-2026-05-13-morning-breakouts-organising-communities",
+      "id": "event-day2-morning-plenary-treaty-rights",
       "fields": {
-        "Title": "Morning breakouts - organising our communities for Treaty and justice",
+        "Title": "Morning plenary: Treaty, rights and representation",
         "Venue Name": [
-          "Breakout Rooms"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Breakout sessions focused on community organising for Treaty and justice.",
+        "Description": "Keynote speaker: Ngarra Murray\nInternational guest speaker\nLightning talks: Tony McAvoy SC, Dr Jackie Huggins, Leeroy Bilney, Jason Glanville.",
         "Tags": [
-          "Breakouts"
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-morning-breakouts-day2/640/640"
+            "url": "https://picsum.photos/seed/event-day2-morning-plenary-treaty-rights/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
-        "Room/Area": "Multiple Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-13"
@@ -725,28 +725,28 @@
       }
     },
     {
-      "id": "event-2026-05-13-lunch",
+      "id": "event-day2-morning-tea",
       "fields": {
-        "Title": "Lunch",
+        "Title": "Morning tea",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Lunch break.",
+        "Description": "Morning tea break.",
         "Tags": [
           "Break"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-lunch-day2/640/640"
+            "url": "https://picsum.photos/seed/event-day2-morning-tea/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
+          "2026-05-13T11:15:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Catering foyer",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-14"
@@ -754,28 +754,28 @@
       }
     },
     {
-      "id": "event-2026-05-13-afternoon-plenary-caring-country",
+      "id": "event-day2-breakout-sessions-concurrent",
       "fields": {
-        "Title": "Afternoon plenary - caring for Country",
+        "Title": "Breakout sessions (running concurrently)",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Afternoon plenary on caring for Country.",
+        "Description": "Breakout 1: Community readiness and organising for Treaty\nBreakout 2: Together for Treaty campaign strategy\nBreakout 3: Panel - lessons from community organising.",
         "Tags": [
-          "Plenary"
+          "Breakout"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-afternoon-plenary-day2/640/640"
+            "url": "https://picsum.photos/seed/event-day2-breakout-sessions-concurrent/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
+          "2026-05-13T11:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
+          "2026-05-13T12:30:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Breakout rooms",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-15"
@@ -783,185 +783,11 @@
       }
     },
     {
-      "id": "event-2026-05-13-afternoon-tea",
-      "fields": {
-        "Title": "Afternoon tea",
-        "Venue Name": [
-          "Dining Hall"
-        ],
-        "Description": "Refreshment break.",
-        "Tags": [
-          "Break"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-afternoon-tea-day2/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
-        ],
-        "Room/Area": "Catering Area",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-16"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-13-afternoon-breakouts-climate-justice",
-      "fields": {
-        "Title": "Afternoon breakouts - big ideas for climate justice and protecting Country",
-        "Venue Name": [
-          "Breakout Rooms"
-        ],
-        "Description": "Breakouts on climate justice and protecting Country.",
-        "Tags": [
-          "Breakouts"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-afternoon-breakouts-day2/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
-        ],
-        "Room/Area": "Multiple Rooms",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-17"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-13-close-day-two",
-      "fields": {
-        "Title": "Close of day two",
-        "Venue Name": [
-          "Plenary Hall"
-        ],
-        "Description": "Day two wrap-up.",
-        "Tags": [
-          "Closing"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-close-day-two/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T17:30:00+09:30"
-        ],
-        "Room/Area": "Main Stage",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-18"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-14-opening-plenary-collaboration-action",
-      "fields": {
-        "Title": "Opening plenary - big ideas for collaboration and action",
-        "Venue Name": [
-          "Plenary Hall"
-        ],
-        "Description": "Opening plenary focused on collaboration and action.",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-opening-plenary-day3/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-14T09:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
-        ],
-        "Room/Area": "Main Stage",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-19"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-14-morning-tea",
-      "fields": {
-        "Title": "Morning tea",
-        "Venue Name": [
-          "Dining Hall"
-        ],
-        "Description": "Refreshment break.",
-        "Tags": [
-          "Break"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-morning-tea-day3/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
-        ],
-        "Room/Area": "Catering Area",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-20"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-14-morning-breakouts-campaign-strategies",
-      "fields": {
-        "Title": "Morning breakouts - collaborative campaign strategies",
-        "Venue Name": [
-          "Breakout Rooms"
-        ],
-        "Description": "Breakout sessions on collaborative campaign strategy.",
-        "Tags": [
-          "Breakouts"
-        ],
-        "Headshot": [
-          {
-            "url": "https://picsum.photos/seed/event-morning-breakouts-day3/640/640"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
-        ],
-        "Room/Area": "Multiple Rooms",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-21"
-        ]
-      }
-    },
-    {
-      "id": "event-2026-05-14-lunch",
+      "id": "event-day2-lunch",
       "fields": {
         "Title": "Lunch",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "Description": "Lunch break.",
         "Tags": [
@@ -969,16 +795,190 @@
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-lunch-day3/640/640"
+            "url": "https://picsum.photos/seed/event-day2-lunch/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
+          "2026-05-13T12:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ],
-        "Room/Area": "Catering Area",
+        "Room/Area": "Dining hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-16"
+        ]
+      }
+    },
+    {
+      "id": "event-day2-afternoon-plenary-climate",
+      "fields": {
+        "Title": "Afternoon plenary: Climate justice and protecting Country",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Keynote speaker: Dr Anne Poelina\nLightning talks: Nick Fitzpatrick, Karina Lester, Josie Alec, Duane Fraser, Susan Dixon.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day2-afternoon-plenary-climate/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T13:15:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-17"
+        ]
+      }
+    },
+    {
+      "id": "event-day2-afternoon-tea",
+      "fields": {
+        "Title": "Afternoon tea",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Afternoon tea break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day2-afternoon-tea/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T15:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T15:30:00+10:00"
+        ],
+        "Room/Area": "Catering foyer",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-18"
+        ]
+      }
+    },
+    {
+      "id": "event-day2-breakout-sessions-concurrent-afternoon",
+      "fields": {
+        "Title": "Breakout sessions (running concurrently)",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Breakout 1: Local needs and responses to climate change\nBreakout 2: Using global forums to advance Indigenous rights\nBreakout 3: Solidarity with mob in NT and Queensland.",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day2-breakout-sessions-concurrent-afternoon/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T15:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T16:30:00+10:00"
+        ],
+        "Room/Area": "Breakout rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-19"
+        ]
+      }
+    },
+    {
+      "id": "event-day2-plenary-report-backs-reflections",
+      "fields": {
+        "Title": "Plenary: report-backs and reflections",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Sharing highlights of breakout discussions and a recap of what is in store for Day 3.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day2-plenary-report-backs-reflections/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T16:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-20"
+        ]
+      }
+    },
+    {
+      "id": "event-day2-close",
+      "fields": {
+        "Title": "Close Day 2",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Day 2 closes.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day2-close/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-13T17:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-13T17:15:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-21"
+        ]
+      }
+    },
+    {
+      "id": "event-day3-doors-open",
+      "fields": {
+        "Title": "Doors open",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Venue opens for Day 3 arrivals.",
+        "Tags": [
+          "Logistics"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day3-doors-open/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T08:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T09:00:00+10:00"
+        ],
+        "Room/Area": "Registration desk",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-22"
@@ -986,28 +986,28 @@
       }
     },
     {
-      "id": "event-2026-05-14-skills-workshops",
+      "id": "event-day3-plenary-opening-collaborations",
       "fields": {
-        "Title": "Skills workshops - organising, messaging and media training",
+        "Title": "Plenary opening session: Building collaborations for justice",
         "Venue Name": [
-          "Workshop Hub"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Practical skills sessions including organising, messaging and media training.",
+        "Description": "Guest speaker via Zoom: Travis Lovett\nLaunching the Cubawee Redistribution Fund\nPitching campaign ideas to deep-dive in breakout sessions.",
         "Tags": [
-          "Workshops"
+          "Plenary"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-skills-workshops-day3/640/640"
+            "url": "https://picsum.photos/seed/event-day3-plenary-opening-collaborations/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
+          "2026-05-14T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
+          "2026-05-14T10:00:00+10:00"
         ],
-        "Room/Area": "Workshop Rooms",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-23"
@@ -1015,28 +1015,28 @@
       }
     },
     {
-      "id": "event-2026-05-14-closing-reflections",
+      "id": "event-day3-morning-tea-walk-for-truth",
       "fields": {
-        "Title": "Closing reflections and staying connected",
+        "Title": "Morning tea - including Walk for Truth solidarity action",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Closing reflections and next steps for staying connected.",
+        "Description": "Morning tea and Walk for Truth solidarity action.",
         "Tags": [
-          "Closing"
+          "Break"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-closing-reflections-day3/640/640"
+            "url": "https://picsum.photos/seed/event-day3-morning-tea-walk-for-truth/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
+          "2026-05-14T10:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T15:30:00+09:30"
+          "2026-05-14T10:30:00+10:00"
         ],
-        "Room/Area": "Main Stage",
+        "Room/Area": "Catering foyer",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-24"
@@ -1044,32 +1044,147 @@
       }
     },
     {
-      "id": "event-2026-05-14-end-summit",
+      "id": "event-day3-breakout-campaign-collaborations",
       "fields": {
-        "Title": "End of Summit and departure option to airport",
+        "Title": "Breakout sessions: campaign collaborations (running concurrently)",
         "Venue Name": [
-          "Transport Hub"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
-        "Description": "Summit close and optional departure transfer to the airport.",
+        "Description": "Together for Treaty campaign (Treaty and truth-telling)\nThe Answer is Us campaign (climate justice)\nTBC: collaboration ideas arising from the room.",
         "Tags": [
-          "Logistics",
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day3-breakout-campaign-collaborations/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T10:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:00:00+10:00"
+        ],
+        "Room/Area": "Breakout rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-25"
+        ]
+      }
+    },
+    {
+      "id": "event-day3-lunch",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Lunch break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day3-lunch/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T12:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T12:45:00+10:00"
+        ],
+        "Room/Area": "Dining hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-26"
+        ]
+      }
+    },
+    {
+      "id": "event-day3-breakout-skills-workshops",
+      "fields": {
+        "Title": "Breakout sessions: skills workshops (running concurrently)",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Workshop 1: Pitching and telling your story in the media\nWorkshop 2: Community organising skills\nWorkshop 3: Passing the Message Stick\nWorkshop 4: Fundraising skills\nWorkshop 5: Digital campaigning and social media.",
+        "Tags": [
+          "Workshop"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day3-breakout-skills-workshops/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T12:45:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T14:30:00+10:00"
+        ],
+        "Room/Area": "Workshop rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-27"
+        ]
+      }
+    },
+    {
+      "id": "event-day3-plenary-closing-where-to-from-here",
+      "fields": {
+        "Title": "Plenary closing session: Where to from here",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Reflections from the room, what is next from Common Threads, and giving feedback while staying connected.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-day3-plenary-closing-where-to-from-here/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-14T14:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-14T15:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-28"
+        ]
+      }
+    },
+    {
+      "id": "event-day3-formal-program-concludes",
+      "fields": {
+        "Title": "Formal program concludes, afternoon tea available",
+        "Venue Name": [
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
+        ],
+        "Description": "Formal program concludes. Afternoon tea remains available, with an option for Thursday-night travellers to depart for the airport.",
+        "Tags": [
           "Closing"
         ],
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/event-end-summit-day3/640/640"
+            "url": "https://picsum.photos/seed/event-day3-formal-program-concludes/640/640"
           }
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T15:30:00+09:30"
+          "2026-05-14T15:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T16:00:00+09:30"
+          "2026-05-14T16:00:00+10:00"
         ],
-        "Room/Area": "Departure Desk",
+        "Room/Area": "Main plenary hall",
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
-          "schedule-slot-25"
+          "schedule-slot-29"
         ]
       }
     }
@@ -1080,13 +1195,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Registration Desk"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T08:30:00+09:30"
+          "2026-05-12T08:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T09:30:00+09:30"
+          "2026-05-12T09:30:00+10:00"
         ]
       }
     },
@@ -1095,13 +1210,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T09:30:00+09:30"
+          "2026-05-12T09:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T11:00:00+09:30"
+          "2026-05-12T10:00:00+10:00"
         ]
       }
     },
@@ -1110,13 +1225,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:00:00+09:30"
+          "2026-05-12T10:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-12T11:00:00+10:00"
         ]
       }
     },
@@ -1125,13 +1240,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-12T11:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-12T11:30:00+10:00"
         ]
       }
     },
@@ -1140,13 +1255,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-12T11:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T14:00:00+09:30"
+          "2026-05-12T13:00:00+10:00"
         ]
       }
     },
@@ -1155,13 +1270,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Breakout Rooms"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T14:00:00+09:30"
+          "2026-05-12T13:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T15:00:00+09:30"
+          "2026-05-12T14:00:00+10:00"
         ]
       }
     },
@@ -1170,13 +1285,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Dining Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:00:00+09:30"
+          "2026-05-12T14:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-12T15:00:00+10:00"
         ]
       }
     },
@@ -1185,13 +1300,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-12T15:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-12T15:30:00+10:00"
         ]
       }
     },
@@ -1200,13 +1315,13 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-12T15:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:30:00+09:30"
+          "2026-05-12T17:00:00+10:00"
         ]
       }
     },
@@ -1215,28 +1330,28 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Social Venue"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T17:30:00+09:30"
+          "2026-05-12T17:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T19:00:00+09:30"
+          "2026-05-12T18:00:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-11",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Intercontinental Hotel, North Terrace, Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T09:30:00+09:30"
+          "2026-05-12T18:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-12T20:00:00+10:00"
         ]
       }
     },
@@ -1245,13 +1360,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-13T08:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ]
       }
     },
@@ -1260,13 +1375,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Breakout Rooms"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
+          "2026-05-13T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ]
       }
     },
@@ -1275,13 +1390,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
+          "2026-05-13T10:45:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
+          "2026-05-13T11:15:00+10:00"
         ]
       }
     },
@@ -1290,13 +1405,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
+          "2026-05-13T11:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
+          "2026-05-13T12:30:00+10:00"
         ]
       }
     },
@@ -1305,13 +1420,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
+          "2026-05-13T12:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ]
       }
     },
@@ -1320,13 +1435,13 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Breakout Rooms"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
+          "2026-05-13T13:15:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
+          "2026-05-13T15:00:00+10:00"
         ]
       }
     },
@@ -1335,58 +1450,58 @@
       "fields": {
         "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
+          "2026-05-13T15:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T17:30:00+09:30"
+          "2026-05-13T15:30:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-19",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T09:00:00+09:30"
+          "2026-05-13T15:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
+          "2026-05-13T16:30:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-20",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
+          "2026-05-13T16:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
+          "2026-05-13T17:00:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-21",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": [
-          "Breakout Rooms"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
+          "2026-05-13T17:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
+          "2026-05-13T17:15:00+10:00"
         ]
       }
     },
@@ -1395,13 +1510,13 @@
       "fields": {
         "Day Of Week": "Thursday",
         "Venue Name": [
-          "Dining Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
+          "2026-05-14T08:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
+          "2026-05-14T09:00:00+10:00"
         ]
       }
     },
@@ -1410,13 +1525,13 @@
       "fields": {
         "Day Of Week": "Thursday",
         "Venue Name": [
-          "Workshop Hub"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
+          "2026-05-14T09:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
+          "2026-05-14T10:00:00+10:00"
         ]
       }
     },
@@ -1425,13 +1540,13 @@
       "fields": {
         "Day Of Week": "Thursday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
+          "2026-05-14T10:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T15:30:00+09:30"
+          "2026-05-14T10:30:00+10:00"
         ]
       }
     },
@@ -1440,148 +1555,73 @@
       "fields": {
         "Day Of Week": "Thursday",
         "Venue Name": [
-          "Transport Hub"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T15:30:00+09:30"
+          "2026-05-14T10:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T16:00:00+09:30"
+          "2026-05-14T12:00:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-26",
       "fields": {
-        "Day Of Week": "Tuesday",
+        "Day Of Week": "Thursday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T11:30:00+09:30"
+          "2026-05-14T12:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T13:00:00+09:30"
+          "2026-05-14T12:45:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-27",
       "fields": {
-        "Day Of Week": "Tuesday",
+        "Day Of Week": "Thursday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-12T15:30:00+09:30"
+          "2026-05-14T12:45:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-12T17:00:00+09:30"
+          "2026-05-14T14:30:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-28",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Thursday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-13T09:30:00+09:30"
+          "2026-05-14T14:30:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-13T11:00:00+09:30"
+          "2026-05-14T15:00:00+10:00"
         ]
       }
     },
     {
       "id": "schedule-slot-29",
       "fields": {
-        "Day Of Week": "Wednesday",
-        "Venue Name": [
-          "Plenary Hall"
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T14:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T15:30:00+09:30"
-        ]
-      }
-    },
-    {
-      "id": "schedule-slot-30",
-      "fields": {
         "Day Of Week": "Thursday",
         "Venue Name": [
-          "Plenary Hall"
+          "Adelaide Oval, War Memorial Drive, North Adelaide"
         ],
         "DateTime Start [Schedule]": [
-          "2026-05-14T09:00:00+09:30"
+          "2026-05-14T15:00:00+10:00"
         ],
         "DateTime End [Schedule]": [
-          "2026-05-14T10:00:00+09:30"
-        ]
-      }
-    },
-    {
-      "id": "schedule-slot-31",
-      "fields": {
-        "Day Of Week": "Thursday",
-        "Venue Name": [
-          "Workshop Hub"
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-14T13:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-14T14:30:00+09:30"
-        ]
-      }
-    },
-    {
-      "id": "schedule-slot-32",
-      "fields": {
-        "Day Of Week": "Wednesday",
-        "Venue Name": [
-          "Breakout Rooms"
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T11:30:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T13:00:00+09:30"
-        ]
-      }
-    },
-    {
-      "id": "schedule-slot-33",
-      "fields": {
-        "Day Of Week": "Wednesday",
-        "Venue Name": [
-          "Breakout Rooms"
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-13T16:00:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-13T17:00:00+09:30"
-        ]
-      }
-    },
-    {
-      "id": "schedule-slot-34",
-      "fields": {
-        "Day Of Week": "Thursday",
-        "Venue Name": [
-          "Breakout Rooms"
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-14T10:30:00+09:30"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-14T12:00:00+09:30"
+          "2026-05-14T16:00:00+10:00"
         ]
       }
     }

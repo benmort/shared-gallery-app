@@ -2,7 +2,6 @@
 
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { upload as uploadToBlob } from "@vercel/blob/client";
-import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { validateMediaFile } from "@/lib/client-validate";
 import type { Photo } from "@/lib/types/photo";
@@ -29,6 +28,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [clientBlobUpload, setClientBlobUpload] = useState(false);
+  const [composerOpen, setComposerOpen] = useState(false);
 
   useEffect(() => {
     void fetch("/api/photos/capabilities")
@@ -55,7 +55,10 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
       });
     }
     if (errs.length) setErrors(errs);
-    if (next.length) setItems((prev) => [...prev, ...next]);
+    if (next.length) {
+      setItems((prev) => [...prev, ...next]);
+      setComposerOpen(true);
+    }
   }, []);
 
   const removeItem = useCallback((id: string) => {
@@ -143,7 +146,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
   };
 
   return (
-    <div className="relative mb-4 break-inside-avoid sm:mb-5">
+    <div id="share-moment-lead" className="relative mb-3 break-inside-avoid sm:mb-5">
       {uploading && (
         <div
           className="fixed inset-0 z-[200] hidden max-[639px]:flex flex-col bg-black/85 backdrop-blur-sm"
@@ -171,36 +174,34 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
         </div>
       )}
       <div
-        className="after:content relative flex min-h-[min(70vh,629px)] flex-col items-center justify-end gap-4 overflow-hidden rounded-xl bg-white/10 px-4 pb-10 pt-36 text-center text-white shadow-highlight after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-highlight sm:pt-48 lg:pt-64"
+        className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 p-4 text-left text-white shadow-2xl sm:p-5"
         aria-label="Share a moment"
       >
-        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-start pt-5 sm:pt-7 lg:pt-9">
-          <div className="flex w-full flex-col items-center px-4">
-            <Image
-              src="/Common-Threads-Logo.png"
-              alt="Common Threads"
-              width={520}
-              height={200}
-              priority
-              className="relative z-[1] h-auto w-full max-w-[min(85vw,260px)] object-contain sm:max-w-[300px]"
-            />
-          </div>
-          <span
-            className="absolute bottom-0 left-0 right-0 h-[400px] bg-gradient-to-b from-black/0 via-black to-black"
-            aria-hidden
-          />
+        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-stone-400">
+          Upload to the gallery
+        </p>
+        <h2 className="mt-1 text-2xl font-semibold leading-tight text-white">Share a moment</h2>
+        <p className="mt-2 text-sm leading-6 text-stone-300">
+          Add photos and videos to the shared album from your library or straight from your phone.
+        </p>
+
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setComposerOpen((prev) => !prev)}
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-blue-500 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200/80"
+          >
+            {composerOpen ? "Hide uploader" : "Share a moment"}
+          </button>
+          {items.length > 0 ? (
+            <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-stone-200">
+              {items.length} selected
+            </span>
+          ) : null}
         </div>
 
-        <div className="relative z-10 flex w-full max-w-md flex-col gap-4">
-          <h1 className="text-balance text-lg font-bold uppercase tracking-widest text-white sm:text-xl">
-            Share a moment
-          </h1>
-          <p className="text-pretty text-sm leading-relaxed text-white/75 md:hidden">
-            Add photos and videos to the shared album <br />
-            from your library or straight from your phone.
-          </p>
-
-          <section className="flex flex-col gap-4 text-left" aria-label="Upload">
+        {composerOpen ? (
+          <section className="mt-4 flex flex-col gap-4 text-left" aria-label="Upload">
             <div className="md:hidden">
               <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
             </div>
@@ -259,7 +260,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
 
             <UploadTermsNotice variant="onDark" />
           </section>
-        </div>
+        ) : null}
       </div>
     </div>
   );

@@ -43,17 +43,17 @@ export default function PhotoGallery({
   }, [lastViewedPhoto, photoIdOpen, setLastViewedPhoto]);
 
   return (
-    <div className="columns-1 gap-4 sm:columns-2 sm:gap-5 lg:columns-3">
+    <div className="columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3">
       {lead}
       {photosLoading && (
-        <div className="relative mb-4 break-inside-avoid rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10 sm:mb-5">
+        <div className="relative mb-3 break-inside-avoid rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10 sm:mb-4">
           Loading photos…
         </div>
       )}
       {photos?.map((photo) => (
         <div
           key={photo.id}
-          className="group relative mb-4 break-inside-avoid sm:mb-5"
+          className="group relative mb-3 break-inside-avoid sm:mb-4"
         >
           {moderationMode && onToggleSelect && (
             <label
@@ -74,7 +74,7 @@ export default function PhotoGallery({
             href={galleryPath(photo.id, preserveSearchParams ?? null)}
             scroll={false}
             ref={photo.id === lastViewedPhoto ? lastRef : undefined}
-            className="after:content relative block w-full cursor-zoom-in after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
+            className="after:content relative block w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
           >
             {photo.kind === "video" ? (
               <video
@@ -82,7 +82,7 @@ export default function PhotoGallery({
                 muted
                 playsInline
                 preload="metadata"
-                className="w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                className="w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 width={photo.width ?? 1280}
                 height={photo.height ?? 720}
@@ -99,13 +99,13 @@ export default function PhotoGallery({
                 height={photo.height ?? 480}
                 loading="lazy"
                 decoding="async"
-                className="h-auto w-full transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                className="h-auto w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
                 style={{ transform: "translate3d(0, 0, 0)" }}
               />
             ) : (
               <Image
                 alt={photo.filename}
-                className="transform rounded-xl brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                className="transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder={photo.blurDataUrl ? "blur" : "empty"}
                 blurDataURL={photo.blurDataUrl}
