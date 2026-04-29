@@ -1700,58 +1700,52 @@
   ],
   "crew": [
     {
-      "id": "crew-summit-operations",
+      "id": "crew-tarneen-onus-browne",
       "fields": {
-        "Shortname": "Operations Team",
-        "Role": "On-site support",
-        "Bio": "Coordinates registration, room logistics and attendee support throughout summit days.",
+        "Shortname": "Tarneen Onus-Browne",
+        "Role": "Crew",
+        "Bio": "Summit crew contact.",
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/crew-operations-team/640/640"
+            "url": "/images/crew/tarneen.png"
           }
         ],
         "Organisation [Network Data]": [
           "Common Threads"
         ],
         "Job category [Network Data]": [
-          "Operations"
+          "Crew"
         ],
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Work Email [Network Data]": "summit@commonthreads.org.au",
-        "Phone [Network Data]": "+61 8 0000 0000",
-        "Slack": "https://www.commonthreads.org.au/contact",
-        "Whatsapp": "https://www.commonthreads.org.au/contact",
+        "Phone [Network Data]": "0439 233 446",
         "Languages": [
           "English"
         ]
       }
     },
     {
-      "id": "crew-summit-safety",
+      "id": "crew-amelia-millie-telford",
       "fields": {
-        "Shortname": "Safety Team",
-        "Role": "Participant safety and wellbeing",
-        "Bio": "Supports participant safety processes and incident response.",
+        "Shortname": "Amelia (Millie) Telford",
+        "Role": "Crew",
+        "Bio": "Summit crew contact.",
         "Headshot": [
           {
-            "url": "https://picsum.photos/seed/crew-safety-team/640/640"
+            "url": "/images/crew/millie.png"
           }
         ],
         "Organisation [Network Data]": [
           "Common Threads"
         ],
         "Job category [Network Data]": [
-          "Safety"
+          "Crew"
         ],
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Work Email [Network Data]": "summit@commonthreads.org.au",
-        "Phone [Network Data]": "+61 8 0000 0000",
-        "Slack": "https://www.commonthreads.org.au/contact",
-        "Whatsapp": "https://www.commonthreads.org.au/contact",
+        "Phone [Network Data]": "0413 249 073",
         "Languages": [
           "English"
         ]
