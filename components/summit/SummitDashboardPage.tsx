@@ -179,7 +179,6 @@ export default async function SummitDashboardPage() {
     : "Location unavailable";
   const mapUrl = summitMap ? fieldFirst(summitMap, "Content Asset") : "";
   const summitTitle = splitSummitName(summitName || "Summit");
-  const heroImageUrl = "/images/sa-landmark.png";
   const heroVideoUrl = "/video/background-loop-small.mp4";
 
   const directoryEntries: DirectoryEntry[] = [
@@ -213,16 +212,6 @@ export default async function SummitDashboardPage() {
   return (
     <div className="mx-auto w-full max-w-[680px] space-y-6 lg:max-w-[980px]">
       <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 sm:min-h-[430px]">
-        {heroImageUrl ? (
-          <Image
-            src={heroImageUrl}
-            alt=""
-            fill
-            className="object-cover object-center"
-            unoptimized
-            aria-hidden
-          />
-        ) : null}
         <video
           className="absolute left-1/2 top-1/2 h-full w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center sm:w-[155%] lg:w-[140%]"
           autoPlay
@@ -230,18 +219,17 @@ export default async function SummitDashboardPage() {
           muted
           playsInline
           preload="auto"
-          poster={heroImageUrl}
           aria-hidden
         >
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900/75 via-zinc-950/60 to-black/90" />
-        <div className="relative flex min-h-[360px] flex-col justify-end p-6 sm:min-h-[430px] sm:p-7">
+        <div className="relative flex min-h-[360px] flex-col items-center justify-center p-6 text-center sm:min-h-[430px] sm:p-7">
           <p className="text-xs uppercase tracking-[0.18em] text-amber-100/90">{summitTitle.overline}</p>
           <h1 className="mt-2 max-w-[18ch] text-4xl font-semibold leading-tight text-white sm:text-5xl">
             {summitTitle.title}
           </h1>
-          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-stone-100">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-stone-100">
             <span className="inline-flex items-center gap-1.5">
               <CalendarDaysIcon className="h-4 w-4" />
               {summitRange}
@@ -251,7 +239,7 @@ export default async function SummitDashboardPage() {
               {summitLocation || "Location unavailable"}
             </span>
           </div>
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
             <Link
               href="/schedule"
               className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
