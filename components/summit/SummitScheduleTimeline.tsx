@@ -15,8 +15,9 @@ type Props = {
 };
 
 function dayTabLabel(day: ScheduleDay, index: number): string {
-  const base = day.dateLabel ?? day.day;
-  return `Day ${index + 1}, ${base}`;
+  const dayName = day.day?.trim() || `Day ${index + 1}`;
+  const dateOnly = day.dateLabel?.replace(/^[^,]+,\s*/, "");
+  return dateOnly ? `Day ${index + 1} - ${dayName}, ${dateOnly}` : `Day ${index + 1} - ${dayName}`;
 }
 
 function formatBadge(value: string): string {
@@ -105,7 +106,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
         role="tablist"
         aria-orientation="horizontal"
         aria-label="Schedule days"
-        className="grid gap-2.5 sm:grid-cols-2"
+        className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3"
       >
         {days.map((day, index) => {
           const selected = index === activeDayIndex;
@@ -141,8 +142,8 @@ export default function SummitScheduleTimeline({ days }: Props) {
               }}
               className={
                 selected
-                  ? "min-h-11 w-full rounded-md border border-amber-200/40 bg-amber-100 px-3 py-2 text-left text-[11px] font-semibold leading-4 text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-                  : "min-h-11 w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2 text-left text-[11px] leading-4 text-stone-300 hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+                  ? "min-h-11 w-full rounded-md border border-amber-200/40 bg-amber-100 px-3 py-2 text-left text-sm font-semibold leading-5 text-zinc-900 sm:text-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+                  : "min-h-11 w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2 text-left text-sm leading-5 text-stone-300 sm:text-[12px] hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
               }
             >
               {dayTabLabel(day, index)}
