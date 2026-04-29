@@ -5,9 +5,15 @@ import type { ListItemView } from "@/lib/summit/types";
 type Props = {
   href: string;
   item: ListItemView;
+  circularImage?: boolean;
 };
 
-export default function SummitListCard({ href, item }: Props) {
+export default function SummitListCard({ href, item, circularImage = false }: Props) {
+  const imageClass = circularImage
+    ? "h-20 w-20 rounded-full object-cover"
+    : "h-20 w-28 rounded-md object-cover";
+  const placeholderClass = circularImage ? "h-20 w-20 rounded-full bg-white/5" : "h-20 w-28 rounded-md bg-white/5";
+
   return (
     <Link
       href={href}
@@ -19,11 +25,11 @@ export default function SummitListCard({ href, item }: Props) {
           alt={item.title}
           width={112}
           height={80}
-          className="h-20 w-28 rounded-md object-cover"
+          className={imageClass}
           unoptimized
         />
       ) : (
-        <div className="h-20 w-28 rounded-md bg-white/5" />
+        <div className={placeholderClass} />
       )}
       <div className="min-w-0 flex-1">
         <h3 className="text-sm font-semibold text-white break-words">{item.title}</h3>

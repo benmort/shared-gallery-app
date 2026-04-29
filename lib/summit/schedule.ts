@@ -47,15 +47,23 @@ function toTimeLabel(start: Date | null, end: Date | null): string {
   return `${start.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
-  })} - ${end.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}`;
+    hour12: false,
+    hourCycle: "h23",
+  })} - ${end.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    hourCycle: "h23",
+  })}`;
 }
 
-function toHourLabel(value: Date | null, hour12: boolean): string {
+function toHourLabel(value: Date | null): string {
   if (!value) return "TBC";
   return value.toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
-    hour12,
+    hour12: false,
+    hourCycle: "h23",
   });
 }
 
@@ -124,8 +132,8 @@ export function buildScheduleDays(
         room: roomLabel || "Location to be confirmed",
         summary: fieldString(matching, "Description"),
         time: toTimeLabel(start, end),
-        startLabel: toHourLabel(start, false),
-        endLabel: toHourLabel(end, true),
+        startLabel: toHourLabel(start),
+        endLabel: toHourLabel(end),
         formatLabel,
         locationLabel: locationLabel || roomLabel || undefined,
         tags,

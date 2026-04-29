@@ -32,6 +32,7 @@ export default async function SummitDomainListPage({ domain }: Props) {
             key={record.id}
             href={`/${domain}/${record.id}`}
             item={buildListItem(domain, record)}
+            circularImage={domain === "crew"}
           />
         ))}
       </div>

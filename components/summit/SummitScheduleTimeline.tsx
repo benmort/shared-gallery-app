@@ -168,8 +168,8 @@ export default function SummitScheduleTimeline({ days }: Props) {
             className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
           >
             <div className="pt-0.5">
-              <p className="text-sm font-semibold text-stone-100">{section.startLabel}</p>
-              <p className="text-[11px] text-stone-500">{section.endLabel}</p>
+              <p className="text-sm font-semibold text-stone-100">{section.startLabel} -</p>
+              <p className="text-sm text-stone-500">{section.endLabel}</p>
             </div>
 
             <div className="relative space-y-2">
@@ -177,8 +177,8 @@ export default function SummitScheduleTimeline({ days }: Props) {
                 aria-hidden
                 className={
                   sectionIndex === 0
-                    ? "absolute -left-[14px] top-2 h-2.5 w-2.5 rounded-full border border-amber-300/80 bg-amber-400 sm:-left-[16px]"
-                    : "absolute -left-[14px] top-2 h-2.5 w-2.5 rounded-full border border-amber-200/70 bg-zinc-950 sm:-left-[16px]"
+                    ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-300/80 bg-amber-400 sm:-left-[14px]"
+                    : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-200/70 bg-zinc-950 sm:-left-[14px]"
                 }
               />
 

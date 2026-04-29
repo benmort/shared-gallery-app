@@ -18,13 +18,14 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
   if (!record) notFound();
 
   const detail = buildDetail(domain, record);
+  const pronouncedHeader = domain === "speakers" || domain === "events" || domain === "crew";
 
   return (
     <div className="space-y-4">
       <Link href={`/${domain}`} className="inline-flex text-sm text-amber-300">
         Back to {domain}
       </Link>
-      <SummitDetailView detail={detail} />
+      <SummitDetailView detail={detail} pronouncedHeader={pronouncedHeader} />
     </div>
   );
 }

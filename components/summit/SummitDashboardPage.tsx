@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import SummitEmpty from "@/components/summit/SummitEmpty";
+import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem } from "@/lib/summit/domains";
 import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
@@ -212,17 +213,10 @@ export default async function SummitDashboardPage() {
   return (
     <div className="mx-auto w-full max-w-[680px] space-y-6 lg:max-w-[980px]">
       <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 sm:min-h-[430px]">
-        <video
+        <SummitHeroVideo
+          src={heroVideoUrl}
           className="absolute left-1/2 top-1/2 h-full w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center sm:w-[155%] lg:w-[140%]"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden
-        >
-          <source src={heroVideoUrl} type="video/mp4" />
-        </video>
+        />
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900/75 via-zinc-950/60 to-black/90" />
         <div className="relative flex min-h-[360px] flex-col items-center justify-center p-6 text-center sm:min-h-[430px] sm:p-7">
           <p className="text-xs uppercase tracking-[0.18em] text-amber-100/90">{summitTitle.overline}</p>

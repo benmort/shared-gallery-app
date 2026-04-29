@@ -4,12 +4,17 @@ import type { DetailView } from "@/lib/summit/types";
 type Props = {
   detail: DetailView;
   action?: React.ReactNode;
+  pronouncedHeader?: boolean;
 };
 
-export default function SummitDetailView({ detail, action }: Props) {
+export default function SummitDetailView({ detail, action, pronouncedHeader = false }: Props) {
+  const headerClass = pronouncedHeader
+    ? "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-700/90 via-zinc-900/85 to-zinc-950/92 p-5"
+    : "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5";
+
   return (
     <div className="space-y-6">
-      <header className="rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5">
+      <header className={headerClass}>
         <div className="flex flex-col items-center gap-4 text-center">
           {detail.imageUrl ? (
             <Image
