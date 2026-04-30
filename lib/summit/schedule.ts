@@ -42,37 +42,47 @@ function readDateValue(record: SummitRecord, fieldName: string): Date | null {
   return Number.isNaN(value.getTime()) ? null : value;
 }
 
-function toTimeLabel(start: Date | null, end: Date | null): string {
-  if (!start || !end) return "Unknown time";
-  return `${start.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    hourCycle: "h23",
-  })} - ${end.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    hourCycle: "h23",
-  })}`;
+function readDateRaw(record: SummitRecord, fieldName: string): string | null {
+  const raw = fieldFirst(record, fieldName);
+  return raw || null;
 }
 
-function toHourLabel(value: Date | null): string {
-  if (!value) return "TBC";
-  return value.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    hourCycle: "h23",
-  });
+type IsoParts = { year: number; month: number; day: number; hour: string; minute: string };
+
+function parseIsoParts(raw: string | null): IsoParts | null {
+  if (!raw) return null;
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!match) return null;
+  return {
+    year: Number(match[1]),
+    month: Number(match[2]),
+    day: Number(match[3]),
+    hour: match[4],
+    minute: match[5],
+  };
 }
 
-function toDayDateLabel(value: Date | null): string | undefined {
-  if (!value) return undefined;
-  return value.toLocaleDateString([], {
+function toHourLabel(raw: string | null): string {
+  const parts = parseIsoParts(raw);
+  if (!parts) return "TBC";
+  return `${parts.hour}:${parts.minute}`;
+}
+
+function toTimeLabel(startRaw: string | null, endRaw: string | null): string {
+  const startLabel = toHourLabel(startRaw);
+  const endLabel = toHourLabel(endRaw);
+  if (startLabel === "TBC" || endLabel === "TBC") return "Unknown time";
+  return `${startLabel} - ${endLabel}`;
+}
+
+function toDayDateLabel(raw: string | null): string | undefined {
+  const parts = parseIsoParts(raw);
+  if (!parts) return undefined;
+  return new Date(Date.UTC(parts.year, parts.month - 1, parts.day)).toLocaleDateString([], {
     weekday: "short",
     month: "short",
     day: "numeric",
+    timeZone: "UTC",
   });
 }
 
@@ -113,8 +123,8 @@ export function buildScheduleDays(
       const matching = spaces.find((space) => fieldList(space, "Schedule")[0] === scheduleItem.id);
       if (!matching) continue;
 
-      const start = readDateValue(matching, "DateTime Start [Schedule]");
-      const end = readDateValue(matching, "DateTime End [Schedule]");
+      const startRaw = readDateRaw(matching, "DateTime Start [Schedule]");
+      const endRaw = readDateRaw(matching, "DateTime End [Schedule]");
       const venue = fieldFirst(scheduleItem, "Venue Name");
       const room = fieldString(matching, "Room/Area");
       const talkFormats = fieldList(matching, "Talk Format");
@@ -131,9 +141,9 @@ export function buildScheduleDays(
         speaker: fieldString(matching, "Full Name"),
         room: roomLabel || "Location to be confirmed",
         summary: fieldString(matching, "Description"),
-        time: toTimeLabel(start, end),
-        startLabel: toHourLabel(start),
-        endLabel: toHourLabel(end),
+        time: toTimeLabel(startRaw, endRaw),
+        startLabel: toHourLabel(startRaw),
+        endLabel: toHourLabel(endRaw),
         formatLabel,
         locationLabel: locationLabel || roomLabel || undefined,
         tags,
@@ -165,7 +175,7 @@ export function buildScheduleDays(
       endLabel: value.endLabel,
       data: value.slots,
     }));
-    const firstSlotTime = readDateValue(slotsForDay[0], "DateTime Start [Schedule]");
+    const firstSlotTime = readDateRaw(slotsForDay[0], "DateTime Start [Schedule]");
     days.push({ day, dateLabel: toDayDateLabel(firstSlotTime), sections });
   }
 

@@ -123,6 +123,7 @@ export function buildDetail(
   domain: SummitListDomain,
   record: SummitRecord,
 ): DetailView {
+  const presentationLink = sanitizePresentation(fieldFirst(record, "Presentation"));
   switch (domain) {
     case "speakers": {
       return {
@@ -137,7 +138,9 @@ export function buildDetail(
         sections: [
           { label: "Time", value: formatRange(record, "DateTime Start [Schedule]", "DateTime End [Schedule]") },
           { label: "Location", value: `${fieldFirst(record, "Venue Name")} - ${fieldString(record, "Room/Area")}` },
-          { label: "Presentation", value: fieldFirst(record, "Presentation"), href: fieldFirst(record, "Presentation") },
+          ...(presentationLink
+            ? [{ label: "Presentation", value: presentationLink, href: presentationLink }]
+            : []),
         ].filter((section) => section.value),
       };
     }
@@ -152,7 +155,9 @@ export function buildDetail(
         sections: [
           { label: "Time", value: formatRange(record, "DateTime Start [Schedule]", "DateTime End [Schedule]") },
           { label: "Location", value: `${fieldFirst(record, "Venue Name")} - ${fieldString(record, "Room/Area")}` },
-          { label: "Presentation", value: fieldFirst(record, "Presentation"), href: fieldFirst(record, "Presentation") },
+          ...(presentationLink
+            ? [{ label: "Presentation", value: presentationLink, href: presentationLink }]
+            : []),
         ].filter((section) => section.value),
       };
     }
@@ -252,20 +257,31 @@ function formatRange(record: SummitRecord, startField: string, endField: string)
   const startRaw = fieldFirst(record, startField);
   const endRaw = fieldFirst(record, endField);
   if (!startRaw || !endRaw) return "";
-  const start = new Date(startRaw);
-  const end = new Date(endRaw);
-  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return "";
-  const startLabel = start.toLocaleString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    day: "2-digit",
-    month: "short",
-  });
-  const endLabel = end.toLocaleString(undefined, {
-    hour: "2-digit",
-    minute: "2-digit",
-    day: "2-digit",
-    month: "short",
-  });
+  const startLabel = formatDateTimeLabel(startRaw);
+  const endLabel = formatDateTimeLabel(endRaw);
+  if (!startLabel || !endLabel) return "";
   return `${startLabel} - ${endLabel}`;
+}
+
+function formatDateTimeLabel(raw: string): string | null {
+  const match = raw.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const hour = match[4];
+  const minute = match[5];
+  const dateLabel = new Date(Date.UTC(year, month - 1, day)).toLocaleDateString(undefined, {
+    day: "2-digit",
+    month: "short",
+    timeZone: "UTC",
+  });
+  return `${dateLabel}, ${hour}:${minute}`;
+}
+
+function sanitizePresentation(value: string | null): string | null {
+  if (!value) return null;
+  const normalized = value.trim().toLowerCase();
+  if (normalized === "https://www.commonthreads.org.au/summit-2026/agenda-overview") return null;
+  return value;
 }
