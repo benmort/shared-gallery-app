@@ -20,6 +20,7 @@ type Props = {
 };
 
 type GateStage = "checking" | "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
+const ONBOARDING_BACKGROUND_IMAGE_SRC = "/images/flinders-filtered.png";
 
 const ONBOARDING_PANEL_VISUALS = [
   {
@@ -76,7 +77,7 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
         style={{
           width: `${backgroundWidthRatio * 100}%`,
           transform: `translateX(${panOffset}%)`,
-          backgroundImage: "url('/images/flinders-filtered.png')",
+          backgroundImage: `url('${ONBOARDING_BACKGROUND_IMAGE_SRC}')`,
           backgroundPosition: "left center",
         }}
       />
@@ -266,6 +267,7 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
   const [stage, setStage] = useState<GateStage>("checking");
   const [slideIndex, setSlideIndex] = useState(0);
   const [showDashboard, setShowDashboard] = useState(false);
+  const hasPreloadedOnboardingBackground = useRef(false);
 
   useEffect(() => {
     if (hasCookie(DASHBOARD_ONBOARDING_COOKIE_NAME)) {
@@ -287,6 +289,15 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
     });
 
     return () => window.cancelAnimationFrame(frame);
+  }, [stage]);
+
+  useEffect(() => {
+    if (stage !== "acknowledgement") return;
+    if (hasPreloadedOnboardingBackground.current) return;
+
+    const image = new Image();
+    image.src = ONBOARDING_BACKGROUND_IMAGE_SRC;
+    hasPreloadedOnboardingBackground.current = true;
   }, [stage]);
 
   const acceptAcknowledgement = () => {
