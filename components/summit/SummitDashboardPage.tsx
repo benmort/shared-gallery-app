@@ -1,5 +1,4 @@
 import {
-  ArrowLongRightIcon,
   BuildingOffice2Icon,
   CalendarDaysIcon,
   ChevronRightIcon,
@@ -230,7 +229,7 @@ export default async function SummitDashboardPage() {
               className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
             >
               Browse program
-              <ArrowLongRightIcon className="h-4 w-4" />
+              <ChevronRightIcon className="h-4 w-4" />
             </Link>
           </div>
         </div>
