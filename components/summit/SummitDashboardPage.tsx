@@ -2,6 +2,7 @@ import {
   ArrowLongRightIcon,
   BuildingOffice2Icon,
   CalendarDaysIcon,
+  ChevronRightIcon,
   InformationCircleIcon,
   MapIcon,
   MapPinIcon,
@@ -241,7 +242,7 @@ export default async function SummitDashboardPage() {
           {directoryEntries.map((entry) => {
             const Icon = entry.icon;
             const cardClass =
-              "rounded-xl border border-white/10 bg-zinc-900/70 p-3.5 transition hover:border-white/20 hover:bg-zinc-900";
+              "group relative rounded-xl border border-white/10 bg-zinc-900/70 p-3.5 transition hover:border-white/20 hover:bg-zinc-900";
 
             if (entry.external) {
               return (
@@ -252,6 +253,9 @@ export default async function SummitDashboardPage() {
                   rel="noreferrer"
                   className={cardClass}
                 >
+                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                    <ChevronRightIcon className="h-3 w-3" aria-hidden />
+                  </span>
                   <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-black/30 text-amber-100">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -263,6 +267,9 @@ export default async function SummitDashboardPage() {
 
             return (
               <Link key={entry.href} href={entry.href} className={cardClass}>
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                  <ChevronRightIcon className="h-3 w-3" aria-hidden />
+                </span>
                 <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-black/30 text-amber-100">
                   <Icon className="h-4 w-4" />
                 </span>
@@ -278,8 +285,12 @@ export default async function SummitDashboardPage() {
         <SectionHeading
           title="Up Next"
           action={
-            <Link href="/speakers" className="text-[10px] uppercase tracking-[0.14em] text-amber-300">
+            <Link
+              href="/speakers"
+              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-amber-300"
+            >
               View full lineup
+              <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />
             </Link>
           }
         />

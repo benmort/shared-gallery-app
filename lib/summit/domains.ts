@@ -77,7 +77,6 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     imageField: "Logo Landscape",
     titleField: "Name",
     descriptionField: "Summary",
-    tagsField: "Status",
   },
   sponsors: {
     table: "Sponsors",
@@ -263,7 +262,7 @@ export function buildDetail(
         title: fieldString(record, "Name"),
         subtitle: null,
         imageUrl: null,
-        tags: [fieldString(record, "Status")].filter(Boolean),
+        tags: [],
         summary: asLines(fieldString(record, "Summary")),
         sections: [
           { label: "Languages", value: fieldList(record, "Languages").join(", ") },

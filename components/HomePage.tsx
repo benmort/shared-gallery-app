@@ -324,7 +324,7 @@ export default function HomePage() {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-stone-100 backdrop-blur-sm transition hover:bg-white/10"
                       >
                         <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden />
-                        Back to home
+                        BACK TO HOME
                       </Link>
                       {moderationActive && selectedIds.size > 0 && (
                         <button

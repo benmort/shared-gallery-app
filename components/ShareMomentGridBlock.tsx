@@ -183,7 +183,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
           >
             <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden />
-            Back to app
+            BACK TO APP
           </Link>
         ) : null}
         <h2 className="mt-1 text-2xl font-semibold leading-tight text-white">Share A Moment</h2>

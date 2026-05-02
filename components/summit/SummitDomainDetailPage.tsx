@@ -28,7 +28,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
       >
         <ChevronLeftIcon className="h-3.5 w-3.5" />
-        Back to {domain}
+        {`BACK TO ${domain.toUpperCase()}`}
       </Link>
       <SummitDetailView detail={detail} pronouncedHeader={pronouncedHeader} />
     </div>

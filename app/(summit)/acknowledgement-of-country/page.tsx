@@ -19,7 +19,7 @@ export default function Page() {
         href="/"
         className="mt-6 inline-flex min-h-10 items-center rounded-md border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-100 transition hover:bg-white/10"
       >
-        Back to home
+        BACK TO HOME
       </Link>
     </article>
   );
