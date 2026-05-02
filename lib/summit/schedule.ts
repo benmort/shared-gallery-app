@@ -52,7 +52,7 @@ const SUMMIT_2026_DAY_FILTER_META: Record<string, SummitDayFilterMeta> = {
   "2026-05-12": {
     day: "Tuesday",
     dateLabel: "Tuesday 12th May",
-    title: "First Official Summit Day",
+    title: "First Summit Day",
     venue: "Intercontinental Hotel",
   },
   "2026-05-13": {
@@ -132,6 +132,28 @@ function toDateKey(raw: string | null): string | undefined {
   return `${parts.year}-${String(parts.month).padStart(2, "0")}-${String(parts.day).padStart(2, "0")}`;
 }
 
+function sanitizeVenueLabel(rawVenue: string): string {
+  const venue = rawVenue.trim();
+  if (!venue) return "";
+  if (venue.toLowerCase().includes("intercontinental hotel")) return "Intercontinental Hotel";
+  if (venue.toLowerCase().includes("adelaide oval")) return "Adelaide Oval";
+
+  const parts = venue
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  if (!parts.length) return venue;
+
+  const [first, ...rest] = parts;
+  const cleanedRest = rest.filter((part) => {
+    const normalized = part.toLowerCase();
+    return normalized !== "adelaide" && normalized !== "north terrace" && normalized !== "north adelaide";
+  });
+
+  return [first, ...cleanedRest].join(", ");
+}
+
 function sortByEndTime(records: SummitRecord[]): SummitRecord[] {
   return [...records].sort((a, b) => {
     const aTime = readDateValue(a, "DateTime End [Schedule]")?.getTime() ?? 0;
@@ -171,7 +193,7 @@ export function buildScheduleDays(
 
       const startRaw = readDateRaw(matching, "DateTime Start [Schedule]");
       const endRaw = readDateRaw(matching, "DateTime End [Schedule]");
-      const venue = fieldFirst(scheduleItem, "Venue Name");
+      const venue = sanitizeVenueLabel(fieldFirst(scheduleItem, "Venue Name"));
       const room = fieldString(matching, "Room/Area");
       const talkFormats = fieldList(matching, "Talk Format");
       const tags = fieldList(matching, "Tags");

@@ -59,7 +59,7 @@ Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 | Path | Role |
 | ---- | ---- |
 | `app/(summit)/page.tsx` | Summit dashboard as default home route (`/`) |
-| `app/(summit)/schedule/page.tsx` | Summit schedule (`/schedule`) |
+| `app/(summit)/program/page.tsx` | Summit program (`/program`) |
 | `app/(summit)/speakers/page.tsx` | Speaker directory (`/speakers`) |
 | `app/(summit)/speakers/[id]/page.tsx` | Speaker detail (`/speakers/:id`) |
 | `app/(summit)/events/[id]/page.tsx` | Event detail (`/events/:id`) |

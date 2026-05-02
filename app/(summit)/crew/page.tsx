@@ -1,10 +1,9 @@
-import SummitDomainListPage from "@/components/summit/SummitDomainListPage";
+import SummitCrewListPage from "@/components/summit/SummitCrewListPage";
+import { getSummitContext } from "@/lib/summit/context";
+import { getCrewAll } from "@/lib/summit/service";
 
-type Props = {
-  searchParams?: Promise<{ role?: string }>;
-};
-
-export default async function Page({ searchParams }: Props) {
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  return <SummitDomainListPage domain="crew" roleFilter={resolvedSearchParams?.role} />;
+export default async function Page() {
+  const context = await getSummitContext();
+  const records = await getCrewAll(context.selectedSummitName);
+  return <SummitCrewListPage records={records} />;
 }

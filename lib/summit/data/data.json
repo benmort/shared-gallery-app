@@ -1707,7 +1707,7 @@
         "Name": "Intercontinental Hotel",
         "Subtitle": "Youth Summit Day + First Official Summit Day",
         "Location": "Adelaide",
-        "Address": "North Terrace, Adelaide SA 5000",
+        "Address": "North Terrace, Adelaide SA 5000, Australia",
         "Email": "summit@commonthreads.org.au",
         "URL": "https://www.ihg.com/intercontinental/hotels/gb/en/adelaide/adlha/hoteldetail",
         "Map Link": "https://maps.app.goo.gl/pF8N9QeNSg7xFfpS7",
@@ -1759,7 +1759,7 @@
       "id": "crew-tarneen-onus-browne",
       "fields": {
         "Shortname": "Tarneen Onus-Browne",
-        "Role": "Crew",
+        "Role": "Wellbeing and Grievance Coordinator",
         "Bio": "Summit crew contact.",
         "Headshot": [
           {
@@ -1785,7 +1785,7 @@
       "id": "crew-amelia-millie-telford",
       "fields": {
         "Shortname": "Amelia (Millie) Telford",
-        "Role": "Crew",
+        "Role": "Event Coordinator",
         "Bio": "Summit crew contact.",
         "Headshot": [
           {
@@ -1810,18 +1810,154 @@
   ],
   "attractions": [
     {
-      "id": "attraction-optional-social-dinner",
+      "id": "attraction-living-kaurna-cultural-centre-warriparinga",
       "fields": {
-        "Title": "Optional social dinner",
-        "Description": "Optional social dinner after day one for attendees who want to connect informally.",
+        "Title": "Living Kaurna Cultural Centre, Warriparinga",
+        "Description": "A strong first stop. It is run through Southern Cultural Immersion, a 100% Aboriginal-owned organisation, at the culturally significant Warriparinga site near Marion. Good for Kaurna culture, events, education and walking tours.",
         "Tags": [
-          "Social",
-          "Optional"
+          "Kaurna",
+          "Culture"
         ],
-        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Map Link": "https://www.southernculturalimmersion.com.au/",
         "Image": [
           {
-            "url": "https://picsum.photos/seed/attraction-social-dinner/1200/800"
+            "url": "/images/attractions/Living%20Kaurna%20Cultural%20Centre.webp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-southern-cultural-immersion-tours",
+      "fields": {
+        "Title": "Southern Cultural Immersion tours",
+        "Description": "A 100% Kaurna-owned and operated tourism business offering cultural walking tours, First Nations engagement and immersive experiences across the Adelaide Plains.",
+        "Tags": [
+          "Tours",
+          "Kaurna"
+        ],
+        "Map Link": "https://www.southernculturalimmersion.com.au/",
+        "Image": [
+          {
+            "url": "/images/attractions/Southern%20Cultural%20Immersion%20tours.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-south-australian-museum-aboriginal-cultures-gallery",
+      "fields": {
+        "Title": "South Australian Museum, Australian Aboriginal Cultures Gallery",
+        "Description": "One of the major museum-based Aboriginal culture experiences in Adelaide, with more than 3,000 items across two floors. The Museum says it holds one of the world’s most comprehensive collections of Australian Aboriginal cultural material.",
+        "Tags": [
+          "Museum",
+          "Culture"
+        ],
+        "Map Link": "https://www.samuseum.sa.gov.au/",
+        "Image": [
+          {
+            "url": "/images/attractions/Australian%20Aboriginal%20Cultures%20Gallery.webp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-kaurna-walking-trail",
+      "fields": {
+        "Title": "Kaurna Walking Trail",
+        "Description": "A city-based trail linking 17 significant Kaurna sites along Karrawirra Pari / River Torrens, North Terrace and Tarntanyangga / Victoria Square. Good if you want a self-guided city walk.",
+        "Tags": [
+          "Walking Trail",
+          "Self-guided"
+        ],
+        "Map Link": "https://www.cityofadelaide.com.au/community/reconciliation/kaurna-sites/",
+        "Image": [
+          {
+            "url": "/images/attractions/Kaurna%20Heritage%20Trail%20Walk.webp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-adelaide-botanic-garden-cultural-garden-tours",
+      "fields": {
+        "Title": "Adelaide Botanic Garden Cultural Garden Tours",
+        "Description": "Cultural tours focused on native plants and their importance to First Nations people. Good for learning about plant use, bush foods and medicines in a calm setting.",
+        "Tags": [
+          "Gardens",
+          "Native Plants"
+        ],
+        "Map Link": "https://www.botanicgardens.sa.gov.au/",
+        "Image": [
+          {
+            "url": "/images/attractions/Cultural%20Tour%20of%20Adelaide%20Botanic%20Garden.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-kaurna-reconciliation-sculptures-adelaide-festival-centre",
+      "fields": {
+        "Title": "Kaurna Reconciliation Sculptures, Adelaide Festival Centre",
+        "Description": "Public artwork and cultural site on the Riverbank, connected to Kaurna reconciliation and place. Easy to combine with the Kaurna Walking Trail.",
+        "Tags": [
+          "Public Art",
+          "Riverbank"
+        ],
+        "Map Link": "https://www.adelaidefestivalcentre.com.au/",
+        "Image": [
+          {
+            "url": "/images/attractions/Kaurna%20Reconciliation%20Sculptures.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-glenthorne-national-park-ityamaiitpinna-yarta",
+      "fields": {
+        "Title": "Glenthorne National Park-Ityamaiitpinna Yarta",
+        "Description": "A Kaurna-significant national park south of the city, with interpretive signage, carvings, sculptures and the “Walking with Winaityinaityi” trail.",
+        "Tags": [
+          "National Park",
+          "Kaurna"
+        ],
+        "Map Link": "https://www.parks.sa.gov.au/parks/glenthorne-national-park-ityamaiitpinna-yarta",
+        "Image": [
+          {
+            "url": "/images/attractions/Glenthorne%20National%20Park-Ityamaiitpinna%20Yarta.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-yitpi-yartapuultiku",
+      "fields": {
+        "Title": "Yitpi Yartapuultiku",
+        "Description": "A cultural place in the Port Adelaide Enfield area where Kaurna traditions, knowledge and contemporary innovation meet. Good for deeper local cultural learning if events or programs are running.",
+        "Tags": [
+          "Culture",
+          "Port Adelaide"
+        ],
+        "Map Link": "https://www.cityofpae.sa.gov.au/",
+        "Image": [
+          {
+            "url": "/images/attractions/Yitpi%20Yartapuultiku.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "attraction-tarnanthi-art-gallery-south-australia",
+      "fields": {
+        "Title": "Tarnanthi / Art Gallery of South Australia",
+        "Description": "Tarnanthi is AGSA’s major festival and platform for contemporary Aboriginal and Torres Strait Islander art. Worth checking current exhibitions before visiting, as programming changes.",
+        "Tags": [
+          "Art",
+          "Exhibitions"
+        ],
+        "Map Link": "https://www.agsa.sa.gov.au/whats-on/tarnanthi/",
+        "Image": [
+          {
+            "url": "/images/attractions/Tarnanthi.webp"
           }
         ]
       }

@@ -3,9 +3,12 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import SummitPageHeader from "@/components/summit/SummitPageHeader";
+import { roleHash } from "@/lib/summit/crew-filters";
 
 type Props = {
-  subtitle: string;
+  title: string;
+  pageSubtitle: string;
   contentBody: string;
 };
 
@@ -48,7 +51,7 @@ function toContentBlocks(contentBody: string): ContentBlock[] {
   return blocks;
 }
 
-export default function SummitCodeConductContent({ subtitle, contentBody }: Props) {
+export default function SummitCodeConductContent({ title, pageSubtitle, contentBody }: Props) {
   const [showPdf, setShowPdf] = useState(false);
   const blocks = useMemo(() => toContentBlocks(contentBody), [contentBody]);
   const closePdf = () => setShowPdf(false);
@@ -66,44 +69,44 @@ export default function SummitCodeConductContent({ subtitle, contentBody }: Prop
 
   return (
     <>
-      <article className="rounded-xl border border-white/10 bg-white/5 p-5">
-        <h1 className="text-2xl font-semibold text-white">Code of Conduct</h1>
-        <h2 className="mt-4 text-sm font-semibold uppercase tracking-[0.14em] text-amber-200 sm:text-base">{subtitle}</h2>
+      <div className="space-y-4">
+        <SummitPageHeader title={title} subtitle={pageSubtitle} />
+        <article className="rounded-xl border border-white/10 bg-white/5 p-5">
+          <div className="space-y-4 text-sm leading-relaxed text-stone-200">
+            {blocks.map((block, index) =>
+              block.type === "principlesButton" ? (
+                <button
+                  key={`principles-${index}`}
+                  type="button"
+                  onClick={() => setShowPdf(true)}
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+                >
+                  {PRINCIPLES_LINE}
+                </button>
+              ) : (
+                <p key={`paragraph-${index}`}>
+                  {block.value.split("\n").map((line, lineIndex) => (
+                    <span key={`${line}-${lineIndex}`}>
+                      {lineIndex > 0 ? <br /> : null}
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              ),
+            )}
+          </div>
 
-        <div className="mt-4 space-y-4 text-sm leading-relaxed text-stone-200">
-          {blocks.map((block, index) =>
-            block.type === "principlesButton" ? (
-              <button
-                key={`principles-${index}`}
-                type="button"
-                onClick={() => setShowPdf(true)}
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
-              >
-                {PRINCIPLES_LINE}
-              </button>
-            ) : (
-              <p key={`paragraph-${index}`}>
-                {block.value.split("\n").map((line, lineIndex) => (
-                  <span key={`${line}-${lineIndex}`}>
-                    {lineIndex > 0 ? <br /> : null}
-                    {line}
-                  </span>
-                ))}
-              </p>
-            ),
-          )}
-        </div>
-
-        <div className="mt-7">
-          <Link
-            href={`/crew?role=${encodeURIComponent(WELLBEING_ROLE)}`}
-            className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
-          >
-            Contact wellbeing and grievance coordinators
-            <ChevronRightIcon className="h-4 w-4" aria-hidden />
-          </Link>
-        </div>
-      </article>
+          <div className="mt-7">
+            <Link
+              href={`/crew${roleHash(WELLBEING_ROLE)}`}
+              className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+            >
+              Contact wellbeing and grievance coordinators
+              <ChevronRightIcon className="h-4 w-4" aria-hidden />
+            </Link>
+          </div>
+        </article>
+      </div>
 
       {showPdf ? (
         <div className="fixed inset-0 z-[350] flex flex-col bg-black">

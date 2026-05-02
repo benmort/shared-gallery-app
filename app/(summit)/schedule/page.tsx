@@ -1,5 +1,5 @@
-import SummitSchedulePage from "@/components/summit/SummitSchedulePage";
+import { redirect } from "next/navigation";
 
 export default async function Page() {
-  return <SummitSchedulePage />;
+  redirect("/program");
 }

@@ -15,7 +15,7 @@ import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem } from "@/lib/summit/domains";
 import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
-import { getMapStatic, getSpeakersAll } from "@/lib/summit/service";
+import { getSpeakersAll } from "@/lib/summit/service";
 import type { SummitRecord } from "@/lib/summit/types";
 
 type DirectoryEntry = {
@@ -150,10 +150,7 @@ function SpeakerCard({
 
 export default async function SummitDashboardPage() {
   const context = await getSummitContext();
-  const [speakers, summitMap] = await Promise.all([
-    getSpeakersAll(context.selectedSummitName),
-    getMapStatic(context.selectedSummitName),
-  ]);
+  const speakers = await getSpeakersAll(context.selectedSummitName);
 
   const upcomingSpeakers = [...speakers].sort((a, b) => startTime(a) - startTime(b)).slice(0, 3);
   const upcomingSpeakerItems = upcomingSpeakers.map((speaker) => ({
@@ -172,15 +169,14 @@ export default async function SummitDashboardPage() {
   const summitLocation = context.selectedSummit
     ? fieldString(context.selectedSummit, "Location")
     : "Location unavailable";
-  const mapUrl = summitMap ? fieldFirst(summitMap, "Content Asset") : "";
   const summitTitle = splitSummitName(summitName || "Summit");
   const heroVideoUrl = "/video/background-loop-small.mp4";
 
   const directoryEntries: DirectoryEntry[] = [
     {
-      href: "/faq",
+      href: "/event-guidance",
       label: "Event Guidance",
-      subtitle: "FAQ",
+      subtitle: "Guidance",
       icon: InformationCircleIcon,
     },
     {
@@ -229,10 +225,10 @@ export default async function SummitDashboardPage() {
           </div>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             <Link
-              href="/schedule"
+              href="/program"
               className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
             >
-              Browse schedule
+              Browse program
               <ArrowLongRightIcon className="h-4 w-4" />
             </Link>
           </div>
@@ -298,7 +294,7 @@ export default async function SummitDashboardPage() {
             ))}
           </div>
         ) : (
-          <SummitEmpty title="No scheduled talks yet" body="Schedule content will appear when available." />
+          <SummitEmpty title="No program sessions yet" body="Program content will appear when available." />
         )}
       </section>
 
@@ -308,52 +304,10 @@ export default async function SummitDashboardPage() {
         </p>
         <p className="mt-2 max-w-[55ch] text-xs text-stone-400">
           {summitTitle.title} brings together campaigners, organisers and changemakers for practical
-          sessions, collaborative planning and shared action.
+          sessions, collaborative planning and shared action. Across plenaries, workshops and
+          community-led conversations, the summit is designed to strengthen relationships, sharpen
+          strategy and support coordinated action after the event.
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
-          <div className="space-y-2">
-            <p className="text-[10px] uppercase tracking-[0.16em] text-stone-300">Resources</p>
-            <div className="space-y-1.5">
-              <Link href="/speakers" className="block text-stone-400 hover:text-stone-200">
-                Speakers list
-              </Link>
-              {mapUrl ? (
-                <a
-                  href={mapUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block text-stone-400 hover:text-stone-200"
-                >
-                  Venue map
-                </a>
-              ) : (
-                <Link href="/venues" className="block text-stone-400 hover:text-stone-200">
-                  Venue map
-                </Link>
-              )}
-              <Link href="/schedule" className="block text-stone-400 hover:text-stone-200">
-                Live schedule
-              </Link>
-            </div>
-          </div>
-          <div className="space-y-2">
-            <p className="text-[10px] uppercase tracking-[0.16em] text-stone-300">Legal</p>
-            <div className="space-y-1.5">
-              <Link href="/code-conduct" className="block text-stone-400 hover:text-stone-200">
-                Code of Conduct
-              </Link>
-              <Link href="/surveys" className="block text-stone-400 hover:text-stone-200">
-                Feedback
-              </Link>
-              <Link
-                href="/acknowledgement-of-country"
-                className="block text-stone-400 hover:text-stone-200"
-              >
-                ACKNOWLEDGEMENT OF COUNTRY
-              </Link>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   );

@@ -1,11 +1,13 @@
 import Link from "next/link";
+import SummitPageHeader from "@/components/summit/SummitPageHeader";
+import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
 
-type FaqSection = {
+type GuidanceSection = {
   title: string;
   paragraphs: readonly string[];
 };
 
-const FAQ_SECTIONS: readonly FaqSection[] = [
+const GUIDANCE_SECTIONS: readonly GuidanceSection[] = [
   {
     title: "Registration",
     paragraphs: [
@@ -79,13 +81,10 @@ const FAQ_SECTIONS: readonly FaqSection[] = [
 export default function Page() {
   return (
     <div className="mx-auto w-full max-w-[980px] space-y-4">
-      <section className="rounded-xl border border-white/10 bg-white/5 p-5">
-        <h1 className="text-2xl font-semibold text-white">Event Guidance</h1>
-        <p className="mt-2 text-sm uppercase tracking-[0.12em] text-stone-300">FAQ</p>
-      </section>
+      <SummitPageHeader title="Event Guidance" subtitle={SUMMIT_PAGE_SUBTITLE.eventGuidance} />
 
       <div className="space-y-3">
-        {FAQ_SECTIONS.map((section) => (
+        {GUIDANCE_SECTIONS.map((section) => (
           <article key={section.title} className="rounded-xl border border-white/10 bg-zinc-900/70 p-4 sm:p-5">
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">{section.title}</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-stone-200">

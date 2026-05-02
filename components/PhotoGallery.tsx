@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useRef, useEffect, type ReactNode } from "react";
+import { useRef, useEffect, useState, type ReactNode } from "react";
 import type { Photo } from "@/lib/types/photo";
 import { galleryImageSrcSet } from "@/utils/galleryImageSrcSet";
 import { galleryPath } from "@/utils/galleryUrl";
@@ -33,7 +33,16 @@ export default function PhotoGallery({
   const searchParams = useSearchParams();
   const photoIdOpen = searchParams?.get("photoId") ?? null;
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const lastRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 639px)");
+    const apply = () => setIsMobileViewport(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
 
   useEffect(() => {
     if (lastViewedPhoto && !photoIdOpen && lastRef.current) {
@@ -74,7 +83,11 @@ export default function PhotoGallery({
             href={galleryPath(photo.id, preserveSearchParams ?? null)}
             scroll={false}
             ref={photo.id === lastViewedPhoto ? lastRef : undefined}
-            className="after:content relative block w-full cursor-zoom-in overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]"
+            onClick={(event) => {
+              if (!isMobileViewport) return;
+              event.preventDefault();
+            }}
+            className="after:content relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:cursor-zoom-in"
           >
             {photo.kind === "video" ? (
               <video

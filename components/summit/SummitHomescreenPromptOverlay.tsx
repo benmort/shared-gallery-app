@@ -146,9 +146,17 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
         </div>
         <button
           type="button"
+          onClick={completePrompt}
+          disabled={isCompleting}
+          className="mt-7 inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:opacity-80"
+        >
+          Skip
+        </button>
+        <button
+          type="button"
           onClick={() => void handlePrimaryAction()}
           disabled={isCompleting}
-          className="mt-7 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:opacity-80"
+          className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:opacity-80"
         >
           {promptMode === "android" ? "Install and continue" : "Continue"}
           <ChevronRightIcon className="h-4 w-4" aria-hidden />

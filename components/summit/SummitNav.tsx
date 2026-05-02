@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { SUMMIT_MENU_SUBTITLE_BY_HREF } from "@/lib/summit/page-descriptors";
 
 type NavItem = {
   href: string;
@@ -23,33 +24,55 @@ type NavItem = {
   icon: React.ComponentType<{ className?: string }>;
 };
 
+type MenuLinkItem = {
+  href: string;
+  label: string;
+  subtitle: string;
+};
+
 const bottomTabs: NavItem[] = [
   { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/schedule", label: "Schedule", icon: CalendarDaysIcon },
+  { href: "/program", label: "Program", icon: CalendarDaysIcon },
   { href: "/speakers", label: "Speakers", icon: UserGroupIcon },
   { href: "/moments", label: "Moments", icon: PhotoIcon },
 ];
 
-const menuLinks = [
-  { href: "/", label: "Home" },
-  { href: "/schedule", label: "Schedule" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/speakers", label: "Speakers" },
-  { href: "/crew", label: "Crew" },
-  { href: "/organisations", label: "Organisations" },
-  { href: "/venues", label: "Venues" },
-  { href: "/events", label: "Events" },
-  { href: "/attractions", label: "Attractions" },
-  { href: "/sponsors", label: "Sponsors" },
-  { href: "/surveys", label: "Surveys" },
-  { href: "/code-conduct", label: "Code of Conduct" },
-  { href: "/moments", label: "Moments" },
-] as const;
+const menuLinks: MenuLinkItem[] = [
+  { href: "/", label: "Home", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/"] },
+  { href: "/program", label: "Program", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/program"] },
+  {
+    href: "/event-guidance",
+    label: "Event Guidance",
+    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/event-guidance"],
+  },
+  { href: "/speakers", label: "Speakers", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/speakers"] },
+  { href: "/crew", label: "Crew", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/crew"] },
+  { href: "/moments", label: "Moments", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/moments"] },
+  { href: "/venues", label: "Venues", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/venues"] },
+  { href: "/events", label: "Events", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/events"] },
+  {
+    href: "/attractions",
+    label: "Attractions",
+    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/attractions"],
+  },
+  {
+    href: "/organisations",
+    label: "Organisations",
+    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/organisations"],
+  },
+  { href: "/sponsors", label: "Sponsors", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/sponsors"] },
+  { href: "/surveys", label: "Surveys", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/surveys"] },
+  {
+    href: "/code-conduct",
+    label: "Code of Conduct",
+    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/code-conduct"],
+  },
+];
 
 function menuIconForHref(href: string): NavItem["icon"] {
   if (href === "/") return HomeIcon;
-  if (href === "/schedule") return CalendarDaysIcon;
-  if (href === "/faq") return InformationCircleIcon;
+  if (href === "/program") return CalendarDaysIcon;
+  if (href === "/event-guidance") return InformationCircleIcon;
   if (href === "/speakers") return UserGroupIcon;
   if (href === "/crew") return UsersIcon;
   if (href === "/organisations") return BuildingOffice2Icon;
@@ -165,13 +188,13 @@ export default function SummitNav() {
       >
         <div className="absolute inset-0 bg-black/60" onClick={() => setMenuOpen(false)} />
         <aside
-          className={`absolute inset-0 bg-zinc-950 transition-transform duration-300 ease-out ${
+          className={`absolute inset-0 overflow-y-auto overscroll-contain bg-zinc-950 transition-transform duration-300 ease-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           aria-label="Summit full menu"
         >
-          <div className="mx-auto flex h-full w-full max-w-[1100px] flex-col px-4 pb-7 pt-4 sm:px-6">
-            <nav className="grid gap-2">
+          <div className="mx-auto flex min-h-full w-full max-w-[1100px] flex-col px-4 pb-[calc(1.75rem+var(--album-safe-bottom))] pt-4 sm:px-6">
+            <nav className="grid gap-2 lg:grid-cols-2 lg:gap-x-4 lg:gap-y-3">
               {menuLinks.map((item) => {
                 const active = isActive(pathname, item.href);
                 const Icon = menuIconForHref(item.href);
@@ -182,7 +205,7 @@ export default function SummitNav() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`inline-flex min-h-11 items-center justify-between rounded-md border px-4 py-2.5 text-sm tracking-[0.08em] transition ${
+                    className={`inline-flex min-h-11 items-center justify-between rounded-md border px-4 py-2.5 transition ${
                       active
                         ? "border-amber-300/40 bg-amber-500/10 font-semibold text-amber-200"
                         : "border-white/10 bg-white/5 text-stone-200 hover:bg-white/10"
@@ -192,7 +215,18 @@ export default function SummitNav() {
                       <span className={iconBadgeClass}>
                         <Icon className="h-4 w-4" aria-hidden />
                       </span>
-                      <span className="truncate">{item.label}</span>
+                      <span className="min-w-0">
+                        <span className="block truncate text-sm tracking-[0.08em]">{item.label}</span>
+                        <span
+                          className={
+                            active
+                              ? "mt-0.5 block truncate text-[11px] font-normal leading-4 text-amber-100/90"
+                              : "mt-0.5 block truncate text-[11px] leading-4 text-stone-400"
+                          }
+                        >
+                          {item.subtitle}
+                        </span>
+                      </span>
                     </span>
                     <ChevronRightIcon className="h-4 w-4" aria-hidden />
                   </Link>

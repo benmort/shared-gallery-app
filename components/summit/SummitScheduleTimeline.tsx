@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { ScheduleDay, ScheduleSlot } from "@/lib/summit/schedule";
 
 type Props = {
@@ -32,76 +32,184 @@ function formatBadge(value: string): string {
   return value.trim().toUpperCase();
 }
 
+function dayHashToken(day: ScheduleDay, index: number): string {
+  const title = (day.filterTitle || "").toLowerCase();
+  if (title.includes("youth")) return "youth-day";
+  if (title.includes("first official")) return "day-1";
+  if (title.includes("second summit")) return "day-2";
+  if (title.includes("last summit")) return "day-3";
+  return `day-${index + 1}`;
+}
+
+function dayHash(day: ScheduleDay, index: number): string {
+  return `#${dayHashToken(day, index)}`;
+}
+
+function dayIndexFromHash(hash: string, days: ScheduleDay[]): number | null {
+  const normalizedHash = hash.replace(/^#/, "");
+  if (!normalizedHash) return null;
+
+  const hashMatch = days.findIndex((day, index) => dayHashToken(day, index) === normalizedHash);
+  if (hashMatch >= 0) return hashMatch;
+
+  // Keep old hash compatibility for existing shared links.
+  if (normalizedHash.startsWith("program-day-")) {
+    const legacyToken = normalizedHash.slice("program-day-".length);
+    const dateKeyMatch = days.findIndex((day) => day.dateKey === legacyToken);
+    if (dateKeyMatch >= 0) return dateKeyMatch;
+    const numeric = Number(legacyToken);
+    if (Number.isInteger(numeric) && numeric >= 1 && numeric <= days.length) return numeric - 1;
+  }
+
+  return null;
+}
+
+type SessionTone = {
+  cardClass: string;
+  typeBadgeClass: string;
+  kindBadgeClass: string;
+  locationBadgeClass: string;
+  summaryClass: string;
+};
+
+function toneForSessionLabel(sessionLabel: string, _isTalk: boolean): SessionTone {
+  const normalized = sessionLabel.trim().toLowerCase();
+  const isYellow =
+    normalized.includes("plenary") || normalized.includes("workshop") || normalized.includes("breakout");
+
+  if (isYellow) {
+    return {
+      cardClass: "border-amber-300/35 bg-amber-950/20",
+      typeBadgeClass: "border border-amber-300/45 bg-amber-400/20 text-amber-100",
+      kindBadgeClass: "border border-amber-200/35 bg-amber-500/10 text-amber-100/95",
+      locationBadgeClass: "border border-amber-200/30 bg-amber-950/35 text-amber-100/90",
+      summaryClass: "text-stone-200",
+    };
+  }
+
+  return {
+    cardClass: "border-white/20 bg-zinc-900/55",
+    typeBadgeClass: "border border-white/30 bg-white/10 text-white",
+    kindBadgeClass: "border border-white/25 bg-white/5 text-stone-100",
+    locationBadgeClass: "border border-white/20 bg-black/30 text-stone-200",
+    summaryClass: "text-stone-300",
+  };
+}
+
 function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
   const href = slot.talk ? `/speakers/${slot.id}` : `/events/${slot.id}`;
   const speakerLabel = slot.speaker || (slot.talk ? "Session speaker" : "Event session");
-  const speakerSubLabel = slot.organisation || slot.locationLabel || slot.room;
+  const locationLabel = slot.locationLabel || slot.room;
+  const speakerSubLabel = slot.organisation || locationLabel;
+  const speakerSubLabelIsLocation = !slot.organisation && !!locationLabel;
   const sessionLabel = slot.formatLabel || (slot.talk ? "Talk" : "Event");
-  const cardClass = slot.talk
-    ? "rounded-xl border border-white/10 bg-zinc-900/80 p-3.5 sm:p-4"
-    : "rounded-xl border border-white/10 bg-zinc-900/45 p-3.5 sm:p-4";
+  const tone = toneForSessionLabel(sessionLabel, slot.talk);
+  const cardClass = `relative overflow-hidden rounded-xl border p-3.5 transition sm:p-4 ${tone.cardClass}`;
 
   return (
-    <article className={cardClass}>
-      <div className="mb-2 flex flex-wrap items-center gap-1.5">
-        <span className="rounded-sm bg-amber-500/20 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] text-amber-100">
-          {formatBadge(sessionLabel)}
-        </span>
-        {slot.locationLabel ? (
-          <span className="rounded-sm border border-white/15 px-1.5 py-0.5 text-[9px] uppercase tracking-[0.14em] text-stone-300">
-            {formatBadge(slot.locationLabel)}
+    <Link
+      href={href}
+      className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+    >
+      <article className={`${cardClass} group-hover:border-white/30 group-hover:bg-zinc-900/75`}>
+        <div className="mb-2 flex flex-wrap items-center gap-1.5 pl-1">
+          <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] ${tone.typeBadgeClass}`}>
+            {formatBadge(sessionLabel)}
           </span>
-        ) : null}
-      </div>
+          {slot.talk ? (
+            <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] ${tone.kindBadgeClass}`}>
+              Speaker
+            </span>
+          ) : null}
+        </div>
 
-      <h3 className="text-[15px] font-semibold leading-5 text-white">{slot.title}</h3>
-      {slot.summary ? <p className="mt-1.5 text-xs leading-5 text-stone-400 break-words">{slot.summary}</p> : null}
+        <h3 className="pl-1 text-[15px] font-semibold leading-5 text-white">{slot.title}</h3>
+        {slot.summary ? <p className={`mt-1.5 break-words pl-1 text-xs leading-5 ${tone.summaryClass}`}>{slot.summary}</p> : null}
 
-      <div className="mt-3 flex items-end justify-between gap-3">
-        {slot.talk ? (
-          <div className="min-w-0 flex-1">
-            <div className="flex min-w-0 items-center gap-2">
-              <div className="relative h-7 w-7 overflow-hidden rounded-full border border-white/15 bg-white/5">
-                {slot.imageUrl ? (
-                  <Image src={slot.imageUrl} alt={speakerLabel} fill className="object-cover" unoptimized />
-                ) : (
-                  <UserCircleIcon className="h-full w-full p-1 text-stone-300" />
-                )}
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs font-medium text-stone-200 break-words">{speakerLabel}</p>
-                <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500 break-words">
-                  {speakerSubLabel}
-                </p>
+        <div className="mt-3 flex items-end justify-between gap-3 pl-1">
+          {slot.talk ? (
+            <div className="min-w-0 flex-1">
+              <div className="flex min-w-0 items-center gap-2">
+                <div className="relative h-7 w-7 overflow-hidden rounded-full border border-white/15 bg-white/5">
+                  {slot.imageUrl ? (
+                    <Image src={slot.imageUrl} alt={speakerLabel} fill className="object-cover" unoptimized />
+                  ) : (
+                    <UserCircleIcon className="h-full w-full p-1 text-stone-300" />
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-xs font-medium text-stone-200 break-words">{speakerLabel}</p>
+                  {speakerSubLabel ? (
+                    <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500 break-words">
+                      {speakerSubLabelIsLocation ? (
+                        <span className="inline-flex items-center gap-1">
+                          <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
+                          <span>{speakerSubLabel}</span>
+                        </span>
+                      ) : (
+                        speakerSubLabel
+                      )}
+                    </p>
+                  ) : null}
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <p className="text-[11px] uppercase tracking-[0.12em] text-stone-500 break-words">
-            {slot.locationLabel || slot.room}
-          </p>
-        )}
-        <Link
-          href={href}
-          className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
-        >
-          View details
-          <ChevronRightIcon className="h-3.5 w-3.5" />
-        </Link>
-      </div>
-    </article>
+          ) : (
+            <p className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.12em] text-stone-500 break-words">
+              <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
+              <span>{locationLabel}</span>
+            </p>
+          )}
+          <span className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 transition group-hover:text-amber-100">
+            View Details
+            <ChevronRightIcon className="h-3.5 w-3.5" />
+          </span>
+        </div>
+      </article>
+    </Link>
   );
 }
 
 export default function SummitScheduleTimeline({ days }: Props) {
-  const [activeDayIndex, setActiveDayIndex] = useState(0);
+  const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
+  useLayoutEffect(() => {
+    if (!days.length) return;
+    const indexFromHash = dayIndexFromHash(window.location.hash, days);
+    setActiveDayIndex(indexFromHash ?? 0);
+  }, [days]);
+
   useEffect(() => {
+    if (activeDayIndex === null) return;
     if (activeDayIndex > days.length - 1) setActiveDayIndex(0);
   }, [activeDayIndex, days.length]);
 
-  const activeDay = days[activeDayIndex] ?? days[0];
+  useEffect(() => {
+    if (!days.length) return;
+    const onHashChange = () => {
+      const indexFromHash = dayIndexFromHash(window.location.hash, days);
+      if (indexFromHash !== null) {
+        setActiveDayIndex(indexFromHash);
+      }
+    };
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, [days]);
+
+  useEffect(() => {
+    if (activeDayIndex === null) return;
+    if (!days.length) return;
+    const activeDay = days[activeDayIndex] ?? days[0];
+    if (!activeDay) return;
+    const nextHash = dayHash(activeDay, activeDayIndex);
+    if (window.location.hash === nextHash) return;
+    const nextUrl = `${window.location.pathname}${window.location.search}${nextHash}`;
+    window.history.replaceState(window.history.state, "", nextUrl);
+  }, [activeDayIndex, days]);
+
+  const panelDayIndex = activeDayIndex ?? 0;
+  const activeDay = activeDayIndex === null ? null : (days[activeDayIndex] ?? days[0]);
 
   function moveFocus(nextIndex: number) {
     setActiveDayIndex(nextIndex);
@@ -113,14 +221,26 @@ export default function SummitScheduleTimeline({ days }: Props) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        aria-label="Schedule days"
-        className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3"
+        aria-label="Program days"
+        className="grid grid-cols-2 gap-2.5 sm:gap-3"
       >
         {days.map((day, index) => {
-          const selected = index === activeDayIndex;
+          const selected = activeDayIndex !== null && index === activeDayIndex;
           const tabId = `schedule-day-tab-${index}`;
           const panelId = `schedule-day-panel-${index}`;
           const tabContent = dayTabContent(day, index);
+          const buttonClass = selected
+            ? "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-amber-300/45 bg-gradient-to-br from-amber-200 to-amber-100 px-3.5 py-3 text-left text-zinc-900 shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+            : "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-dashed border-stone-500/55 bg-zinc-950/40 px-3.5 py-3 text-left text-stone-300/95 transition hover:-translate-y-0.5 hover:border-amber-300/45 hover:bg-zinc-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80";
+          const dateClass = selected
+            ? "block text-[10px] uppercase tracking-[0.12em] text-zinc-700"
+            : "block text-[10px] uppercase tracking-[0.12em] text-stone-500/90";
+          const titleClass = selected
+            ? "mt-1 block text-sm font-semibold leading-5 text-zinc-900"
+            : "mt-1 block text-sm font-semibold leading-5 text-stone-200";
+          const venueClass = selected
+            ? "mt-0.5 block text-[11px] leading-4 text-zinc-700"
+            : "mt-0.5 block text-[11px] leading-4 text-stone-500";
           return (
             <button
               key={`${day.day}-${index}`}
@@ -133,7 +253,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
               aria-controls={panelId}
               aria-selected={selected}
               aria-label={tabContent.ariaLabel}
-              tabIndex={selected ? 0 : -1}
+              tabIndex={selected || (activeDayIndex === null && index === 0) ? 0 : -1}
               onClick={() => setActiveDayIndex(index)}
               onKeyDown={(event) => {
                 if (event.key === "ArrowRight") {
@@ -150,16 +270,29 @@ export default function SummitScheduleTimeline({ days }: Props) {
                   moveFocus(days.length - 1);
                 }
               }}
-              className={
-                selected
-                  ? "min-h-11 w-full rounded-md border border-amber-200/40 bg-amber-100 px-3 py-2 text-left text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-                  : "min-h-11 w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2 text-left text-stone-300 hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-              }
+              className={buttonClass}
             >
-              <span className="block text-[10px] uppercase tracking-[0.12em] opacity-80">{tabContent.dateLine}</span>
-              <span className="mt-0.5 block text-sm font-semibold leading-5">{tabContent.titleLine}</span>
+              <span
+                aria-hidden
+                className={
+                  selected
+                    ? "absolute inset-y-2 left-1 w-1 rounded-full bg-zinc-900/25"
+                    : "absolute inset-y-2 left-1 w-1 rounded-full bg-amber-300/40 opacity-0 transition-opacity group-hover:opacity-100"
+                }
+              />
+              {!selected ? (
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                  <ChevronRightIcon className="h-3 w-3" aria-hidden />
+                </span>
+              ) : (
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-900/20 bg-zinc-900/10">
+                  <span className="h-2 w-2 rounded-full bg-zinc-900/60" />
+                </span>
+              )}
+              <span className={dateClass}>{tabContent.dateLine}</span>
+              <span className={titleClass}>{tabContent.titleLine}</span>
               {tabContent.venueLine ? (
-                <span className="mt-0.5 block text-[11px] leading-4 opacity-80">{tabContent.venueLine}</span>
+                <span className={venueClass}>{tabContent.venueLine}</span>
               ) : null}
             </button>
           );
@@ -167,12 +300,16 @@ export default function SummitScheduleTimeline({ days }: Props) {
       </div>
 
       <div
-        id={`schedule-day-panel-${activeDayIndex}`}
+        id={`schedule-day-panel-${panelDayIndex}`}
         role="tabpanel"
-        aria-labelledby={`schedule-day-tab-${activeDayIndex}`}
+        aria-labelledby={`schedule-day-tab-${panelDayIndex}`}
         className="relative space-y-5 sm:space-y-6"
       >
-        {activeDay.sections.length ? (
+        {!activeDay ? (
+          <section className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <p className="text-sm text-stone-300">Loading program day...</p>
+          </section>
+        ) : activeDay.sections.length ? (
           <>
             <span
               aria-hidden
@@ -188,7 +325,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
                   <p className="text-sm text-stone-500">{section.endLabel}</p>
                 </div>
 
-                <div className="relative space-y-2">
+                <div className="relative space-y-2 pl-1 sm:pl-2">
                   <span
                     aria-hidden
                     className={
@@ -207,7 +344,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
           </>
         ) : (
           <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm text-stone-300">Schedule details for this day will be shared soon.</p>
+            <p className="text-sm text-stone-300">Program details for this day will be shared soon.</p>
           </section>
         )}
       </div>

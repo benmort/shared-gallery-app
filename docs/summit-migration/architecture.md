@@ -4,7 +4,7 @@
 
 - Summit-first root routes (via `app/(summit)`):
   - `/` dashboard
-  - `/schedule`
+  - `/program`
   - `/speakers` + `/speakers/[id]`
   - `/events` + `/events/[id]`
   - `/venues` + `/venues/[id]`

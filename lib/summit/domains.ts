@@ -56,9 +56,10 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     imageField: "Headshot",
     imageHeadshot: true,
     titleField: "Shortname",
-    subtitleField: "Role",
+    subtitleField: "Organisation [Network Data]",
+    subtitleFirstOnly: true,
     descriptionField: "Bio",
-    tagsField: "Job category [Network Data]",
+    tagsField: "Role",
   },
   attractions: {
     table: "Attractions",

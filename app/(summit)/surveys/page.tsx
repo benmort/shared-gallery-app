@@ -1,7 +1,9 @@
 import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitListCard from "@/components/summit/SummitListCard";
+import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { getSummitContext } from "@/lib/summit/context";
 import { fieldString } from "@/lib/summit/fields";
+import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
 import { getSurveysStatic } from "@/lib/summit/service";
 
 export default async function Page() {
@@ -14,7 +16,7 @@ export default async function Page() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-semibold text-white">Surveys</h1>
+      <SummitPageHeader title="Surveys" subtitle={SUMMIT_PAGE_SUBTITLE.surveys} />
       <div className="grid gap-3 sm:grid-cols-2">
         {surveys.map((survey) => (
           <SummitListCard
