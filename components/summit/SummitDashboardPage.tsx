@@ -226,7 +226,7 @@ export default async function SummitDashboardPage() {
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             <Link
               href="/program"
-              className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
+              className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
             >
               Browse program
               <ChevronRightIcon className="h-4 w-4" />

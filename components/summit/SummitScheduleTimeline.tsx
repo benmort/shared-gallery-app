@@ -64,6 +64,11 @@ function dayIndexFromHash(hash: string, days: ScheduleDay[]): number | null {
   return null;
 }
 
+function defaultProgramDayIndex(days: ScheduleDay[]): number {
+  const dayOneIndex = days.findIndex((day, index) => dayHashToken(day, index) === "day-1");
+  return dayOneIndex >= 0 ? dayOneIndex : 0;
+}
+
 type SessionTone = {
   cardClass: string;
   typeBadgeClass: string;
@@ -177,13 +182,13 @@ export default function SummitScheduleTimeline({ days }: Props) {
   useLayoutEffect(() => {
     if (!days.length) return;
     const indexFromHash = dayIndexFromHash(window.location.hash, days);
-    setActiveDayIndex(indexFromHash ?? 0);
+    setActiveDayIndex(indexFromHash ?? defaultProgramDayIndex(days));
   }, [days]);
 
   useEffect(() => {
     if (activeDayIndex === null) return;
-    if (activeDayIndex > days.length - 1) setActiveDayIndex(0);
-  }, [activeDayIndex, days.length]);
+    if (activeDayIndex > days.length - 1) setActiveDayIndex(defaultProgramDayIndex(days));
+  }, [activeDayIndex, days]);
 
   useEffect(() => {
     if (!days.length) return;
