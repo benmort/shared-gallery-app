@@ -3,7 +3,7 @@
 import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SummitAcknowledgementOverlay from "@/components/summit/SummitAcknowledgementOverlay";
 import {
   ACKNOWLEDGEMENT_ACCEPTED_EVENT,
@@ -61,8 +61,10 @@ function setCookie(name: string, value: string): void {
 }
 
 function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
-  const panPercentPerStep = 25;
   const backgroundWidthRatio = 4;
+  const maxPanPercent = ((backgroundWidthRatio - 1) / backgroundWidthRatio) * 100;
+  const totalSlides = DASHBOARD_ONBOARDING_SLIDES.length;
+  const panPercentPerStep = totalSlides > 1 ? maxPanPercent / (totalSlides - 1) : 0;
   const panOffset = -slideIndex * panPercentPerStep;
 
   return (
@@ -84,14 +86,17 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
 function SummitOnboardingOverlay({
   slideIndex,
   onAdvance,
+  onRetreat,
   onSkip,
 }: {
   slideIndex: number;
   onAdvance: () => void;
+  onRetreat: () => void;
   onSkip: () => void;
 }) {
   const isFinalSlide = slideIndex === DASHBOARD_ONBOARDING_SLIDES.length - 1;
   const [visible, setVisible] = useState(false);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -100,6 +105,37 @@ function SummitOnboardingOverlay({
 
     return () => window.cancelAnimationFrame(frame);
   }, []);
+
+  const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd: React.TouchEventHandler<HTMLDivElement> = (event) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start) return;
+
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    const horizontalDistance = Math.abs(deltaX);
+    const verticalDistance = Math.abs(deltaY);
+
+    if (horizontalDistance < 48 || horizontalDistance <= verticalDistance) {
+      return;
+    }
+
+    if (deltaX < 0) {
+      onAdvance();
+      return;
+    }
+
+    onRetreat();
+  };
 
   return (
     <div className="fixed inset-0 z-[260] overflow-hidden bg-black text-stone-100">
@@ -126,17 +162,19 @@ function SummitOnboardingOverlay({
           ))}
         </div>
 
-        <div className="relative mt-4 flex-1 overflow-hidden">
+        <div className="relative -mx-5 mt-4 flex-1 overflow-hidden sm:mx-0">
           <div
-            className="flex h-full transition-transform duration-700 ease-out"
+            className="flex h-full touch-pan-y transition-transform duration-700 ease-out"
             style={{ transform: `translateX(-${slideIndex * 100}%)` }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             {DASHBOARD_ONBOARDING_SLIDES.map((slide, index) => {
               const visual = ONBOARDING_PANEL_VISUALS[index % ONBOARDING_PANEL_VISUALS.length];
 
               return (
-                <section key={slide.heading} className="flex h-full w-full shrink-0 items-end px-3 sm:px-8">
-                  <article className="relative mx-auto flex h-2/3 w-full max-w-[460px] flex-col rounded-[30px] border-2 border-black bg-black/20">
+                <section key={slide.heading} className="flex h-full w-full shrink-0 items-end px-5 sm:px-8">
+                  <article className="relative mx-auto flex h-[62%] w-full max-w-none flex-col rounded-[30px] border-2 border-black/30 bg-black/50 sm:max-w-[460px]">
                     <div className="relative flex h-full flex-col p-5 sm:p-7">
                       <p className={`text-5xl font-black leading-none sm:text-6xl ${visual.numberClass}`}>
                         {String(index + 1).padStart(2, "0")}
@@ -147,7 +185,7 @@ function SummitOnboardingOverlay({
                       >
                         {slide.heading}
                       </h2>
-                      <div className={`mt-5 space-y-3 overflow-y-auto pr-1 text-base leading-relaxed sm:text-lg ${visual.bodyClass}`}>
+                      <div className={`mt-5 space-y-3 overflow-y-auto pr-1 text-lg font-semibold leading-relaxed sm:text-xl ${visual.bodyClass}`}>
                         {slide.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
@@ -231,6 +269,11 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
     completeOnboarding();
   };
 
+  const retreatSlide = () => {
+    if (slideIndex === 0) return;
+    setSlideIndex((current) => current - 1);
+  };
+
   const completeOnboarding = () => {
     setCookie(DASHBOARD_ONBOARDING_COOKIE_NAME, "1");
     setStage("ready");
@@ -252,6 +295,7 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
         <SummitOnboardingOverlay
           slideIndex={slideIndex}
           onAdvance={advanceSlide}
+          onRetreat={retreatSlide}
           onSkip={completeOnboarding}
         />
       ) : null}

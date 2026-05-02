@@ -25,14 +25,21 @@ export const DASHBOARD_ONBOARDING_SLIDES: readonly DashboardOnboardingSlide[] = 
     eyebrow: "WELCOME TO COMMON THREADS",
     heading: "Welcome to Common Threads",
     paragraphs: [
-      "Welcome to Common Threads, a three-day summit designed for, and by, First Nations people - to connect, yarn, learn, strategise and plan for action.",
+      "Common Threads is a three-day summit designed for, and by, First Nations people - to connect, yarn, learn, strategise and plan for action.",
     ],
   },
   {
     eyebrow: "BUILDING MOVEMENT POWER",
     heading: "In this moment, we organise together",
     paragraphs: [
-      "In the face of an emboldened far-right who are determined to attack progress on First Nations justice for their own political agenda, and Prime Minister Albanese distancing his government from a Treaty process, it's critical that we come together, organise and build the power of our movements to continue to fight for Landback, Treaty and Justice.",
+      "In the face of an emboldened far-right who are determined to attack progress on First Nations justice for their own political agenda, and Prime Minister Albanese distancing his government from a Treaty process.",
+    ],
+  },
+  {
+    eyebrow: "BUILDING MOVEMENT POWER",
+    heading: "Building power for Landback, Treaty and Justice",
+    paragraphs: [
+      "It's critical that we come together, organise and build the power of our movements to continue to fight for Landback, Treaty and Justice.",
     ],
   },
   {
@@ -40,14 +47,13 @@ export const DASHBOARD_ONBOARDING_SLIDES: readonly DashboardOnboardingSlide[] = 
     heading: "Connect, learn, share and plan for action",
     paragraphs: [
       "Over three days, we'll bring together hundreds of First Nations campaigners, organisers and changemakers to connect, learn, share and plan for action.",
-      "Together, we will create a shared vision and story of what's possible, identify ways to work together and build power of First Nations movements and campaigns.",
     ],
   },
   {
-    eyebrow: "WELCOME",
-    heading: "We are thrilled to have you with us",
+    eyebrow: "WHAT WE'LL BUILD TOGETHER",
+    heading: "A shared vision for action",
     paragraphs: [
-      "We are thrilled to have you with us.",
+      "Together, we will create a shared vision and story of what's possible, identify ways to work together and build power of First Nations movements and campaigns.",
     ],
   },
 ] as const;
