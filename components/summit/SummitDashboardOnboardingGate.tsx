@@ -3,7 +3,7 @@
 import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SummitAcknowledgementOverlay from "@/components/summit/SummitAcknowledgementOverlay";
 import {
   ACKNOWLEDGEMENT_ACCEPTED_EVENT,
@@ -97,6 +97,8 @@ function SummitOnboardingOverlay({
   const isFinalSlide = slideIndex === DASHBOARD_ONBOARDING_SLIDES.length - 1;
   const [visible, setVisible] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+  const slideContentRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [uniformSlideHeight, setUniformSlideHeight] = useState<number | null>(null);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -104,6 +106,30 @@ function SummitOnboardingOverlay({
     });
 
     return () => window.cancelAnimationFrame(frame);
+  }, []);
+
+  useLayoutEffect(() => {
+    const updateUniformSlideHeight = () => {
+      const maxContentHeight = slideContentRefs.current.reduce((maxHeight, element) => {
+        if (!element) return maxHeight;
+        return Math.max(maxHeight, element.scrollHeight);
+      }, 0);
+
+      setUniformSlideHeight(maxContentHeight > 0 ? maxContentHeight + 4 : null);
+    };
+
+    updateUniformSlideHeight();
+
+    const resizeObserver = new ResizeObserver(updateUniformSlideHeight);
+    slideContentRefs.current.forEach((element) => {
+      if (element) resizeObserver.observe(element);
+    });
+    window.addEventListener("resize", updateUniformSlideHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateUniformSlideHeight);
+    };
   }, []);
 
   const handleTouchStart: React.TouchEventHandler<HTMLDivElement> = (event) => {
@@ -174,8 +200,16 @@ function SummitOnboardingOverlay({
 
               return (
                 <section key={slide.heading} className="flex h-full w-full shrink-0 items-end px-5 sm:px-8">
-                  <article className="relative mx-auto flex h-[62%] w-full max-w-none flex-col rounded-[30px] border-2 border-black/30 bg-black/50 sm:max-w-[460px]">
-                    <div className="relative flex h-full flex-col p-5 sm:p-7">
+                  <article
+                    className="relative mx-auto flex w-full max-w-none flex-col rounded-[30px] border-2 border-black/30 bg-black/50 sm:max-w-[460px]"
+                    style={uniformSlideHeight ? { height: `${uniformSlideHeight}px` } : undefined}
+                  >
+                    <div
+                      ref={(element) => {
+                        slideContentRefs.current[index] = element;
+                      }}
+                      className="relative flex flex-col p-5 sm:p-7"
+                    >
                       <p className={`text-5xl font-black leading-none sm:text-6xl ${visual.numberClass}`}>
                         {String(index + 1).padStart(2, "0")}
                       </p>
@@ -185,7 +219,7 @@ function SummitOnboardingOverlay({
                       >
                         {slide.heading}
                       </h2>
-                      <div className={`mt-5 space-y-3 overflow-y-auto pr-1 text-lg font-semibold leading-relaxed sm:text-xl ${visual.bodyClass}`}>
+                      <div className={`mt-5 space-y-3 text-lg font-semibold leading-relaxed sm:text-xl ${visual.bodyClass}`}>
                         {slide.paragraphs.map((paragraph) => (
                           <p key={paragraph}>{paragraph}</p>
                         ))}
