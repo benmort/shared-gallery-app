@@ -1,0 +1,100 @@
+[
+  {
+    "id": "organisation-sosblak-australia-sa",
+    "name": "SOSBlak Australia SA",
+    "url": "https://www.facebook.com/sosblakaustralia/",
+    "confidence": "low",
+    "notes": "The previously used sosblakaustralia.com domain appears inactive/404; this is the primary campaign page still indexed."
+  },
+  {
+    "id": "organisation-nanum-wungthim-land-sea-management-group",
+    "name": "Nanum Wungthim Land & Sea Management Group",
+    "url": "https://niaa.gov.au/node/2279",
+    "confidence": "low",
+    "notes": "No standalone organisation-run website found; this is the official NIAA profile for the ranger group."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-council",
+    "name": "Lachlan Kalari River Aboriginal Water Council",
+    "url": "https://australia-corp.com/co/lachlan-kalari-river-aboriginal-water-council-pty-ltd",
+    "confidence": "low",
+    "notes": "No official organisation website located; registry-style listing remains the only discoverable URL for this exact entity name."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-committee",
+    "name": "Lachlan Kalari River Aboriginal Water Committee",
+    "url": "https://www.water.nsw.gov.au/our-work/projects-and-programs/aboriginal-water-programs/regional-aboriginal-water-committees",
+    "confidence": "medium",
+    "notes": "No dedicated committee site found; this is the official NSW Water page for Regional Aboriginal Water Committees (including Lachlan region)."
+  },
+  {
+    "id": "organisation-wenlock-catchment-management-group-inc",
+    "name": "Wenlock Catchment Management Group Inc",
+    "url": "https://qwalc.org.au/groups/group-listing/cape-york-torres-strait/",
+    "confidence": "low",
+    "notes": "No standalone website found; this is the best public listing source that includes the group."
+  },
+  {
+    "id": "organisation-mounty-aboriginal-youth-community-service",
+    "name": "Mounty Aboriginal Youth and Community Service",
+    "url": "https://www.facebook.com/p/Mounty-Aboriginal-Youth-Community-Services-100077695239229/",
+    "confidence": "low",
+    "notes": "No official standalone domain found; this appears to be the organisation's primary public-facing page."
+  },
+  {
+    "id": "organisation-fishers-oysters-pty-ltd",
+    "name": "Fisher's Oysters Pty Ltd",
+    "url": "https://devilscorner.fishersoffreycinet.com.au/",
+    "confidence": "medium",
+    "notes": "Best active brand domain linked to Fishers of Freycinet operations; no clearer standalone site for the exact legal entity name was found."
+  },
+  {
+    "id": "organisation-strait-climate-action",
+    "name": "Strait Climate Action",
+    "url": "https://www.fya.org.au/program/youth-action-and-wellbeing-grants/",
+    "confidence": "low",
+    "notes": "No standalone official site discovered; this is a third-party program page that explicitly names and describes Strait Climate Action."
+  },
+  {
+    "id": "organisation-tribes-united",
+    "name": "Tribes United",
+    "url": "https://www.spiritualunityofthetribes.org.au/",
+    "confidence": "medium",
+    "notes": "This remains the closest Australian official website match tied to the listed organisation identity."
+  },
+  {
+    "id": "organisation-the-nurse-on-foot",
+    "name": "The Nurse On Foot",
+    "url": "https://www.thefootcarenurse.com.au/",
+    "confidence": "medium",
+    "notes": "No stronger standalone web presence under the exact listed name was found; this is the closest active official business site."
+  },
+  {
+    "id": "organisation-mob-made-media-communications-agency",
+    "name": "Mob Made Media & Communications Agency",
+    "url": "https://www.instagram.com/mobmademediaandcommunications/",
+    "confidence": "low",
+    "notes": "No standalone official domain discovered; repeated public credits point to this as the primary official profile."
+  },
+  {
+    "id": "organisation-katji-yanun",
+    "name": "Katji Yanun",
+    "url": "https://au.linkedin.com/in/melissa-clarke-83699639",
+    "confidence": "low",
+    "notes": "No dedicated organisation website found; this remains the main public profile identifying Katji Yanun."
+  },
+  {
+    "id": "organisation-justice-for-walker",
+    "name": "Justice for Walker",
+    "url": "https://www.facebook.com/standwithyuendumu/",
+    "confidence": "low",
+    "notes": "No standalone campaign website found; this appears to be the primary campaign Facebook page used for updates."
+  },
+  {
+    "id": "organisation-thriving-families-sa",
+    "name": "Thriving Families SA",
+    "url": "https://www.linkedin.com/company/thriving-families-sa",
+    "confidence": "low",
+    "notes": "No dedicated standalone website discovered; this LinkedIn company page is the clearest official public presence."
+  }
+]

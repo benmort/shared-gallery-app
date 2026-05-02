@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowPathIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { upload as uploadToBlob } from "@vercel/blob/client";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { validateMediaFile } from "@/lib/client-validate";
 import type { Photo } from "@/lib/types/photo";
@@ -19,16 +20,16 @@ function newPreviewId() {
 
 type Props = {
   onUploadSuccess?: (photos?: Photo[]) => void;
+  backHref?: string;
 };
 
-export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
+export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Props) {
   const [items, setItems] = useState<PreviewItem[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
   const [success, setSuccess] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [clientBlobUpload, setClientBlobUpload] = useState(false);
-  const [composerOpen, setComposerOpen] = useState(false);
 
   useEffect(() => {
     void fetch("/api/photos/capabilities")
@@ -57,7 +58,6 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
     if (errs.length) setErrors(errs);
     if (next.length) {
       setItems((prev) => [...prev, ...next]);
-      setComposerOpen(true);
     }
   }, []);
 
@@ -175,24 +175,23 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
       )}
       <div
         className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 p-4 text-left text-white shadow-2xl sm:p-5"
-        aria-label="Share a moment"
+        aria-label="Share A Moment"
       >
-        <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-stone-400">
-          Upload to the gallery
-        </p>
-        <h2 className="mt-1 text-2xl font-semibold leading-tight text-white">Share a moment</h2>
+        {backHref ? (
+          <Link
+            href={backHref}
+            className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+          >
+            <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden />
+            Back to app
+          </Link>
+        ) : null}
+        <h2 className="mt-1 text-2xl font-semibold leading-tight text-white">Share A Moment</h2>
         <p className="mt-2 text-sm leading-6 text-stone-300">
           Add photos and videos to the shared album from your library or straight from your phone.
         </p>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            onClick={() => setComposerOpen((prev) => !prev)}
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-blue-500 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200/80"
-          >
-            {composerOpen ? "Hide uploader" : "Share a moment"}
-          </button>
           {items.length > 0 ? (
             <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-stone-200">
               {items.length} selected
@@ -200,67 +199,65 @@ export default function ShareMomentGridBlock({ onUploadSuccess }: Props) {
           ) : null}
         </div>
 
-        {composerOpen ? (
-          <section className="mt-4 flex flex-col gap-4 text-left" aria-label="Upload">
-            <div className="md:hidden">
-              <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
+        <section className="mt-4 flex flex-col gap-4 text-left" aria-label="Upload">
+          <div className="md:hidden">
+            <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
+          </div>
+          <UploadDropzone onFiles={addFiles} disabled={uploading} variant="onDark" />
+          {items.length === 0 ? (
+            <EmptyState variant="heroDark" />
+          ) : (
+            <UploadPreviewList
+              items={items}
+              onRemove={removeItem}
+              disabled={uploading}
+            />
+          )}
+
+          {errors.length > 0 && (
+            <div
+              role="alert"
+              className="rounded-xl bg-red-950/50 px-3 py-2 text-sm text-red-100 ring-1 ring-red-500/30"
+            >
+              <ul className="list-inside list-disc space-y-1">
+                {errors.map((e, i) => (
+                  <li key={i}>{e}</li>
+                ))}
+              </ul>
             </div>
-            <UploadDropzone onFiles={addFiles} disabled={uploading} variant="onDark" />
-            {items.length === 0 ? (
-              <EmptyState variant="heroDark" />
-            ) : (
-              <UploadPreviewList
-                items={items}
-                onRemove={removeItem}
-                disabled={uploading}
+          )}
+
+          {success && (
+            <p
+              role="status"
+              className="text-center text-sm font-medium text-emerald-300"
+            >
+              Added to the album.
+            </p>
+          )}
+
+          <button
+            type="button"
+            disabled={uploading || items.length === 0}
+            onClick={() => void upload()}
+            aria-busy={uploading}
+            className={`pointer-events-auto z-10 mt-2 min-h-12 w-full rounded-lg border border-white/20 bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed ${
+              uploading ? "opacity-100" : "disabled:opacity-40"
+            } inline-flex items-center justify-center gap-2`}
+          >
+            {uploading && (
+              <ArrowPathIcon
+                className="h-4 w-4 shrink-0 animate-spin"
+                aria-hidden
               />
             )}
+            {uploading
+              ? "Uploading..."
+              : `Upload${items.length ? ` (${items.length})` : ""}`}
+          </button>
 
-            {errors.length > 0 && (
-              <div
-                role="alert"
-                className="rounded-xl bg-red-950/50 px-3 py-2 text-sm text-red-100 ring-1 ring-red-500/30"
-              >
-                <ul className="list-inside list-disc space-y-1">
-                  {errors.map((e, i) => (
-                    <li key={i}>{e}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {success && (
-              <p
-                role="status"
-                className="text-center text-sm font-medium text-emerald-300"
-              >
-                Added to the album.
-              </p>
-            )}
-
-            <button
-              type="button"
-              disabled={uploading || items.length === 0}
-              onClick={() => void upload()}
-              aria-busy={uploading}
-              className={`pointer-events-auto z-10 mt-2 min-h-12 w-full rounded-lg border border-white/20 bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed ${
-                uploading ? "opacity-100" : "disabled:opacity-40"
-              } inline-flex items-center justify-center gap-2`}
-            >
-              {uploading && (
-                <ArrowPathIcon
-                  className="h-4 w-4 shrink-0 animate-spin"
-                  aria-hidden
-                />
-              )}
-              {uploading
-                ? "Uploading..."
-                : `Upload${items.length ? ` (${items.length})` : ""}`}
-            </button>
-
-            <UploadTermsNotice variant="onDark" />
-          </section>
-        ) : null}
+          <UploadTermsNotice variant="onDark" />
+        </section>
       </div>
     </div>
   );

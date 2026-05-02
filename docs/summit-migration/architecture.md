@@ -16,7 +16,6 @@
   - `/code-conduct`
   - `/security-guidelines`
 - Existing gallery route remains at `/moments`.
-- Legacy `/summits` redirects to `/` for singleton behavior.
 - Legacy `/summit` route tree is removed; `/summit...` URLs should 404.
 
 ## Data Layer

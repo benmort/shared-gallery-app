@@ -2,15 +2,15 @@ import {
   ArrowLongRightIcon,
   BuildingOffice2Icon,
   CalendarDaysIcon,
+  InformationCircleIcon,
   MapIcon,
   MapPinIcon,
   PlusIcon,
-  UserGroupIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
-import Image from "next/image";
 import Link from "next/link";
 import SummitEmpty from "@/components/summit/SummitEmpty";
+import SummitSpeakerCardImage from "@/components/summit/SummitSpeakerCardImage";
 import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem } from "@/lib/summit/domains";
@@ -114,15 +114,9 @@ function SpeakerCard({
       href={`/speakers/${speaker.id}`}
       className="group overflow-hidden rounded-xl border border-white/10 bg-zinc-900/70 transition hover:border-white/20 hover:bg-zinc-900"
     >
-      <div className="relative aspect-[16/10] bg-black/40">
+      <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
         {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt={name}
-            fill
-            className="object-cover transition duration-300 group-hover:scale-[1.03]"
-            unoptimized
-          />
+          <SummitSpeakerCardImage src={imageUrl} alt={name} />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
       </div>
@@ -184,10 +178,10 @@ export default async function SummitDashboardPage() {
 
   const directoryEntries: DirectoryEntry[] = [
     {
-      href: "/speakers",
-      label: "Speakers",
-      subtitle: "Featured voices",
-      icon: UserGroupIcon,
+      href: "/faq",
+      label: "Event Guidance",
+      subtitle: "FAQ",
+      icon: InformationCircleIcon,
     },
     {
       href: "/crew",
@@ -202,11 +196,11 @@ export default async function SummitDashboardPage() {
       icon: BuildingOffice2Icon,
     },
     {
-      href: mapUrl || "/venues",
+      href: "/venues",
       label: "Venue/Map",
-      subtitle: mapUrl ? "Summit location" : "Venue details",
+      subtitle: "Venue details",
       icon: MapIcon,
-      external: !!mapUrl,
+      external: false,
     },
   ];
 
@@ -348,11 +342,14 @@ export default async function SummitDashboardPage() {
               <Link href="/code-conduct" className="block text-stone-400 hover:text-stone-200">
                 Code of Conduct
               </Link>
-              <Link href="/security-guidelines" className="block text-stone-400 hover:text-stone-200">
-                Security Guidelines
-              </Link>
               <Link href="/surveys" className="block text-stone-400 hover:text-stone-200">
                 Feedback
+              </Link>
+              <Link
+                href="/acknowledgement-of-country"
+                className="block text-stone-400 hover:text-stone-200"
+              >
+                ACKNOWLEDGEMENT OF COUNTRY
               </Link>
             </div>
           </div>

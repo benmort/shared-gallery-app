@@ -1,0 +1,490 @@
+[
+  {
+    "id": "organisation-common-threads",
+    "name": "Common Threads",
+    "url": "https://www.commonthreads.org.au/",
+    "summary": "Common Threads is a First Nations-led Australian organisation that runs advocacy and campaign work on truth-telling, Treaty, land rights, and climate justice.",
+    "confidence": "high",
+    "notes": "Official organisation website clearly identifies mission and leadership."
+  },
+  {
+    "id": "organisation-sosblak-australia-sa",
+    "name": "SOSBlak Australia SA",
+    "url": "https://www.facebook.com/sosblakaustralia/",
+    "summary": "SOS Blak Australia is a grassroots Aboriginal rights campaign best known for mobilising against forced closure of remote Aboriginal communities.",
+    "confidence": "low",
+    "notes": "Domain is cited by SBS/NITV and Cultural Survival as the campaign site, but current activity and ownership are unclear."
+  },
+  {
+    "id": "organisation-no-underground-coal-gasification-leigh-creek",
+    "name": "No Underground Coal Gasification at Leigh Creek",
+    "url": "https://www.originalpower.org.au/copley_no_ucg",
+    "summary": "This campaign supports Adnyamathanha community opposition to underground coal gasification near Leigh Creek and Copley.",
+    "confidence": "medium",
+    "notes": "Best match is a dedicated campaign page hosted by Original Power rather than a standalone domain."
+  },
+  {
+    "id": "organisation-pormpuraaw-aboriginal-shire-council",
+    "name": "Pormpuraaw Aboriginal Shire Council",
+    "url": "https://www.pormpuraaw.qld.gov.au/",
+    "summary": "Pormpuraaw Aboriginal Shire Council is the local government authority delivering civic services and community development in Pormpuraaw.",
+    "confidence": "high",
+    "notes": "Official council website."
+  },
+  {
+    "id": "organisation-lake-tyers-aboriginal-trust",
+    "name": "Lake Tyers Aboriginal Trust",
+    "url": "https://laketyersaboriginaltrust.com.au/",
+    "summary": "Lake Tyers Aboriginal Trust is an Aboriginal-governed body that manages trust land, governance, and community matters at Lake Tyers.",
+    "confidence": "high",
+    "notes": "Official trust website with governance and contact information."
+  },
+  {
+    "id": "organisation-university-of-adelaide",
+    "name": "University of Adelaide",
+    "url": "https://www.adelaide.edu.au/",
+    "summary": "The University of Adelaide is a major South Australian university institution focused on higher education and research.",
+    "confidence": "high",
+    "notes": "The adelaide.edu.au domain is official and now reflects the post-2026 Adelaide University transition while retaining University of Adelaide context."
+  },
+  {
+    "id": "organisation-mandingalby-yidinji-aboriginal-corporation",
+    "name": "Mandingalby Yidinji Aboriginal Corporation",
+    "url": "https://mandingalbay.com.au/mandingalbay-yidinji-aboriginal-corporation-myac/",
+    "summary": "Mandingalbay Yidinji Aboriginal Corporation is the native title representative body for Mandingalbay Yidinji people and their country near Cairns.",
+    "confidence": "medium",
+    "notes": "Name appears with spelling variants (Mandingalby/Mandingalbay); this page is referenced via native title listings and provides direct MYAC details."
+  },
+  {
+    "id": "organisation-nanum-wungthim-land-sea-management-group",
+    "name": "Nanum Wungthim Land & Sea Management Group",
+    "url": "https://niaa.gov.au/node/2279",
+    "summary": "Nanum Wungthim is an Indigenous ranger group in Napranum that delivers coastal, cultural heritage, and land-and-sea management work.",
+    "confidence": "low",
+    "notes": "No standalone organisation-run website found; used the National Indigenous Australians Agency profile page."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-council",
+    "name": "Lachlan Kalari River Aboriginal Water Council",
+    "url": "https://australia-corp.com/co/lachlan-kalari-river-aboriginal-water-council-pty-ltd",
+    "summary": "This entity appears to be an Aboriginal water governance and advocacy body associated with the Lachlan (Kalari) river region.",
+    "confidence": "low",
+    "notes": "No official organisation website located; this is a registry-style listing and explicitly states it is not the official website."
+  },
+  {
+    "id": "organisation-government-architect-nsw",
+    "name": "Government Architect NSW",
+    "url": "https://www.governmentarchitect.nsw.gov.au/",
+    "summary": "Government Architect NSW provides strategic design leadership to improve architecture, urban design, and landscape outcomes across NSW.",
+    "confidence": "high",
+    "notes": "Official NSW Government Architect website."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-committee",
+    "name": "Lachlan Kalari River Aboriginal Water Committee",
+    "url": "https://www.water.nsw.gov.au/our-work/projects-and-programs/aboriginal-water-programs/regional-aboriginal-water-committees",
+    "summary": "This committee appears to be part of Aboriginal advisory structures informing water planning and management in the Lachlan region.",
+    "confidence": "low",
+    "notes": "Exact committee name is referenced in water-sector materials, but no dedicated committee-run site was found; this NSW Water page is the closest official program context."
+  },
+  {
+    "id": "organisation-full-stop-australia",
+    "name": "Full Stop Australia",
+    "url": "https://fullstop.org.au/",
+    "summary": "Full Stop Australia is a national specialist service providing trauma-informed support and 24/7 counselling related to sexual, domestic, and family violence.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-change-the-record",
+    "name": "Change the Record",
+    "url": "https://www.changetherecord.org.au/",
+    "summary": "Change the Record is a First Nations-led coalition campaigning to end over-incarceration and systemic violence against Aboriginal and Torres Strait Islander peoples.",
+    "confidence": "high",
+    "notes": "Official coalition website."
+  },
+  {
+    "id": "organisation-wenlock-catchment-management-group-inc",
+    "name": "Wenlock Catchment Management Group Inc",
+    "url": "https://qwalc.org.au/groups/group-listing/cape-york-torres-strait/",
+    "summary": "Wenlock Catchment Management Group Inc is a Cape York catchment group focused on river and landscape stewardship in the Wenlock region.",
+    "confidence": "low",
+    "notes": "No standalone website found; group is listed through Queensland Water & Land Carers and referenced in partner conservation content."
+  },
+  {
+    "id": "organisation-mounty-aboriginal-youth-community-service",
+    "name": "Mounty Aboriginal Youth and Community Service",
+    "url": "https://www.facebook.com/p/Mounty-Aboriginal-Youth-Community-Services-100077695239229/",
+    "summary": "Mounty Aboriginal Youth and Community Service is an Aboriginal-controlled Mt Druitt youth service supporting community-led programs and justice reinvestment outcomes.",
+    "confidence": "low",
+    "notes": "No clear standalone domain was indexed; this appears to be the primary public page and may require Facebook login."
+  },
+  {
+    "id": "organisation-western-sydney-watch-committee",
+    "name": "Western Sydney Watch Committee",
+    "url": "https://justiceaction.org.au/watch-committee/",
+    "summary": "The Watch Committee monitors Aboriginal treatment in custody and advocates on deaths in custody, policing, and justice-system accountability.",
+    "confidence": "medium",
+    "notes": "Search results tie this to the Aboriginal Deaths in Custody Watch Committee page hosted by Justice Action; specific Western Sydney branding is limited."
+  },
+  {
+    "id": "organisation-our-islands-our-home",
+    "name": "Our Islands Our Home",
+    "url": "https://ourislandsourhome.com.au/",
+    "summary": "Our Islands Our Home is a Torres Strait Islander-led climate justice campaign seeking action to protect Zenadth Kes from climate impacts.",
+    "confidence": "high",
+    "notes": "Official campaign website."
+  },
+  {
+    "id": "organisation-mehi-centre",
+    "name": "Mehi Centre",
+    "url": "https://www.mehicentre.com/",
+    "summary": "Mehi Centre is a not-for-profit based in Moree that supports Indigenous communities through cultural, educational, environmental, and advocacy initiatives.",
+    "confidence": "high",
+    "notes": "Official website includes organisation description and ABN."
+  },
+  {
+    "id": "organisation-martuwarra-fitzroy-river-council",
+    "name": "Martuwarra Fitzroy River Council",
+    "url": "https://martuwarra.org/",
+    "summary": "Martuwarra Fitzroy River Council is an Indigenous-led alliance of Kimberley Elders advocating to protect the Martuwarra/Fitzroy River system.",
+    "confidence": "high",
+    "notes": "Official council website."
+  },
+  {
+    "id": "organisation-national-tertiary-education-union",
+    "name": "National Tertiary Education Union",
+    "url": "https://www.nteu.au/",
+    "summary": "The National Tertiary Education Union is the main union representing university and tertiary education workers across Australia.",
+    "confidence": "high",
+    "notes": "Official union website."
+  },
+  {
+    "id": "organisation-fishers-oysters-pty-ltd",
+    "name": "Fisher's Oysters Pty Ltd",
+    "url": "https://devilscorner.fishersoffreycinet.com.au/",
+    "summary": "Fishers of Freycinet is a Tasmania-based seafood and oyster business associated with the Fisher family’s farmed oyster operations.",
+    "confidence": "low",
+    "notes": "An exact indexed website for the legal entity name 'Fisher's Oysters Pty Ltd' was not clearly found; this is the closest active brand/domain match."
+  },
+  {
+    "id": "organisation-first-peoples-assembly-victoria",
+    "name": "First Peoples' Assembly of Victoria",
+    "url": "https://www.firstpeoplesvic.org/",
+    "summary": "The First Peoples' Assembly of Victoria is an independent, democratically elected body representing Traditional Owners and First Peoples in Victoria in Treaty-related processes.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-australian-conservation-foundation",
+    "name": "Australian Conservation Foundation",
+    "url": "https://www.acf.org.au/",
+    "summary": "The Australian Conservation Foundation is a national environmental advocacy organisation campaigning to protect nature and address climate pollution.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-limestone-coast-landscape-board",
+    "name": "Limestone Coast Landscape Board",
+    "url": "https://www.landscape.sa.gov.au/lc/",
+    "summary": "The Limestone Coast Landscape Board is a South Australian statutory board that leads regional landscape and natural resource management.",
+    "confidence": "high",
+    "notes": "Official government-hosted board website."
+  },
+  {
+    "id": "organisation-strait-climate-action",
+    "name": "Strait Climate Action",
+    "url": "https://www.fya.org.au/program/youth-action-and-wellbeing-grants/",
+    "summary": "Strait Climate Action is described as a Torres Strait youth climate group creating language-based resources and intergenerational climate campaigning.",
+    "confidence": "low",
+    "notes": "No standalone official website was discoverable; this URL is a third-party grant page that names and describes the group."
+  },
+  {
+    "id": "organisation-north-queensland-land-council",
+    "name": "North Queensland Land Council",
+    "url": "https://nqlc.com.au/",
+    "summary": "The North Queensland Land Council is the recognised Native Title Representative Body supporting Traditional Owners across its North Queensland region.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-wardliparingga-sahmri",
+    "name": "Wardliparingga - SAHMRI",
+    "url": "https://sahmri.org.au/research/themes/aboriginal-health",
+    "summary": "Wardliparingga is SAHMRI’s Aboriginal Health Equity research theme focused on improving health and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples.",
+    "confidence": "high",
+    "notes": "Wardliparingga appears to be a SAHMRI division rather than a separate legal entity, so the official SAHMRI program page is used."
+  },
+  {
+    "id": "organisation-tribes-united",
+    "name": "Tribes United",
+    "url": "https://www.spiritualunityofthetribes.org.au/",
+    "summary": "Spiritual Unity of the Tribes is an Australian intertribal community focused on ceremony, cultural continuity, and traditional knowledge sharing.",
+    "confidence": "low",
+    "notes": "Could not find a clearly matching standalone organisation explicitly named 'Tribes United'; this is the closest Australian match found."
+  },
+  {
+    "id": "organisation-social-reinvestment-wa",
+    "name": "Social Reinvestment WA",
+    "url": "https://www.socialreinvestmentwa.org.au/",
+    "summary": "Social Reinvestment WA is an Aboriginal-led coalition advocating justice reinvestment and reforms to reduce Aboriginal over-representation in WA’s justice system.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-human-rights-law-centre",
+    "name": "Human Rights Law Centre",
+    "url": "https://www.hrlc.org.au/",
+    "summary": "The Human Rights Law Centre is a legal advocacy organisation that works to advance and defend human rights through law reform, litigation, and public campaigning.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-queensland-teachers-union",
+    "name": "Queensland Teachers' Union",
+    "url": "https://www.qtu.asn.au/",
+    "summary": "The Queensland Teachers' Union is the industrial and professional union representing educators in Queensland state schools and TAFE.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-tasmanian-aboriginal-centre",
+    "name": "Tasmanian Aboriginal Centre",
+    "url": "https://tacinc.com.au/",
+    "summary": "The Tasmanian Aboriginal Centre is an Aboriginal community organisation delivering statewide advocacy, health, cultural, language, and community programs.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-ards-aboriginal-corporation",
+    "name": "ARDS Aboriginal Corporation",
+    "url": "https://ards.com.au/",
+    "summary": "ARDS Aboriginal Corporation is a Yolŋu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-the-nurse-on-foot",
+    "name": "The Nurse On Foot",
+    "url": "https://www.thefootcarenurse.com.au/",
+    "summary": "The Foot Care Nurse is a nurse-led mobile and clinic foot-care service providing in-home nail and foot health support in Victoria.",
+    "confidence": "low",
+    "notes": "No verifiable official web presence for the exact name 'The Nurse On Foot' was found; this is the closest Australian match."
+  },
+  {
+    "id": "organisation-mob-made-media-communications-agency",
+    "name": "Mob Made Media & Communications Agency",
+    "url": "https://www.instagram.com/mobmademediaandcommunications/",
+    "summary": "Mob Made Media & Communications Agency appears to be a First Nations media and content production agency credited on arts and community campaign work.",
+    "confidence": "low",
+    "notes": "No standalone official website was discoverable; this Instagram profile handle is used based on repeated public tagging/credits."
+  },
+  {
+    "id": "organisation-first-australians-capital",
+    "name": "First Australians Capital",
+    "url": "https://firstaustralianscapital.org/",
+    "summary": "First Australians Capital is a First Nations-led impact investment and business support organisation backing Indigenous entrepreneurs and enterprises.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-invasive-species-council",
+    "name": "Invasive Species Council",
+    "url": "https://invasives.org.au/",
+    "summary": "The Invasive Species Council is an Australian environmental advocacy organisation working to prevent and reduce harm from invasive species.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-pitta-pitta-aboriginal-corporation-rntbc",
+    "name": "Pitta Pitta Aboriginal Corporation RNTBC",
+    "url": "https://nativetitle.org.au/find/pbc/3943",
+    "summary": "Pitta Pitta Aboriginal Corporation RNTBC acts as trustee for the native title rights and interests of the Pitta Pitta People.",
+    "confidence": "medium",
+    "notes": "No standalone corporate website was found; this is the official Native Title prescribed body corporate directory profile."
+  },
+  {
+    "id": "organisation-aboriginal-housing-office",
+    "name": "Aboriginal Housing Office",
+    "url": "https://aho.nsw.gov.au/",
+    "summary": "The Aboriginal Housing Office is a NSW statutory body responsible for improving access to affordable housing for Aboriginal people.",
+    "confidence": "high",
+    "notes": "Official government agency website."
+  },
+  {
+    "id": "organisation-katji-yanun",
+    "name": "Katji Yanun",
+    "url": "https://au.linkedin.com/in/melissa-clarke-83699639",
+    "summary": "Katji Yanun appears to be an Aboriginal-led consulting practice focused on justice, governance, and systems reform advisory work.",
+    "confidence": "low",
+    "notes": "No dedicated website or company page was found; this is the principal consultant profile listing Katji Yanun."
+  },
+  {
+    "id": "organisation-justice-reinvestment-port-augusta",
+    "name": "Justice Reinvestment Port Augusta",
+    "url": "https://healthydreaming.com.au/",
+    "summary": "Justice Reinvestment Port Augusta appears to be a community-led Port Augusta initiative linked to Aboriginal-led justice reinvestment work delivered via Healthy Dreaming.",
+    "confidence": "medium",
+    "notes": "No standalone official site for the initiative was found; this URL is the Port Augusta organisation publicly referenced in justice reinvestment program materials."
+  },
+  {
+    "id": "organisation-justice-for-walker",
+    "name": "Justice for Walker",
+    "url": "https://www.facebook.com/standwithyuendumu/",
+    "summary": "Justice for Walker is a grassroots campaign calling for accountability and justice after the death of Warlpiri man Kumanjayi Walker.",
+    "confidence": "low",
+    "notes": "No clear standalone official website was found for the campaign itself; this is the most authoritative campaign-specific page located."
+  },
+  {
+    "id": "organisation-pukatja-community",
+    "name": "Pukatja Community",
+    "url": "https://anangu.com.au/sa-communities/pukatja-ernabella",
+    "summary": "Pukatja Community is an Anangu community on the APY Lands in north-west South Australia.",
+    "confidence": "medium",
+    "notes": "Used the APY site community page because no distinct standalone website for a separate Pukatja Community Council was found."
+  },
+  {
+    "id": "organisation-national-disability-insurance-scheme",
+    "name": "National Disability Insurance Scheme",
+    "url": "https://www.ndis.gov.au/",
+    "summary": "The National Disability Insurance Scheme is Australia's national program that funds supports for eligible people with significant and permanent disability.",
+    "confidence": "high",
+    "notes": "Official Australian Government NDIS website."
+  },
+  {
+    "id": "organisation-seed-mob",
+    "name": "Seed Mob",
+    "url": "https://www.seedmob.org.au/",
+    "summary": "Seed Mob is an Aboriginal and Torres Strait Islander youth-led climate justice movement focused on protecting Country and communities.",
+    "confidence": "high",
+    "notes": "Official website of Seed Indigenous Youth Climate Network."
+  },
+  {
+    "id": "organisation-pacific-australian-emerging-leaders-network",
+    "name": "Pacific Australian Emerging Leaders Network",
+    "url": "https://www.micahaustralia.org/take-action/pael-network/",
+    "summary": "The Pacific Australian Emerging Leaders Network connects young leaders across the Pacific and Australia for leadership, advocacy, and regional partnership.",
+    "confidence": "medium",
+    "notes": "Network appears to be coordinated through Micah Australia rather than a separate standalone domain."
+  },
+  {
+    "id": "organisation-murrie-connections",
+    "name": "Murrie Connections",
+    "url": "https://www.murrieconnections.com/",
+    "summary": "Murrie Connections is an Aboriginal and Torres Strait Islander-owned organisation that recruits culturally appropriate participants for research and consulting projects.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-mapoon-aboriginal-shire-council",
+    "name": "Mapoon Aboriginal Shire Council",
+    "url": "https://mapoon.qld.gov.au/",
+    "summary": "Mapoon Aboriginal Shire Council is the local government authority serving the Mapoon community in Cape York, Queensland.",
+    "confidence": "high",
+    "notes": "Official council domain."
+  },
+  {
+    "id": "organisation-deadly-inspiring-youth-doing-good-atsi-corporation",
+    "name": "Deadly Inspiring Youth Doing Good ATSI Corporation",
+    "url": "https://diydg.org.au/",
+    "summary": "Deadly Inspiring Youth Doing Good ATSI Corporation is a youth-led First Nations not-for-profit that empowers young people through leadership and community programs.",
+    "confidence": "high",
+    "notes": "Official DIYDG website found with organisation details and contacts."
+  },
+  {
+    "id": "organisation-aboriginal-community-connect",
+    "name": "Aboriginal Community Connect",
+    "url": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect",
+    "summary": "Aboriginal Community Connect is a culturally focused support program helping Aboriginal people address alcohol and other drug issues while staying connected to culture and community.",
+    "confidence": "medium",
+    "notes": "Appears to be a program under Uniting Communities rather than a separate incorporated entity."
+  },
+  {
+    "id": "organisation-australian-progress",
+    "name": "Australian Progress",
+    "url": "https://www.australianprogress.org.au/",
+    "summary": "Australian Progress builds the advocacy, leadership, and campaign capacity of social change organisations and civil society movements in Australia.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-thriving-families-sa",
+    "name": "Thriving Families SA",
+    "url": "https://www.linkedin.com/company/thriving-families-sa",
+    "summary": "Thriving Families SA is a South Australian cross-sector initiative focused on prevention and early supports to improve outcomes for children, families, and communities.",
+    "confidence": "low",
+    "notes": "No clear standalone public website surfaced; LinkedIn appears to be the primary official profile."
+  },
+  {
+    "id": "organisation-brisbane-blacks",
+    "name": "Brisbane Blacks",
+    "url": "https://www.facebook.com/pg/BrisbaneBlacks/about/",
+    "summary": "Brisbane Blacks appears to be a grassroots Aboriginal-led collective associated with community advocacy and political organising in Brisbane.",
+    "confidence": "low",
+    "notes": "Results were mostly social media and third-party references, and access to the Facebook page is restricted in search previews."
+  },
+  {
+    "id": "organisation-end-toxic-prisons-campaign",
+    "name": "End Toxic Prisons Campaign",
+    "url": "https://endtoxicprisons.com.au/",
+    "summary": "End Toxic Prisons Campaign is an abolitionist campaign opposing youth incarceration and advocating community-controlled alternatives, especially for First Nations young people.",
+    "confidence": "high",
+    "notes": "Clear campaign website found."
+  },
+  {
+    "id": "organisation-first-nations-futures",
+    "name": "First Nations Futures",
+    "url": "https://www.firstnationsfutures.com/",
+    "summary": "First Nations Futures is a First Nations-led economic justice organisation that redistributes flexible funding to First Nations community initiatives.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-woven-project",
+    "name": "Woven Project",
+    "url": "https://www.thewovenproject.org/",
+    "summary": "Woven Project is an Indigenous-led climate justice initiative that builds global Indigenous collaboration, strategy, and advocacy for land rights and climate action.",
+    "confidence": "medium",
+    "notes": "Search results strongly indicate this is the relevant entity, including references to a Common Threads co-hosted gathering in Australia."
+  },
+  {
+    "id": "organisation-charles-campbell-college",
+    "name": "Charles Campbell College",
+    "url": "https://www.ccc.sa.edu.au/",
+    "summary": "Charles Campbell College is a South Australian government Reception-to-Year-12 school in Adelaide.",
+    "confidence": "high",
+    "notes": "Official school website found."
+  },
+  {
+    "id": "organisation-digital-storytellers",
+    "name": "Digital Storytellers",
+    "url": "https://www.digitalstorytellers.com.au/",
+    "summary": "Digital Storytellers is an Australian social impact storytelling agency that helps purpose-driven organisations create narrative-led campaigns and media.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-gomeroi-traditional-owners-aboriginal-corporation",
+    "name": "Gomeroi Traditional Owners Aboriginal Corporation",
+    "url": "https://www.acnc.gov.au/charity/charities/22db1d50-3aaf-e811-a962-000d3ad24a0d/history",
+    "summary": "This corporation entry represents an Aboriginal organisation connected to Gomeroi/Bigambul traditional owners and family groups.",
+    "confidence": "low",
+    "notes": "Could not find a clear standalone website for the exact listed name; closest authoritative result is an ACNC record with a closely related name."
+  },
+  {
+    "id": "organisation-bama-connect-consultant",
+    "name": "Bama Connect Consultant",
+    "url": "https://au.linkedin.com/company/bama-connect-consultant",
+    "summary": "Bama Connect Consultant provides culturally grounded consulting in Traditional Owner engagement, governance transition support, and on-Country facilitation.",
+    "confidence": "medium",
+    "notes": "No standalone website surfaced; LinkedIn appears to be the primary official presence."
+  },
+  {
+    "id": "organisation-cfn",
+    "name": "CFN",
+    "url": "https://cfn.org.au/",
+    "summary": "CFN is a Queensland not-for-profit disability support provider delivering community participation, respite, and daily living services.",
+    "confidence": "medium",
+    "notes": "CFN is acronym-ambiguous, but this was the strongest Australian organisational match with a complete official site."
+  }
+]

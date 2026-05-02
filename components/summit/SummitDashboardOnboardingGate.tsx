@@ -5,19 +5,21 @@ import {
 } from "@heroicons/react/24/outline";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import SummitAcknowledgementOverlay from "@/components/summit/SummitAcknowledgementOverlay";
+import SummitHomescreenPromptOverlay from "@/components/summit/SummitHomescreenPromptOverlay";
 import {
   ACKNOWLEDGEMENT_ACCEPTED_EVENT,
   ACKNOWLEDGEMENT_COOKIE_MAX_AGE_SECONDS,
   ACKNOWLEDGEMENT_COOKIE_NAME,
   DASHBOARD_ONBOARDING_COOKIE_NAME,
   DASHBOARD_ONBOARDING_SLIDES,
+  HOMESCREEN_PROMPT_COOKIE_NAME,
 } from "@/lib/summit/acknowledgement";
 
 type Props = {
   children: React.ReactNode;
 };
 
-type GateStage = "checking" | "acknowledgement" | "onboarding" | "ready";
+type GateStage = "checking" | "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
 
 const ONBOARDING_PANEL_VISUALS = [
   {
@@ -267,7 +269,7 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
 
   useEffect(() => {
     if (hasCookie(DASHBOARD_ONBOARDING_COOKIE_NAME)) {
-      setStage("ready");
+      setStage(hasCookie(HOMESCREEN_PROMPT_COOKIE_NAME) ? "ready" : "homescreenPrompt");
       return;
     }
 
@@ -310,6 +312,11 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
 
   const completeOnboarding = () => {
     setCookie(DASHBOARD_ONBOARDING_COOKIE_NAME, "1");
+    setStage("homescreenPrompt");
+  };
+
+  const completeHomescreenPrompt = () => {
+    setCookie(HOMESCREEN_PROMPT_COOKIE_NAME, "1");
     setStage("ready");
   };
 
@@ -333,6 +340,8 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
           onSkip={completeOnboarding}
         />
       ) : null}
+
+      <SummitHomescreenPromptOverlay open={stage === "homescreenPrompt"} onComplete={completeHomescreenPrompt} />
     </>
   );
 }

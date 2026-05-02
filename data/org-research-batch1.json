@@ -1,0 +1,170 @@
+[
+  {
+    "id": "organisation-common-threads",
+    "name": "Common Threads",
+    "url": "https://www.commonthreads.org.au/",
+    "summary": "Common Threads is a First Nations-led Australian organisation that runs advocacy and campaign work on truth-telling, Treaty, land rights, and climate justice.",
+    "confidence": "high",
+    "notes": "Official organisation website clearly identifies mission and leadership."
+  },
+  {
+    "id": "organisation-sosblak-australia-sa",
+    "name": "SOSBlak Australia SA",
+    "url": "http://www.sosblakaustralia.com/",
+    "summary": "SOS Blak Australia is a grassroots Aboriginal rights campaign best known for mobilising against forced closure of remote Aboriginal communities.",
+    "confidence": "low",
+    "notes": "Domain is cited by SBS/NITV and Cultural Survival as the campaign site, but current activity and ownership are unclear."
+  },
+  {
+    "id": "organisation-no-underground-coal-gasification-leigh-creek",
+    "name": "No Underground Coal Gasification at Leigh Creek",
+    "url": "https://www.originalpower.org.au/copley_no_ucg",
+    "summary": "This campaign supports Adnyamathanha community opposition to underground coal gasification near Leigh Creek and Copley.",
+    "confidence": "medium",
+    "notes": "Best match is a dedicated campaign page hosted by Original Power rather than a standalone domain."
+  },
+  {
+    "id": "organisation-pormpuraaw-aboriginal-shire-council",
+    "name": "Pormpuraaw Aboriginal Shire Council",
+    "url": "https://www.pormpuraaw.qld.gov.au/",
+    "summary": "Pormpuraaw Aboriginal Shire Council is the local government authority delivering civic services and community development in Pormpuraaw.",
+    "confidence": "high",
+    "notes": "Official council website."
+  },
+  {
+    "id": "organisation-lake-tyers-aboriginal-trust",
+    "name": "Lake Tyers Aboriginal Trust",
+    "url": "https://laketyersaboriginaltrust.com.au/",
+    "summary": "Lake Tyers Aboriginal Trust is an Aboriginal-governed body that manages trust land, governance, and community matters at Lake Tyers.",
+    "confidence": "high",
+    "notes": "Official trust website with governance and contact information."
+  },
+  {
+    "id": "organisation-university-of-adelaide",
+    "name": "University of Adelaide",
+    "url": "https://www.adelaide.edu.au/",
+    "summary": "The University of Adelaide is a major South Australian university institution focused on higher education and research.",
+    "confidence": "high",
+    "notes": "The adelaide.edu.au domain is official and now reflects the post-2026 Adelaide University transition while retaining University of Adelaide context."
+  },
+  {
+    "id": "organisation-mandingalby-yidinji-aboriginal-corporation",
+    "name": "Mandingalby Yidinji Aboriginal Corporation",
+    "url": "http://www.djunbunji.com.au/mandingalbay-yidinji-corporation/",
+    "summary": "Mandingalbay Yidinji Aboriginal Corporation is the native title representative body for Mandingalbay Yidinji people and their country near Cairns.",
+    "confidence": "medium",
+    "notes": "Name appears with spelling variants (Mandingalby/Mandingalbay); this page is referenced via native title listings and provides direct MYAC details."
+  },
+  {
+    "id": "organisation-nanum-wungthim-land-sea-management-group",
+    "name": "Nanum Wungthim Land & Sea Management Group",
+    "url": "https://niaa.gov.au/node/2279",
+    "summary": "Nanum Wungthim is an Indigenous ranger group in Napranum that delivers coastal, cultural heritage, and land-and-sea management work.",
+    "confidence": "low",
+    "notes": "No standalone organisation-run website found; used the National Indigenous Australians Agency profile page."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-council",
+    "name": "Lachlan Kalari River Aboriginal Water Council",
+    "url": "https://australia-corp.com/co/lachlan-kalari-river-aboriginal-water-council-pty-ltd",
+    "summary": "This entity appears to be an Aboriginal water governance and advocacy body associated with the Lachlan (Kalari) river region.",
+    "confidence": "low",
+    "notes": "No official organisation website located; this is a registry-style listing and explicitly states it is not the official website."
+  },
+  {
+    "id": "organisation-government-architect-nsw",
+    "name": "Government Architect NSW",
+    "url": "https://www.governmentarchitect.nsw.gov.au/",
+    "summary": "Government Architect NSW provides strategic design leadership to improve architecture, urban design, and landscape outcomes across NSW.",
+    "confidence": "high",
+    "notes": "Official NSW Government Architect website."
+  },
+  {
+    "id": "organisation-lachlan-kalari-river-aboriginal-water-committee",
+    "name": "Lachlan Kalari River Aboriginal Water Committee",
+    "url": "http://water.nsw.gov.au/our-work/projects-and-programs/aboriginal-water-programs/regional-aboriginal-water-committees",
+    "summary": "This committee appears to be part of Aboriginal advisory structures informing water planning and management in the Lachlan region.",
+    "confidence": "low",
+    "notes": "Exact committee name is referenced in water-sector materials, but no dedicated committee-run site was found; this NSW Water page is the closest official program context."
+  },
+  {
+    "id": "organisation-full-stop-australia",
+    "name": "Full Stop Australia",
+    "url": "https://fullstop.org.au/",
+    "summary": "Full Stop Australia is a national specialist service providing trauma-informed support and 24/7 counselling related to sexual, domestic, and family violence.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-change-the-record",
+    "name": "Change the Record",
+    "url": "https://www.changetherecord.org.au/",
+    "summary": "Change the Record is a First Nations-led coalition campaigning to end over-incarceration and systemic violence against Aboriginal and Torres Strait Islander peoples.",
+    "confidence": "high",
+    "notes": "Official coalition website."
+  },
+  {
+    "id": "organisation-wenlock-catchment-management-group-inc",
+    "name": "Wenlock Catchment Management Group Inc",
+    "url": "https://qwalc.org.au/groups/group-listing/cape-york-torres-strait/",
+    "summary": "Wenlock Catchment Management Group Inc is a Cape York catchment group focused on river and landscape stewardship in the Wenlock region.",
+    "confidence": "low",
+    "notes": "No standalone website found; group is listed through Queensland Water & Land Carers and referenced in partner conservation content."
+  },
+  {
+    "id": "organisation-mounty-aboriginal-youth-community-service",
+    "name": "Mounty Aboriginal Youth and Community Service",
+    "url": "https://www.facebook.com/p/Mounty-Aboriginal-Youth-Community-Services-100077695239229/",
+    "summary": "Mounty Aboriginal Youth and Community Service is an Aboriginal-controlled Mt Druitt youth service supporting community-led programs and justice reinvestment outcomes.",
+    "confidence": "low",
+    "notes": "No clear standalone domain was indexed; this appears to be the primary public page and may require Facebook login."
+  },
+  {
+    "id": "organisation-western-sydney-watch-committee",
+    "name": "Western Sydney Watch Committee",
+    "url": "https://justiceaction.org.au/watch-committee/",
+    "summary": "The Watch Committee monitors Aboriginal treatment in custody and advocates on deaths in custody, policing, and justice-system accountability.",
+    "confidence": "medium",
+    "notes": "Search results tie this to the Aboriginal Deaths in Custody Watch Committee page hosted by Justice Action; specific Western Sydney branding is limited."
+  },
+  {
+    "id": "organisation-our-islands-our-home",
+    "name": "Our Islands Our Home",
+    "url": "https://ourislandsourhome.com.au/",
+    "summary": "Our Islands Our Home is a Torres Strait Islander-led climate justice campaign seeking action to protect Zenadth Kes from climate impacts.",
+    "confidence": "high",
+    "notes": "Official campaign website."
+  },
+  {
+    "id": "organisation-mehi-centre",
+    "name": "Mehi Centre",
+    "url": "https://www.mehicentre.com/",
+    "summary": "Mehi Centre is a not-for-profit based in Moree that supports Indigenous communities through cultural, educational, environmental, and advocacy initiatives.",
+    "confidence": "high",
+    "notes": "Official website includes organisation description and ABN."
+  },
+  {
+    "id": "organisation-martuwarra-fitzroy-river-council",
+    "name": "Martuwarra Fitzroy River Council",
+    "url": "https://martuwarra.org/",
+    "summary": "Martuwarra Fitzroy River Council is an Indigenous-led alliance of Kimberley Elders advocating to protect the Martuwarra/Fitzroy River system.",
+    "confidence": "high",
+    "notes": "Official council website."
+  },
+  {
+    "id": "organisation-national-tertiary-education-union",
+    "name": "National Tertiary Education Union",
+    "url": "https://www.nteu.au/",
+    "summary": "The National Tertiary Education Union is the main union representing university and tertiary education workers across Australia.",
+    "confidence": "high",
+    "notes": "Official union website."
+  },
+  {
+    "id": "organisation-fishers-oysters-pty-ltd",
+    "name": "Fisher's Oysters Pty Ltd",
+    "url": "https://devilscorner.fishersoffreycinet.com.au/",
+    "summary": "Fishers of Freycinet is a Tasmania-based seafood and oyster business associated with the Fisher family’s farmed oyster operations.",
+    "confidence": "low",
+    "notes": "An exact indexed website for the legal entity name 'Fisher's Oysters Pty Ltd' was not clearly found; this is the closest active brand/domain match."
+  }
+]

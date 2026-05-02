@@ -1,4 +1,3 @@
-import Link from "next/link";
 import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitListCard from "@/components/summit/SummitListCard";
 import { getSummitContext } from "@/lib/summit/context";
@@ -25,19 +24,13 @@ export default async function Page() {
               id: survey.id,
               title: fieldString(survey, "Name") || "Survey",
               subtitle: fieldString(survey, "Description"),
-              description: fieldString(survey, "Url"),
-              imageUrl: null,
+              description: null,
+              imageUrl: "/images/surveys/survey-feedback.svg",
               tags: [],
             }}
           />
         ))}
       </div>
-      <p className="text-xs text-stone-400">
-        These links mirror the native app&apos;s survey entries and open as embedded web content.
-      </p>
-      <Link href="/security-guidelines" className="text-sm text-amber-300">
-        Security guidelines
-      </Link>
     </div>
   );
 }

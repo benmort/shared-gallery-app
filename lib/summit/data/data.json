@@ -1702,71 +1702,53 @@
   ],
   "venues": [
     {
-      "id": "venue-plenary-hall",
+      "id": "venue-intercontinental-hotel",
       "fields": {
-        "Name": "Plenary Hall",
-        "Subtitle": "All-in plenaries and shared sessions",
-        "Location": "Adelaide, South Australia",
-        "Address": "Summit venue details shared with attendees",
-        "Phone": "+61 8 0000 0000",
+        "Name": "Intercontinental Hotel",
+        "Subtitle": "Youth Summit Day + First Official Summit Day",
+        "Location": "Adelaide",
+        "Address": "North Terrace, Adelaide SA 5000",
         "Email": "summit@commonthreads.org.au",
-        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Description": "Main venue for plenary sessions and closing reflections.",
-        "Instructions": "Arrive with your summit registration confirmation.",
+        "URL": "https://www.ihg.com/intercontinental/hotels/gb/en/adelaide/adlha/hoteldetail",
+        "Map Link": "https://maps.app.goo.gl/pF8N9QeNSg7xFfpS7",
+        "Parking Link": "https://www.adelaidecc.com.au/attending/car-parking/",
+        "Description": "Summit sessions at the Intercontinental Hotel run on Monday 11 May and Tuesday 12 May.",
+        "Instructions": "The summit conference space is inside the hotel. Go to the lobby and follow signage to the Lower Lobby.\\n\\nNavigating the venue:\\n- Ballroom: registration desk, plenary space\\n- Banksia and Grevillea rooms: breakout spaces\\n- Foyer area: catering space\\n\\nIf you require a quiet space, or a space to have a break with your children, ask a Common Threads team member for support.\\n\\nParking (Intercontinental): limited street parking nearby. Paid parking is available at Adelaide Convention Centre car parks (North Terrace, Riverbank, Festival). See parking details in the Details section for rates and locations.\\n\\nDrop-off and pick-up: available adjacent to the hotel entrance with ramp access (taxis, rideshare, private cars).\\n\\nAccessibility: wheelchair-accessible parking is available in the hotel car park and at Adelaide Convention Centre car parks.",
         "Tags": [
-          "Plenary",
-          "Accessible"
+          "Intercontinental Hotel",
+          "Monday 11 May",
+          "Tuesday 12 May"
         ],
         "Image": [
           {
-            "url": "https://picsum.photos/seed/venue-plenary-hall/1200/800"
+            "url": "/images/venues/intercontinenal-hotel.jpg"
           }
         ]
       }
     },
     {
-      "id": "venue-breakout-rooms",
+      "id": "venue-adelaide-oval",
       "fields": {
-        "Name": "Breakout Rooms",
-        "Subtitle": "Issue and regional breakout sessions",
-        "Location": "Adelaide, South Australia",
-        "Address": "Within summit venue campus",
-        "Phone": "+61 8 0000 0000",
+        "Name": "Adelaide Oval",
+        "Subtitle": "Second Summit Day + Last Summit Day",
+        "Location": "North Adelaide",
+        "Address": "War Memorial Dr, North Adelaide SA 5006, Australia.",
         "Email": "summit@commonthreads.org.au",
-        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Description": "Dedicated rooms for breakouts and collaborative campaign work.",
-        "Instructions": "Room allocations are announced during each session block.",
+        "URL": "https://www.adelaideoval.com.au",
+        "Map Link": "https://maps.app.goo.gl/sJ86J8fuuirmkzrQA",
+        "Parking Link": "https://www.wilsonparking.com.au/parking-locations/south-australia/adelaide-cbd/adelaide-oval-east-car-park/",
+        "Wilson East Carpark Access Video": "https://www.youtube.com/watch?v=64JdSVd4L-8",
+        "Oval Hotel Access Video": "https://www.youtube.com/watch?v=vyTRklJhcSU",
+        "Description": "Summit sessions at Adelaide Oval run on Wednesday 13 May and Thursday 14 May.",
+        "Instructions": "Summit sessions are in the Ian McLachlan Room (Western Stand, Level 3). The nearest entry point is North Gate. If entering through South Gate, ushers will guide you. Guests entering via North Gate need to press the intercom button for stadium access.\\n\\nNavigating the venue:\\n- Ian McLachlan Room: registration desk, main plenary space\\n- Ian McLachlan Room East: breakout space\\n- Ian McLachlan Room West: breakout space\\n- Village Green Pavilion: breakout space\\n- David Hookes Terrace + Village Green Pavilion: catering and outdoor space\\n\\nIf you require a quiet space, or a space to have a break with your children, ask a Common Threads team member for support.\\n\\nParking (Adelaide Oval): limited street parking nearby.\\n- Wilson Street Carpark: entry via King William Road. Use lifts to Level 1, enter via South Gate, then follow function room signage.\\n- Wilson North Carpark: entry via Pennington Terrace, North Adelaide. Enter via Bob Quinn Gate, then follow function room signage.\\n\\nFunction parking rate: $25 per day. Keep your entry ticket and collect a validation QR from the venue.\\n\\nAccess videos are referenced in summit comms for Wilson East Carpark and Oval Hotel guests.",
         "Tags": [
-          "Breakouts"
+          "Adelaide Oval",
+          "Wednesday 13 May",
+          "Thursday 14 May"
         ],
         "Image": [
           {
-            "url": "https://picsum.photos/seed/venue-breakout-rooms/1200/800"
-          }
-        ]
-      }
-    },
-    {
-      "id": "venue-workshop-hub",
-      "fields": {
-        "Name": "Workshop Hub",
-        "Subtitle": "Skills sessions and practical training",
-        "Location": "Adelaide, South Australia",
-        "Address": "Within summit venue campus",
-        "Phone": "+61 8 0000 0000",
-        "Email": "summit@commonthreads.org.au",
-        "URL": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Map Link": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Description": "Workshop area for organising, messaging and media training sessions.",
-        "Instructions": "Bring materials for interactive activities.",
-        "Tags": [
-          "Workshops"
-        ],
-        "Image": [
-          {
-            "url": "https://picsum.photos/seed/venue-workshop-hub/1200/800"
+            "url": "/images/venues/adelaide-oval.png"
           }
         ]
       }
@@ -1851,24 +1833,22 @@
       "fields": {
         "Name": "Common Threads",
         "Country": "Australia",
-        "Summary": "Common Threads is a real Australian organisation listed by summit participants.",
+        "Summary": "Common Threads is a First Nations-led Australian organisation that runs advocacy and campaign work on truth-telling, Treaty, land rights, and climate justice.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-common-threads.png"
+            "url": "/images/organisations/organisation-common-threads-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-common-threads.png"
+            "url": "/images/organisations/organisation-common-threads-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.commonthreads.org.au/"
       }
     },
     {
@@ -1876,24 +1856,22 @@
       "fields": {
         "Name": "SOSBlak Australia SA",
         "Country": "Australia",
-        "Summary": "SOSBlak Australia SA is a real Australian organisation listed by summit participants.",
+        "Summary": "SOS Blak Australia is a grassroots Aboriginal rights campaign best known for mobilising against forced closure of remote Aboriginal communities.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://www.facebook.com/sosblakaustralia/"
       }
     },
     {
@@ -1901,24 +1879,22 @@
       "fields": {
         "Name": "No Underground Coal Gasification at Leigh Creek",
         "Country": "Australia",
-        "Summary": "No Underground Coal Gasification at Leigh Creek is a real Australian organisation listed by summit participants.",
+        "Summary": "This campaign supports Adnyamathanha community opposition to underground coal gasification near Leigh Creek and Copley.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek.svg"
+            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek.svg"
+            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.originalpower.org.au/copley_no_ucg"
       }
     },
     {
@@ -1926,24 +1902,22 @@
       "fields": {
         "Name": "Pormpuraaw Aboriginal Shire Council",
         "Country": "Australia",
-        "Summary": "Pormpuraaw Aboriginal Shire Council is a real Australian organisation listed by summit participants.",
+        "Summary": "Pormpuraaw Aboriginal Shire Council is the local government authority delivering civic services and community development in Pormpuraaw.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council.svg"
+            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council.svg"
+            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://www.pormpuraaw.qld.gov.au/"
       }
     },
     {
@@ -1951,24 +1925,22 @@
       "fields": {
         "Name": "Lake Tyers Aboriginal Trust",
         "Country": "Australia",
-        "Summary": "Lake Tyers Aboriginal Trust is a real Australian organisation listed by summit participants.",
+        "Summary": "Lake Tyers Aboriginal Trust is an Aboriginal-governed body that manages trust land, governance, and community matters at Lake Tyers.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://laketyersaboriginaltrust.com.au/"
       }
     },
     {
@@ -1976,24 +1948,22 @@
       "fields": {
         "Name": "University of Adelaide",
         "Country": "Australia",
-        "Summary": "University of Adelaide is a real Australian organisation listed by summit participants.",
+        "Summary": "The University of Adelaide is a major South Australian university institution focused on higher education and research.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-university-of-adelaide.svg"
+            "url": "/images/organisations/organisation-university-of-adelaide-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-university-of-adelaide.svg"
+            "url": "/images/organisations/organisation-university-of-adelaide-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.adelaide.edu.au/"
       }
     },
     {
@@ -2001,24 +1971,22 @@
       "fields": {
         "Name": "Mandingalby Yidinji Aboriginal Corporation",
         "Country": "Australia",
-        "Summary": "Mandingalby Yidinji Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Summary": "Mandingalbay Yidinji Aboriginal Corporation is the native title representative body for Mandingalbay Yidinji people and their country near Cairns.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation-local.png"
           }
-        ]
+        ],
+        "URL": "https://mandingalbay.com.au/mandingalbay-yidinji-aboriginal-corporation-myac/"
       }
     },
     {
@@ -2026,24 +1994,22 @@
       "fields": {
         "Name": "Nanum Wungthim Land & Sea Management Group",
         "Country": "Australia",
-        "Summary": "Nanum Wungthim Land & Sea Management Group is a real Australian organisation listed by summit participants.",
+        "Summary": "Nanum Wungthim is an Indigenous ranger group in Napranum that delivers coastal, cultural heritage, and land-and-sea management work.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://niaa.gov.au/node/2279"
       }
     },
     {
@@ -2051,24 +2017,22 @@
       "fields": {
         "Name": "Lachlan Kalari River Aboriginal Water Council",
         "Country": "Australia",
-        "Summary": "Lachlan Kalari River Aboriginal Water Council is a real Australian organisation listed by summit participants.",
+        "Summary": "This entity appears to be an Aboriginal water governance and advocacy body associated with the Lachlan (Kalari) river region.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
-        ]
+        ],
+        "URL": "https://australia-corp.com/co/lachlan-kalari-river-aboriginal-water-council-pty-ltd"
       }
     },
     {
@@ -2076,24 +2040,22 @@
       "fields": {
         "Name": "Government Architect NSW",
         "Country": "Australia",
-        "Summary": "Government Architect NSW is a real Australian organisation listed by summit participants.",
+        "Summary": "Government Architect NSW provides strategic design leadership to improve architecture, urban design, and landscape outcomes across NSW.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-government-architect-nsw.svg"
+            "url": "/images/organisations/organisation-government-architect-nsw-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-government-architect-nsw.svg"
+            "url": "/images/organisations/organisation-government-architect-nsw-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://www.governmentarchitect.nsw.gov.au/"
       }
     },
     {
@@ -2101,24 +2063,22 @@
       "fields": {
         "Name": "Lachlan Kalari River Aboriginal Water Committee",
         "Country": "Australia",
-        "Summary": "Lachlan Kalari River Aboriginal Water Committee is a real Australian organisation listed by summit participants.",
+        "Summary": "This committee appears to be part of Aboriginal advisory structures informing water planning and management in the Lachlan region.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-committee.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-committee.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
-        ]
+        ],
+        "URL": "https://www.water.nsw.gov.au/our-work/projects-and-programs/aboriginal-water-programs/regional-aboriginal-water-committees"
       }
     },
     {
@@ -2126,24 +2086,22 @@
       "fields": {
         "Name": "Full Stop Australia",
         "Country": "Australia",
-        "Summary": "Full Stop Australia is a real Australian organisation listed by summit participants.",
+        "Summary": "Full Stop Australia is a national specialist service providing trauma-informed support and 24/7 counselling related to sexual, domestic, and family violence.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-full-stop-australia.svg"
+            "url": "/images/organisations/organisation-full-stop-australia-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-full-stop-australia.svg"
+            "url": "/images/organisations/organisation-full-stop-australia-local.png"
           }
-        ]
+        ],
+        "URL": "https://fullstop.org.au/"
       }
     },
     {
@@ -2151,24 +2109,22 @@
       "fields": {
         "Name": "Change the Record",
         "Country": "Australia",
-        "Summary": "Change the Record is a real Australian organisation listed by summit participants.",
+        "Summary": "Change the Record is a First Nations-led coalition campaigning to end over-incarceration and systemic violence against Aboriginal and Torres Strait Islander peoples.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-change-the-record.svg"
+            "url": "/images/organisations/organisation-change-the-record-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-change-the-record.svg"
+            "url": "/images/organisations/organisation-change-the-record-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.changetherecord.org.au/"
       }
     },
     {
@@ -2176,24 +2132,22 @@
       "fields": {
         "Name": "Wenlock Catchment Management Group Inc",
         "Country": "Australia",
-        "Summary": "Wenlock Catchment Management Group Inc is a real Australian organisation listed by summit participants.",
+        "Summary": "Wenlock Catchment Management Group Inc is a Cape York catchment group focused on river and landscape stewardship in the Wenlock region.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc.svg"
+            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc.svg"
+            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc-local.png"
           }
-        ]
+        ],
+        "URL": "https://qwalc.org.au/groups/group-listing/cape-york-torres-strait/"
       }
     },
     {
@@ -2201,24 +2155,22 @@
       "fields": {
         "Name": "Mounty Aboriginal Youth and Community Service",
         "Country": "Australia",
-        "Summary": "Mounty Aboriginal Youth and Community Service is a real Australian organisation listed by summit participants.",
+        "Summary": "Mounty Aboriginal Youth and Community Service is an Aboriginal-controlled Mt Druitt youth service supporting community-led programs and justice reinvestment outcomes.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service.svg"
+            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service.svg"
+            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.facebook.com/p/Mounty-Aboriginal-Youth-Community-Services-100077695239229/"
       }
     },
     {
@@ -2226,24 +2178,22 @@
       "fields": {
         "Name": "Western Sydney Watch Committee",
         "Country": "Australia",
-        "Summary": "Western Sydney Watch Committee is a real Australian organisation listed by summit participants.",
+        "Summary": "The Watch Committee monitors Aboriginal treatment in custody and advocates on deaths in custody, policing, and justice-system accountability.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-western-sydney-watch-committee.svg"
+            "url": "/images/organisations/organisation-western-sydney-watch-committee-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-western-sydney-watch-committee.svg"
+            "url": "/images/organisations/organisation-western-sydney-watch-committee-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://justiceaction.org.au/watch-committee/"
       }
     },
     {
@@ -2251,24 +2201,22 @@
       "fields": {
         "Name": "Our Islands Our Home",
         "Country": "Australia",
-        "Summary": "Our Islands Our Home is a real Australian organisation listed by summit participants.",
+        "Summary": "Our Islands Our Home is a Torres Strait Islander-led climate justice campaign seeking action to protect Zenadth Kes from climate impacts.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-our-islands-our-home.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-our-islands-our-home.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://ourislandsourhome.com.au/"
       }
     },
     {
@@ -2276,24 +2224,22 @@
       "fields": {
         "Name": "Mehi Centre",
         "Country": "Australia",
-        "Summary": "Mehi Centre is a real Australian organisation listed by summit participants.",
+        "Summary": "Mehi Centre is a not-for-profit based in Moree that supports Indigenous communities through cultural, educational, environmental, and advocacy initiatives.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mehi-centre.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mehi-centre.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
-        ]
+        ],
+        "URL": "https://www.mehicentre.com/"
       }
     },
     {
@@ -2301,24 +2247,22 @@
       "fields": {
         "Name": "Martuwarra Fitzroy River Council",
         "Country": "Australia",
-        "Summary": "Martuwarra Fitzroy River Council is a real Australian organisation listed by summit participants.",
+        "Summary": "Martuwarra Fitzroy River Council is an Indigenous-led alliance of Kimberley Elders advocating to protect the Martuwarra/Fitzroy River system.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council.svg"
+            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council.svg"
+            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://martuwarra.org/"
       }
     },
     {
@@ -2326,24 +2270,22 @@
       "fields": {
         "Name": "National Tertiary Education Union",
         "Country": "Australia",
-        "Summary": "National Tertiary Education Union is a real Australian organisation listed by summit participants.",
+        "Summary": "The National Tertiary Education Union is the main union representing university and tertiary education workers across Australia.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-national-tertiary-education-union.svg"
+            "url": "/images/organisations/organisation-national-tertiary-education-union-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-national-tertiary-education-union.svg"
+            "url": "/images/organisations/organisation-national-tertiary-education-union-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.nteu.au/"
       }
     },
     {
@@ -2351,24 +2293,22 @@
       "fields": {
         "Name": "Fisher's Oysters Pty Ltd",
         "Country": "Australia",
-        "Summary": "Fisher's Oysters Pty Ltd is a real Australian organisation listed by summit participants.",
+        "Summary": "Fishers of Freycinet is a Tasmania-based seafood and oyster business associated with the Fisher family’s farmed oyster operations.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd.svg"
+            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd.svg"
+            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://devilscorner.fishersoffreycinet.com.au/"
       }
     },
     {
@@ -2376,24 +2316,22 @@
       "fields": {
         "Name": "First Peoples' Assembly of Victoria",
         "Country": "Australia",
-        "Summary": "First Peoples' Assembly of Victoria is a real Australian organisation listed by summit participants.",
+        "Summary": "The First Peoples' Assembly of Victoria is an independent, democratically elected body representing Traditional Owners and First Peoples in Victoria in Treaty-related processes.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-first-peoples-assembly-victoria.svg"
+            "url": "/images/organisations/organisation-first-peoples-assembly-victoria-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-first-peoples-assembly-victoria.svg"
+            "url": "/images/organisations/organisation-first-peoples-assembly-victoria-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://www.firstpeoplesvic.org/"
       }
     },
     {
@@ -2401,24 +2339,22 @@
       "fields": {
         "Name": "Australian Conservation Foundation",
         "Country": "Australia",
-        "Summary": "Australian Conservation Foundation is a real Australian organisation listed by summit participants.",
+        "Summary": "The Australian Conservation Foundation is a national environmental advocacy organisation campaigning to protect nature and address climate pollution.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-australian-conservation-foundation.svg"
+            "url": "/images/organisations/organisation-australian-conservation-foundation-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-australian-conservation-foundation.svg"
+            "url": "/images/organisations/organisation-australian-conservation-foundation-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.acf.org.au/"
       }
     },
     {
@@ -2426,24 +2362,22 @@
       "fields": {
         "Name": "Limestone Coast Landscape Board",
         "Country": "Australia",
-        "Summary": "Limestone Coast Landscape Board is a real Australian organisation listed by summit participants.",
+        "Summary": "The Limestone Coast Landscape Board is a South Australian statutory board that leads regional landscape and natural resource management.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-limestone-coast-landscape-board.svg"
+            "url": "/images/organisations/organisation-limestone-coast-landscape-board-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-limestone-coast-landscape-board.svg"
+            "url": "/images/organisations/organisation-limestone-coast-landscape-board-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.landscape.sa.gov.au/lc/"
       }
     },
     {
@@ -2451,24 +2385,22 @@
       "fields": {
         "Name": "Strait Climate Action",
         "Country": "Australia",
-        "Summary": "Strait Climate Action is a real Australian organisation listed by summit participants.",
+        "Summary": "Strait Climate Action is described as a Torres Strait youth climate group creating language-based resources and intergenerational climate campaigning.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-strait-climate-action.svg"
+            "url": "/images/organisations/organisation-strait-climate-action-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-strait-climate-action.svg"
+            "url": "/images/organisations/organisation-strait-climate-action-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.fya.org.au/program/youth-action-and-wellbeing-grants/"
       }
     },
     {
@@ -2476,24 +2408,22 @@
       "fields": {
         "Name": "North Queensland Land Council",
         "Country": "Australia",
-        "Summary": "North Queensland Land Council is a real Australian organisation listed by summit participants.",
+        "Summary": "The North Queensland Land Council is the recognised Native Title Representative Body supporting Traditional Owners across its North Queensland region.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-north-queensland-land-council.svg"
+            "url": "/images/organisations/organisation-north-queensland-land-council-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-north-queensland-land-council.svg"
+            "url": "/images/organisations/organisation-north-queensland-land-council-local.png"
           }
-        ]
+        ],
+        "URL": "https://nqlc.com.au/"
       }
     },
     {
@@ -2501,24 +2431,22 @@
       "fields": {
         "Name": "Wardliparingga - SAHMRI",
         "Country": "Australia",
-        "Summary": "Wardliparingga - SAHMRI is a real Australian organisation listed by summit participants.",
+        "Summary": "Wardliparingga is SAHMRI’s Aboriginal Health Equity research theme focused on improving health and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-wardliparingga-sahmri.svg"
+            "url": "/images/organisations/organisation-wardliparingga-sahmri-local.jpg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-wardliparingga-sahmri.svg"
+            "url": "/images/organisations/organisation-wardliparingga-sahmri-local.jpg"
           }
-        ]
+        ],
+        "URL": "https://sahmri.org.au/research/themes/aboriginal-health"
       }
     },
     {
@@ -2526,24 +2454,22 @@
       "fields": {
         "Name": "Tribes United",
         "Country": "Australia",
-        "Summary": "Tribes United is a real Australian organisation listed by summit participants.",
+        "Summary": "Spiritual Unity of the Tribes is an Australian intertribal community focused on ceremony, cultural continuity, and traditional knowledge sharing.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-tribes-united.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-tribes-united.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://www.spiritualunityofthetribes.org.au/"
       }
     },
     {
@@ -2551,24 +2477,22 @@
       "fields": {
         "Name": "Social Reinvestment WA",
         "Country": "Australia",
-        "Summary": "Social Reinvestment WA is a real Australian organisation listed by summit participants.",
+        "Summary": "Social Reinvestment WA is an Aboriginal-led coalition advocating justice reinvestment and reforms to reduce Aboriginal over-representation in WA’s justice system.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-social-reinvestment-wa.svg"
+            "url": "/images/organisations/organisation-social-reinvestment-wa-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-social-reinvestment-wa.svg"
+            "url": "/images/organisations/organisation-social-reinvestment-wa-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.socialreinvestmentwa.org.au/"
       }
     },
     {
@@ -2576,24 +2500,22 @@
       "fields": {
         "Name": "Human Rights Law Centre",
         "Country": "Australia",
-        "Summary": "Human Rights Law Centre is a real Australian organisation listed by summit participants.",
+        "Summary": "The Human Rights Law Centre is a legal advocacy organisation that works to advance and defend human rights through law reform, litigation, and public campaigning.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-human-rights-law-centre.svg"
+            "url": "/images/organisations/human rights law centre.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-human-rights-law-centre.svg"
+            "url": "/images/organisations/human rights law centre.png"
           }
-        ]
+        ],
+        "URL": "https://www.hrlc.org.au/"
       }
     },
     {
@@ -2601,24 +2523,22 @@
       "fields": {
         "Name": "Queensland Teachers' Union",
         "Country": "Australia",
-        "Summary": "Queensland Teachers' Union is a real Australian organisation listed by summit participants.",
+        "Summary": "The Queensland Teachers' Union is the industrial and professional union representing educators in Queensland state schools and TAFE.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-queensland-teachers-union.svg"
+            "url": "/images/organisations/organisation-queensland-teachers-union-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-queensland-teachers-union.svg"
+            "url": "/images/organisations/organisation-queensland-teachers-union-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.qtu.asn.au/"
       }
     },
     {
@@ -2626,24 +2546,22 @@
       "fields": {
         "Name": "Tasmanian Aboriginal Centre",
         "Country": "Australia",
-        "Summary": "Tasmanian Aboriginal Centre is a real Australian organisation listed by summit participants.",
+        "Summary": "The Tasmanian Aboriginal Centre is an Aboriginal community organisation delivering statewide advocacy, health, cultural, language, and community programs.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre.svg"
+            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre.svg"
+            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre-local.png"
           }
-        ]
+        ],
+        "URL": "https://tacinc.com.au/"
       }
     },
     {
@@ -2651,24 +2569,22 @@
       "fields": {
         "Name": "ARDS Aboriginal Corporation",
         "Country": "Australia",
-        "Summary": "ARDS Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Summary": "ARDS Aboriginal Corporation is a Yolŋu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-ards-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-ards-aboriginal-corporation-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-ards-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-ards-aboriginal-corporation-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://ards.com.au/"
       }
     },
     {
@@ -2676,24 +2592,22 @@
       "fields": {
         "Name": "The Nurse On Foot",
         "Country": "Australia",
-        "Summary": "The Nurse On Foot is a real Australian organisation listed by summit participants.",
+        "Summary": "The Foot Care Nurse is a nurse-led mobile and clinic foot-care service providing in-home nail and foot health support in Victoria.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
-        ]
+        ],
+        "URL": "https://www.thefootcarenurse.com.au/"
       }
     },
     {
@@ -2701,24 +2615,22 @@
       "fields": {
         "Name": "Mob Made Media & Communications Agency",
         "Country": "Australia",
-        "Summary": "Mob Made Media & Communications Agency is a real Australian organisation listed by summit participants.",
+        "Summary": "Mob Made Media & Communications Agency appears to be a First Nations media and content production agency credited on arts and community campaign work.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mob-made-media-communications-agency.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mob-made-media-communications-agency.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://www.instagram.com/mobmademediaandcommunications/"
       }
     },
     {
@@ -2726,24 +2638,22 @@
       "fields": {
         "Name": "First Australians Capital",
         "Country": "Australia",
-        "Summary": "First Australians Capital is a real Australian organisation listed by summit participants.",
+        "Summary": "First Australians Capital is a First Nations-led impact investment and business support organisation backing Indigenous entrepreneurs and enterprises.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-first-australians-capital.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-first-australians-capital.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://firstaustralianscapital.org/"
       }
     },
     {
@@ -2751,24 +2661,22 @@
       "fields": {
         "Name": "Invasive Species Council",
         "Country": "Australia",
-        "Summary": "Invasive Species Council is a real Australian organisation listed by summit participants.",
+        "Summary": "The Invasive Species Council is an Australian environmental advocacy organisation working to prevent and reduce harm from invasive species.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-invasive-species-council.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-invasive-species-council.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://invasives.org.au/"
       }
     },
     {
@@ -2776,24 +2684,22 @@
       "fields": {
         "Name": "Pitta Pitta Aboriginal Corporation RNTBC",
         "Country": "Australia",
-        "Summary": "Pitta Pitta Aboriginal Corporation RNTBC is a real Australian organisation listed by summit participants.",
+        "Summary": "Pitta Pitta Aboriginal Corporation RNTBC acts as trustee for the native title rights and interests of the Pitta Pitta People.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pitta-pitta-aboriginal-corporation-rntbc.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pitta-pitta-aboriginal-corporation-rntbc.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://nativetitle.org.au/find/pbc/3943"
       }
     },
     {
@@ -2801,24 +2707,22 @@
       "fields": {
         "Name": "Aboriginal Housing Office",
         "Country": "Australia",
-        "Summary": "Aboriginal Housing Office is a real Australian organisation listed by summit participants.",
+        "Summary": "The Aboriginal Housing Office is a NSW statutory body responsible for improving access to affordable housing for Aboriginal people.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://aho.nsw.gov.au/"
       }
     },
     {
@@ -2826,24 +2730,22 @@
       "fields": {
         "Name": "Katji Yanun",
         "Country": "Australia",
-        "Summary": "Katji Yanun is a real Australian organisation listed by summit participants.",
+        "Summary": "Katji Yanun appears to be an Aboriginal-led consulting practice focused on justice, governance, and systems reform advisory work.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-katji-yanun.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-katji-yanun.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://au.linkedin.com/in/melissa-clarke-83699639"
       }
     },
     {
@@ -2851,24 +2753,22 @@
       "fields": {
         "Name": "Justice Reinvestment Port Augusta",
         "Country": "Australia",
-        "Summary": "Justice Reinvestment Port Augusta is a real Australian organisation listed by summit participants.",
+        "Summary": "Justice Reinvestment Port Augusta appears to be a community-led Port Augusta initiative linked to Aboriginal-led justice reinvestment work delivered via Healthy Dreaming.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
-        ]
+        ],
+        "URL": "https://healthydreaming.com.au/"
       }
     },
     {
@@ -2876,24 +2776,22 @@
       "fields": {
         "Name": "Justice for Walker",
         "Country": "Australia",
-        "Summary": "Justice for Walker is a real Australian organisation listed by summit participants.",
+        "Summary": "Justice for Walker is a grassroots campaign calling for accountability and justice after the death of Warlpiri man Kumanjayi Walker.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-justice-for-walker.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-justice-for-walker.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
-        ]
+        ],
+        "URL": "https://www.facebook.com/standwithyuendumu/"
       }
     },
     {
@@ -2901,24 +2799,22 @@
       "fields": {
         "Name": "Pukatja Community",
         "Country": "Australia",
-        "Summary": "Pukatja Community is a real Australian organisation listed by summit participants.",
+        "Summary": "Pukatja Community is an Anangu community on the APY Lands in north-west South Australia.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pukatja-community.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pukatja-community.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
-        ]
+        ],
+        "URL": "https://anangu.com.au/sa-communities/pukatja-ernabella"
       }
     },
     {
@@ -2926,24 +2822,22 @@
       "fields": {
         "Name": "National Disability Insurance Scheme",
         "Country": "Australia",
-        "Summary": "National Disability Insurance Scheme is a real Australian organisation listed by summit participants.",
+        "Summary": "The National Disability Insurance Scheme is Australia's national program that funds supports for eligible people with significant and permanent disability.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
-        ]
+        ],
+        "URL": "https://www.ndis.gov.au/"
       }
     },
     {
@@ -2951,24 +2845,22 @@
       "fields": {
         "Name": "Seed Mob",
         "Country": "Australia",
-        "Summary": "Seed Mob is a real Australian organisation listed by summit participants.",
+        "Summary": "Seed Mob is an Aboriginal and Torres Strait Islander youth-led climate justice movement focused on protecting Country and communities.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-seed-mob.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-seed-mob.svg"
+            "url": "/images/organisations/organisation-pattern-4.svg"
           }
-        ]
+        ],
+        "URL": "https://www.seedmob.org.au/"
       }
     },
     {
@@ -2976,24 +2868,22 @@
       "fields": {
         "Name": "Pacific Australian Emerging Leaders Network",
         "Country": "Australia",
-        "Summary": "Pacific Australian Emerging Leaders Network is a real Australian organisation listed by summit participants.",
+        "Summary": "The Pacific Australian Emerging Leaders Network connects young leaders across the Pacific and Australia for leadership, advocacy, and regional partnership.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pacific-australian-emerging-leaders-network.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pacific-australian-emerging-leaders-network.svg"
+            "url": "/images/organisations/organisation-pattern-5.svg"
           }
-        ]
+        ],
+        "URL": "https://www.micahaustralia.org/take-action/pael-network/"
       }
     },
     {
@@ -3001,24 +2891,22 @@
       "fields": {
         "Name": "Murrie Connections",
         "Country": "Australia",
-        "Summary": "Murrie Connections is a real Australian organisation listed by summit participants.",
+        "Summary": "Murrie Connections is an Aboriginal and Torres Strait Islander-owned organisation that recruits culturally appropriate participants for research and consulting projects.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-murrie-connections.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-murrie-connections.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
-        ]
+        ],
+        "URL": "https://www.murrieconnections.com/"
       }
     },
     {
@@ -3026,24 +2914,22 @@
       "fields": {
         "Name": "Mapoon Aboriginal Shire Council",
         "Country": "Australia",
-        "Summary": "Mapoon Aboriginal Shire Council is a real Australian organisation listed by summit participants.",
+        "Summary": "Mapoon Aboriginal Shire Council is the local government authority serving the Mapoon community in Cape York, Queensland.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mapoon-aboriginal-shire-council.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mapoon-aboriginal-shire-council.svg"
+            "url": "/images/organisations/organisation-pattern-2.svg"
           }
-        ]
+        ],
+        "URL": "https://mapoon.qld.gov.au/"
       }
     },
     {
@@ -3051,24 +2937,22 @@
       "fields": {
         "Name": "Deadly Inspiring Youth Doing Good ATSI Corporation",
         "Country": "Australia",
-        "Summary": "Deadly Inspiring Youth Doing Good ATSI Corporation is a real Australian organisation listed by summit participants.",
+        "Summary": "Deadly Inspiring Youth Doing Good ATSI Corporation is a youth-led First Nations not-for-profit that empowers young people through leadership and community programs.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
+            "url": "/images/organisations/organisation-pattern-3.svg"
           }
-        ]
+        ],
+        "URL": "https://diydg.org.au/"
       }
     },
     {
@@ -3076,24 +2960,22 @@
       "fields": {
         "Name": "Aboriginal Community Connect",
         "Country": "Australia",
-        "Summary": "Aboriginal Community Connect is a real Australian organisation listed by summit participants.",
+        "Summary": "Aboriginal Community Connect is a culturally focused support program helping Aboriginal people address alcohol and other drug issues while staying connected to culture and community.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-aboriginal-community-connect.svg"
+            "url": "/images/organisations/organisation-aboriginal-community-connect-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-aboriginal-community-connect.svg"
+            "url": "/images/organisations/organisation-aboriginal-community-connect-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect"
       }
     },
     {
@@ -3101,24 +2983,22 @@
       "fields": {
         "Name": "Australian Progress",
         "Country": "Australia",
-        "Summary": "Australian Progress is a real Australian organisation listed by summit participants.",
+        "Summary": "Australian Progress builds the advocacy, leadership, and campaign capacity of social change organisations and civil society movements in Australia.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-australian-progress.svg"
+            "url": "/images/organisations/organisation-australian-progress-local.webp"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-australian-progress.svg"
+            "url": "/images/organisations/organisation-australian-progress-local.webp"
           }
-        ]
+        ],
+        "URL": "https://www.australianprogress.org.au/"
       }
     },
     {
@@ -3126,24 +3006,22 @@
       "fields": {
         "Name": "Thriving Families SA",
         "Country": "Australia",
-        "Summary": "Thriving Families SA is a real Australian organisation listed by summit participants.",
+        "Summary": "Thriving Families SA is a South Australian cross-sector initiative focused on prevention and early supports to improve outcomes for children, families, and communities.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-thriving-families-sa.svg"
+            "url": "/images/organisations/organisation-thriving-families-sa-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-thriving-families-sa.svg"
+            "url": "/images/organisations/organisation-thriving-families-sa-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.linkedin.com/company/thriving-families-sa"
       }
     },
     {
@@ -3151,24 +3029,22 @@
       "fields": {
         "Name": "Brisbane Blacks",
         "Country": "Australia",
-        "Summary": "Brisbane Blacks is a real Australian organisation listed by summit participants.",
+        "Summary": "Brisbane Blacks appears to be a grassroots Aboriginal-led collective associated with community advocacy and political organising in Brisbane.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-brisbane-blacks.svg"
+            "url": "/images/organisations/organisation-brisbane-blacks-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-brisbane-blacks.svg"
+            "url": "/images/organisations/organisation-brisbane-blacks-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.facebook.com/pg/BrisbaneBlacks/about/"
       }
     },
     {
@@ -3176,24 +3052,22 @@
       "fields": {
         "Name": "End Toxic Prisons Campaign",
         "Country": "Australia",
-        "Summary": "End Toxic Prisons Campaign is a real Australian organisation listed by summit participants.",
+        "Summary": "End Toxic Prisons Campaign is an abolitionist campaign opposing youth incarceration and advocating community-controlled alternatives, especially for First Nations young people.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-end-toxic-prisons-campaign.svg"
+            "url": "/images/organisations/organisation-end-toxic-prisons-campaign-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-end-toxic-prisons-campaign.svg"
+            "url": "/images/organisations/organisation-end-toxic-prisons-campaign-local.png"
           }
-        ]
+        ],
+        "URL": "https://endtoxicprisons.com.au/"
       }
     },
     {
@@ -3201,24 +3075,22 @@
       "fields": {
         "Name": "First Nations Futures",
         "Country": "Australia",
-        "Summary": "First Nations Futures is a real Australian organisation listed by summit participants.",
+        "Summary": "First Nations Futures is a First Nations-led economic justice organisation that redistributes flexible funding to First Nations community initiatives.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-first-nations-futures.svg"
+            "url": "/images/organisations/organisation-first-nations-futures-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-first-nations-futures.svg"
+            "url": "/images/organisations/organisation-first-nations-futures-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://www.firstnationsfutures.com/"
       }
     },
     {
@@ -3226,24 +3098,22 @@
       "fields": {
         "Name": "Woven Project",
         "Country": "Australia",
-        "Summary": "Woven Project is a real Australian organisation listed by summit participants.",
+        "Summary": "Woven Project is an Indigenous-led climate justice initiative that builds global Indigenous collaboration, strategy, and advocacy for land rights and climate action.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-woven-project.svg"
+            "url": "/images/organisations/organisation-woven-project-local.webp"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-woven-project.svg"
+            "url": "/images/organisations/organisation-woven-project-local.webp"
           }
-        ]
+        ],
+        "URL": "https://www.thewovenproject.org/"
       }
     },
     {
@@ -3251,24 +3121,22 @@
       "fields": {
         "Name": "Charles Campbell College",
         "Country": "Australia",
-        "Summary": "Charles Campbell College is a real Australian organisation listed by summit participants.",
+        "Summary": "Charles Campbell College is a South Australian government Reception-to-Year-12 school in Adelaide.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-charles-campbell-college.svg"
+            "url": "/images/organisations/organisation-charles-campbell-college-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-charles-campbell-college.svg"
+            "url": "/images/organisations/organisation-charles-campbell-college-local.png"
           }
-        ]
+        ],
+        "URL": "https://www.ccc.sa.edu.au/"
       }
     },
     {
@@ -3276,24 +3144,22 @@
       "fields": {
         "Name": "Digital Storytellers",
         "Country": "Australia",
-        "Summary": "Digital Storytellers is a real Australian organisation listed by summit participants.",
+        "Summary": "Digital Storytellers is an Australian social impact storytelling agency that helps purpose-driven organisations create narrative-led campaigns and media.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-digital-storytellers.svg"
+            "url": "/images/organisations/organisation-digital-storytellers-local.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-digital-storytellers.svg"
+            "url": "/images/organisations/organisation-digital-storytellers-local.jpeg"
           }
-        ]
+        ],
+        "URL": "https://www.digitalstorytellers.com.au/"
       }
     },
     {
@@ -3301,24 +3167,22 @@
       "fields": {
         "Name": "Gomeroi Traditional Owners Aboriginal Corporation",
         "Country": "Australia",
-        "Summary": "Gomeroi Traditional Owners Aboriginal Corporation is a real Australian organisation listed by summit participants.",
+        "Summary": "This corporation entry represents an Aboriginal organisation connected to Gomeroi/Bigambul traditional owners and family groups.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
+            "url": "/images/organisations/organisation-pattern-1.svg"
           }
-        ]
+        ],
+        "URL": "https://www.acnc.gov.au/charity/charities/22db1d50-3aaf-e811-a962-000d3ad24a0d/history"
       }
     },
     {
@@ -3326,24 +3190,22 @@
       "fields": {
         "Name": "Bama Connect Consultant",
         "Country": "Australia",
-        "Summary": "Bama Connect Consultant is a real Australian organisation listed by summit participants.",
+        "Summary": "Bama Connect Consultant provides culturally grounded consulting in Traditional Owner engagement, governance transition support, and on-Country facilitation.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-bama-connect-consultant.svg"
+            "url": "/images/organisations/organisation-bama-connect-consultant-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-bama-connect-consultant.svg"
+            "url": "/images/organisations/organisation-bama-connect-consultant-local.png"
           }
-        ]
+        ],
+        "URL": "https://au.linkedin.com/company/bama-connect-consultant"
       }
     },
     {
@@ -3351,24 +3213,22 @@
       "fields": {
         "Name": "CFN",
         "Country": "Australia",
-        "Summary": "CFN is a real Australian organisation listed by summit participants.",
+        "Summary": "CFN is a Queensland not-for-profit disability support provider delivering community participation, respite, and daily living services.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
-        "Timezones": [
-          "AEST"
-        ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-cfn.svg"
+            "url": "/images/organisations/organisation-cfn-local.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-cfn.svg"
+            "url": "/images/organisations/organisation-cfn-local.png"
           }
-        ]
+        ],
+        "URL": "https://cfn.org.au/"
       }
     }
   ],
@@ -3394,22 +3254,15 @@
       "fields": {
         "Name": "Summit session feedback",
         "Description": "Share feedback on sessions, logistics and support.",
-        "Url": "https://www.commonthreads.org.au/contact"
-      }
-    },
-    {
-      "id": "survey-overall-experience",
-      "fields": {
-        "Name": "Overall summit experience",
-        "Description": "Help shape future Common Threads summits.",
-        "Url": "https://www.commonthreads.org.au/contact"
+        "Url": "https://docs.google.com/forms/d/1QuAE2M4MO69g-lP-OH-27SadbRzS7mkZWCElLQ6U2TE/viewform?embedded=true"
       }
     }
   ],
   "codeConduct": {
     "id": "code-conduct-2026",
     "fields": {
-      "Content Body": "Common Threads Summit is committed to a safe, inclusive and respectful environment for all participants.\\n\\nWe expect everyone to engage in good faith, listen respectfully and avoid harassment, discrimination or harmful conduct.\\n\\nIf you experience or witness a concern, contact the summit safety team immediately."
+      "Subtitle": "How We Show Up In The Space",
+      "Content Body": "We are committed to creating a safe and inclusive experience at Common Threads for everyone, regardless of your gender, gender identity, sexual orientation, ethnicity, nationality, disability, physical appearance, body size, race, age, religion, economic status, immigration status or refugee status. We do not tolerate harassment of participants, staff or volunteers in any form, and any person who violates these rules may be removed from the event without a refund.\\n\\nWith over 300 First Nations campaigners, community organisers, communicators and changemakers coming together from all corners of the country, there is huge strength in our shared values and collective vision for the future, as well as strength in the diversity of our opinions, perspectives, experiences and approaches to creating change.\\n\\nThere is a responsibility on all of us to help create such a space. As such, we've developed a set of principles for how we show up in the space, alongside a code of conduct.\\nPlease read principles and full code of conduct here.\\n\\nIf someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to our wellbeing and grievance coordinators x and x for a confidential conversation (contact details below)."
     }
   },
   "securityGuidelines": {

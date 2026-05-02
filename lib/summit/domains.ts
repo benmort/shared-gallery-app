@@ -45,7 +45,7 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     filterBySummit: true,
     imageField: "Image",
     titleField: "Name",
-    subtitleField: "Location",
+    subtitleField: "Address",
     descriptionField: "Description",
     tagsField: "Tags",
   },
@@ -75,7 +75,6 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     filterBySummit: false,
     imageField: "Logo Landscape",
     titleField: "Name",
-    subtitleField: "Country",
     descriptionField: "Summary",
     tagsField: "Status",
   },
@@ -115,8 +114,20 @@ export function buildListItem(domain: SummitListDomain, record: SummitRecord): L
 
 function asLines(value: string | null | undefined): string | null {
   if (!value) return null;
-  const trimmed = value.trim();
+  const normalized = value
+    .replace(/\r\n/g, "\n")
+    .replace(/\\r\\n/g, "\n")
+    .replace(/\\n/g, "\n");
+  const trimmed = normalized.trim();
   return trimmed.length ? trimmed : null;
+}
+
+function asParagraph(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const normalized = asLines(value);
+  if (!normalized) return null;
+  const singleLine = normalized.replace(/\s+/g, " ").trim();
+  return singleLine.length ? singleLine : null;
 }
 
 export function buildDetail(
@@ -164,20 +175,43 @@ export function buildDetail(
     case "venues": {
       const url = fieldString(record, "URL");
       const mapLink = fieldString(record, "Map Link");
+      const tripPlannerLink = "https://www.adelaidemetro.com.au/plan-a-trip/visiting-adelaide";
+      const parkingLink = fieldString(record, "Parking Link");
+      const wilsonEastCarparkVideo = fieldString(record, "Wilson East Carpark Access Video");
+      const ovalHotelGuestVideo = fieldString(record, "Oval Hotel Access Video");
       return {
         title: fieldString(record, "Name"),
         subtitle: fieldString(record, "Subtitle"),
         imageUrl: fieldAttachmentUrl(record, "Image"),
         tags: fieldList(record, "Tags"),
-        body: asLines(fieldString(record, "Description")),
+        body: asParagraph(fieldString(record, "Description")),
         summary: asLines(fieldString(record, "Instructions")),
         sections: [
           {
             label: "Location",
-            value: `${fieldString(record, "Location")}, ${fieldString(record, "Address")}`,
+            value: fieldString(record, "Address"),
           },
+          { label: "Transport", value: "Plan your trip with Adelaide Metro", href: tripPlannerLink },
+          { label: "Parking", value: "View parking details", href: parkingLink },
+          ...(wilsonEastCarparkVideo
+            ? [
+                {
+                  label: "Parking Access Video",
+                  value: "Click HERE for a video with access details from the Wilson East Carpark",
+                  href: wilsonEastCarparkVideo,
+                },
+              ]
+            : []),
+          ...(ovalHotelGuestVideo
+            ? [
+                {
+                  label: "Oval Hotel Access Video",
+                  value: "Click HERE for a video with access details for guests staying at Oval Hotel",
+                  href: ovalHotelGuestVideo,
+                },
+              ]
+            : []),
           { label: "Phone", value: fieldString(record, "Phone"), href: `tel:${fieldString(record, "Phone")}` },
-          { label: "Email", value: fieldString(record, "Email"), href: `mailto:${fieldString(record, "Email")}` },
           { label: "Website", value: url, href: url },
           { label: "Map", value: mapLink, href: mapLink },
         ].filter((section) => section.value),
@@ -226,8 +260,8 @@ export function buildDetail(
     case "organisations": {
       return {
         title: fieldString(record, "Name"),
-        subtitle: fieldString(record, "Country"),
-        imageUrl: fieldAttachmentUrl(record, "Logo Box"),
+        subtitle: null,
+        imageUrl: null,
         tags: [fieldString(record, "Status")].filter(Boolean),
         summary: asLines(fieldString(record, "Summary")),
         sections: [

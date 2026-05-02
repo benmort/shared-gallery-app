@@ -1,36 +1,56 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ListItemView } from "@/lib/summit/types";
+import SummitCardImage from "@/components/summit/SummitCardImage";
 
 type Props = {
   href: string;
   item: ListItemView;
   circularImage?: boolean;
+  showImage?: boolean;
+  showImageSkeleton?: boolean;
 };
 
-export default function SummitListCard({ href, item, circularImage = false }: Props) {
+export default function SummitListCard({
+  href,
+  item,
+  circularImage = false,
+  showImage = true,
+  showImageSkeleton = false,
+}: Props) {
   const imageClass = circularImage
     ? "h-20 w-20 rounded-full object-cover"
     : "h-20 w-28 rounded-md object-cover";
   const placeholderClass = circularImage ? "h-20 w-20 rounded-full bg-white/5" : "h-20 w-28 rounded-md bg-white/5";
+  const cardClass = showImage
+    ? "flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10"
+    : "rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10";
 
   return (
     <Link
       href={href}
-      className="flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10"
+      className={cardClass}
     >
-      {item.imageUrl ? (
-        <Image
-          src={item.imageUrl}
-          alt={item.title}
-          width={112}
-          height={80}
-          className={imageClass}
-          unoptimized
-        />
-      ) : (
-        <div className={placeholderClass} />
-      )}
+      {showImage
+        ? item.imageUrl
+          ? (
+              showImageSkeleton
+                ? (
+                    <SummitCardImage src={item.imageUrl} alt={item.title} circular={circularImage} />
+                  )
+                : (
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      width={112}
+                      height={80}
+                      className={imageClass}
+                      unoptimized
+                    />
+                  )
+            )
+          : <div className={placeholderClass} />
+        : null}
       <div className="min-w-0 flex-1">
         <h3 className="text-sm font-semibold text-white break-words">{item.title}</h3>
         {item.subtitle ? (

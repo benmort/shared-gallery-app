@@ -1,0 +1,162 @@
+[
+  {
+    "id": "organisation-first-peoples-assembly-victoria",
+    "name": "First Peoples' Assembly of Victoria",
+    "url": "https://www.firstpeoplesvic.org/",
+    "summary": "The First Peoples' Assembly of Victoria is an independent, democratically elected body representing Traditional Owners and First Peoples in Victoria in Treaty-related processes.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-australian-conservation-foundation",
+    "name": "Australian Conservation Foundation",
+    "url": "https://www.acf.org.au/",
+    "summary": "The Australian Conservation Foundation is a national environmental advocacy organisation campaigning to protect nature and address climate pollution.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-limestone-coast-landscape-board",
+    "name": "Limestone Coast Landscape Board",
+    "url": "https://www.landscape.sa.gov.au/lc/",
+    "summary": "The Limestone Coast Landscape Board is a South Australian statutory board that leads regional landscape and natural resource management.",
+    "confidence": "high",
+    "notes": "Official government-hosted board website."
+  },
+  {
+    "id": "organisation-strait-climate-action",
+    "name": "Strait Climate Action",
+    "url": "https://www.fya.org.au/program/youth-action-and-wellbeing-grants/",
+    "summary": "Strait Climate Action is described as a Torres Strait youth climate group creating language-based resources and intergenerational climate campaigning.",
+    "confidence": "low",
+    "notes": "No standalone official website was discoverable; this URL is a third-party grant page that names and describes the group."
+  },
+  {
+    "id": "organisation-north-queensland-land-council",
+    "name": "North Queensland Land Council",
+    "url": "https://nqlc.com.au/",
+    "summary": "The North Queensland Land Council is the recognised Native Title Representative Body supporting Traditional Owners across its North Queensland region.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-wardliparingga-sahmri",
+    "name": "Wardliparingga - SAHMRI",
+    "url": "https://sahmri.org.au/research/themes/aboriginal-health",
+    "summary": "Wardliparingga is SAHMRI’s Aboriginal Health Equity research theme focused on improving health and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples.",
+    "confidence": "high",
+    "notes": "Wardliparingga appears to be a SAHMRI division rather than a separate legal entity, so the official SAHMRI program page is used."
+  },
+  {
+    "id": "organisation-tribes-united",
+    "name": "Tribes United",
+    "url": "https://www.spiritualunityofthetribes.org.au/",
+    "summary": "Spiritual Unity of the Tribes is an Australian intertribal community focused on ceremony, cultural continuity, and traditional knowledge sharing.",
+    "confidence": "low",
+    "notes": "Could not find a clearly matching standalone organisation explicitly named 'Tribes United'; this is the closest Australian match found."
+  },
+  {
+    "id": "organisation-social-reinvestment-wa",
+    "name": "Social Reinvestment WA",
+    "url": "https://www.socialreinvestmentwa.org.au/",
+    "summary": "Social Reinvestment WA is an Aboriginal-led coalition advocating justice reinvestment and reforms to reduce Aboriginal over-representation in WA’s justice system.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-human-rights-law-centre",
+    "name": "Human Rights Law Centre",
+    "url": "https://www.hrlc.org.au/",
+    "summary": "The Human Rights Law Centre is a legal advocacy organisation that works to advance and defend human rights through law reform, litigation, and public campaigning.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-queensland-teachers-union",
+    "name": "Queensland Teachers' Union",
+    "url": "https://www.qtu.asn.au/",
+    "summary": "The Queensland Teachers' Union is the industrial and professional union representing educators in Queensland state schools and TAFE.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-tasmanian-aboriginal-centre",
+    "name": "Tasmanian Aboriginal Centre",
+    "url": "https://tacinc.com.au/",
+    "summary": "The Tasmanian Aboriginal Centre is an Aboriginal community organisation delivering statewide advocacy, health, cultural, language, and community programs.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-ards-aboriginal-corporation",
+    "name": "ARDS Aboriginal Corporation",
+    "url": "https://ards.com.au/",
+    "summary": "ARDS Aboriginal Corporation is a Yolŋu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-the-nurse-on-foot",
+    "name": "The Nurse On Foot",
+    "url": "https://www.thefootcarenurse.com.au/",
+    "summary": "The Foot Care Nurse is a nurse-led mobile and clinic foot-care service providing in-home nail and foot health support in Victoria.",
+    "confidence": "low",
+    "notes": "No verifiable official web presence for the exact name 'The Nurse On Foot' was found; this is the closest Australian match."
+  },
+  {
+    "id": "organisation-mob-made-media-communications-agency",
+    "name": "Mob Made Media & Communications Agency",
+    "url": "https://www.instagram.com/mobmademediaandcommunications/",
+    "summary": "Mob Made Media & Communications Agency appears to be a First Nations media and content production agency credited on arts and community campaign work.",
+    "confidence": "low",
+    "notes": "No standalone official website was discoverable; this Instagram profile handle is used based on repeated public tagging/credits."
+  },
+  {
+    "id": "organisation-first-australians-capital",
+    "name": "First Australians Capital",
+    "url": "https://firstaustralianscapital.org/",
+    "summary": "First Australians Capital is a First Nations-led impact investment and business support organisation backing Indigenous entrepreneurs and enterprises.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-invasive-species-council",
+    "name": "Invasive Species Council",
+    "url": "https://invasives.org.au/",
+    "summary": "The Invasive Species Council is an Australian environmental advocacy organisation working to prevent and reduce harm from invasive species.",
+    "confidence": "high",
+    "notes": "Official organisation website."
+  },
+  {
+    "id": "organisation-pitta-pitta-aboriginal-corporation-rntbc",
+    "name": "Pitta Pitta Aboriginal Corporation RNTBC",
+    "url": "https://nativetitle.org.au/find/pbc/3943",
+    "summary": "Pitta Pitta Aboriginal Corporation RNTBC acts as trustee for the native title rights and interests of the Pitta Pitta People.",
+    "confidence": "medium",
+    "notes": "No standalone corporate website was found; this is the official Native Title prescribed body corporate directory profile."
+  },
+  {
+    "id": "organisation-aboriginal-housing-office",
+    "name": "Aboriginal Housing Office",
+    "url": "https://aho.nsw.gov.au/",
+    "summary": "The Aboriginal Housing Office is a NSW statutory body responsible for improving access to affordable housing for Aboriginal people.",
+    "confidence": "high",
+    "notes": "Official government agency website."
+  },
+  {
+    "id": "organisation-katji-yanun",
+    "name": "Katji Yanun",
+    "url": "https://au.linkedin.com/in/melissa-clarke-83699639",
+    "summary": "Katji Yanun appears to be an Aboriginal-led consulting practice focused on justice, governance, and systems reform advisory work.",
+    "confidence": "low",
+    "notes": "No dedicated website or company page was found; this is the principal consultant profile listing Katji Yanun."
+  },
+  {
+    "id": "organisation-justice-reinvestment-port-augusta",
+    "name": "Justice Reinvestment Port Augusta",
+    "url": "https://healthydreaming.com.au/",
+    "summary": "Justice Reinvestment Port Augusta appears to be a community-led Port Augusta initiative linked to Aboriginal-led justice reinvestment work delivered via Healthy Dreaming.",
+    "confidence": "medium",
+    "notes": "No standalone official site for the initiative was found; this URL is the Port Augusta organisation publicly referenced in justice reinvestment program materials."
+  }
+]

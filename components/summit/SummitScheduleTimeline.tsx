@@ -14,10 +14,18 @@ type Props = {
   days: ScheduleDay[];
 };
 
-function dayTabLabel(day: ScheduleDay, index: number): string {
+function dayTabContent(day: ScheduleDay, index: number): {
+  dateLine: string;
+  titleLine: string;
+  venueLine: string | null;
+  ariaLabel: string;
+} {
   const dayName = day.day?.trim() || `Day ${index + 1}`;
-  const dateOnly = day.dateLabel?.replace(/^[^,]+,\s*/, "");
-  return dateOnly ? `Day ${index + 1} - ${dayName}, ${dateOnly}` : `Day ${index + 1} - ${dayName}`;
+  const dateLine = day.filterDateLabel || day.dateLabel || dayName;
+  const titleLine = day.filterTitle || `Day ${index + 1}`;
+  const venueLine = day.filterVenue || null;
+  const ariaLabel = [dateLine, titleLine, venueLine].filter(Boolean).join(" - ");
+  return { dateLine, titleLine, venueLine, ariaLabel };
 }
 
 function formatBadge(value: string): string {
@@ -112,6 +120,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
           const selected = index === activeDayIndex;
           const tabId = `schedule-day-tab-${index}`;
           const panelId = `schedule-day-panel-${index}`;
+          const tabContent = dayTabContent(day, index);
           return (
             <button
               key={`${day.day}-${index}`}
@@ -123,6 +132,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
               role="tab"
               aria-controls={panelId}
               aria-selected={selected}
+              aria-label={tabContent.ariaLabel}
               tabIndex={selected ? 0 : -1}
               onClick={() => setActiveDayIndex(index)}
               onKeyDown={(event) => {
@@ -142,11 +152,15 @@ export default function SummitScheduleTimeline({ days }: Props) {
               }}
               className={
                 selected
-                  ? "min-h-11 w-full rounded-md border border-amber-200/40 bg-amber-100 px-3 py-2 text-left text-sm font-semibold leading-5 text-zinc-900 sm:text-[12px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-                  : "min-h-11 w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2 text-left text-sm leading-5 text-stone-300 sm:text-[12px] hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+                  ? "min-h-11 w-full rounded-md border border-amber-200/40 bg-amber-100 px-3 py-2 text-left text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+                  : "min-h-11 w-full rounded-md border border-white/10 bg-zinc-900 px-3 py-2 text-left text-stone-300 hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
               }
             >
-              {dayTabLabel(day, index)}
+              <span className="block text-[10px] uppercase tracking-[0.12em] opacity-80">{tabContent.dateLine}</span>
+              <span className="mt-0.5 block text-sm font-semibold leading-5">{tabContent.titleLine}</span>
+              {tabContent.venueLine ? (
+                <span className="mt-0.5 block text-[11px] leading-4 opacity-80">{tabContent.venueLine}</span>
+              ) : null}
             </button>
           );
         })}
@@ -158,37 +172,44 @@ export default function SummitScheduleTimeline({ days }: Props) {
         aria-labelledby={`schedule-day-tab-${activeDayIndex}`}
         className="relative space-y-5 sm:space-y-6"
       >
-        <span
-          aria-hidden
-          className="absolute bottom-0 left-[63px] top-0 w-px bg-white/10 sm:left-[75px]"
-        />
+        {activeDay.sections.length ? (
+          <>
+            <span
+              aria-hidden
+              className="absolute bottom-0 left-[63px] top-0 w-px bg-white/10 sm:left-[75px]"
+            />
+            {activeDay.sections.map((section, sectionIndex) => (
+              <section
+                key={`${activeDay.day}-${section.title}-${sectionIndex}`}
+                className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
+              >
+                <div className="pt-0.5">
+                  <p className="text-sm font-semibold text-stone-100">{section.startLabel} -</p>
+                  <p className="text-sm text-stone-500">{section.endLabel}</p>
+                </div>
 
-        {activeDay.sections.map((section, sectionIndex) => (
-          <section
-            key={`${activeDay.day}-${section.title}-${sectionIndex}`}
-            className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
-          >
-            <div className="pt-0.5">
-              <p className="text-sm font-semibold text-stone-100">{section.startLabel} -</p>
-              <p className="text-sm text-stone-500">{section.endLabel}</p>
-            </div>
+                <div className="relative space-y-2">
+                  <span
+                    aria-hidden
+                    className={
+                      sectionIndex === 0
+                        ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-300/80 bg-amber-400 sm:-left-[14px]"
+                        : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-200/70 bg-zinc-950 sm:-left-[14px]"
+                    }
+                  />
 
-            <div className="relative space-y-2">
-              <span
-                aria-hidden
-                className={
-                  sectionIndex === 0
-                    ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-300/80 bg-amber-400 sm:-left-[14px]"
-                    : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-200/70 bg-zinc-950 sm:-left-[14px]"
-                }
-              />
-
-              {section.data.map((slot) => (
-                <ScheduleCard key={`${section.title}-${slot.id}`} slot={slot} />
-              ))}
-            </div>
+                  {section.data.map((slot) => (
+                    <ScheduleCard key={`${section.title}-${slot.id}`} slot={slot} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </>
+        ) : (
+          <section className="rounded-xl border border-white/10 bg-white/5 p-4">
+            <p className="text-sm text-stone-300">Schedule details for this day will be shared soon.</p>
           </section>
-        ))}
+        )}
       </div>
 
       <p className="inline-flex items-center gap-1 text-[11px] text-stone-500">

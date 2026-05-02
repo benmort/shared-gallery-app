@@ -281,44 +281,6 @@ export default function HomePage() {
     <>
       <ScrollToTop />
       <main className="mx-auto w-full max-w-[460px] px-3 pb-16 pt-3 sm:max-w-[1024px] sm:px-6 sm:pt-5 lg:max-w-[1240px]">
-        {!moderation && (
-          <section className="mb-4 rounded-2xl border border-white/10 bg-zinc-900/80 p-4 shadow-2xl backdrop-blur sm:mb-6 sm:p-5">
-            <div className="flex items-center justify-between gap-2">
-              <Link
-                href="/"
-                className="inline-flex min-h-8 items-center gap-1 rounded-full border border-white/20 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-stone-100 transition hover:bg-white/10"
-              >
-                <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden />
-                Back to app
-              </Link>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-100">
-                Summit &#39;24
-              </p>
-              <span
-                aria-hidden
-                className="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-white/20 bg-white/10 px-1 text-[10px] text-stone-200"
-              >
-                1
-              </span>
-            </div>
-            <div className="mt-4 border-t border-white/10 pt-4">
-              <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-stone-400">
-                Community gallery
-              </p>
-              <h1 className="mt-1 text-3xl font-semibold leading-tight text-white">Moments</h1>
-              <p className="mt-2 max-w-[42ch] text-sm leading-6 text-stone-300">
-                Capturing the electric pulse of the summit. Share your perspective from the floor,
-                the workshops, and the networking lounges.
-              </p>
-              <a
-                href="#share-moment-lead"
-                className="mt-4 inline-flex min-h-11 items-center justify-center rounded-md bg-blue-500 px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white transition hover:bg-blue-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200/80"
-              >
-                Share a moment
-              </a>
-            </div>
-          </section>
-        )}
         {errorBanner}
 
         {moderation && moderationChecked && !moderationConfigured && (

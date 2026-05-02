@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import HomePage from "@/components/HomePage";
+import SummitShell from "@/components/summit/SummitShell";
 
 function HomeFallback() {
   return (
-    <div className="min-h-dvh bg-black px-4 py-6 text-center text-sm text-stone-400">
+    <div className="px-4 py-6 text-center text-sm text-stone-400">
       Loading…
     </div>
   );
@@ -11,8 +12,10 @@ function HomeFallback() {
 
 export default function MomentsPage() {
   return (
-    <Suspense fallback={<HomeFallback />}>
-      <HomePage />
-    </Suspense>
+    <SummitShell>
+      <Suspense fallback={<HomeFallback />}>
+        <HomePage />
+      </Suspense>
+    </SummitShell>
   );
 }

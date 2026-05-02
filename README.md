@@ -65,11 +65,7 @@ Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 | `app/(summit)/events/[id]/page.tsx` | Event detail (`/events/:id`) |
 | `app/(summit)/surveys/page.tsx` | Surveys (`/surveys`) |
 | `app/(summit)/code-conduct/page.tsx` | Code of conduct (`/code-conduct`) |
-| `app/(summit)/security-guidelines/page.tsx` | Security guidelines (`/security-guidelines`) |
-| `app/summits/page.tsx` | Legacy `/summits` redirect to `/` |
 | `app/moments/page.tsx` | Main gallery page: masonry grid with **Share a moment** hero as the first cell + photos (`/moments`) |
-| `app/album/page.tsx` | **Permanent redirect** to `/moments` (legacy URL) |
-| `app/album/p/[photoId]/page.tsx` | Deep link → `/moments?photoId=…` |
 | `app/api/photos/route.ts` | `GET` list, `POST` multipart upload |
 | `app/api/photos/[id]/file/route.ts` | Serve media bytes (`200` / `206` Range) |
 | `lib/storage/` | `PhotoStorage`: filesystem locally, **Vercel Blob** when `BLOB_READ_WRITE_TOKEN` is set |
@@ -85,7 +81,7 @@ The project started from the Next.js **`with-cloudinary`** (Vercel “Image Gall
 
 **Removed or replaced:** Cloudinary URLs, Pages Router, `getStaticProps` image search, imagemin blur URLs, Twitter share, marketing hero/footer.
 
-**New:** App Router, local **filesystem** storage behind a **`PhotoStorage`** interface, **POST** uploads with **sharp**-generated blur placeholders, UUID photo ids, one-page gallery with starter-style hero card, lightbox via `/moments?photoId=<uuid>` (plus `/album/p/<uuid>` → `/moments?photoId=`).
+**New:** App Router, local **filesystem** storage behind a **`PhotoStorage`** interface, **POST** uploads with **sharp**-generated blur placeholders, UUID photo ids, one-page gallery with starter-style hero card, lightbox via `/moments?photoId=<uuid>`.
 
 ## Mobile camera behavior
 
@@ -151,7 +147,6 @@ See [`.env.example`](.env.example).
 - [ ] **Back / forward** browser navigation with `?photoId=`.
 - [ ] Swipe, filmstrip taps, **arrow keys**, **Escape** to close.
 - [ ] **Download** and **open full image** in a new tab.
-- [ ] Deep link `/album/p/<uuid>` opens the same lightbox as `/moments?photoId=<uuid>`.
 
 ## License
 

@@ -23,7 +23,6 @@ Use this checklist to validate parity with `summit-app-archived` before full cut
 - [ ] Attractions list + attraction detail.
 - [ ] Organisations list + organisation detail.
 - [ ] Sponsors list + sponsor detail.
-- [ ] `/summits` redirects to `/`.
 
 ## Dashboard + Schedule
 

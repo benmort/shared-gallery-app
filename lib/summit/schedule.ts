@@ -28,8 +28,48 @@ export type ScheduleSection = {
 export type ScheduleDay = {
   day: string;
   dateLabel?: string;
+  dateKey?: string;
+  filterDateLabel?: string;
+  filterTitle?: string;
+  filterVenue?: string;
   sections: ScheduleSection[];
 };
+
+type SummitDayFilterMeta = {
+  day: string;
+  dateLabel: string;
+  title: string;
+  venue: string;
+};
+
+const SUMMIT_2026_DAY_FILTER_META: Record<string, SummitDayFilterMeta> = {
+  "2026-05-11": {
+    day: "Monday",
+    dateLabel: "Monday 11th May",
+    title: "Youth Summit Day",
+    venue: "Intercontinental Hotel",
+  },
+  "2026-05-12": {
+    day: "Tuesday",
+    dateLabel: "Tuesday 12th May",
+    title: "First Official Summit Day",
+    venue: "Intercontinental Hotel",
+  },
+  "2026-05-13": {
+    day: "Wednesday",
+    dateLabel: "Wednesday 13th May",
+    title: "Second Summit Day",
+    venue: "Adelaide Oval",
+  },
+  "2026-05-14": {
+    day: "Thursday",
+    dateLabel: "Thursday 14th May",
+    title: "Last Summit Day",
+    venue: "Adelaide Oval",
+  },
+};
+
+const SUMMIT_2026_DAY_FILTER_ORDER = Object.keys(SUMMIT_2026_DAY_FILTER_META);
 
 function readDay(record: SummitRecord): string {
   return fieldString(record, "Day Of Week") || "Unknown";
@@ -84,6 +124,12 @@ function toDayDateLabel(raw: string | null): string | undefined {
     day: "numeric",
     timeZone: "UTC",
   });
+}
+
+function toDateKey(raw: string | null): string | undefined {
+  const parts = parseIsoParts(raw);
+  if (!parts) return undefined;
+  return `${parts.year}-${String(parts.month).padStart(2, "0")}-${String(parts.day).padStart(2, "0")}`;
 }
 
 function sortByEndTime(records: SummitRecord[]): SummitRecord[] {
@@ -176,8 +222,51 @@ export function buildScheduleDays(
       data: value.slots,
     }));
     const firstSlotTime = readDateRaw(slotsForDay[0], "DateTime Start [Schedule]");
-    days.push({ day, dateLabel: toDayDateLabel(firstSlotTime), sections });
+    const dateKey = toDateKey(firstSlotTime);
+    const summitDayMeta = dateKey ? SUMMIT_2026_DAY_FILTER_META[dateKey] : undefined;
+    days.push({
+      day,
+      dateLabel: toDayDateLabel(firstSlotTime),
+      dateKey,
+      filterDateLabel: summitDayMeta?.dateLabel,
+      filterTitle: summitDayMeta?.title,
+      filterVenue: summitDayMeta?.venue,
+      sections,
+    });
   }
 
-  return days;
+  const hasSummit2026Dates = days.some((day) => !!day.dateKey && !!SUMMIT_2026_DAY_FILTER_META[day.dateKey]);
+  if (!hasSummit2026Dates) return days;
+
+  const byDateKey = new Map<string, ScheduleDay>();
+  for (const day of days) {
+    if (!day.dateKey) continue;
+    byDateKey.set(day.dateKey, day);
+  }
+
+  const orderedDays = SUMMIT_2026_DAY_FILTER_ORDER.map((dateKey) => {
+    const meta = SUMMIT_2026_DAY_FILTER_META[dateKey];
+    const existing = byDateKey.get(dateKey);
+    if (existing) {
+      return {
+        ...existing,
+        day: meta.day,
+        filterDateLabel: meta.dateLabel,
+        filterTitle: meta.title,
+        filterVenue: meta.venue,
+      };
+    }
+    return {
+      day: meta.day,
+      dateLabel: meta.dateLabel,
+      dateKey,
+      filterDateLabel: meta.dateLabel,
+      filterTitle: meta.title,
+      filterVenue: meta.venue,
+      sections: [],
+    };
+  });
+
+  const trailingDays = days.filter((day) => !day.dateKey || !SUMMIT_2026_DAY_FILTER_META[day.dateKey]);
+  return [...orderedDays, ...trailingDays];
 }

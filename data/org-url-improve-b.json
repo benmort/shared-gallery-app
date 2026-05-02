@@ -1,0 +1,93 @@
+[
+  {
+    "id": "organisation-brisbane-blacks",
+    "name": "Brisbane Blacks",
+    "url": "https://www.facebook.com/pg/BrisbaneBlacks/about/",
+    "confidence": 0.39,
+    "notes": "No reliable standalone official website found; matching domain appears parked/non-official. Facebook remains the only identifiable official presence."
+  },
+  {
+    "id": "organisation-gomeroi-traditional-owners-aboriginal-corporation",
+    "name": "Gomeroi Traditional Owners Aboriginal Corporation",
+    "url": "https://www.acnc.gov.au/charity/charities/22db1d50-3aaf-e811-a962-000d3ad24a0d/history",
+    "confidence": 0.46,
+    "notes": "No dedicated website located for this exact entity name; ACNC listing is the most authoritative source currently available."
+  },
+  {
+    "id": "organisation-no-underground-coal-gasification-leigh-creek",
+    "name": "No Underground Coal Gasification at Leigh Creek",
+    "url": "https://www.originalpower.org.au/copley_no_ucg",
+    "confidence": 0.88,
+    "notes": "Official campaign page found and active on Original Power; no stronger standalone domain identified."
+  },
+  {
+    "id": "organisation-mandingalby-yidinji-aboriginal-corporation",
+    "name": "Mandingalby Yidinji Aboriginal Corporation",
+    "url": "https://mandingalbay.com.au/mandingalbay-yidinji-aboriginal-corporation-myac/",
+    "confidence": 0.92,
+    "notes": "Dedicated MYAC page on the organisation's current official domain is stronger and more current than the legacy Djunbunji page."
+  },
+  {
+    "id": "organisation-western-sydney-watch-committee",
+    "name": "Western Sydney Watch Committee",
+    "url": "https://justiceaction.org.au/watch-committee/",
+    "confidence": 0.9,
+    "notes": "Official Watch Committee information is published on Justice Action's site; no separate official domain found."
+  },
+  {
+    "id": "organisation-pitta-pitta-aboriginal-corporation-rntbc",
+    "name": "Pitta Pitta Aboriginal Corporation RNTBC",
+    "url": "https://nativetitle.org.au/find/pbc/3943",
+    "confidence": 0.71,
+    "notes": "No standalone official corporate website found; authoritative PBC/native title listing is better than personal LinkedIn."
+  },
+  {
+    "id": "organisation-justice-reinvestment-port-augusta",
+    "name": "Justice Reinvestment Port Augusta",
+    "url": "https://healthydreaming.com.au/",
+    "confidence": 0.8,
+    "notes": "Initiative appears to be delivered through Healthy Dreaming in Port Augusta; no separate official initiative site identified."
+  },
+  {
+    "id": "organisation-pukatja-community",
+    "name": "Pukatja Community",
+    "url": "https://anangu.com.au/sa-communities/pukatja-ernabella",
+    "confidence": 0.89,
+    "notes": "Official APY community page is the strongest direct source for Pukatja Community."
+  },
+  {
+    "id": "organisation-pacific-australian-emerging-leaders-network",
+    "name": "Pacific Australian Emerging Leaders Network",
+    "url": "https://www.micahaustralia.org/take-action/pael-network/",
+    "confidence": 0.87,
+    "notes": "Network is officially coordinated and hosted via Micah Australia; no standalone official PAELN domain found."
+  },
+  {
+    "id": "organisation-aboriginal-community-connect",
+    "name": "Aboriginal Community Connect",
+    "url": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect",
+    "confidence": 0.95,
+    "notes": "Official service page on Uniting Communities (service owner/operator); best available source."
+  },
+  {
+    "id": "organisation-woven-project",
+    "name": "Woven Project",
+    "url": "https://www.thewovenproject.org/",
+    "confidence": 0.97,
+    "notes": "Official homepage is preferable to deeper subpage URLs for canonical organisation link."
+  },
+  {
+    "id": "organisation-bama-connect-consultant",
+    "name": "Bama Connect Consultant",
+    "url": "https://au.linkedin.com/company/bama-connect-consultant",
+    "confidence": 0.43,
+    "notes": "No dedicated official website found for this specific entity; LinkedIn remains the only direct organisation presence."
+  },
+  {
+    "id": "organisation-cfn",
+    "name": "CFN",
+    "url": "https://cfn.org.au/",
+    "confidence": 0.96,
+    "notes": "Official organisation website confirmed; HTTPS canonical root is best."
+  }
+]

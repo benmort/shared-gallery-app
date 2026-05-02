@@ -8,7 +8,6 @@
 4. Validate external survey embedding and map links.
 5. Confirm moderation routes under `/moments` still work.
 6. Confirm `/summit` and `/summit/*` return `404`.
-7. Confirm `/summits` redirects to `/`.
 
 ## Staged Rollout
 

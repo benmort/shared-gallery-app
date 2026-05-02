@@ -1,0 +1,162 @@
+[
+  {
+    "id": "organisation-justice-for-walker",
+    "name": "Justice for Walker",
+    "url": "https://www.hrlc.org.au/projects/kumanjayi-walker/",
+    "summary": "Justice for Walker is a grassroots campaign calling for accountability and justice after the death of Warlpiri man Kumanjayi Walker.",
+    "confidence": "low",
+    "notes": "No clear standalone official website was found for the campaign itself; this is the most authoritative campaign-specific page located."
+  },
+  {
+    "id": "organisation-pukatja-community",
+    "name": "Pukatja Community",
+    "url": "https://anangu.com.au/sa-communities/pukatja-ernabella",
+    "summary": "Pukatja Community is an Anangu community on the APY Lands in north-west South Australia.",
+    "confidence": "medium",
+    "notes": "Used the APY site community page because no distinct standalone website for a separate Pukatja Community Council was found."
+  },
+  {
+    "id": "organisation-national-disability-insurance-scheme",
+    "name": "National Disability Insurance Scheme",
+    "url": "https://www.ndis.gov.au/",
+    "summary": "The National Disability Insurance Scheme is Australia's national program that funds supports for eligible people with significant and permanent disability.",
+    "confidence": "high",
+    "notes": "Official Australian Government NDIS website."
+  },
+  {
+    "id": "organisation-seed-mob",
+    "name": "Seed Mob",
+    "url": "https://www.seedmob.org.au/",
+    "summary": "Seed Mob is an Aboriginal and Torres Strait Islander youth-led climate justice movement focused on protecting Country and communities.",
+    "confidence": "high",
+    "notes": "Official website of Seed Indigenous Youth Climate Network."
+  },
+  {
+    "id": "organisation-pacific-australian-emerging-leaders-network",
+    "name": "Pacific Australian Emerging Leaders Network",
+    "url": "https://www.micahaustralia.org/take-action/pael-network/",
+    "summary": "The Pacific Australian Emerging Leaders Network connects young leaders across the Pacific and Australia for leadership, advocacy, and regional partnership.",
+    "confidence": "medium",
+    "notes": "Network appears to be coordinated through Micah Australia rather than a separate standalone domain."
+  },
+  {
+    "id": "organisation-murrie-connections",
+    "name": "Murrie Connections",
+    "url": "https://www.murrieconnections.com/",
+    "summary": "Murrie Connections is an Aboriginal and Torres Strait Islander-owned organisation that recruits culturally appropriate participants for research and consulting projects.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-mapoon-aboriginal-shire-council",
+    "name": "Mapoon Aboriginal Shire Council",
+    "url": "https://mapoon.qld.gov.au/",
+    "summary": "Mapoon Aboriginal Shire Council is the local government authority serving the Mapoon community in Cape York, Queensland.",
+    "confidence": "high",
+    "notes": "Official council domain."
+  },
+  {
+    "id": "organisation-deadly-inspiring-youth-doing-good-atsi-corporation",
+    "name": "Deadly Inspiring Youth Doing Good ATSI Corporation",
+    "url": "https://diydg.org.au/",
+    "summary": "Deadly Inspiring Youth Doing Good ATSI Corporation is a youth-led First Nations not-for-profit that empowers young people through leadership and community programs.",
+    "confidence": "high",
+    "notes": "Official DIYDG website found with organisation details and contacts."
+  },
+  {
+    "id": "organisation-aboriginal-community-connect",
+    "name": "Aboriginal Community Connect",
+    "url": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect",
+    "summary": "Aboriginal Community Connect is a culturally focused support program helping Aboriginal people address alcohol and other drug issues while staying connected to culture and community.",
+    "confidence": "medium",
+    "notes": "Appears to be a program under Uniting Communities rather than a separate incorporated entity."
+  },
+  {
+    "id": "organisation-australian-progress",
+    "name": "Australian Progress",
+    "url": "https://www.australianprogress.org.au/",
+    "summary": "Australian Progress builds the advocacy, leadership, and campaign capacity of social change organisations and civil society movements in Australia.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-thriving-families-sa",
+    "name": "Thriving Families SA",
+    "url": "https://www.linkedin.com/company/thriving-families-sa",
+    "summary": "Thriving Families SA is a South Australian cross-sector initiative focused on prevention and early supports to improve outcomes for children, families, and communities.",
+    "confidence": "low",
+    "notes": "No clear standalone public website surfaced; LinkedIn appears to be the primary official profile."
+  },
+  {
+    "id": "organisation-brisbane-blacks",
+    "name": "Brisbane Blacks",
+    "url": "https://www.facebook.com/pg/BrisbaneBlacks/about/",
+    "summary": "Brisbane Blacks appears to be a grassroots Aboriginal-led collective associated with community advocacy and political organising in Brisbane.",
+    "confidence": "low",
+    "notes": "Results were mostly social media and third-party references, and access to the Facebook page is restricted in search previews."
+  },
+  {
+    "id": "organisation-end-toxic-prisons-campaign",
+    "name": "End Toxic Prisons Campaign",
+    "url": "https://endtoxicprisons.com.au/",
+    "summary": "End Toxic Prisons Campaign is an abolitionist campaign opposing youth incarceration and advocating community-controlled alternatives, especially for First Nations young people.",
+    "confidence": "high",
+    "notes": "Clear campaign website found."
+  },
+  {
+    "id": "organisation-first-nations-futures",
+    "name": "First Nations Futures",
+    "url": "https://www.firstnationsfutures.com/",
+    "summary": "First Nations Futures is a First Nations-led economic justice organisation that redistributes flexible funding to First Nations community initiatives.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-woven-project",
+    "name": "Woven Project",
+    "url": "https://www.thewovenproject.org/initiatives",
+    "summary": "Woven Project is an Indigenous-led climate justice initiative that builds global Indigenous collaboration, strategy, and advocacy for land rights and climate action.",
+    "confidence": "medium",
+    "notes": "Search results strongly indicate this is the relevant entity, including references to a Common Threads co-hosted gathering in Australia."
+  },
+  {
+    "id": "organisation-charles-campbell-college",
+    "name": "Charles Campbell College",
+    "url": "https://www.ccc.sa.edu.au/",
+    "summary": "Charles Campbell College is a South Australian government Reception-to-Year-12 school in Adelaide.",
+    "confidence": "high",
+    "notes": "Official school website found."
+  },
+  {
+    "id": "organisation-digital-storytellers",
+    "name": "Digital Storytellers",
+    "url": "https://www.digitalstorytellers.com.au/",
+    "summary": "Digital Storytellers is an Australian social impact storytelling agency that helps purpose-driven organisations create narrative-led campaigns and media.",
+    "confidence": "high",
+    "notes": "Clear standalone official website found."
+  },
+  {
+    "id": "organisation-gomeroi-traditional-owners-aboriginal-corporation",
+    "name": "Gomeroi Traditional Owners Aboriginal Corporation",
+    "url": "https://www.acnc.gov.au/charity/charities/22db1d50-3aaf-e811-a962-000d3ad24a0d/history",
+    "summary": "This corporation entry represents an Aboriginal organisation connected to Gomeroi/Bigambul traditional owners and family groups.",
+    "confidence": "low",
+    "notes": "Could not find a clear standalone website for the exact listed name; closest authoritative result is an ACNC record with a closely related name."
+  },
+  {
+    "id": "organisation-bama-connect-consultant",
+    "name": "Bama Connect Consultant",
+    "url": "https://au.linkedin.com/company/bama-connect-consultant",
+    "summary": "Bama Connect Consultant provides culturally grounded consulting in Traditional Owner engagement, governance transition support, and on-Country facilitation.",
+    "confidence": "medium",
+    "notes": "No standalone website surfaced; LinkedIn appears to be the primary official presence."
+  },
+  {
+    "id": "organisation-cfn",
+    "name": "CFN",
+    "url": "https://cfn.org.au/",
+    "summary": "CFN is a Queensland not-for-profit disability support provider delivering community participation, respite, and daily living services.",
+    "confidence": "medium",
+    "notes": "CFN is acronym-ambiguous, but this was the strongest Australian organisational match with a complete official site."
+  }
+]
