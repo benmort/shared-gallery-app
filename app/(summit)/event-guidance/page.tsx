@@ -7,6 +7,37 @@ type GuidanceSection = {
   paragraphs: readonly string[];
 };
 
+const SUPPORT_EMAIL = "summit@commonthreads.org.au";
+
+function renderParagraphContent(paragraph: string): React.ReactNode {
+  const chunks = paragraph.split(/(https?:\/\/\S+|summit@commonthreads\.org\.au)/g);
+  return chunks.map((chunk, index) => {
+    if (chunk === SUPPORT_EMAIL) {
+      return (
+        <Link key={`${chunk}-${index}`} href={`mailto:${SUPPORT_EMAIL}`} className="text-amber-200 underline-offset-2 hover:underline">
+          {SUPPORT_EMAIL}
+        </Link>
+      );
+    }
+
+    if (/^https?:\/\//.test(chunk)) {
+      return (
+        <a
+          key={`${chunk}-${index}`}
+          href={chunk}
+          target="_blank"
+          rel="noreferrer"
+          className="text-amber-200 underline-offset-2 hover:underline"
+        >
+          {chunk}
+        </a>
+      );
+    }
+
+    return <span key={`${chunk}-${index}`}>{chunk}</span>;
+  });
+}
+
 const GUIDANCE_SECTIONS: readonly GuidanceSection[] = [
   {
     title: "Registration",
@@ -76,6 +107,14 @@ const GUIDANCE_SECTIONS: readonly GuidanceSection[] = [
       "During the summit we'll be touching on a lot of difficult topics including racism, deaths in custody, and other injustices that many participants and speakers have lived experiences of. These are important conversations to have but we know these discussions can take a toll on those in the room. There will be designated wellbeing support people available for a yarn throughout the summit.",
     ],
   },
+  {
+    title: "Nearby Essentials",
+    paragraphs: [
+      "Closest Pharmacy/chemist: Cacas Day/Night Chemist, 8:30am - 7pm, Mon - Fri. https://maps.app.goo.gl/5SSi2AQUYe2Q9d138",
+      "Closest Convenience store: Adelaide Convenience Store, 24 hours. https://maps.app.goo.gl/s1tyCaibCS53PgaEA",
+      "Closest Supermarket: Coles Rundle Mall, 7am - 9pm most days. https://maps.app.goo.gl/sjWn4h5hy8Zo92hZ9",
+    ],
+  },
 ];
 
 export default function Page() {
@@ -89,18 +128,7 @@ export default function Page() {
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">{section.title}</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-stone-200">
               {section.paragraphs.map((paragraph) => (
-                <p key={`${section.title}-${paragraph}`}>
-                  {paragraph.split("summit@commonthreads.org.au").map((chunk, index, chunks) => (
-                    <span key={`${chunk}-${index}`}>
-                      {chunk}
-                      {index < chunks.length - 1 ? (
-                        <Link href="mailto:summit@commonthreads.org.au" className="text-amber-200 underline-offset-2 hover:underline">
-                          summit@commonthreads.org.au
-                        </Link>
-                      ) : null}
-                    </span>
-                  ))}
-                </p>
+                <p key={`${section.title}-${paragraph}`}>{renderParagraphContent(paragraph)}</p>
               ))}
             </div>
           </article>

@@ -2,10 +2,10 @@ import {
   BuildingOffice2Icon,
   CalendarDaysIcon,
   ChevronRightIcon,
+  ClockIcon,
   InformationCircleIcon,
   MapIcon,
   MapPinIcon,
-  PlusIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -13,8 +13,9 @@ import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitSpeakerCardImage from "@/components/summit/SummitSpeakerCardImage";
 import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import { getSummitContext } from "@/lib/summit/context";
-import { buildListItem } from "@/lib/summit/domains";
+import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
 import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
+import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
 import { getSpeakersAll } from "@/lib/summit/service";
 import type { SummitRecord } from "@/lib/summit/types";
 
@@ -43,6 +44,13 @@ function startTime(record: SummitRecord): number {
   const parsed = parseDateTime(raw);
   if (!parsed) return Number.MAX_SAFE_INTEGER;
   return Number.isNaN(parsed.getTime()) ? Number.MAX_SAFE_INTEGER : parsed.getTime();
+}
+
+function endTime(record: SummitRecord): number {
+  const raw = fieldFirst(record, "DateTime End [Schedule]");
+  const parsed = parseDateTime(raw);
+  if (parsed && !Number.isNaN(parsed.getTime())) return parsed.getTime();
+  return startTime(record);
 }
 
 function formatSummitRange(startRaw: string, endRaw: string): string {
@@ -82,6 +90,18 @@ function formatSpeakerStart(record: SummitRecord): string {
   })}`;
 }
 
+function formatRoomLabel(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  return trimmed
+    .split(/\s+/)
+    .map((word) => {
+      if (word.length > 1 && word === word.toUpperCase()) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+}
+
 function SectionHeading({ title, action }: { title: string; action?: React.ReactNode }) {
   return (
     <div className="mb-3 flex items-center justify-between gap-3">
@@ -104,10 +124,8 @@ function SpeakerCard({
   const name = fieldString(speaker, "Full Name") || "Speaker";
   const title = fieldString(speaker, "Title") || name;
   const description = fieldString(speaker, "Description") || fieldString(speaker, "Bio");
-  const location = [fieldFirst(speaker, "Venue Name"), fieldString(speaker, "Room/Area")]
-    .filter(Boolean)
-    .join(" - ");
-  const tags = fieldList(speaker, "Tags").slice(0, 2);
+  const location = formatRoomLabel(fieldString(speaker, "Room/Area"));
+  const tags = getSpeakerBadges(speaker);
 
   return (
     <Link
@@ -121,13 +139,14 @@ function SpeakerCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
       </div>
       <div className="space-y-2 p-3.5">
-        <p className="text-[10px] uppercase tracking-[0.15em] text-stone-400">
+        <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-stone-400">
+          <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
           {formatSpeakerStart(speaker)}
         </p>
         <h3 className="text-base font-semibold text-white break-words">{title}</h3>
         <p className="text-xs text-stone-300 break-words">{name}</p>
         {description ? <p className="text-xs text-stone-400 break-words">{description}</p> : null}
-        <div className="flex items-center justify-between pt-1">
+        <div className="pt-1">
           <div className="flex min-h-5 flex-wrap gap-1">
             {tags.map((tag) => (
               <span
@@ -138,11 +157,13 @@ function SpeakerCard({
               </span>
             ))}
           </div>
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/5 text-stone-200">
-            <PlusIcon className="h-3.5 w-3.5" />
-          </span>
         </div>
-        {location ? <p className="text-[11px] text-stone-400">{location}</p> : null}
+        {location ? (
+          <p className="inline-flex items-center gap-1 text-[11px] text-stone-400">
+            <MapPinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
+            {location}
+          </p>
+        ) : null}
       </div>
     </Link>
   );
@@ -151,8 +172,22 @@ function SpeakerCard({
 export default async function SummitDashboardPage() {
   const context = await getSummitContext();
   const speakers = await getSpeakersAll(context.selectedSummitName);
-
-  const upcomingSpeakers = [...speakers].sort((a, b) => startTime(a) - startTime(b)).slice(0, 3);
+  const now = Date.now();
+  const speakersWithTimes = speakers.map((speaker) => ({
+    speaker,
+    start: startTime(speaker),
+    end: endTime(speaker),
+  }));
+  const upcomingSpeakers = speakersWithTimes
+    .filter(({ start }) => start !== Number.MAX_SAFE_INTEGER && start >= now)
+    .sort((a, b) => a.start - b.start)
+    .slice(0, 5)
+    .map(({ speaker }) => speaker);
+  const latestSessionEnd = speakersWithTimes.reduce(
+    (latest, { end }) => (end !== Number.MAX_SAFE_INTEGER ? Math.max(latest, end) : latest),
+    Number.NEGATIVE_INFINITY,
+  );
+  const isAfterProgram = latestSessionEnd !== Number.NEGATIVE_INFINITY && now > latestSessionEnd;
   const upcomingSpeakerItems = upcomingSpeakers.map((speaker) => ({
     speaker,
     item: buildListItem("speakers", speaker),
@@ -176,25 +211,25 @@ export default async function SummitDashboardPage() {
     {
       href: "/event-guidance",
       label: "Event Guidance",
-      subtitle: "Guidance",
+      subtitle: SUMMIT_PAGE_SUBTITLE.eventGuidance,
       icon: InformationCircleIcon,
     },
     {
       href: "/crew",
       label: "Crew",
-      subtitle: "Production team",
+      subtitle: SUMMIT_PAGE_SUBTITLE.crew,
       icon: UsersIcon,
     },
     {
       href: "/organisations",
       label: "Organisations",
-      subtitle: "Partners",
+      subtitle: SUMMIT_PAGE_SUBTITLE.organisations,
       icon: BuildingOffice2Icon,
     },
     {
       href: "/venues",
       label: "Venue/Map",
-      subtitle: "Venue details",
+      subtitle: SUMMIT_PAGE_SUBTITLE.venues,
       icon: MapIcon,
       external: false,
     },
@@ -294,7 +329,7 @@ export default async function SummitDashboardPage() {
           }
         />
         {upcomingSpeakerItems.length > 0 ? (
-          <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
             {upcomingSpeakerItems.map((entry) => (
               <SpeakerCard
                 key={entry.speaker.id}
@@ -304,7 +339,14 @@ export default async function SummitDashboardPage() {
             ))}
           </div>
         ) : (
-          <SummitEmpty title="No program sessions yet" body="Program content will appear when available." />
+          <SummitEmpty
+            title={isAfterProgram ? "Thanks for joining the summit" : "No program sessions yet"}
+            body={
+              isAfterProgram
+                ? "The program has wrapped for now. Thank you for being part of it."
+                : "Program content will appear when available."
+            }
+          />
         )}
       </section>
 

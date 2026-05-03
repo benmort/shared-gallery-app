@@ -79,8 +79,11 @@ type SessionTone = {
 
 function toneForSessionLabel(sessionLabel: string, _isTalk: boolean): SessionTone {
   const normalized = sessionLabel.trim().toLowerCase();
-  const isYellow =
-    normalized.includes("plenary") || normalized.includes("workshop") || normalized.includes("breakout");
+  const isWhite =
+    (normalized.includes("break") && !normalized.includes("breakout")) ||
+    normalized.includes("logistics") ||
+    normalized.includes("social");
+  const isYellow = !isWhite;
 
   if (isYellow) {
     return {

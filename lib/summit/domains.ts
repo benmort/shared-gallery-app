@@ -101,7 +101,12 @@ export function buildListItem(domain: SummitListDomain, record: SummitRecord): L
       ? fieldFirst(record, meta.subtitleField)
       : fieldString(record, meta.subtitleField)
     : null;
-  const tags = meta.tagsField ? fieldList(record, meta.tagsField) : [];
+  const tags =
+    domain === "speakers"
+      ? getSpeakerBadges(record)
+      : meta.tagsField
+        ? fieldList(record, meta.tagsField)
+        : [];
   return {
     id: record.id,
     title: fieldString(record, meta.titleField) || "Untitled",
@@ -142,7 +147,7 @@ export function buildDetail(
         subtitle: fieldString(record, "Full Name"),
         secondSubtitle: fieldFirst(record, "Organisation"),
         imageUrl: fieldAttachmentUrl(record, "Headshot", { headshot: true }),
-        tags: fieldList(record, "Tags"),
+        tags: getSpeakerBadges(record),
         summary: asLines(fieldString(record, "Bio")),
         body: asLines(fieldString(record, "Description")),
         videoUrl: fieldFirst(record, "Video"),
@@ -285,6 +290,69 @@ export function buildDetail(
       };
     }
   }
+}
+
+function normalizeSpeakerBadge(value: string): string {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  const lowered = trimmed.toLowerCase();
+  if (lowered === "panel") return "Panel Talk";
+  if (lowered === "panel talk") return "Panel Talk";
+  if (lowered === "lightning") return "Lightning Talk";
+  if (lowered === "lightning talk") return "Lightning Talk";
+  if (lowered === "keynote") return "Keynote";
+  if (lowered === "international guest") return "International Guest";
+  if (lowered === "international guest speaker") return "International Guest";
+  return trimmed
+    .split(/\s+/)
+    .map((word) => {
+      if (word.length > 1 && word === word.toUpperCase()) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+}
+
+function withUniqueBadge(
+  target: string[],
+  seen: Set<string>,
+  rawValue: string,
+): void {
+  const normalized = normalizeSpeakerBadge(rawValue);
+  if (!normalized) return;
+  const key = normalized.toLowerCase();
+  if (seen.has(key)) return;
+  seen.add(key);
+  target.push(normalized);
+}
+
+export function getSpeakerBadges(record: SummitRecord): string[] {
+  const badges: string[] = [];
+  const seen = new Set<string>();
+
+  fieldList(record, "Talk Format").forEach((value) => withUniqueBadge(badges, seen, value));
+  fieldList(record, "Tags")
+    .filter((value) => value.trim().toLowerCase() !== "speaker")
+    .forEach((value) => withUniqueBadge(badges, seen, value));
+
+  const context = [fieldString(record, "Title"), fieldString(record, "Description")]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  if (context.includes("international guest")) {
+    withUniqueBadge(badges, seen, "International Guest");
+  }
+  if (badges.length === 0 && context.includes("keynote")) {
+    withUniqueBadge(badges, seen, "Keynote");
+  }
+  if (badges.length === 0 && context.includes("lightning talk")) {
+    withUniqueBadge(badges, seen, "Lightning Talk");
+  }
+  if (badges.length === 0 && context.includes("panel")) {
+    withUniqueBadge(badges, seen, "Panel Talk");
+  }
+
+  return badges.length > 0 ? badges : ["Speaker"];
 }
 
 function formatRange(record: SummitRecord, startField: string, endField: string): string {
