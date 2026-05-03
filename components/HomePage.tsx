@@ -280,7 +280,7 @@ export default function HomePage() {
   return (
     <>
       <ScrollToTop />
-      <main className="mx-auto w-full max-w-[460px] px-3 pb-16 pt-3 sm:max-w-[1024px] sm:px-6 sm:pt-5 lg:max-w-[1240px]">
+      <main className="mx-auto w-full max-w-[460px] px-0 pb-16 pt-3 sm:max-w-[1024px] sm:px-0 sm:pt-5 lg:max-w-[1240px]">
         {errorBanner}
 
         {moderation && moderationChecked && !moderationConfigured && (

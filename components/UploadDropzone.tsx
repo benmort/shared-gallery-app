@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import { useCallback, useId, useRef, useState } from "react";
 
 type Props = {
@@ -68,13 +69,12 @@ export default function UploadDropzone({
         ].join(" ")}
       >
         <span
-          className={
-            variant === "onDark"
-              ? "text-sm font-medium text-white"
-              : "text-sm font-medium text-stone-800"
-          }
+          className={`inline-flex items-center gap-2 text-sm font-medium ${
+            variant === "onDark" ? "text-white" : "text-stone-800"
+          }`}
         >
-          Tap to choose photos or videos
+          <ArrowUpTrayIcon className="h-4 w-4" aria-hidden />
+          <span>Tap to choose from your library</span>
         </span>
         <span
           className={

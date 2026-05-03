@@ -12,6 +12,7 @@ import Link from "next/link";
 import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitSpeakerCardImage from "@/components/summit/SummitSpeakerCardImage";
 import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
+import SummitOpenMenuLink from "@/components/summit/SummitOpenMenuLink";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
 import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
@@ -271,7 +272,7 @@ export default async function SummitDashboardPage() {
       </section>
 
       <section>
-        <SectionHeading title="Directory" />
+        <SectionHeading title="Directory" action={<SummitOpenMenuLink />} />
         <div className="grid grid-cols-2 gap-3">
           {directoryEntries.map((entry) => {
             const Icon = entry.icon;

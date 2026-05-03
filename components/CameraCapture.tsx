@@ -1,5 +1,6 @@
 "use client";
 
+import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
 import { useId, useRef, useState } from "react";
 import { validateImageFile, validateVideoFile } from "@/lib/client-validate";
 
@@ -23,12 +24,18 @@ export default function CameraCapture({
 
   const btnClass = (flex1: boolean) =>
     [
-      "min-h-12 rounded-full px-4 text-sm font-semibold shadow-sm transition disabled:opacity-50",
+      "group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50",
       flex1 ? "flex-1" : "",
       onDark
-        ? "border border-white/25 bg-white/10 text-white hover:bg-white/15"
-        : "border border-stone-200 bg-white text-stone-800 hover:bg-stone-50",
+        ? "border border-white/20 bg-zinc-950/45 text-white hover:border-amber-300/45 hover:bg-zinc-900/70"
+        : "border border-stone-300 bg-white text-stone-900 hover:border-stone-400 hover:bg-stone-50",
     ].join(" ");
+  const iconClass = onDark
+    ? "h-4 w-4 text-amber-100"
+    : "h-4 w-4 text-amber-900";
+  const iconWrapClass = onDark
+    ? "inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-400/20 ring-1 ring-amber-300/30"
+    : "inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 ring-1 ring-amber-200";
 
   const onPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
@@ -58,14 +65,17 @@ export default function CameraCapture({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="flex flex-col gap-3 sm:flex-row sm:gap-3">
         <button
           type="button"
           disabled={disabled}
           onClick={() => photoInputRef.current?.click()}
           className={btnClass(true)}
         >
-          Photo capture
+          <span className={iconWrapClass} aria-hidden>
+            <CameraIcon className={iconClass} />
+          </span>
+          <span>Take A Photo</span>
         </button>
         <button
           type="button"
@@ -73,7 +83,10 @@ export default function CameraCapture({
           onClick={() => videoInputRef.current?.click()}
           className={btnClass(true)}
         >
-          Video capture
+          <span className={iconWrapClass} aria-hidden>
+            <VideoCameraIcon className={iconClass} />
+          </span>
+          <span>Take A Video</span>
         </button>
       </div>
       <input

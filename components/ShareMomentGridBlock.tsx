@@ -9,7 +9,6 @@ import type { Photo } from "@/lib/types/photo";
 import { extensionForMime } from "@/lib/types/photo";
 import { postFormDataWithProgress } from "@/utils/postFormDataWithProgress";
 import CameraCapture from "./CameraCapture";
-import EmptyState from "./EmptyState";
 import UploadDropzone from "./UploadDropzone";
 import UploadPreviewList, { type PreviewItem } from "./UploadPreviewList";
 import UploadTermsNotice from "./UploadTermsNotice";
@@ -175,7 +174,6 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
       )}
       <div
         className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 p-4 text-left text-white shadow-2xl sm:p-5"
-        aria-label="Share A Moment"
       >
         {backHref ? (
           <Link
@@ -186,7 +184,6 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             BACK TO APP
           </Link>
         ) : null}
-        <h2 className="mt-1 text-2xl font-semibold leading-tight text-white">Share A Moment</h2>
         <p className="mt-2 text-sm leading-6 text-stone-300">
           Add photos and videos to the shared album from your library or straight from your phone.
         </p>
@@ -204,15 +201,13 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
           </div>
           <UploadDropzone onFiles={addFiles} disabled={uploading} variant="onDark" />
-          {items.length === 0 ? (
-            <EmptyState variant="heroDark" />
-          ) : (
+          {items.length > 0 ? (
             <UploadPreviewList
               items={items}
               onRemove={removeItem}
               disabled={uploading}
             />
-          )}
+          ) : null}
 
           {errors.length > 0 && (
             <div
@@ -236,25 +231,29 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             </p>
           )}
 
-          <button
-            type="button"
-            disabled={uploading || items.length === 0}
-            onClick={() => void upload()}
-            aria-busy={uploading}
-            className={`pointer-events-auto z-10 mt-2 min-h-12 w-full rounded-lg border border-white/20 bg-white px-4 py-3 text-sm font-semibold text-black transition hover:bg-white/90 disabled:cursor-not-allowed ${
-              uploading ? "opacity-100" : "disabled:opacity-40"
-            } inline-flex items-center justify-center gap-2`}
-          >
-            {uploading && (
-              <ArrowPathIcon
-                className="h-4 w-4 shrink-0 animate-spin"
-                aria-hidden
-              />
-            )}
-            {uploading
-              ? "Uploading..."
-              : `Upload${items.length ? ` (${items.length})` : ""}`}
-          </button>
+          {items.length > 0 ? (
+            <div className="mt-2">
+              <button
+                type="button"
+                disabled={uploading}
+                onClick={() => void upload()}
+                aria-busy={uploading}
+                className={`pointer-events-auto z-10 min-h-12 w-full rounded-lg border border-white/20 bg-white px-4 py-3 text-sm font-semibold text-black transition inline-flex items-center justify-center gap-2 ${
+                  uploading ? "cursor-not-allowed opacity-100" : "hover:bg-white/90"
+                }`}
+              >
+                {uploading && (
+                  <ArrowPathIcon
+                    className="h-4 w-4 shrink-0 animate-spin"
+                    aria-hidden
+                  />
+                )}
+                {uploading
+                  ? "Uploading..."
+                  : `Upload${items.length ? ` (${items.length})` : ""}`}
+              </button>
+            </div>
+          ) : null}
 
           <UploadTermsNotice variant="onDark" />
         </section>

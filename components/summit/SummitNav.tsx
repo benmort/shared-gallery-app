@@ -15,7 +15,8 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { SUMMIT_OPEN_MENU_EVENT } from "@/lib/summit/menu-events";
 import { SUMMIT_MENU_SUBTITLE_BY_HREF } from "@/lib/summit/page-descriptors";
 
 type NavItem = {
@@ -96,6 +97,18 @@ export default function SummitNav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const openMenuTimerRef = useRef<number | null>(null);
 
+  const openMenu = useCallback(() => {
+    if (menuOpen) return;
+    if (openMenuTimerRef.current !== null) {
+      window.clearTimeout(openMenuTimerRef.current);
+    }
+    window.scrollTo({ top: 0, behavior: "auto" });
+    openMenuTimerRef.current = window.setTimeout(() => {
+      setMenuOpen(true);
+      openMenuTimerRef.current = null;
+    }, 30);
+  }, [menuOpen]);
+
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
@@ -119,6 +132,12 @@ export default function SummitNav() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
+  useEffect(() => {
+    const onOpenMenu = () => openMenu();
+    window.addEventListener(SUMMIT_OPEN_MENU_EVENT, onOpenMenu);
+    return () => window.removeEventListener(SUMMIT_OPEN_MENU_EVENT, onOpenMenu);
+  }, [openMenu]);
+
   const handleMenuToggle = () => {
     if (menuOpen) {
       if (openMenuTimerRef.current !== null) {
@@ -128,12 +147,7 @@ export default function SummitNav() {
       setMenuOpen(false);
       return;
     }
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    openMenuTimerRef.current = window.setTimeout(() => {
-      setMenuOpen(true);
-      openMenuTimerRef.current = null;
-    }, 100);
+    openMenu();
   };
 
   useEffect(() => {
