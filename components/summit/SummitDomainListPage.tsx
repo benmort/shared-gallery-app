@@ -7,7 +7,7 @@ import { getSummitContext } from "@/lib/summit/context";
 import { roleHash } from "@/lib/summit/crew-filters";
 import { buildListItem } from "@/lib/summit/domains";
 import { domainLabel, getDomainRecords } from "@/lib/summit/domain-data";
-import { fieldString } from "@/lib/summit/fields";
+import { fieldList, fieldString } from "@/lib/summit/fields";
 import { SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN } from "@/lib/summit/page-descriptors";
 import type { SummitListDomain } from "@/lib/summit/types";
 
@@ -19,19 +19,25 @@ type Props = {
 export default async function SummitDomainListPage({ domain, roleFilter }: Props) {
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
+  const domainRecords =
+    domain === "events"
+      ? records.filter(
+          (record) => !fieldList(record, "Tags").some((tag) => tag.trim().toLowerCase() === "break"),
+        )
+      : records;
   const normalizedRoleFilter = roleFilter?.trim() || "";
   const crewRoles =
     domain === "crew"
-      ? Array.from(new Set(records.map((record) => fieldString(record, "Role")).filter(Boolean))).sort()
+      ? Array.from(new Set(domainRecords.map((record) => fieldString(record, "Role")).filter(Boolean))).sort()
       : [];
   const filteredRecords =
     domain === "crew" && normalizedRoleFilter
-      ? records.filter((record) => fieldString(record, "Role") === normalizedRoleFilter)
-      : records;
+      ? domainRecords.filter((record) => fieldString(record, "Role") === normalizedRoleFilter)
+      : domainRecords;
   const label = domainLabel(domain);
   const subtitle = SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN[domain] || label;
 
-  if (!records.length) {
+  if (!domainRecords.length) {
     return (
       <SummitEmpty
         title={`No ${label.toLowerCase()} yet`}

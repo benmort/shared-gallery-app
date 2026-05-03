@@ -174,7 +174,7 @@ function SummitOnboardingOverlay({
           visible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-amber-100/90">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-800">
           Slide {slideIndex + 1} of {DASHBOARD_ONBOARDING_SLIDES.length}
         </p>
         <div className="mt-3 flex items-center gap-1.5">
@@ -185,7 +185,7 @@ function SummitOnboardingOverlay({
               className={
                 index === slideIndex
                   ? "h-1.5 w-8 rounded-full bg-amber-300"
-                  : "h-1.5 w-3 rounded-full bg-white/35"
+                  : "h-1.5 w-3 rounded-full bg-black/35"
               }
             />
           ))}

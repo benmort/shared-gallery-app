@@ -1,5 +1,6 @@
 import type { SummitRecord } from "@/lib/summit/types";
 import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
+import { eventImageForTitle } from "@/lib/summit/event-images";
 
 export type ScheduleSlot = {
   id: string;
@@ -198,14 +199,16 @@ export function buildScheduleDays(
       const talkFormats = fieldList(matching, "Talk Format");
       const tags = fieldList(matching, "Tags");
       const isTalk = talkFormats.length > 0;
+      const title = fieldString(matching, "Title");
       const formatLabel = talkFormats[0] || tags[0] || (isTalk ? "Talk" : "Event");
       const roomLabel = [venue, room].filter(Boolean).join(" - ");
       const locationLabel = [room, venue].filter(Boolean).join(" · ");
+      const imageUrl = fieldFirst(matching, "Headshot") || (!isTalk ? eventImageForTitle(title) : null) || undefined;
 
       slots.push({
         id: matching.id,
         talk: isTalk,
-        title: fieldString(matching, "Title"),
+        title,
         speaker: fieldString(matching, "Full Name"),
         room: roomLabel || "Location to be confirmed",
         summary: fieldString(matching, "Description"),
@@ -215,7 +218,7 @@ export function buildScheduleDays(
         formatLabel,
         locationLabel: locationLabel || roomLabel || undefined,
         tags,
-        imageUrl: fieldFirst(matching, "Headshot"),
+        imageUrl,
         organisation: fieldFirst(matching, "Organisation"),
       });
     }

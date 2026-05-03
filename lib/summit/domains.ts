@@ -1,5 +1,6 @@
 import type { DetailView, ListItemView, SummitListDomain, SummitRecord } from "@/lib/summit/types";
 import { fieldAttachmentUrl, fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
+import { eventImageForTitle } from "@/lib/summit/event-images";
 
 type DomainMeta = {
   table: string;
@@ -96,6 +97,7 @@ export function isSummitDomain(value: string): value is SummitListDomain {
 
 export function buildListItem(domain: SummitListDomain, record: SummitRecord): ListItemView {
   const meta = summitDomainMeta[domain];
+  const title = fieldString(record, meta.titleField) || "Untitled";
   const subtitle = meta.subtitleField
     ? meta.subtitleFirstOnly
       ? fieldFirst(record, meta.subtitleField)
@@ -107,12 +109,14 @@ export function buildListItem(domain: SummitListDomain, record: SummitRecord): L
       : meta.tagsField
         ? fieldList(record, meta.tagsField)
         : [];
+  const airtableImageUrl = fieldAttachmentUrl(record, meta.imageField, { headshot: meta.imageHeadshot });
+  const eventImageUrl = domain === "events" ? eventImageForTitle(title) : null;
   return {
     id: record.id,
-    title: fieldString(record, meta.titleField) || "Untitled",
+    title,
     subtitle: subtitle || null,
     description: meta.descriptionField ? fieldString(record, meta.descriptionField) : null,
-    imageUrl: fieldAttachmentUrl(record, meta.imageField, { headshot: meta.imageHeadshot }),
+    imageUrl: eventImageUrl || airtableImageUrl,
     tags,
   };
 }
@@ -161,10 +165,11 @@ export function buildDetail(
       };
     }
     case "events": {
+      const title = fieldString(record, "Title");
       return {
-        title: fieldString(record, "Title"),
+        title,
         subtitle: "Event",
-        imageUrl: fieldAttachmentUrl(record, "Headshot", { headshot: true }),
+        imageUrl: eventImageForTitle(title) || fieldAttachmentUrl(record, "Headshot", { headshot: true }),
         tags: fieldList(record, "Tags"),
         summary: asLines(fieldString(record, "Description")),
         videoUrl: fieldFirst(record, "Video"),
