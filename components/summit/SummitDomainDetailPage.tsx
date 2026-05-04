@@ -2,9 +2,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import SummitDetailView from "@/components/summit/SummitDetailView";
+import SummitVenueMapGallery from "@/components/summit/SummitVenueMapGallery";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildDetail } from "@/lib/summit/domains";
 import { getDomainRecords } from "@/lib/summit/domain-data";
+import { fieldString } from "@/lib/summit/fields";
+import { venueGalleryForName } from "@/lib/summit/venue-gallery";
 import type { SummitListDomain } from "@/lib/summit/types";
 
 type Props = {
@@ -20,6 +23,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
 
   const detail = buildDetail(domain, record);
   const pronouncedHeader = domain === "speakers" || domain === "events" || domain === "crew";
+  const venueGalleryItems = domain === "venues" ? venueGalleryForName(fieldString(record, "Name")) : [];
 
   return (
     <div className="space-y-4">
@@ -31,6 +35,9 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         {`BACK TO ${domain.toUpperCase()}`}
       </Link>
       <SummitDetailView detail={detail} pronouncedHeader={pronouncedHeader} />
+      {domain === "venues" && venueGalleryItems.length > 0 ? (
+        <SummitVenueMapGallery items={venueGalleryItems} />
+      ) : null}
     </div>
   );
 }

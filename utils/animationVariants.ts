@@ -1,21 +1,8 @@
-/** Subtle slide + fade — large offsets feel sluggish on desktop lightbox. */
-const SLIDE = 36;
-
+/** Fade-only transition for smoother mixed media slide changes. */
 export const variants = {
-  enter: (direction: number) => {
-    return {
-      x: direction > 0 ? SLIDE : -SLIDE,
-      opacity: 0,
-    };
-  },
+  enter: { opacity: 0 },
   center: {
-    x: 0,
     opacity: 1,
   },
-  exit: (direction: number) => {
-    return {
-      x: direction < 0 ? SLIDE : -SLIDE,
-      opacity: 0,
-    };
-  },
+  exit: { opacity: 0 },
 };

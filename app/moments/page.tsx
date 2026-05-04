@@ -15,7 +15,7 @@ function HomeFallback() {
 export default function MomentsPage() {
   return (
     <SummitShell>
-      <div className="mx-auto mb-5 w-full max-w-[700px] lg:max-w-[940px]">
+      <div className="mx-auto mb-5 w-full max-w-[700px] lg:mx-0 lg:max-w-[940px]">
         <SummitPageHeader title="Moments" subtitle={SUMMIT_PAGE_SUBTITLE.moments} />
       </div>
       <Suspense fallback={<HomeFallback />}>

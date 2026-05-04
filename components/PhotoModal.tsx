@@ -3,7 +3,14 @@
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import useKeypress from "react-use-keypress";
 import type { Photo } from "@/lib/types/photo";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
@@ -28,35 +35,57 @@ export default function PhotoModal({
   const searchParams = useSearchParams();
   const photoId = searchParams?.get("photoId") ?? null;
   const [, setLastViewedPhoto] = useLastViewedPhoto();
+  const pendingPhotoIdRef = useRef<string | null | undefined>(undefined);
+  const [, startTransition] = useTransition();
+
+  const [activePhotoId, setActivePhotoId] = useState<string | null>(photoId);
+  const preserve = preserveSearchParams ?? null;
+
+  useEffect(() => {
+    const pendingPhotoId = pendingPhotoIdRef.current;
+    if (pendingPhotoId !== undefined) {
+      if (photoId === pendingPhotoId) {
+        pendingPhotoIdRef.current = undefined;
+      }
+      return;
+    }
+    setActivePhotoId(photoId);
+  }, [photoId]);
 
   const index = useMemo(
-    () => (photoId ? photos.findIndex((p) => p.id === photoId) : -1),
-    [photoId, photos],
+    () => (activePhotoId ? photos.findIndex((p) => p.id === activePhotoId) : -1),
+    [activePhotoId, photos],
   );
 
   const open = index >= 0;
-  const [direction, setDirection] = useState(0);
 
-  const handleClose = () => {
-    if (photoId) setLastViewedPhoto(photoId);
-    router.replace(galleryPath(null, preserveSearchParams ?? null), {
-      scroll: false,
-    });
-  };
-
-  const changeIndex = (newIndex: number) => {
-    if (newIndex < 0 || newIndex >= photos.length) return;
-    if (newIndex === index) return;
-    setDirection(newIndex > index ? 1 : -1);
-    const id = photos[newIndex]?.id;
-    if (id) {
-      router.replace(galleryPath(id, preserveSearchParams ?? null), {
-        scroll: false,
+  const syncPhotoId = useCallback(
+    (nextPhotoId: string | null) => {
+      pendingPhotoIdRef.current = nextPhotoId;
+      startTransition(() => {
+        router.replace(galleryPath(nextPhotoId, preserve), { scroll: false });
       });
-    }
-  };
+    },
+    [preserve, router, startTransition],
+  );
 
-  const preserve = preserveSearchParams ?? null;
+  const handleClose = useCallback(() => {
+    if (activePhotoId) setLastViewedPhoto(activePhotoId);
+    setActivePhotoId(null);
+    syncPhotoId(null);
+  }, [activePhotoId, setLastViewedPhoto, syncPhotoId]);
+
+  const changeIndex = useCallback(
+    (newIndex: number) => {
+      if (newIndex < 0 || newIndex >= photos.length) return;
+      if (newIndex === index) return;
+      const nextPhotoId = photos[newIndex]?.id;
+      if (!nextPhotoId) return;
+      setActivePhotoId(nextPhotoId);
+      syncPhotoId(nextPhotoId);
+    },
+    [index, photos, syncPhotoId],
+  );
 
   const handleDeletePhoto =
     moderation && onPhotosReload
@@ -78,16 +107,17 @@ export default function PhotoModal({
           const idx = photos.findIndex((p) => p.id === photo.id);
           const remaining = photos.filter((p) => p.id !== photo.id);
           if (remaining.length === 0) {
-            router.replace(galleryPath(null, preserve), { scroll: false });
+            setActivePhotoId(null);
+            syncPhotoId(null);
           } else if (idx >= 0 && idx < remaining.length) {
-            router.replace(galleryPath(remaining[idx].id, preserve), {
-              scroll: false,
-            });
+            setActivePhotoId(remaining[idx].id);
+            syncPhotoId(remaining[idx].id);
           } else {
-            router.replace(
-              galleryPath(remaining[remaining.length - 1].id, preserve),
-              { scroll: false },
-            );
+            const fallback = remaining[remaining.length - 1];
+            if (fallback) {
+              setActivePhotoId(fallback.id);
+              syncPhotoId(fallback.id);
+            }
           }
           await onPhotosReload();
         }
@@ -113,7 +143,7 @@ export default function PhotoModal({
       <Dialog.Overlay
         as={motion.div}
         key="backdrop"
-        className="fixed inset-0 z-40 bg-black/70 backdrop-blur-2xl"
+        className="fixed inset-0 z-40 bg-black"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       />
@@ -121,7 +151,6 @@ export default function PhotoModal({
         <PhotoLightbox
           photos={photos}
           index={index}
-          direction={direction}
           changeIndex={changeIndex}
           closeModal={handleClose}
           onDeletePhoto={handleDeletePhoto}

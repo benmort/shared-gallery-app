@@ -1,6 +1,11 @@
 import Link from "next/link";
+import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
+import { getSummitContext } from "@/lib/summit/context";
+import { fieldString } from "@/lib/summit/fields";
 import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
+import { getVenuesAll } from "@/lib/summit/service";
+import type { SummitRecord } from "@/lib/summit/types";
 
 type GuidanceSection = {
   title: string;
@@ -8,6 +13,46 @@ type GuidanceSection = {
 };
 
 const SUPPORT_EMAIL = "summit@commonthreads.org.au";
+
+function normalizeParagraph(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function splitIntoSentences(value: string): string[] {
+  return normalizeParagraph(value)
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+}
+
+function ensureSentence(value: string): string {
+  const trimmed = normalizeParagraph(value);
+  if (!trimmed) return "";
+  return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
+}
+
+function twoSentenceVenueSummary(record: SummitRecord): string {
+  const descriptions = [
+    fieldString(record, "Description"),
+    fieldString(record, "Subtitle"),
+    fieldString(record, "Instructions"),
+  ];
+  const sentences: string[] = [];
+  for (const block of descriptions) {
+    for (const sentence of splitIntoSentences(block)) {
+      if (sentences.length >= 2) break;
+      if (!sentences.includes(sentence)) sentences.push(sentence);
+    }
+    if (sentences.length >= 2) break;
+  }
+
+  if (sentences.length < 2) {
+    const address = fieldString(record, "Address");
+    if (address) sentences.push(ensureSentence(`Located at ${address}`));
+  }
+
+  return sentences.slice(0, 2).join(" ");
+}
 
 function renderParagraphContent(paragraph: string): React.ReactNode {
   const chunks = paragraph.split(/(https?:\/\/\S+|summit@commonthreads\.org\.au)/g);
@@ -117,12 +162,46 @@ const GUIDANCE_SECTIONS: readonly GuidanceSection[] = [
   },
 ];
 
-export default function Page() {
+export default async function Page() {
+  const context = await getSummitContext();
+  const venues = (await getVenuesAll(context.selectedSummitName)).sort((a, b) =>
+    fieldString(a, "Name").localeCompare(fieldString(b, "Name")),
+  );
+
   return (
     <div className="mx-auto w-full max-w-[980px] space-y-4">
       <SummitPageHeader title="Event Guidance" subtitle={SUMMIT_PAGE_SUBTITLE.eventGuidance} />
 
       <div className="space-y-3">
+        {venues.length > 0 ? (
+          <article className="rounded-xl border border-white/10 bg-zinc-900/70 p-4 sm:p-5">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">Venues</h2>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {venues.map((venue) => {
+                const venueName = fieldString(venue, "Name") || "Venue";
+                return (
+                  <Link
+                    key={venue.id}
+                    href={`/venues/${venue.id}`}
+                    className="group rounded-lg border border-white/10 bg-white/5 p-3 transition hover:border-white/20 hover:bg-white/10"
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="text-sm font-semibold text-white">{venueName}</h3>
+                      <ChevronRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-200/90 transition group-hover:text-amber-100" />
+                    </div>
+                    <p className="mt-2 text-xs leading-relaxed text-stone-300">
+                      {twoSentenceVenueSummary(venue)}
+                    </p>
+                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-200/90">
+                      View venue page
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          </article>
+        ) : null}
+
         {GUIDANCE_SECTIONS.map((section) => (
           <article key={section.title} className="rounded-xl border border-white/10 bg-zinc-900/70 p-4 sm:p-5">
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">{section.title}</h2>
