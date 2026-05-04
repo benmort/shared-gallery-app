@@ -2011,6 +2011,29 @@
       }
     },
     {
+      "id": "organisation-australian-progress",
+      "fields": {
+        "Name": "Australian Progress",
+        "Country": "Australia",
+        "Summary": "Australian Progress builds the advocacy, leadership, and campaign capacity of social change organisations and civil society movements in Australia.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/australian-progress.webp"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/australian-progress.webp"
+          }
+        ],
+        "URL": "https://www.australianprogress.org.au/"
+      }
+    },
+    {
       "id": "organisation-sosblak-australia-sa",
       "fields": {
         "Name": "SOSBlak Australia SA",
@@ -3112,29 +3135,6 @@
           }
         ],
         "URL": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect"
-      }
-    },
-    {
-      "id": "organisation-australian-progress",
-      "fields": {
-        "Name": "Australian Progress",
-        "Country": "Australia",
-        "Summary": "Australian Progress builds the advocacy, leadership, and campaign capacity of social change organisations and civil society movements in Australia.",
-        "Status": "Listed",
-        "Languages": [
-          "English"
-        ],
-        "Logo Landscape": [
-          {
-            "url": "/images/organisations/australian-progress.webp"
-          }
-        ],
-        "Logo Box": [
-          {
-            "url": "/images/organisations/australian-progress.webp"
-          }
-        ],
-        "URL": "https://www.australianprogress.org.au/"
       }
     },
     {
