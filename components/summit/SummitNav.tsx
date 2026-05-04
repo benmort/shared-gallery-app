@@ -178,7 +178,7 @@ export default function SummitNav() {
         <div className="mx-auto flex w-full max-w-[1100px] items-center justify-between px-4 py-3 sm:px-6">
           <Link
             href="/"
-            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-100"
+            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-100 lg:text-[13px]"
           >
             Common Threads Summit &#39;26
           </Link>
@@ -187,7 +187,7 @@ export default function SummitNav() {
               type="button"
               onClick={handleMenuToggle}
               aria-expanded={menuOpen}
-              className="rounded-full border border-white/20 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-stone-200 hover:bg-white/10"
+              className="rounded-full border border-white/20 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-stone-200 hover:bg-white/10 lg:text-[12px]"
             >
               {menuOpen ? "Close menu" : "View menu"}
             </button>
@@ -214,7 +214,7 @@ export default function SummitNav() {
                 const Icon = menuIconForHref(item.href);
                 const iconBadgeClass = active
                   ? "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-amber-300/50 bg-amber-500/20 text-amber-100"
-                  : "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/15 bg-black/30 text-amber-100";
+                  : "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100";
                 return (
                   <Link
                     key={item.href}
@@ -222,7 +222,7 @@ export default function SummitNav() {
                     className={`inline-flex min-h-11 items-center justify-between rounded-md border px-4 py-2.5 transition ${
                       active
                         ? "border-amber-300/40 bg-amber-500/10 font-semibold text-amber-200"
-                        : "border-white/10 bg-white/5 text-stone-200 hover:bg-white/10"
+                        : "border-white/35 bg-white/5 text-stone-200 hover:border-white/55 hover:bg-white/10"
                     }`}
                   >
                     <span className="inline-flex min-w-0 items-center gap-2">
@@ -230,12 +230,12 @@ export default function SummitNav() {
                         <Icon className="h-4 w-4" aria-hidden />
                       </span>
                       <span className="min-w-0">
-                        <span className="block truncate text-sm tracking-[0.08em]">{item.label}</span>
+                        <span className="block truncate text-sm tracking-[0.08em] lg:text-[15.5px]">{item.label}</span>
                         <span
                           className={
                             active
-                              ? "mt-0.5 block truncate text-[11px] font-normal leading-4 text-amber-100/90"
-                              : "mt-0.5 block truncate text-[11px] leading-4 text-stone-400"
+                              ? "mt-0.5 block truncate text-[11px] font-normal leading-4 text-amber-100/90 lg:text-[12.5px]"
+                              : "mt-0.5 block truncate text-[11px] leading-4 text-stone-400 lg:text-[12.5px]"
                           }
                         >
                           {item.subtitle}
@@ -262,8 +262,8 @@ export default function SummitNav() {
                 href={tab.href}
                 className={
                   active
-                    ? "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl bg-amber-500/15 px-1.5 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-amber-200"
-                    : "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-[10px] uppercase tracking-[0.1em] text-stone-400 hover:bg-white/10 hover:text-stone-200"
+                    ? "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl bg-amber-500/15 px-1.5 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-amber-200 lg:text-[12px]"
+                    : "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-[10px] uppercase tracking-[0.1em] text-stone-400 hover:bg-white/10 hover:text-stone-200 lg:text-[12px]"
                 }
               >
                 <Icon className="h-4 w-4" />

@@ -26,7 +26,7 @@ export default async function SummitSchedulePage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-[700px] space-y-5 lg:max-w-[940px]">
+    <div className="w-full space-y-5">
       <SummitPageHeader title="Program" subtitle={SUMMIT_PAGE_SUBTITLE.program} />
       <SummitScheduleTimeline days={scheduleDays} />
     </div>

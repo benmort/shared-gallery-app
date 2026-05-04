@@ -35,7 +35,7 @@ function formatBadge(value: string): string {
 function dayHashToken(day: ScheduleDay, index: number): string {
   const title = (day.filterTitle || "").toLowerCase();
   if (title.includes("youth")) return "youth-day";
-  if (title.includes("first official")) return "day-1";
+  if (title.includes("first summit") || title.includes("first official")) return "day-1";
   if (title.includes("second summit")) return "day-2";
   if (title.includes("last summit")) return "day-3";
   return `day-${index + 1}`;

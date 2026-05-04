@@ -25,8 +25,8 @@ export default function SummitListCard({
     : "h-20 w-28 rounded-md object-cover";
   const placeholderClass = circularImage ? "h-20 w-20 rounded-full bg-white/5" : "h-20 w-28 rounded-md bg-white/5";
   const cardClass = showImage
-    ? "flex items-start gap-4 rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10"
-    : "rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10";
+    ? "flex items-start gap-4 rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10"
+    : "rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10";
 
   return (
     <Link

@@ -1988,6 +1988,19 @@
       }
     },
     {
+      "id": "organisation-deshong-consulting",
+      "fields": {
+        "Name": "Deshong Consulting",
+        "Country": "Australia",
+        "Summary": "Deshong Consulting is an Indigenous-led consulting practice focused on governance, facilitation, leadership development, advocacy, and community capacity outcomes.",
+        "Status": "Listed",
+        "Languages": [
+          "English"
+        ],
+        "URL": "https://deshongconsulting.com.au/"
+      }
+    },
+    {
       "id": "organisation-sosblak-australia-sa",
       "fields": {
         "Name": "SOSBlak Australia SA",

@@ -15,7 +15,7 @@ import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import SummitOpenMenuLink from "@/components/summit/SummitOpenMenuLink";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
-import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
+import { fieldFirst, fieldString } from "@/lib/summit/fields";
 import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
 import { getSpeakersAll } from "@/lib/summit/service";
 import type { SummitRecord } from "@/lib/summit/types";
@@ -237,7 +237,7 @@ export default async function SummitDashboardPage() {
   ];
 
   return (
-    <div className="mx-auto w-full max-w-[680px] space-y-6 lg:max-w-[980px]">
+    <div className="w-full space-y-6">
       <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 sm:min-h-[430px]">
         <SummitHeroVideo
           src={heroVideoUrl}
@@ -277,7 +277,7 @@ export default async function SummitDashboardPage() {
           {directoryEntries.map((entry) => {
             const Icon = entry.icon;
             const cardClass =
-              "group relative rounded-xl border border-white/10 bg-zinc-900/70 p-3.5 transition hover:border-white/20 hover:bg-zinc-900";
+              "group relative rounded-xl border border-white/35 bg-zinc-900/70 p-3.5 transition hover:border-white/55 hover:bg-zinc-900 lg:flex lg:items-stretch lg:gap-3";
 
             if (entry.external) {
               return (
@@ -291,11 +291,13 @@ export default async function SummitDashboardPage() {
                   <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
                     <ChevronRightIcon className="h-3 w-3" aria-hidden />
                   </span>
-                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-black/30 text-amber-100">
-                    <Icon className="h-4 w-4" />
+                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
+                    <Icon className="h-4 w-4 lg:h-6 lg:w-6" />
                   </span>
-                  <p className="text-sm font-semibold text-white">{entry.label}</p>
-                  <p className="mt-1 text-[11px] text-stone-400">{entry.subtitle}</p>
+                  <span className="block lg:flex lg:min-w-0 lg:flex-col lg:justify-center">
+                    <p className="text-sm font-semibold text-white lg:text-[16px]">{entry.label}</p>
+                    <p className="mt-1 text-[11px] text-stone-400 lg:text-[13px]">{entry.subtitle}</p>
+                  </span>
                 </a>
               );
             }
@@ -305,11 +307,13 @@ export default async function SummitDashboardPage() {
                 <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
                   <ChevronRightIcon className="h-3 w-3" aria-hidden />
                 </span>
-                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/15 bg-black/30 text-amber-100">
-                  <Icon className="h-4 w-4" />
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
+                  <Icon className="h-4 w-4 lg:h-6 lg:w-6" />
                 </span>
-                <p className="text-sm font-semibold text-white">{entry.label}</p>
-                <p className="mt-1 text-[11px] text-stone-400">{entry.subtitle}</p>
+                <span className="block lg:flex lg:min-w-0 lg:flex-col lg:justify-center">
+                  <p className="text-sm font-semibold text-white lg:text-[16px]">{entry.label}</p>
+                  <p className="mt-1 text-[11px] text-stone-400 lg:text-[13px]">{entry.subtitle}</p>
+                </span>
               </Link>
             );
           })}
@@ -352,10 +356,10 @@ export default async function SummitDashboardPage() {
       </section>
 
       <section className="rounded-xl border border-white/10 bg-zinc-900/70 p-4">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-100">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-100 lg:text-[18px]">
           {summitTitle.overline}
         </p>
-        <p className="mt-2 max-w-[55ch] text-xs text-stone-400">
+        <p className="mt-2 max-w-[55ch] text-xs text-stone-400 lg:text-[14px] lg:leading-[1.35]">
           {summitTitle.title} brings together campaigners, organisers and changemakers for practical
           sessions, collaborative planning and shared action. Across plenaries, workshops and
           community-led conversations, the summit is designed to strengthen relationships, sharpen

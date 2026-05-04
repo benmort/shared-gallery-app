@@ -169,7 +169,7 @@ export default async function Page() {
   );
 
   return (
-    <div className="mx-auto w-full max-w-[980px] space-y-4">
+    <div className="w-full space-y-4">
       <SummitPageHeader title="Event Guidance" subtitle={SUMMIT_PAGE_SUBTITLE.eventGuidance} />
 
       <div className="space-y-3">

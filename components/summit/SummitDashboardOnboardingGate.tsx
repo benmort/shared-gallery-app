@@ -64,21 +64,33 @@ function setCookie(name: string, value: string): void {
 }
 
 function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
-  const backgroundWidthRatio = 4;
+  const [isDesktopViewport, setIsDesktopViewport] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const applyViewport = () => setIsDesktopViewport(mediaQuery.matches);
+    applyViewport();
+    mediaQuery.addEventListener("change", applyViewport);
+    return () => mediaQuery.removeEventListener("change", applyViewport);
+  }, []);
+
+  const backgroundWidthRatio = isDesktopViewport ? 1 : 4;
   const maxPanPercent = ((backgroundWidthRatio - 1) / backgroundWidthRatio) * 100;
   const totalSlides = DASHBOARD_ONBOARDING_SLIDES.length;
   const panPercentPerStep = totalSlides > 1 ? maxPanPercent / (totalSlides - 1) : 0;
-  const panOffset = -slideIndex * panPercentPerStep;
+  const panOffset = isDesktopViewport ? 0 : -slideIndex * panPercentPerStep;
 
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">
       <div
-        className="absolute inset-y-[-6%] left-0 bg-cover bg-no-repeat transition-transform duration-700 ease-out"
+        className={`absolute inset-0 left-0 bg-cover bg-no-repeat ${
+          isDesktopViewport ? "" : "transition-transform duration-700 ease-out"
+        }`}
         style={{
           width: `${backgroundWidthRatio * 100}%`,
           transform: `translateX(${panOffset}%)`,
           backgroundImage: `url('${ONBOARDING_BACKGROUND_IMAGE_SRC}')`,
-          backgroundPosition: "left center",
+          backgroundPosition: isDesktopViewport ? "center center" : "left center",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/32 via-black/46 to-black/85" />
