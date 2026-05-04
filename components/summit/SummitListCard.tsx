@@ -22,7 +22,7 @@ export default function SummitListCard({
 }: Props) {
   const imageClass = circularImage
     ? "h-20 w-20 rounded-full object-cover"
-    : "h-20 w-28 rounded-md object-cover";
+    : "h-20 w-28 rounded-md bg-white/5 object-contain p-1";
   const placeholderClass = circularImage ? "h-20 w-20 rounded-full bg-white/5" : "h-20 w-28 rounded-md bg-white/5";
   const cardClass = showImage
     ? "flex items-start gap-4 rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10"

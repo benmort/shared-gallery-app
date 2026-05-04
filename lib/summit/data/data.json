@@ -1976,12 +1976,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-common-threads-local.png"
+            "url": "/images/organisations/organisation-common-threads.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-common-threads-local.png"
+            "url": "/images/organisations/organisation-common-threads.png"
           }
         ],
         "URL": "https://www.commonthreads.org.au/"
@@ -1997,7 +1997,17 @@
         "Languages": [
           "English"
         ],
-        "URL": "https://deshongconsulting.com.au/"
+        "URL": "https://deshongconsulting.com.au/",
+        "Logo Landscape": [
+          {
+            "url": "/images/organisations/organisation-deshong-consulting.svg"
+          }
+        ],
+        "Logo Box": [
+          {
+            "url": "/images/organisations/organisation-deshong-consulting.svg"
+          }
+        ]
       }
     },
     {
@@ -2012,12 +2022,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-sosblak-australia-sa.svg"
           }
         ],
         "URL": "https://www.facebook.com/sosblakaustralia/"
@@ -2035,12 +2045,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek-local.png"
+            "url": "/images/organisations/no-gsc.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-no-underground-coal-gasification-leigh-creek-local.png"
+            "url": "/images/organisations/no-gsc.png"
           }
         ],
         "URL": "https://www.originalpower.org.au/copley_no_ucg"
@@ -2058,12 +2068,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council-local.jpeg"
+            "url": "/images/organisations/Pormpuraaw.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pormpuraaw-aboriginal-shire-council-local.jpeg"
+            "url": "/images/organisations/Pormpuraaw.jpeg"
           }
         ],
         "URL": "https://www.pormpuraaw.qld.gov.au/"
@@ -2081,12 +2091,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-lake-tyers-aboriginal-trust.svg"
           }
         ],
         "URL": "https://laketyersaboriginaltrust.com.au/"
@@ -2104,12 +2114,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-university-of-adelaide-local.png"
+            "url": "/images/organisations/University of Adelaide.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-university-of-adelaide-local.png"
+            "url": "/images/organisations/University of Adelaide.png"
           }
         ],
         "URL": "https://www.adelaide.edu.au/"
@@ -2127,12 +2137,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation-local.png"
+            "url": "/images/organisations/Mandingalby.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mandingalby-yidinji-aboriginal-corporation-local.png"
+            "url": "/images/organisations/Mandingalby.jpeg"
           }
         ],
         "URL": "https://mandingalbay.com.au/mandingalbay-yidinji-aboriginal-corporation-myac/"
@@ -2150,12 +2160,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-nanum-wungthim-land-sea-management-group.svg"
           }
         ],
         "URL": "https://niaa.gov.au/node/2279"
@@ -2166,19 +2176,19 @@
       "fields": {
         "Name": "Lachlan Kalari River Aboriginal Water Council",
         "Country": "Australia",
-        "Summary": "This entity appears to be an Aboriginal water governance and advocacy body associated with the Lachlan (Kalari) river region.",
+        "Summary": "Lachlan Kalari River Aboriginal Water Council is an Aboriginal water governance and advocacy body associated with the Lachlan (Kalari) river region.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/organisation-lachlan-kalari-river-aboriginal-water-council.svg"
           }
         ],
         "URL": "https://australia-corp.com/co/lachlan-kalari-river-aboriginal-water-council-pty-ltd"
@@ -2196,38 +2206,15 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-government-architect-nsw-local.jpeg"
+            "url": "/images/organisations/Government Architect NSW.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-government-architect-nsw-local.jpeg"
+            "url": "/images/organisations/Government Architect NSW.jpeg"
           }
         ],
         "URL": "https://www.governmentarchitect.nsw.gov.au/"
-      }
-    },
-    {
-      "id": "organisation-lachlan-kalari-river-aboriginal-water-committee",
-      "fields": {
-        "Name": "Lachlan Kalari River Aboriginal Water Committee",
-        "Country": "Australia",
-        "Summary": "This committee appears to be part of Aboriginal advisory structures informing water planning and management in the Lachlan region.",
-        "Status": "Listed",
-        "Languages": [
-          "English"
-        ],
-        "Logo Landscape": [
-          {
-            "url": "/images/organisations/organisation-pattern-5.svg"
-          }
-        ],
-        "Logo Box": [
-          {
-            "url": "/images/organisations/organisation-pattern-5.svg"
-          }
-        ],
-        "URL": "https://www.water.nsw.gov.au/our-work/projects-and-programs/aboriginal-water-programs/regional-aboriginal-water-committees"
       }
     },
     {
@@ -2242,12 +2229,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-full-stop-australia-local.png"
+            "url": "/images/organisations/full-stop.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-full-stop-australia-local.png"
+            "url": "/images/organisations/full-stop.png"
           }
         ],
         "URL": "https://fullstop.org.au/"
@@ -2265,12 +2252,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-change-the-record-local.png"
+            "url": "/images/organisations/Change the Record Australia.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-change-the-record-local.png"
+            "url": "/images/organisations/Change the Record Australia.png"
           }
         ],
         "URL": "https://www.changetherecord.org.au/"
@@ -2288,12 +2275,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc-local.png"
+            "url": "/images/organisations/Wenlock Catchment Management.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-wenlock-catchment-management-group-inc-local.png"
+            "url": "/images/organisations/Wenlock Catchment Management.png"
           }
         ],
         "URL": "https://qwalc.org.au/groups/group-listing/cape-york-torres-strait/"
@@ -2311,12 +2298,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service-local.png"
+            "url": "/images/organisations/Mounty Aboriginal Youth and Community Service.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-mounty-aboriginal-youth-community-service-local.png"
+            "url": "/images/organisations/Mounty Aboriginal Youth and Community Service.png"
           }
         ],
         "URL": "https://www.facebook.com/p/Mounty-Aboriginal-Youth-Community-Services-100077695239229/"
@@ -2334,12 +2321,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-western-sydney-watch-committee-local.jpeg"
+            "url": "/images/organisations/Western Sydney Watch Committee.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-western-sydney-watch-committee-local.jpeg"
+            "url": "/images/organisations/Western Sydney Watch Committee.jpeg"
           }
         ],
         "URL": "https://justiceaction.org.au/watch-committee/"
@@ -2357,12 +2344,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/our-island.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/our-island.jpeg"
           }
         ],
         "URL": "https://ourislandsourhome.com.au/"
@@ -2380,12 +2367,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/organisation-mehi-centre.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/organisation-mehi-centre.svg"
           }
         ],
         "URL": "https://www.mehicentre.com/"
@@ -2403,12 +2390,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council-local.jpeg"
+            "url": "/images/organisations/Fitzroy River Council.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-martuwarra-fitzroy-river-council-local.jpeg"
+            "url": "/images/organisations/Fitzroy River Council.png"
           }
         ],
         "URL": "https://martuwarra.org/"
@@ -2426,12 +2413,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-national-tertiary-education-union-local.png"
+            "url": "/images/organisations/national-tertiary-union.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-national-tertiary-education-union-local.png"
+            "url": "/images/organisations/national-tertiary-union.png"
           }
         ],
         "URL": "https://www.nteu.au/"
@@ -2449,12 +2436,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd-local.jpeg"
+            "url": "/images/organisations/Fishers Oysters.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-fishers-oysters-pty-ltd-local.jpeg"
+            "url": "/images/organisations/Fishers Oysters.jpeg"
           }
         ],
         "URL": "https://devilscorner.fishersoffreycinet.com.au/"
@@ -2472,12 +2459,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-first-peoples-assembly-victoria-local.jpeg"
+            "url": "/images/organisations/first-people-assembly-vic.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-first-peoples-assembly-victoria-local.jpeg"
+            "url": "/images/organisations/first-people-assembly-vic.png"
           }
         ],
         "URL": "https://www.firstpeoplesvic.org/"
@@ -2495,12 +2482,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-australian-conservation-foundation-local.png"
+            "url": "/images/organisations/Australian Conservation Foundation.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-australian-conservation-foundation-local.png"
+            "url": "/images/organisations/Australian Conservation Foundation.png"
           }
         ],
         "URL": "https://www.acf.org.au/"
@@ -2518,12 +2505,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-limestone-coast-landscape-board-local.png"
+            "url": "/images/organisations/limestone-coast.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-limestone-coast-landscape-board-local.png"
+            "url": "/images/organisations/limestone-coast.png"
           }
         ],
         "URL": "https://www.landscape.sa.gov.au/lc/"
@@ -2534,19 +2521,19 @@
       "fields": {
         "Name": "Strait Climate Action",
         "Country": "Australia",
-        "Summary": "Strait Climate Action is described as a Torres Strait youth climate group creating language-based resources and intergenerational climate campaigning.",
+        "Summary": "Strait Climate Action is a Torres Strait youth climate group creating language-based resources and intergenerational climate campaigning.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-strait-climate-action-local.png"
+            "url": "/images/organisations/strait-cliamte-action.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-strait-climate-action-local.png"
+            "url": "/images/organisations/strait-cliamte-action.jpeg"
           }
         ],
         "URL": "https://www.fya.org.au/program/youth-action-and-wellbeing-grants/"
@@ -2564,12 +2551,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-north-queensland-land-council-local.png"
+            "url": "/images/organisations/north-q-land-c.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-north-queensland-land-council-local.png"
+            "url": "/images/organisations/north-q-land-c.png"
           }
         ],
         "URL": "https://nqlc.com.au/"
@@ -2587,12 +2574,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-wardliparingga-sahmri-local.jpg"
+            "url": "/images/organisations/Wardliparingga.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-wardliparingga-sahmri-local.jpg"
+            "url": "/images/organisations/Wardliparingga.jpeg"
           }
         ],
         "URL": "https://sahmri.org.au/research/themes/aboriginal-health"
@@ -2610,12 +2597,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-tribes-united.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-tribes-united.svg"
           }
         ],
         "URL": "https://www.spiritualunityofthetribes.org.au/"
@@ -2633,12 +2620,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-social-reinvestment-wa-local.png"
+            "url": "/images/organisations/social-reinvestment.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-social-reinvestment-wa-local.png"
+            "url": "/images/organisations/social-reinvestment.png"
           }
         ],
         "URL": "https://www.socialreinvestmentwa.org.au/"
@@ -2656,12 +2643,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/human rights law centre.png"
+            "url": "/images/organisations/human-rights.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/human rights law centre.png"
+            "url": "/images/organisations/human-rights.jpeg"
           }
         ],
         "URL": "https://www.hrlc.org.au/"
@@ -2679,12 +2666,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-queensland-teachers-union-local.png"
+            "url": "/images/organisations/qts.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-queensland-teachers-union-local.png"
+            "url": "/images/organisations/qts.png"
           }
         ],
         "URL": "https://www.qtu.asn.au/"
@@ -2702,12 +2689,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre-local.png"
+            "url": "/images/organisations/tasmanian-council.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-tasmanian-aboriginal-centre-local.png"
+            "url": "/images/organisations/tasmanian-council.png"
           }
         ],
         "URL": "https://tacinc.com.au/"
@@ -2725,12 +2712,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-ards-aboriginal-corporation-local.jpeg"
+            "url": "/images/organisations/ards.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-ards-aboriginal-corporation-local.jpeg"
+            "url": "/images/organisations/ards.jpeg"
           }
         ],
         "URL": "https://ards.com.au/"
@@ -2748,12 +2735,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/organisation-the-nurse-on-foot.svg"
           }
         ],
         "URL": "https://www.thefootcarenurse.com.au/"
@@ -2764,19 +2751,19 @@
       "fields": {
         "Name": "Mob Made Media & Communications Agency",
         "Country": "Australia",
-        "Summary": "Mob Made Media & Communications Agency appears to be a First Nations media and content production agency credited on arts and community campaign work.",
+        "Summary": "Mob Made Media & Communications Agency is a First Nations media and content production agency credited on arts and community campaign work.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/mob-made.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/mob-made.png"
           }
         ],
         "URL": "https://www.instagram.com/mobmademediaandcommunications/"
@@ -2794,12 +2781,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-first-australians-capital.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-first-australians-capital.svg"
           }
         ],
         "URL": "https://firstaustralianscapital.org/"
@@ -2817,12 +2804,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-invasive-species-council.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-invasive-species-council.svg"
           }
         ],
         "URL": "https://invasives.org.au/"
@@ -2840,12 +2827,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/pita-pita.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/pita-pita.png"
           }
         ],
         "URL": "https://nativetitle.org.au/find/pbc/3943"
@@ -2863,12 +2850,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-aboriginal-housing-office.svg"
           }
         ],
         "URL": "https://aho.nsw.gov.au/"
@@ -2879,19 +2866,19 @@
       "fields": {
         "Name": "Katji Yanun",
         "Country": "Australia",
-        "Summary": "Katji Yanun appears to be an Aboriginal-led consulting practice focused on justice, governance, and systems reform advisory work.",
+        "Summary": "Katji Yanun is an Aboriginal-led consulting practice focused on justice, governance, and systems reform advisory work.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/katji-yanun.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/katji-yanun.png"
           }
         ],
         "URL": "https://au.linkedin.com/in/melissa-clarke-83699639"
@@ -2902,19 +2889,19 @@
       "fields": {
         "Name": "Justice Reinvestment Port Augusta",
         "Country": "Australia",
-        "Summary": "Justice Reinvestment Port Augusta appears to be a community-led Port Augusta initiative linked to Aboriginal-led justice reinvestment work delivered via Healthy Dreaming.",
+        "Summary": "Justice Reinvestment Port Augusta is a community-led Port Augusta initiative linked to Aboriginal-led justice reinvestment work delivered via Healthy Dreaming.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/organisation-justice-reinvestment-port-augusta.svg"
           }
         ],
         "URL": "https://healthydreaming.com.au/"
@@ -2932,12 +2919,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/justice-walker.jpg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/justice-walker.jpg"
           }
         ],
         "URL": "https://www.facebook.com/standwithyuendumu/"
@@ -2955,12 +2942,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-pukatja-community.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-pukatja-community.svg"
           }
         ],
         "URL": "https://anangu.com.au/sa-communities/pukatja-ernabella"
@@ -2978,12 +2965,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-national-disability-insurance-scheme.svg"
           }
         ],
         "URL": "https://www.ndis.gov.au/"
@@ -3001,12 +2988,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-seed-mob.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-4.svg"
+            "url": "/images/organisations/organisation-seed-mob.svg"
           }
         ],
         "URL": "https://www.seedmob.org.au/"
@@ -3024,12 +3011,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/pacific-emerging.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-5.svg"
+            "url": "/images/organisations/pacific-emerging.png"
           }
         ],
         "URL": "https://www.micahaustralia.org/take-action/pael-network/"
@@ -3047,12 +3034,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/murrie-connections.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/murrie-connections.png"
           }
         ],
         "URL": "https://www.murrieconnections.com/"
@@ -3070,12 +3057,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/mapoon.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-2.svg"
+            "url": "/images/organisations/mapoon.jpeg"
           }
         ],
         "URL": "https://mapoon.qld.gov.au/"
@@ -3093,12 +3080,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-3.svg"
+            "url": "/images/organisations/organisation-deadly-inspiring-youth-doing-good-atsi-corporation.svg"
           }
         ],
         "URL": "https://diydg.org.au/"
@@ -3116,12 +3103,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-aboriginal-community-connect-local.png"
+            "url": "/images/organisations/Aboriginal Community Connect.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-aboriginal-community-connect-local.png"
+            "url": "/images/organisations/Aboriginal Community Connect.png"
           }
         ],
         "URL": "https://www.unitingcommunities.org/service/aboriginal-services/aboriginal-community-connect"
@@ -3139,12 +3126,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-australian-progress-local.webp"
+            "url": "/images/organisations/australian-progress.webp"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-australian-progress-local.webp"
+            "url": "/images/organisations/australian-progress.webp"
           }
         ],
         "URL": "https://www.australianprogress.org.au/"
@@ -3162,12 +3149,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-thriving-families-sa-local.png"
+            "url": "/images/organisations/thriving-families.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-thriving-families-sa-local.png"
+            "url": "/images/organisations/thriving-families.png"
           }
         ],
         "URL": "https://www.linkedin.com/company/thriving-families-sa"
@@ -3178,19 +3165,19 @@
       "fields": {
         "Name": "Brisbane Blacks",
         "Country": "Australia",
-        "Summary": "Brisbane Blacks appears to be a grassroots Aboriginal-led collective associated with community advocacy and political organising in Brisbane.",
+        "Summary": "Brisbane Blacks is a grassroots Aboriginal-led collective associated with community advocacy and political organising in Brisbane.",
         "Status": "Listed",
         "Languages": [
           "English"
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-brisbane-blacks-local.png"
+            "url": "/images/organisations/brisbane-blacks.jpg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-brisbane-blacks-local.png"
+            "url": "/images/organisations/brisbane-blacks.jpg"
           }
         ],
         "URL": "https://www.facebook.com/pg/BrisbaneBlacks/about/"
@@ -3208,12 +3195,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-end-toxic-prisons-campaign-local.png"
+            "url": "/images/organisations/toxic-prision.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-end-toxic-prisons-campaign-local.png"
+            "url": "/images/organisations/toxic-prision.jpeg"
           }
         ],
         "URL": "https://endtoxicprisons.com.au/"
@@ -3231,12 +3218,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-first-nations-futures-local.jpeg"
+            "url": "/images/organisations/fnf.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-first-nations-futures-local.jpeg"
+            "url": "/images/organisations/fnf.jpeg"
           }
         ],
         "URL": "https://www.firstnationsfutures.com/"
@@ -3254,12 +3241,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-woven-project-local.webp"
+            "url": "/images/organisations/woven.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-woven-project-local.webp"
+            "url": "/images/organisations/woven.png"
           }
         ],
         "URL": "https://www.thewovenproject.org/"
@@ -3277,12 +3264,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-charles-campbell-college-local.png"
+            "url": "/images/organisations/CCC.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-charles-campbell-college-local.png"
+            "url": "/images/organisations/CCC.png"
           }
         ],
         "URL": "https://www.ccc.sa.edu.au/"
@@ -3300,12 +3287,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-digital-storytellers-local.jpeg"
+            "url": "/images/organisations/DST.jpg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-digital-storytellers-local.jpeg"
+            "url": "/images/organisations/DST.jpg"
           }
         ],
         "URL": "https://www.digitalstorytellers.com.au/"
@@ -3323,12 +3310,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-pattern-1.svg"
+            "url": "/images/organisations/organisation-gomeroi-traditional-owners-aboriginal-corporation.svg"
           }
         ],
         "URL": "https://www.acnc.gov.au/charity/charities/22db1d50-3aaf-e811-a962-000d3ad24a0d/history"
@@ -3346,12 +3333,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-bama-connect-consultant-local.png"
+            "url": "/images/organisations/Bama-Connect.jpeg"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-bama-connect-consultant-local.png"
+            "url": "/images/organisations/Bama-Connect.jpeg"
           }
         ],
         "URL": "https://au.linkedin.com/company/bama-connect-consultant"
@@ -3369,12 +3356,12 @@
         ],
         "Logo Landscape": [
           {
-            "url": "/images/organisations/organisation-cfn-local.png"
+            "url": "/images/organisations/CFN.png"
           }
         ],
         "Logo Box": [
           {
-            "url": "/images/organisations/organisation-cfn-local.png"
+            "url": "/images/organisations/CFN.png"
           }
         ],
         "URL": "https://cfn.org.au/"

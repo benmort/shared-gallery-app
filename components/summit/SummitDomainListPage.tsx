@@ -136,7 +136,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
               href={`/${domain}/${record.id}`}
               item={buildListItem(domain, record)}
               circularImage={domain === "crew"}
-              showImage={domain !== "organisations"}
+              showImage
               showImageSkeleton={domain === "speakers"}
             />
           ))}

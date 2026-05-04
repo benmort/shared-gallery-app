@@ -20,9 +20,9 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
             <Image
               src={detail.imageUrl}
               alt={detail.title}
-              width={320}
-              height={320}
-              className="h-64 w-64 rounded-full object-cover ring-2 ring-white/20"
+              width={640}
+              height={480}
+              className="h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20"
               unoptimized
             />
           ) : null}

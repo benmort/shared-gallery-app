@@ -77,6 +77,7 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     filterBySummit: false,
     imageField: "Logo Landscape",
     titleField: "Name",
+    subtitleField: "Country",
     descriptionField: "Summary",
   },
   sponsors: {
@@ -268,18 +269,15 @@ export function buildDetail(
       };
     }
     case "organisations": {
+      const url = fieldString(record, "URL");
       return {
         title: fieldString(record, "Name"),
-        subtitle: null,
-        imageUrl: null,
+        subtitle: fieldString(record, "Country") || "Organisation",
+        imageUrl: fieldAttachmentUrl(record, "Logo Landscape") || fieldAttachmentUrl(record, "Logo Box"),
         tags: [],
         summary: asLines(fieldString(record, "Summary")),
         sections: [
-          { label: "Languages", value: fieldList(record, "Languages").join(", ") },
-          { label: "Timezones", value: fieldList(record, "Timezones").join(", ") },
-          { label: "Executive Director(s)", value: fieldString(record, "Executive Director(s)") },
-          { label: "Foreign Minister(s)", value: fieldString(record, "Foreign Minister(s)") },
-          { label: "Tech Foreign Minister(s)", value: fieldString(record, "Tech Foreign Minister(s)") },
+          { label: "Website", value: url, href: url },
         ].filter((section) => section.value),
       };
     }
