@@ -15,6 +15,7 @@ import {
   readStubSummits,
   readStubSurveys,
   readStubVenues,
+  readStubWhatsappChannels,
 } from "@/lib/summit/stub-data";
 
 const DEFAULT_SUMMIT_VIEW_NAME = "All";
@@ -95,4 +96,11 @@ export async function getSurveysStatic(
 ): Promise<SummitRecord[]> {
   keepSignature(summitViewName);
   return readStubSurveys();
+}
+
+export async function getWhatsappChannelsStatic(
+  summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
+): Promise<SummitRecord[]> {
+  keepSignature(summitViewName);
+  return readStubWhatsappChannels();
 }

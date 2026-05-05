@@ -3,6 +3,7 @@ import HomePage from "@/components/HomePage";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import SummitShell from "@/components/summit/SummitShell";
 import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
+import { getWhatsappChannelsStatic } from "@/lib/summit/service";
 
 function HomeFallback() {
   return (
@@ -12,9 +13,11 @@ function HomeFallback() {
   );
 }
 
-export default function MomentsPage() {
+export default async function MomentsPage() {
+  const whatsappChannels = await getWhatsappChannelsStatic();
+
   return (
-    <SummitShell>
+    <SummitShell whatsappChannels={whatsappChannels}>
       <div className="mb-5 w-full">
         <SummitPageHeader title="Moments" subtitle={SUMMIT_PAGE_SUBTITLE.moments} />
       </div>

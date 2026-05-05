@@ -7,9 +7,11 @@ import {
   ACKNOWLEDGEMENT_ACCEPTED_EVENT,
   ACKNOWLEDGEMENT_COOKIE_NAME,
 } from "@/lib/summit/acknowledgement";
+import type { SummitRecord } from "@/lib/summit/types";
 
 type Props = {
   children: React.ReactNode;
+  whatsappChannels?: SummitRecord[];
 };
 
 function hasAcknowledgedCountry(): boolean {
@@ -20,7 +22,7 @@ function hasAcknowledgedCountry(): boolean {
     .some((part) => part.startsWith(`${ACKNOWLEDGEMENT_COOKIE_NAME}=`));
 }
 
-export default function SummitShell({ children }: Props) {
+export default function SummitShell({ children, whatsappChannels = [] }: Props) {
   const pathname = usePathname();
   const [showNav, setShowNav] = useState(pathname !== "/");
 
@@ -44,7 +46,7 @@ export default function SummitShell({ children }: Props) {
 
   return (
     <div className="min-h-dvh bg-zinc-950 text-stone-100">
-      {showNav ? <SummitNav /> : null}
+      {showNav ? <SummitNav whatsappChannels={whatsappChannels} /> : null}
       <main
         className={`mx-auto w-full min-w-0 max-w-[1100px] break-words px-4 pt-5 sm:px-6 sm:pt-6 ${
           showNav ? "pb-[calc(6.75rem+var(--album-safe-bottom))]" : "pb-6"

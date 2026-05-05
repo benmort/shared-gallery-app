@@ -14,6 +14,7 @@ type SummitStubRaw = {
   organisations?: unknown;
   sponsors?: unknown;
   surveys?: unknown;
+  whatsappChannels?: unknown;
   codeConduct?: unknown;
   securityGuidelines?: unknown;
   map?: unknown;
@@ -30,6 +31,7 @@ type SummitStubData = {
   organisations: SummitRecord[];
   sponsors: SummitRecord[];
   surveys: SummitRecord[];
+  whatsappChannels: SummitRecord[];
   codeConduct: SummitRecord | null;
   securityGuidelines: SummitRecord | null;
   map: SummitRecord | null;
@@ -99,6 +101,7 @@ function normalizeStubData(raw: SummitStubRaw): SummitStubData {
   const organisations = normalizeRecordList(raw.organisations);
   const sponsors = normalizeRecordList(raw.sponsors);
   const surveys = normalizeRecordList(raw.surveys);
+  const whatsappChannels = normalizeRecordList(raw.whatsappChannels);
 
   const codeConduct = normalizeRecord(raw.codeConduct);
   const securityGuidelines = normalizeRecord(raw.securityGuidelines);
@@ -114,6 +117,7 @@ function normalizeStubData(raw: SummitStubRaw): SummitStubData {
   warnIfMissing("organisations", raw.organisations, organisations.length);
   warnIfMissing("sponsors", raw.sponsors, sponsors.length);
   warnIfMissing("surveys", raw.surveys, surveys.length);
+  warnIfMissing("whatsappChannels", raw.whatsappChannels);
   warnIfMissing("codeConduct", codeConduct);
   warnIfMissing("securityGuidelines", securityGuidelines);
   warnIfMissing("map", map);
@@ -129,6 +133,7 @@ function normalizeStubData(raw: SummitStubRaw): SummitStubData {
     organisations,
     sponsors,
     surveys,
+    whatsappChannels,
     codeConduct,
     securityGuidelines,
     map,
@@ -175,6 +180,10 @@ export function readStubSponsors(): SummitRecord[] {
 
 export function readStubSurveys(): SummitRecord[] {
   return cloneRecordList(stubData.surveys);
+}
+
+export function readStubWhatsappChannels(): SummitRecord[] {
+  return cloneRecordList(stubData.whatsappChannels);
 }
 
 export function readStubCodeConduct(): SummitRecord | null {
