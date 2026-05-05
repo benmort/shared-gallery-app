@@ -17,6 +17,7 @@ import { recordToPhoto } from "./types";
 const DATA_DIR = path.join(process.cwd(), "data");
 const UPLOADS_DIR = path.join(DATA_DIR, "uploads");
 const INDEX_PATH = path.join(DATA_DIR, "photos.json");
+let indexWriteLock: Promise<void> = Promise.resolve();
 
 async function readStreamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
   const chunks: Buffer[] = [];
@@ -45,6 +46,15 @@ async function writeIndex(records: PhotoRecord[]): Promise<void> {
   const tmp = `${INDEX_PATH}.${process.pid}.tmp`;
   await fs.writeFile(tmp, JSON.stringify(records, null, 2), "utf-8");
   await fs.rename(tmp, INDEX_PATH);
+}
+
+async function withIndexWriteLock<T>(fn: () => Promise<T>): Promise<T> {
+  const run = indexWriteLock.then(fn, fn);
+  indexWriteLock = run.then(
+    () => undefined,
+    () => undefined,
+  );
+  return run;
 }
 
 async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
@@ -114,7 +124,7 @@ export function createFilesystemStorage(): PhotoStorage {
     },
 
     async createFromBuffer(input) {
-      const { buffer, filename, mime } = input;
+      const { buffer, filename, mime, uploadId } = input;
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
@@ -124,7 +134,7 @@ export function createFilesystemStorage(): PhotoStorage {
       }
 
       await ensureDirs();
-      const id = randomUUID();
+      const id = uploadId || randomUUID();
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const filePath = path.join(UPLOADS_DIR, storedName);
@@ -148,10 +158,12 @@ export function createFilesystemStorage(): PhotoStorage {
 
       const record: PhotoRecord = {
         id,
+        uploadId: id,
         filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
         uploadedAt: new Date().toISOString(),
         storedName,
         mime,
+        processingStatus: "done",
         blurDataUrl,
         width: meta.width,
         height: meta.height,
@@ -159,9 +171,17 @@ export function createFilesystemStorage(): PhotoStorage {
         displayStoredName,
       };
 
-      const records = await readIndex();
-      records.unshift(record);
-      await writeIndex(records);
+      await withIndexWriteLock(async () => {
+        const records = await readIndex();
+        const existingIdx = records.findIndex(
+          (existing) => existing.uploadId === id || existing.id === id,
+        );
+        if (existingIdx >= 0) {
+          records.splice(existingIdx, 1);
+        }
+        records.unshift(record);
+        await writeIndex(records);
+      });
 
       return recordToPhoto(record);
     },
@@ -205,11 +225,15 @@ export function createFilesystemStorage(): PhotoStorage {
     },
 
     async deleteById(id: string) {
-      const records = await readIndex();
-      const rec = records.find((r) => r.id === id);
+      const rec = await withIndexWriteLock(async () => {
+        const records = await readIndex();
+        const found = records.find((r) => r.id === id);
+        if (!found) return null;
+        const next = records.filter((r) => r.id !== id);
+        await writeIndex(next);
+        return found;
+      });
       if (!rec) return false;
-      const next = records.filter((r) => r.id !== id);
-      await writeIndex(next);
       const paths = [
         path.join(UPLOADS_DIR, rec.storedName),
         rec.thumbStoredName && path.join(UPLOADS_DIR, rec.thumbStoredName),
@@ -223,6 +247,28 @@ export function createFilesystemStorage(): PhotoStorage {
         }
       }
       return true;
+    },
+
+    async initUploadSession(input) {
+      const ext = extensionForMime(input.mime);
+      return {
+        uploadId: input.uploadId,
+        pathname: `album-img/${input.uploadId}.${ext}`,
+      };
+    },
+
+    async reconcileUploads(uploadIds) {
+      const records = await readIndex();
+      const pendingUploadIds: string[] = [];
+      const photos = uploadIds.flatMap((uploadId) => {
+        const rec = records.find((r) => r.uploadId === uploadId || r.id === uploadId);
+        if (!rec) {
+          pendingUploadIds.push(uploadId);
+          return [];
+        }
+        return [recordToPhoto(rec)];
+      });
+      return { photos, pendingUploadIds };
     },
   };
 }

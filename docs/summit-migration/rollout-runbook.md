@@ -31,4 +31,5 @@ If production issues are detected:
 
 - Watch for CSP violation reports (if enabled externally).
 - Watch for elevated 4xx due to CSRF origin mismatch.
+- For Moments upload pipeline operations (dual-write checks, queue jobs, rollback drill), use `docs/moments-upload-runbook.md`.
 

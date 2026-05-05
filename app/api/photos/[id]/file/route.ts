@@ -24,6 +24,10 @@ export async function GET(
   const rangeHeader = request.headers.get("range");
 
   if (!rangeHeader) {
+    if (storage.readFileResponse) {
+      const streamed = await storage.readFileResponse(id, undefined, variant);
+      if (streamed) return streamed;
+    }
     const data = await storage.readFile(id, undefined, variant);
     if (!data) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -71,6 +75,10 @@ export async function GET(
   }
 
   if (parsed === null) {
+    if (storage.readFileResponse) {
+      const streamed = await storage.readFileResponse(id, undefined, variant);
+      if (streamed) return streamed;
+    }
     const data = await storage.readFile(id, undefined, variant);
     if (!data) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -86,6 +94,10 @@ export async function GET(
     });
   }
 
+  if (storage.readFileResponse) {
+    const streamed = await storage.readFileResponse(id, parsed, variant);
+    if (streamed) return streamed;
+  }
   const data = await storage.readFile(id, parsed, variant);
   if (!data) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });

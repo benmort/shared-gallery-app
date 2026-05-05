@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/photos/jobs/process",
+      "schedule": "*/2 * * * *"
+    },
+    {
+      "path": "/api/photos/jobs/reconcile-orphans",
+      "schedule": "0 * * * *"
+    }
+  ]
+}

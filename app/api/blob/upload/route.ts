@@ -5,8 +5,11 @@ import {
   isAllowedMediaType,
   maxBytesForMime,
 } from "@/lib/types/photo";
+import { UploadError, uploadErrorResponse } from "@/lib/upload/errors";
+import { trackUploadEvent } from "@/lib/upload/observability";
 
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const ALLOWED_TYPES = [
   "image/jpeg",
@@ -34,21 +37,70 @@ export async function POST(request: Request) {
       request,
       onBeforeGenerateToken: async (pathname, clientPayload) => {
         if (!pathname.startsWith("album-img/")) {
-          throw new Error("Invalid pathname");
+          throw new UploadError({
+            code: "VALIDATION_ERROR",
+            message: "Invalid pathname",
+            status: 400,
+          });
         }
+        let uploadId = "";
+        let size = 0;
         let mime = "";
+        let filename = "";
         if (clientPayload) {
           try {
-            const p = JSON.parse(clientPayload) as { mime?: string };
+            const p = JSON.parse(clientPayload) as {
+              uploadId?: string;
+              filename?: string;
+              mime?: string;
+              size?: number;
+            };
+            uploadId = p.uploadId || "";
+            filename = p.filename || "";
             mime = (p.mime || "").toLowerCase();
+            size = typeof p.size === "number" ? p.size : 0;
           } catch {
-            throw new Error("Invalid client payload");
+            throw new UploadError({
+              code: "VALIDATION_ERROR",
+              message: "Invalid client payload",
+              status: 400,
+            });
           }
         }
+        if (!uploadId) {
+          throw new UploadError({
+            code: "VALIDATION_ERROR",
+            message: "Missing uploadId",
+            status: 400,
+          });
+        }
         if (!mime || !isAllowedMediaType(mime)) {
-          throw new Error("Unsupported media type");
+          throw new UploadError({
+            code: "VALIDATION_ERROR",
+            message: "Unsupported media type",
+            status: 400,
+          });
         }
         const maximumSizeInBytes = maxBytesForMime(mime);
+        if (size && size > maximumSizeInBytes) {
+          throw new UploadError({
+            code: "VALIDATION_ERROR",
+            message: "File too large",
+            status: 400,
+          });
+        }
+        if (!pathname.startsWith(`album-img/${uploadId}.`)) {
+          throw new UploadError({
+            code: "VALIDATION_ERROR",
+            message: "Pathname does not match uploadId",
+            status: 400,
+          });
+        }
+        await trackUploadEvent({
+          uploadId,
+          event: "upload_init",
+          payload: { mime, size, filename },
+        });
         return {
           allowedContentTypes: ALLOWED_TYPES,
           maximumSizeInBytes,
@@ -64,28 +116,43 @@ export async function POST(request: Request) {
         if (tokenPayload) {
           try {
             const p = JSON.parse(tokenPayload) as {
+              uploadId?: string;
               filename?: string;
               mime?: string;
+              size?: number;
             };
+            const uploadId = p.uploadId || "";
             filename = p.filename || "";
             mime = p.mime || mime;
+            await trackUploadEvent({
+              uploadId: uploadId || blob.pathname,
+              event: "upload_progress",
+              payload: { phase: "completed_callback" },
+            });
           } catch {
             /* ignore */
           }
         }
         await storage.registerClientUpload({
+          uploadId: (() => {
+            if (!tokenPayload) return undefined;
+            try {
+              const p = JSON.parse(tokenPayload) as { uploadId?: string };
+              return p.uploadId;
+            } catch {
+              return undefined;
+            }
+          })(),
           pathname: blob.pathname,
           filename,
           mime,
+          size: blob.size,
         });
       },
     });
     return NextResponse.json(jsonResponse);
   } catch (e) {
-    console.error(e);
-    return NextResponse.json(
-      { error: (e as Error).message },
-      { status: 400 },
-    );
+    const err = uploadErrorResponse(e);
+    return NextResponse.json(err.body, { status: err.status });
   }
 }

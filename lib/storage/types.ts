@@ -28,6 +28,7 @@ export interface PhotoStorage {
   listPaged(offset: number, limit: number): Promise<{ photos: Photo[]; total: number }>;
   /** Append one image or video; returns public Photo + persisted record */
   createFromBuffer(input: {
+    uploadId?: string;
     buffer: Buffer;
     filename: string;
     mime: string;
@@ -39,14 +40,31 @@ export interface PhotoStorage {
     range?: ReadFileRange,
     variant?: FileVariant,
   ): Promise<ReadFileResult | null>;
+  readFileResponse?(
+    id: string,
+    range?: ReadFileRange,
+    variant?: FileVariant,
+  ): Promise<Response | null>;
   /** Remove manifest entry and stored media; returns true if a record existed. */
   deleteById(id: string): Promise<boolean>;
   /** After Vercel Blob client upload completes (blob storage only). */
   registerClientUpload?(input: {
+    uploadId?: string;
     pathname: string;
     filename: string;
     mime: string;
+    size?: number;
   }): Promise<Photo>;
+  initUploadSession?(input: {
+    uploadId: string;
+    filename: string;
+    mime: string;
+    size: number;
+  }): Promise<{ uploadId: string; pathname: string }>;
+  reconcileUploads?(uploadIds: string[]): Promise<{
+    photos: Photo[];
+    pendingUploadIds: string[];
+  }>;
 }
 
 export function recordToPhoto(r: PhotoRecord): Photo {
@@ -62,12 +80,14 @@ export function recordToPhoto(r: PhotoRecord): Photo {
       : undefined;
   return {
     id: r.id,
+    uploadId: r.uploadId,
     filename: r.filename,
     url: base,
     thumbUrl,
     displayUrl,
     uploadedAt: r.uploadedAt,
     kind,
+    processingStatus: r.processingStatus ?? "done",
     blurDataUrl: r.blurDataUrl,
     width: r.width,
     height: r.height,

@@ -267,7 +267,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
               type="button"
               onClick={handleMenuToggle}
               aria-expanded={menuOpen}
-              className="inline-flex h-8 w-[78px] items-center justify-center rounded-full border border-white/20 text-center text-[10px] uppercase tracking-[0.16em] text-stone-200 hover:bg-white/10 lg:text-[12px]"
+              className="inline-flex h-8 w-[78px] items-center justify-center rounded-xl border border-white/35 bg-zinc-900/70 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white/55 hover:bg-zinc-900 lg:text-[12px]"
             >
               {menuOpen ? "CLOSE" : "MENU"}
             </button>

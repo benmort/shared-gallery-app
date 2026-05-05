@@ -1,8 +1,10 @@
 /** Public shape returned by the API and used in the UI */
 export type MediaKind = "image" | "video";
+export type ProcessingStatus = "processing" | "done" | "failed";
 
 export type Photo = {
   id: string;
+  uploadId?: string;
   filename: string;
   /** Path to fetch full media (same-origin) */
   url: string;
@@ -12,6 +14,7 @@ export type Photo = {
   displayUrl?: string;
   uploadedAt: string;
   kind: MediaKind;
+  processingStatus?: ProcessingStatus;
   blurDataUrl?: string;
   width?: number;
   height?: number;
@@ -20,11 +23,14 @@ export type Photo = {
 /** Stored on disk in photos.json, or in Vercel Blob manifest */
 export type PhotoRecord = {
   id: string;
+  uploadId?: string;
   filename: string;
   uploadedAt: string;
   /** Filename under data/uploads (filesystem only) */
   storedName: string;
   mime: string;
+  processingStatus?: ProcessingStatus;
+  processingError?: string;
   blurDataUrl?: string;
   width?: number;
   height?: number;
@@ -48,7 +54,7 @@ export const ALLOWED_VIDEO_MIMES = new Set([
 ]);
 
 export const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB images
-export const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50 MB video
+export const MAX_VIDEO_BYTES = 250 * 1024 * 1024; // 250 MB video
 
 export function isAllowedImageType(mime: string): boolean {
   return ALLOWED_IMAGE_MIMES.has(mime.toLowerCase());

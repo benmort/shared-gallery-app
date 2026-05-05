@@ -14,12 +14,15 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "tsx --test tests/**/*.test.ts",
-    "generate:summit-qr": "tsx scripts/generate-summit-qr.ts"
+    "generate:summit-qr": "tsx scripts/generate-summit-qr.ts",
+    "backfill:media-db": "tsx scripts/backfill-media-db.ts",
+    "loadtest:moments-upload": "tsx scripts/loadtest-moments-upload.ts"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@vercel/blob": "^2.3.3",
+    "@vercel/postgres": "^0.10.0",
     "eslint-config-next": "^15.1.0",
     "framer-motion": "^7.6.4",
     "next": "^15.1.0",
