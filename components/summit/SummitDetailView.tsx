@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { DetailView } from "@/lib/summit/types";
+import { hasOffWhiteLogoBackground } from "@/lib/summit/logo-background";
 
 type Props = {
   detail: DetailView;
@@ -11,20 +12,38 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
   const headerClass = pronouncedHeader
     ? "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-700/90 via-zinc-900/85 to-zinc-950/92 p-5"
     : "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5";
+  const usesWhiteLogoBackground = hasOffWhiteLogoBackground(detail.id);
+  const logoContainerClass = "inline-flex";
+  const logoImageBaseClass =
+    "h-auto max-h-72 w-auto min-w-[250px] max-w-[350px] rounded-xl p-[20px] object-contain ring-2 ring-white/20";
+  const logoImageClass = usesWhiteLogoBackground
+    ? `${logoImageBaseClass} bg-white`
+    : `${logoImageBaseClass} bg-black`;
+  const isSvgLogo = Boolean(detail.imageUrl && /\.svg(?:$|[?#])/i.test(detail.imageUrl));
 
   return (
     <div className="space-y-6">
       <header className={headerClass}>
         <div className="flex flex-col items-center gap-4 text-center">
           {detail.imageUrl ? (
-            <Image
-              src={detail.imageUrl}
-              alt={detail.title}
-              width={640}
-              height={480}
-              className="h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20"
-              unoptimized
-            />
+            <div className={logoContainerClass}>
+              {isSvgLogo ? (
+                <img
+                  src={detail.imageUrl}
+                  alt={detail.title}
+                  className={logoImageClass}
+                />
+              ) : (
+                <Image
+                  src={detail.imageUrl}
+                  alt={detail.title}
+                  width={640}
+                  height={480}
+                  className={logoImageClass}
+                  unoptimized
+                />
+              )}
+            </div>
           ) : null}
           <div>
             {detail.subtitle ? <p className="text-sm text-amber-100">{detail.subtitle}</p> : null}

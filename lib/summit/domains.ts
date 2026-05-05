@@ -148,6 +148,7 @@ export function buildDetail(
   switch (domain) {
     case "speakers": {
       return {
+        id: record.id,
         title: fieldString(record, "Title") || fieldString(record, "Full Name"),
         subtitle: fieldString(record, "Full Name"),
         secondSubtitle: fieldFirst(record, "Organisation"),
@@ -168,6 +169,7 @@ export function buildDetail(
     case "events": {
       const title = fieldString(record, "Title");
       return {
+        id: record.id,
         title,
         subtitle: "Event",
         imageUrl: eventImageForTitle(title) || fieldAttachmentUrl(record, "Headshot", { headshot: true }),
@@ -191,6 +193,7 @@ export function buildDetail(
       const wilsonEastCarparkVideo = fieldString(record, "Wilson East Carpark Access Video");
       const ovalHotelGuestVideo = fieldString(record, "Oval Hotel Access Video");
       return {
+        id: record.id,
         title: fieldString(record, "Name"),
         subtitle: fieldString(record, "Subtitle"),
         imageUrl: fieldAttachmentUrl(record, "Image"),
@@ -230,6 +233,7 @@ export function buildDetail(
     }
     case "crew": {
       return {
+        id: record.id,
         title: fieldString(record, "Shortname"),
         subtitle: fieldFirst(record, "Organisation [Network Data]"),
         secondSubtitle: fieldString(record, "Role"),
@@ -258,6 +262,7 @@ export function buildDetail(
     case "attractions": {
       const mapLink = fieldString(record, "Map Link");
       return {
+        id: record.id,
         title: fieldString(record, "Title"),
         subtitle: "Attraction",
         imageUrl: fieldAttachmentUrl(record, "Image"),
@@ -271,6 +276,7 @@ export function buildDetail(
     case "organisations": {
       const url = fieldString(record, "URL");
       return {
+        id: record.id,
         title: fieldString(record, "Name"),
         subtitle: fieldString(record, "Country") || "Organisation",
         imageUrl: fieldAttachmentUrl(record, "Logo Landscape") || fieldAttachmentUrl(record, "Logo Box"),
@@ -284,6 +290,7 @@ export function buildDetail(
     case "sponsors": {
       const url = fieldString(record, "URL");
       return {
+        id: record.id,
         title: fieldString(record, "Name"),
         subtitle: "Sponsor",
         imageUrl: fieldAttachmentUrl(record, "Logo"),

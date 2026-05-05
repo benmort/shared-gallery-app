@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ListItemView } from "@/lib/summit/types";
 import SummitCardImage from "@/components/summit/SummitCardImage";
+import { hasOffWhiteLogoBackground } from "@/lib/summit/logo-background";
 
 type Props = {
   href: string;
@@ -20,10 +21,17 @@ export default function SummitListCard({
   showImage = true,
   showImageSkeleton = false,
 }: Props) {
+  const isOrganisationCard = item.id.startsWith("organisation-");
+  const usesOffWhiteLogoBackground = !circularImage && hasOffWhiteLogoBackground(item.id);
+  const rectangularImageBackgroundClass = isOrganisationCard
+    ? (usesOffWhiteLogoBackground ? "bg-white" : "bg-black")
+    : "bg-white/5";
   const imageClass = circularImage
     ? "h-20 w-20 rounded-full object-cover"
-    : "h-20 w-28 rounded-md bg-white/5 object-contain p-1";
-  const placeholderClass = circularImage ? "h-20 w-20 rounded-full bg-white/5" : "h-20 w-28 rounded-md bg-white/5";
+    : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass} object-contain p-1`;
+  const placeholderClass = circularImage
+    ? "h-20 w-20 rounded-full bg-white/5"
+    : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass}`;
   const cardClass = showImage
     ? "flex items-start gap-4 rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10"
     : "rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10";

@@ -30,6 +30,7 @@ export type ListItemView = {
 };
 
 export type DetailView = {
+  id: string;
   title: string;
   subtitle?: string | null;
   secondSubtitle?: string | null;
