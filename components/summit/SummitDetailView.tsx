@@ -8,17 +8,23 @@ type Props = {
   pronouncedHeader?: boolean;
 };
 
+const CIRCULAR_DETAIL_PREFIXES = ["event-", "crew-", "venue-", "speaker-", "attraction-"] as const;
+
 export default function SummitDetailView({ detail, action, pronouncedHeader = false }: Props) {
   const headerClass = pronouncedHeader
     ? "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-700/90 via-zinc-900/85 to-zinc-950/92 p-5"
     : "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5";
-  const usesWhiteLogoBackground = hasOffWhiteLogoBackground(detail.id);
-  const logoContainerClass = "inline-flex";
-  const logoImageBaseClass =
+  const isOrganisationDetail = detail.id.startsWith("organisation-");
+  const isCircularDetail = CIRCULAR_DETAIL_PREFIXES.some((prefix) => detail.id.startsWith(prefix));
+  const usesWhiteLogoBackground = isOrganisationDetail && hasOffWhiteLogoBackground(detail.id);
+  const organisationLogoImageBaseClass =
     "h-auto max-h-72 w-auto min-w-[250px] max-w-[350px] rounded-xl p-[20px] object-contain ring-2 ring-white/20";
-  const logoImageClass = usesWhiteLogoBackground
-    ? `${logoImageBaseClass} bg-white`
-    : `${logoImageBaseClass} bg-black`;
+  const organisationLogoImageClass = usesWhiteLogoBackground
+    ? `${organisationLogoImageBaseClass} bg-white`
+    : `${organisationLogoImageBaseClass} bg-black`;
+  const defaultImageClass = isCircularDetail
+    ? "h-52 w-52 rounded-full object-cover ring-2 ring-white/20 sm:h-60 sm:w-60"
+    : "h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20";
   const isSvgLogo = Boolean(detail.imageUrl && /\.svg(?:$|[?#])/i.test(detail.imageUrl));
 
   return (
@@ -26,20 +32,31 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
       <header className={headerClass}>
         <div className="flex flex-col items-center gap-4 text-center">
           {detail.imageUrl ? (
-            <div className={logoContainerClass}>
-              {isSvgLogo ? (
-                <img
-                  src={detail.imageUrl}
-                  alt={detail.title}
-                  className={logoImageClass}
-                />
+            <div className="inline-flex">
+              {isOrganisationDetail ? (
+                isSvgLogo ? (
+                  <img
+                    src={detail.imageUrl}
+                    alt={detail.title}
+                    className={organisationLogoImageClass}
+                  />
+                ) : (
+                  <Image
+                    src={detail.imageUrl}
+                    alt={detail.title}
+                    width={640}
+                    height={480}
+                    className={organisationLogoImageClass}
+                    unoptimized
+                  />
+                )
               ) : (
                 <Image
                   src={detail.imageUrl}
                   alt={detail.title}
                   width={640}
                   height={480}
-                  className={logoImageClass}
+                  className={defaultImageClass}
                   unoptimized
                 />
               )}

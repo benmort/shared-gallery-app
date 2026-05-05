@@ -251,7 +251,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
             href="/"
             className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-100 lg:text-[13px]"
           >
-            Common Threads &#39;26
+            Common Threads Summit &#39;26
           </Link>
           <div className="flex items-center gap-2">
             <button

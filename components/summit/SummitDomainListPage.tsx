@@ -16,6 +16,14 @@ type Props = {
   roleFilter?: string;
 };
 
+const CIRCULAR_IMAGE_DOMAINS = new Set<SummitListDomain>([
+  "events",
+  "crew",
+  "venues",
+  "speakers",
+  "attractions",
+]);
+
 export default async function SummitDomainListPage({ domain, roleFilter }: Props) {
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
@@ -135,7 +143,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
               key={record.id}
               href={`/${domain}/${record.id}`}
               item={buildListItem(domain, record)}
-              circularImage={domain === "crew"}
+              circularImage={CIRCULAR_IMAGE_DOMAINS.has(domain)}
               showImage
               showImageSkeleton={domain === "speakers"}
             />
