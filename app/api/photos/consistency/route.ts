@@ -28,9 +28,14 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Blob not configured" }, { status: 503 });
   }
   const dbRecords = await listMediaAll();
-  const blobManifest = await get(MANIFEST_PATH, { access: "private", token });
+  let blobManifest: Awaited<ReturnType<typeof get>> | null = null;
+  try {
+    blobManifest = await get(MANIFEST_PATH, { access: "private", token });
+  } catch {
+    blobManifest = null;
+  }
   const manifestRecords: Array<{ uploadId?: string; id: string; storedName: string }> = [];
-  if (blobManifest.stream && blobManifest.statusCode === 200) {
+  if (blobManifest?.stream && blobManifest.statusCode === 200) {
     const buf = Buffer.from(await new Response(blobManifest.stream).arrayBuffer());
     const parsed = JSON.parse(buf.toString("utf8")) as Array<{
       uploadId?: string;

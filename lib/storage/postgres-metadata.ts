@@ -173,9 +173,10 @@ export async function getMediaByUploadIds(uploadIds: string[]): Promise<PhotoRec
   if (!uploadIds.length) return [];
   if (!hasDbConfig()) return [];
   await ensureMediaSchema();
-  const rows = await sql<Record<string, unknown>>`
-    SELECT * FROM media_assets WHERE upload_id = ANY(${uploadIds})
-  `;
+  const rows = await sql.query<Record<string, unknown>>(
+    "SELECT * FROM media_assets WHERE upload_id = ANY($1::text[])",
+    [uploadIds],
+  );
   return rows.rows.map(rowToRecord);
 }
 

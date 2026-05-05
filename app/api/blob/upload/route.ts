@@ -113,6 +113,7 @@ export async function POST(request: Request) {
         if (!storage.registerClientUpload) return;
         let filename = "";
         let mime = "application/octet-stream";
+        let size: number | undefined;
         if (tokenPayload) {
           try {
             const p = JSON.parse(tokenPayload) as {
@@ -124,6 +125,7 @@ export async function POST(request: Request) {
             const uploadId = p.uploadId || "";
             filename = p.filename || "";
             mime = p.mime || mime;
+            size = typeof p.size === "number" ? p.size : undefined;
             await trackUploadEvent({
               uploadId: uploadId || blob.pathname,
               event: "upload_progress",
@@ -146,7 +148,7 @@ export async function POST(request: Request) {
           pathname: blob.pathname,
           filename,
           mime,
-          size: blob.size,
+          size,
         });
       },
     });

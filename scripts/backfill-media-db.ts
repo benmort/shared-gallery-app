@@ -15,7 +15,7 @@ async function main() {
   }
   await ensureMediaSchema();
   const result = await get(MANIFEST_PATH, { access: "private", token });
-  if (!result.stream || result.statusCode !== 200) {
+  if (!result?.stream || result.statusCode !== 200) {
     throw new Error("Blob manifest not found");
   }
   const buf = Buffer.from(await new Response(result.stream).arrayBuffer());

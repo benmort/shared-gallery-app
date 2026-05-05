@@ -31,7 +31,7 @@ async function processJob(job: MediaJob, token: string): Promise<void> {
   }
   const sourcePath = `${IMG_PREFIX}${record.storedName}`;
   const result = await get(sourcePath, { access: ACCESS, token });
-  if (!result.stream || result.statusCode !== 200) {
+  if (!result?.stream || result.statusCode !== 200) {
     throw new Error("Uploaded blob not found during processing");
   }
   const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
