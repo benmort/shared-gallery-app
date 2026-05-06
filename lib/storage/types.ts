@@ -26,6 +26,8 @@ export interface PhotoStorage {
   list(): Promise<Photo[]>;
   /** Paginated list (newest first). */
   listPaged(offset: number, limit: number): Promise<{ photos: Photo[]; total: number }>;
+  /** Targeted fetch by IDs; used to avoid eventual-consistency list races. */
+  listByIds?(ids: string[]): Promise<Photo[]>;
   /** Append one image or video; returns public Photo + persisted record */
   createFromBuffer(input: {
     buffer: Buffer;
@@ -47,6 +49,8 @@ export interface PhotoStorage {
     filename: string;
     mime: string;
   }): Promise<Photo>;
+  /** Optional operational hook for shard/index verification and repair. */
+  repairManifest?(): Promise<{ repaired: boolean; details: string[] }>;
 }
 
 export function recordToPhoto(r: PhotoRecord): Photo {

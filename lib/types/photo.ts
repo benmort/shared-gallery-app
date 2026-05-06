@@ -48,7 +48,7 @@ export const ALLOWED_VIDEO_MIMES = new Set([
 ]);
 
 export const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB images
-export const MAX_VIDEO_BYTES = 50 * 1024 * 1024; // 50 MB video
+export const MAX_VIDEO_BYTES = 250 * 1024 * 1024; // 250 MB video
 
 export function isAllowedImageType(mime: string): boolean {
   return ALLOWED_IMAGE_MIMES.has(mime.toLowerCase());

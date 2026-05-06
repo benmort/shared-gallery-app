@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isUploadV2Enabled, uploadParallelism } from "@/lib/upload-config";
 
 export const dynamic = "force-dynamic";
 
@@ -7,5 +8,9 @@ export async function GET() {
   const clientUpload =
     typeof process.env.BLOB_READ_WRITE_TOKEN === "string" &&
     process.env.BLOB_READ_WRITE_TOKEN.length > 0;
-  return NextResponse.json({ clientUpload });
+  return NextResponse.json({
+    clientUpload,
+    uploadV2: isUploadV2Enabled(),
+    parallelism: uploadParallelism(),
+  });
 }

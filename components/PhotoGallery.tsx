@@ -21,6 +21,8 @@ type Props = {
   onToggleSelect?: (id: string) => void;
 };
 
+const VIDEO_POSTER_FALLBACK = "/images/video-poster-fallback.svg";
+
 export default function PhotoGallery({
   lead,
   photos,
@@ -92,6 +94,7 @@ export default function PhotoGallery({
             {photo.kind === "video" ? (
               <video
                 src={photo.url}
+                poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
                 muted
                 playsInline
                 preload="metadata"

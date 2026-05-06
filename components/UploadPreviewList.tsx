@@ -1,11 +1,21 @@
 "use client";
 
+import {
+  ArrowPathIcon,
+  CheckCircleIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/solid";
 import Image from "next/image";
+import { canRemoveFromQueue, queueStatusLabel } from "@/lib/upload-queue-ui";
+
+export type PreviewStatus = "queued" | "uploading" | "uploaded" | "failed";
 
 export type PreviewItem = {
   id: string;
   file: File;
   previewUrl: string;
+  status: PreviewStatus;
+  error?: string;
 };
 
 type Props = {
@@ -47,15 +57,45 @@ export default function UploadPreviewList({
               sizes="120px"
             />
           )}
-          <button
-            type="button"
-            disabled={disabled}
-            onClick={() => onRemove(item.id)}
-            className="absolute right-1 top-1 flex h-9 min-w-9 items-center justify-center rounded-full bg-black/55 text-sm font-medium text-white backdrop-blur-sm transition hover:bg-black/70 disabled:opacity-40"
-            aria-label={`Remove ${item.file.name}`}
-          >
-            ×
-          </button>
+          <div className="pointer-events-none absolute inset-x-1 bottom-1 rounded-md bg-black/55 px-1.5 py-1 text-[10px] font-medium text-white">
+            {queueStatusLabel(item.status)}
+          </div>
+          {item.status === "uploading" ? (
+            <span
+              className="absolute right-1 top-1 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/65 text-white"
+              aria-label={`${item.file.name} uploading`}
+            >
+              <ArrowPathIcon className="h-5 w-5 animate-spin" aria-hidden />
+            </span>
+          ) : null}
+          {item.status === "uploaded" ? (
+            <span
+              className="absolute right-1 top-1 inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-600 text-white"
+              aria-label={`${item.file.name} uploaded`}
+            >
+              <CheckCircleIcon className="h-6 w-6" aria-hidden />
+            </span>
+          ) : null}
+          {item.status === "failed" ? (
+            <span
+              className="absolute right-1 top-1 inline-flex h-10 w-10 items-center justify-center rounded-full bg-red-600 text-white"
+              aria-label={`${item.file.name} failed`}
+              title={item.error || "Upload failed"}
+            >
+              <ExclamationTriangleIcon className="h-6 w-6" aria-hidden />
+            </span>
+          ) : null}
+          {canRemoveFromQueue(item.status, disabled) ? (
+            <button
+              type="button"
+              disabled={disabled}
+              onClick={() => onRemove(item.id)}
+              className="absolute right-1 top-1 flex h-12 min-w-12 items-center justify-center rounded-full border border-white/20 bg-black/55 text-2xl font-semibold leading-none text-white backdrop-blur-sm transition hover:bg-black/70 disabled:opacity-40"
+              aria-label={`Remove ${item.file.name}`}
+            >
+              ×
+            </button>
+          ) : null}
         </li>
       ))}
     </ul>

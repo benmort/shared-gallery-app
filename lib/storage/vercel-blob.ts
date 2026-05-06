@@ -10,6 +10,7 @@ import {
   put,
 } from "@vercel/blob";
 import sharp from "sharp";
+import { logUploadEvent } from "@/lib/upload-logging";
 import { makeImageDerivatives } from "../image-derivatives";
 import type { PhotoRecord } from "../types/photo";
 import {
@@ -21,21 +22,27 @@ import {
 import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
 
-/** Single JSON index in the blob store (stable pathname, no random suffix). */
-const MANIFEST_PATH = "album-manifest.json";
-/** Image blobs live under this prefix. */
+const LEGACY_MANIFEST_PATH = "album-manifest.json";
+const MANIFEST_PREFIX = "album-manifests/";
+const MANIFEST_INDEX_PATH = `${MANIFEST_PREFIX}index.json`;
 const IMG_PREFIX = "album-img/";
-
-/** Private blobs only — requires a [private Vercel Blob store](https://vercel.com/docs/vercel-blob/private-storage). */
 const ACCESS = "private" as const;
+const IMAGE_PROCESSING_TIMEOUT_MS = Math.max(
+  1500,
+  Number.parseInt(process.env.MOMENTS_IMAGE_PROCESSING_TIMEOUT_MS || "", 10) || 15_000,
+);
 
-/** Same store-id extraction as `@vercel/blob` `get()` for pathname → URL. */
+type ManifestIndex = {
+  version: 1;
+  shards: string[];
+  updatedAt: string;
+};
+
 function getStoreIdFromToken(t: string): string {
   const [, , , storeId = ""] = t.split("_");
   return storeId;
 }
 
-/** `del()` is documented with full blob URLs; pathnames alone can resolve inconsistently for private blobs. */
 function privateBlobUrl(pathname: string, token: string): string {
   const storeId = getStoreIdFromToken(token);
   if (!storeId) {
@@ -48,9 +55,27 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-/**
- * Delete API blob; retries transient failures. `BlobNotFoundError` = already gone (ok).
- */
+function parseTotalFromContentRange(header: string | null): number | null {
+  if (!header) return null;
+  const m = header.trim().match(/\/(\d+)\s*$/);
+  if (m) return parseInt(m[1], 10);
+  return null;
+}
+
+async function withTimeout<T>(promise: Promise<T>, label: string): Promise<T> {
+  let timeoutHandle: ReturnType<typeof setTimeout> | null = null;
+  const timeout = new Promise<never>((_, reject) => {
+    timeoutHandle = setTimeout(() => {
+      reject(new Error(`${label} timed out`));
+    }, IMAGE_PROCESSING_TIMEOUT_MS);
+  });
+  try {
+    return await Promise.race([promise, timeout]);
+  } finally {
+    if (timeoutHandle) clearTimeout(timeoutHandle);
+  }
+}
+
 async function deleteBlobMedia(url: string, token: string): Promise<void> {
   let lastErr: unknown;
   for (let attempt = 0; attempt < 5; attempt++) {
@@ -74,26 +99,36 @@ async function deleteBlobMedia(url: string, token: string): Promise<void> {
   throw lastErr instanceof Error ? lastErr : new Error(String(lastErr));
 }
 
-/**
- * Read–modify–write manifest with optimistic concurrency (`ifMatch` ETag) so concurrent
- * serverless invocations do not overwrite each other's changes.
- */
-async function mutateManifest(
+async function readJsonBlob<T>(pathname: string, token: string): Promise<T | null> {
+  try {
+    const result = await get(pathname, { access: ACCESS, token });
+    if (!result?.stream || result.statusCode !== 200) return null;
+    const raw = Buffer.from(await new Response(result.stream).arrayBuffer()).toString("utf8");
+    if (!raw) return null;
+    return JSON.parse(raw) as T;
+  } catch {
+    return null;
+  }
+}
+
+async function mutateJsonBlob<T>(
+  pathname: string,
   token: string,
-  mutator: (records: PhotoRecord[]) => PhotoRecord[],
-): Promise<void> {
-  for (let attempt = 0; attempt < 25; attempt++) {
+  fallback: T,
+  mutator: (current: T) => T,
+): Promise<T> {
+  for (let attempt = 0; attempt < 30; attempt++) {
     let etag: string | undefined;
     try {
-      const h = await head(MANIFEST_PATH, { token });
+      const h = await head(pathname, { token });
       etag = h.etag;
     } catch {
       etag = undefined;
     }
-    const records = await readManifest(token);
-    const next = mutator(records);
+    const current = (await readJsonBlob<T>(pathname, token)) ?? fallback;
+    const next = mutator(current);
     try {
-      await put(MANIFEST_PATH, JSON.stringify(next), {
+      await put(pathname, JSON.stringify(next), {
         access: ACCESS,
         addRandomSuffix: false,
         allowOverwrite: true,
@@ -101,59 +136,28 @@ async function mutateManifest(
         token,
         ifMatch: etag,
       });
-      return;
+      return next;
     } catch (e) {
       if (e instanceof BlobPreconditionFailedError) continue;
       throw e;
     }
   }
-  throw new Error("Failed to update album manifest after concurrent writes");
+  throw new Error(`Failed to update ${pathname} after concurrent writes`);
 }
 
-function parseTotalFromContentRange(header: string | null): number | null {
-  if (!header) return null;
-  const m = header.trim().match(/\/(\d+)\s*$/);
-  if (m) return parseInt(m[1], 10);
-  return null;
+function shardKey(isoTime: string): string {
+  const d = new Date(isoTime);
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+  return `${y}-${m}`;
 }
 
-async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
-  try {
-    const out = await sharp(buffer)
-      .rotate()
-      .resize(12, 12, { fit: "inside" })
-      .jpeg({ quality: 55 })
-      .toBuffer();
-    return `data:image/jpeg;base64,${out.toString("base64")}`;
-  } catch {
-    return undefined;
-  }
+function shardPath(key: string): string {
+  return `${MANIFEST_PREFIX}${key}.json`;
 }
 
-async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: number }> {
-  try {
-    const meta = await sharp(buffer).metadata();
-    return {
-      width: meta.width ?? undefined,
-      height: meta.height ?? undefined,
-    };
-  } catch {
-    return {};
-  }
-}
-
-async function readManifest(token: string): Promise<PhotoRecord[]> {
-  try {
-    const result = await get(MANIFEST_PATH, { access: ACCESS, token });
-    if (!result || result.statusCode !== 200 || !result.stream) return [];
-    const buf = Buffer.from(await new Response(result.stream).arrayBuffer());
-    const raw = buf.toString("utf8");
-    if (!raw) return [];
-    const data = JSON.parse(raw) as unknown;
-    return Array.isArray(data) ? (data as PhotoRecord[]) : [];
-  } catch {
-    return [];
-  }
+function sortShardKeys(keys: string[]): string[] {
+  return [...keys].sort((a, b) => b.localeCompare(a));
 }
 
 function variantStoredName(
@@ -174,23 +178,292 @@ function variantStoredName(
   return null;
 }
 
+async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
+  try {
+    const out = await withTimeout(
+      sharp(buffer).rotate().resize(12, 12, { fit: "inside" }).jpeg({ quality: 55 }).toBuffer(),
+      "blur generation",
+    );
+    return `data:image/jpeg;base64,${out.toString("base64")}`;
+  } catch {
+    return undefined;
+  }
+}
+
+async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: number }> {
+  try {
+    const meta = await withTimeout(sharp(buffer).metadata(), "metadata read");
+    return {
+      width: meta.width ?? undefined,
+      height: meta.height ?? undefined,
+    };
+  } catch {
+    return {};
+  }
+}
+
+async function readManifestIndex(token: string): Promise<ManifestIndex | null> {
+  return readJsonBlob<ManifestIndex>(MANIFEST_INDEX_PATH, token);
+}
+
+async function writeManifestIndex(token: string, index: ManifestIndex): Promise<void> {
+  await put(MANIFEST_INDEX_PATH, JSON.stringify(index), {
+    access: ACCESS,
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: "application/json",
+    token,
+  });
+}
+
+async function readLegacyManifest(token: string): Promise<PhotoRecord[]> {
+  const data = await readJsonBlob<PhotoRecord[]>(LEGACY_MANIFEST_PATH, token);
+  return Array.isArray(data) ? data : [];
+}
+
+async function ensureShardedManifest(token: string): Promise<ManifestIndex> {
+  const existing = await readManifestIndex(token);
+  if (existing && Array.isArray(existing.shards)) return existing;
+
+  const legacy = await readLegacyManifest(token);
+  const byShard = new Map<string, PhotoRecord[]>();
+  for (const rec of legacy) {
+    const key = shardKey(rec.uploadedAt);
+    const list = byShard.get(key) || [];
+    list.push(rec);
+    byShard.set(key, list);
+  }
+  const shards = sortShardKeys([...byShard.keys()]);
+  for (const key of shards) {
+    await put(shardPath(key), JSON.stringify(byShard.get(key) || []), {
+      access: ACCESS,
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: "application/json",
+      token,
+    });
+  }
+  const index: ManifestIndex = {
+    version: 1,
+    shards,
+    updatedAt: new Date().toISOString(),
+  };
+  await writeManifestIndex(token, index);
+  return index;
+}
+
+async function readShardRecords(token: string, key: string): Promise<PhotoRecord[]> {
+  const data = await readJsonBlob<PhotoRecord[]>(shardPath(key), token);
+  if (!Array.isArray(data)) return [];
+  return data;
+}
+
+async function mutateShardRecords(
+  token: string,
+  key: string,
+  mutator: (records: PhotoRecord[]) => PhotoRecord[],
+): Promise<void> {
+  await mutateJsonBlob<PhotoRecord[]>(shardPath(key), token, [], mutator);
+}
+
+async function addShardToIndex(token: string, key: string): Promise<void> {
+  await mutateJsonBlob<ManifestIndex>(
+    MANIFEST_INDEX_PATH,
+    token,
+    { version: 1, shards: [], updatedAt: new Date().toISOString() },
+    (current) => {
+      const has = current.shards.includes(key);
+      const shards = has ? current.shards : sortShardKeys([key, ...current.shards]);
+      return { version: 1, shards, updatedAt: new Date().toISOString() };
+    },
+  );
+}
+
+async function appendRecord(token: string, record: PhotoRecord): Promise<void> {
+  await ensureShardedManifest(token);
+  const key = shardKey(record.uploadedAt);
+  await addShardToIndex(token, key);
+  await mutateShardRecords(token, key, (records) => {
+    if (records.some((r) => r.id === record.id || r.storedName === record.storedName)) {
+      return records;
+    }
+    return [record, ...records];
+  });
+}
+
+async function readAllRecords(token: string): Promise<PhotoRecord[]> {
+  const index = await readManifestIndex(token);
+  if (!index || !Array.isArray(index.shards) || index.shards.length === 0) {
+    return readLegacyManifest(token);
+  }
+  const out: PhotoRecord[] = [];
+  for (const key of sortShardKeys(index.shards)) {
+    const shard = await readShardRecords(token, key);
+    out.push(...shard);
+  }
+  out.sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
+  return out;
+}
+
+async function readPagedRecords(
+  token: string,
+  offset: number,
+  limit: number,
+): Promise<{ records: PhotoRecord[]; total: number }> {
+  const index = await readManifestIndex(token);
+  if (!index || !Array.isArray(index.shards) || index.shards.length === 0) {
+    const all = await readLegacyManifest(token);
+    return { records: all.slice(offset, offset + limit), total: all.length };
+  }
+  const target = offset + limit;
+  let total = 0;
+  const collected: PhotoRecord[] = [];
+  for (const key of sortShardKeys(index.shards)) {
+    const shard = await readShardRecords(token, key);
+    total += shard.length;
+    if (collected.length < target) {
+      collected.push(...shard);
+    }
+  }
+  collected.sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
+  return { records: collected.slice(offset, offset + limit), total };
+}
+
+async function findRecord(token: string, predicate: (record: PhotoRecord) => boolean) {
+  const index = await readManifestIndex(token);
+  if (!index || !index.shards.length) {
+    const legacy = await readLegacyManifest(token);
+    return legacy.find(predicate);
+  }
+  for (const key of sortShardKeys(index.shards)) {
+    const shard = await readShardRecords(token, key);
+    const hit = shard.find(predicate);
+    if (hit) return hit;
+  }
+  return undefined;
+}
+
+async function upsertRecordById(
+  token: string,
+  id: string,
+  updater: (existing: PhotoRecord | undefined) => PhotoRecord | null,
+): Promise<void> {
+  await ensureShardedManifest(token);
+  const index = (await readManifestIndex(token)) || { version: 1, shards: [], updatedAt: "" };
+  let existing: PhotoRecord | undefined;
+  let existingShard: string | null = null;
+  for (const key of sortShardKeys(index.shards)) {
+    const shard = await readShardRecords(token, key);
+    const found = shard.find((r) => r.id === id);
+    if (found) {
+      existing = found;
+      existingShard = key;
+      break;
+    }
+  }
+  const next = updater(existing);
+  if (!next) {
+    if (existingShard) {
+      await mutateShardRecords(token, existingShard, (records) => records.filter((r) => r.id !== id));
+    }
+    return;
+  }
+  const targetShard = shardKey(next.uploadedAt);
+  await addShardToIndex(token, targetShard);
+  await mutateShardRecords(token, targetShard, (records) => {
+    const without = records.filter((r) => r.id !== id);
+    return [next, ...without];
+  });
+  if (existingShard && existingShard !== targetShard) {
+    await mutateShardRecords(token, existingShard, (records) => records.filter((r) => r.id !== id));
+  }
+}
+
+async function buildImageRecord(
+  token: string,
+  input: {
+    id: string;
+    storedName: string;
+    filename: string;
+    mime: string;
+    uploadedAt: string;
+    buffer: Buffer;
+  },
+): Promise<PhotoRecord> {
+  const { id, storedName, filename, mime, uploadedAt, buffer } = input;
+  const [blurDataUrl, meta, derivatives] = await Promise.all([
+    makeBlurDataUrl(buffer),
+    readMeta(buffer),
+    withTimeout(makeImageDerivatives(buffer), "image derivatives"),
+  ]);
+  const thumbStoredName = `${id}-thumb.webp`;
+  const displayStoredName = `${id}-display.jpg`;
+  await put(`${IMG_PREFIX}${thumbStoredName}`, derivatives.thumb, {
+    access: ACCESS,
+    addRandomSuffix: false,
+    contentType: "image/webp",
+    token,
+  });
+  await put(`${IMG_PREFIX}${displayStoredName}`, derivatives.display, {
+    access: ACCESS,
+    addRandomSuffix: false,
+    contentType: "image/jpeg",
+    token,
+  });
+  return {
+    id,
+    filename,
+    uploadedAt,
+    storedName,
+    mime,
+    blurDataUrl,
+    width: meta.width,
+    height: meta.height,
+    thumbStoredName,
+    displayStoredName,
+  };
+}
+
+async function buildVideoRecord(input: {
+  id: string;
+  storedName: string;
+  filename: string;
+  mime: string;
+  uploadedAt: string;
+}): Promise<PhotoRecord> {
+  return {
+    id: input.id,
+    filename: input.filename,
+    uploadedAt: input.uploadedAt,
+    storedName: input.storedName,
+    mime: input.mime,
+  };
+}
+
 export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
   return {
     async list() {
-      const records = await readManifest(token);
+      const records = await readAllRecords(token);
       return records.map(recordToPhoto);
     },
 
     async listPaged(offset: number, limit: number) {
-      const records = await readManifest(token);
-      const total = records.length;
-      const slice = records.slice(offset, offset + limit);
-      return { photos: slice.map(recordToPhoto), total };
+      const { records, total } = await readPagedRecords(token, offset, limit);
+      return { photos: records.map(recordToPhoto), total };
+    },
+
+    async listByIds(ids: string[]) {
+      if (!ids.length) return [];
+      const all = await readAllRecords(token);
+      const byId = new Map(all.map((r) => [r.id, r]));
+      return ids
+        .map((id) => byId.get(id))
+        .filter(Boolean)
+        .map((r) => recordToPhoto(r!));
     },
 
     async getFileMeta(id: string, variant: FileVariant = "original") {
-      const records = await readManifest(token);
-      const rec = records.find((r) => r.id === id);
+      const rec = await findRecord(token, (r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
@@ -217,6 +490,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const pathname = `${IMG_PREFIX}${storedName}`;
+      const uploadedAt = new Date().toISOString();
+      const isVideo = isAllowedVideoType(mime);
 
       await put(pathname, buffer, {
         access: ACCESS,
@@ -225,60 +500,36 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         token,
       });
 
-      const isVideo = isAllowedVideoType(mime);
-      let thumbStoredName: string | undefined;
-      let displayStoredName: string | undefined;
-      const [blurDataUrl, meta] = isVideo
-        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
-        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
-
-      if (!isVideo) {
-        const { thumb, display } = await makeImageDerivatives(buffer);
-        thumbStoredName = `${id}-thumb.webp`;
-        displayStoredName = `${id}-display.jpg`;
-        await put(`${IMG_PREFIX}${thumbStoredName}`, thumb, {
-          access: ACCESS,
-          addRandomSuffix: false,
-          contentType: "image/webp",
-          token,
+      let record: PhotoRecord;
+      if (isVideo) {
+        record = await buildVideoRecord({
+          id,
+          storedName,
+          filename: filename || `video.${ext}`,
+          mime,
+          uploadedAt,
         });
-        await put(`${IMG_PREFIX}${displayStoredName}`, display, {
-          access: ACCESS,
-          addRandomSuffix: false,
-          contentType: "image/jpeg",
-          token,
+      } else {
+        record = await buildImageRecord(token, {
+          id,
+          storedName,
+          filename: filename || `photo.${ext}`,
+          mime,
+          uploadedAt,
+          buffer,
         });
       }
 
-      const record: PhotoRecord = {
-        id,
-        filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
-        uploadedAt: new Date().toISOString(),
-        storedName,
-        mime,
-        blurDataUrl,
-        width: meta.width,
-        height: meta.height,
-        thumbStoredName,
-        displayStoredName,
-      };
-
       try {
-        await mutateManifest(token, (records) => [record, ...records]);
+        await appendRecord(token, record);
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
-          if (thumbStoredName) {
-            await deleteBlobMedia(
-              privateBlobUrl(`${IMG_PREFIX}${thumbStoredName}`, token),
-              token,
-            );
+          if (record.thumbStoredName) {
+            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.thumbStoredName}`, token), token);
           }
-          if (displayStoredName) {
-            await deleteBlobMedia(
-              privateBlobUrl(`${IMG_PREFIX}${displayStoredName}`, token),
-              token,
-            );
+          if (record.displayStoredName) {
+            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.displayStoredName}`, token), token);
           }
         } catch {
           /* best-effort rollback */
@@ -286,6 +537,12 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         throw e;
       }
 
+      logUploadEvent("photo.created", {
+        id,
+        mime,
+        size: buffer.length,
+        kind: isVideo ? "video" : "image",
+      });
       return recordToPhoto(record);
     },
 
@@ -294,8 +551,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       range?: ReadFileRange,
       variant: FileVariant = "original",
     ): Promise<ReadFileResult | null> {
-      const records = await readManifest(token);
-      const rec = records.find((r) => r.id === id);
+      const rec = await findRecord(token, (r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
@@ -340,8 +596,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async deleteById(id: string) {
-      const records = await readManifest(token);
-      const rec = records.find((r) => r.id === id);
+      const rec = await findRecord(token, (r) => r.id === id);
       if (!rec) return false;
       const paths = [
         `${IMG_PREFIX}${rec.storedName}`,
@@ -355,7 +610,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           /* best-effort */
         }
       }
-      await mutateManifest(token, (prev) => prev.filter((r) => r.id !== id));
+      await upsertRecordById(token, id, () => null);
       return true;
     },
 
@@ -371,84 +626,98 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
-      const result = await get(pathname, { access: ACCESS, token });
-      if (!result || result.statusCode !== 200 || !result.stream) {
-        throw new Error("Uploaded blob not found");
-      }
-      const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
-      const limit = maxBytesForMime(mime);
-      if (buffer.length > limit) {
-        throw new Error("File too large");
-      }
 
       const baseName = pathname.slice(IMG_PREFIX.length);
       const dot = baseName.lastIndexOf(".");
       const id = dot > 0 ? baseName.slice(0, dot) : baseName;
       const storedName = baseName;
       const extFromName = dot > 0 ? baseName.slice(dot + 1) : extensionForMime(mime);
+      const existing = await findRecord(token, (r) => r.id === id || r.storedName === storedName);
+      if (existing) return recordToPhoto(existing);
 
+      const uploadedAt = new Date().toISOString();
       const isVideo = isAllowedVideoType(mime);
-      let thumbStoredName: string | undefined;
-      let displayStoredName: string | undefined;
-      const [blurDataUrl, meta] = isVideo
-        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
-        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
-
-      if (!isVideo) {
-        const { thumb, display } = await makeImageDerivatives(buffer);
-        thumbStoredName = `${id}-thumb.webp`;
-        displayStoredName = `${id}-display.jpg`;
-        await put(`${IMG_PREFIX}${thumbStoredName}`, thumb, {
-          access: ACCESS,
-          addRandomSuffix: false,
-          contentType: "image/webp",
-          token,
-        });
-        await put(`${IMG_PREFIX}${displayStoredName}`, display, {
-          access: ACCESS,
-          addRandomSuffix: false,
-          contentType: "image/jpeg",
-          token,
-        });
+      const blobHead = await head(pathname, { token });
+      const limit = maxBytesForMime(mime);
+      if (blobHead.size > limit) {
+        throw new Error("File too large");
       }
 
-      const record: PhotoRecord = {
-        id,
-        filename: filename || (isVideo ? `video.${extFromName}` : `photo.${extFromName}`),
-        uploadedAt: new Date().toISOString(),
-        storedName,
-        mime,
-        blurDataUrl,
-        width: meta.width,
-        height: meta.height,
-        thumbStoredName,
-        displayStoredName,
-      };
-
-      try {
-        await mutateManifest(token, (records) => [record, ...records]);
-      } catch (e) {
-        try {
-          await deleteBlobMedia(privateBlobUrl(pathname, token), token);
-          if (thumbStoredName) {
-            await deleteBlobMedia(
-              privateBlobUrl(`${IMG_PREFIX}${thumbStoredName}`, token),
-              token,
-            );
-          }
-          if (displayStoredName) {
-            await deleteBlobMedia(
-              privateBlobUrl(`${IMG_PREFIX}${displayStoredName}`, token),
-              token,
-            );
-          }
-        } catch {
-          /* best-effort rollback */
+      let record: PhotoRecord;
+      if (isVideo) {
+        record = await buildVideoRecord({
+          id,
+          storedName,
+          filename: filename || `video.${extFromName}`,
+          mime,
+          uploadedAt,
+        });
+      } else {
+        const result = await get(pathname, { access: ACCESS, token });
+        if (!result || result.statusCode !== 200 || !result.stream) {
+          throw new Error("Uploaded blob not found");
         }
-        throw e;
+        const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
+        if (buffer.length > limit) {
+          throw new Error("File too large");
+        }
+        record = await buildImageRecord(token, {
+          id,
+          storedName,
+          filename: filename || `photo.${extFromName}`,
+          mime,
+          uploadedAt,
+          buffer,
+        });
       }
 
+      await appendRecord(token, record);
+      logUploadEvent("client-upload.registered", {
+        id,
+        mime,
+        kind: isVideo ? "video" : "image",
+        pathname,
+      });
       return recordToPhoto(record);
+    },
+
+    async repairManifest() {
+      await ensureShardedManifest(token);
+      const all = await readAllRecords(token);
+      const byId = new Map<string, PhotoRecord>();
+      for (const record of all) {
+        if (!byId.has(record.id)) byId.set(record.id, record);
+      }
+      const deduped = [...byId.values()].sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
+      const grouped = new Map<string, PhotoRecord[]>();
+      for (const record of deduped) {
+        const key = shardKey(record.uploadedAt);
+        const arr = grouped.get(key) || [];
+        arr.push(record);
+        grouped.set(key, arr);
+      }
+      const keys = sortShardKeys([...grouped.keys()]);
+      for (const key of keys) {
+        await put(shardPath(key), JSON.stringify(grouped.get(key) || []), {
+          access: ACCESS,
+          addRandomSuffix: false,
+          allowOverwrite: true,
+          contentType: "application/json",
+          token,
+        });
+      }
+      await writeManifestIndex(token, {
+        version: 1,
+        shards: keys,
+        updatedAt: new Date().toISOString(),
+      });
+      return {
+        repaired: true,
+        details: [
+          `Rebuilt manifest index with ${keys.length} shard(s)`,
+          `Retained ${deduped.length} unique record(s)`,
+        ],
+      };
     },
   };
 }

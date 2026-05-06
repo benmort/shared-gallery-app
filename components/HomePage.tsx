@@ -141,12 +141,15 @@ export default function HomePage() {
     (uploaded: Photo[]) => {
       if (!uploaded.length) return;
       const normalized = uploaded.map(normalizePhoto);
+      let added = normalized.length;
       setPhotos((prev) => {
         if (!prev) return normalized;
         const ids = new Set(normalized.map((p) => p.id));
+        const existing = new Set(prev.map((p) => p.id));
+        added = normalized.filter((p) => !existing.has(p.id)).length;
         return [...normalized, ...prev.filter((p) => !ids.has(p.id))];
       });
-      setTotal((t) => t + normalized.length);
+      setTotal((t) => t + added);
     },
     [normalizePhoto],
   );

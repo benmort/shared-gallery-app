@@ -92,6 +92,16 @@ export function createFilesystemStorage(): PhotoStorage {
       return { photos: slice.map(recordToPhoto), total };
     },
 
+    async listByIds(ids: string[]) {
+      if (!ids.length) return [];
+      const records = await readIndex();
+      const byId = new Map(records.map((r) => [r.id, r]));
+      return ids
+        .map((id) => byId.get(id))
+        .filter(Boolean)
+        .map((r) => recordToPhoto(r!));
+    },
+
     async getFileMeta(id: string, variant: FileVariant = "original") {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
@@ -223,6 +233,22 @@ export function createFilesystemStorage(): PhotoStorage {
         }
       }
       return true;
+    },
+
+    async repairManifest() {
+      const records = await readIndex();
+      const deduped: PhotoRecord[] = [];
+      const seen = new Set<string>();
+      for (const record of records) {
+        if (seen.has(record.id)) continue;
+        seen.add(record.id);
+        deduped.push(record);
+      }
+      if (deduped.length !== records.length) {
+        await writeIndex(deduped);
+        return { repaired: true, details: ["Removed duplicate ids from photos.json"] };
+      }
+      return { repaired: false, details: ["No filesystem index issues detected"] };
     },
   };
 }

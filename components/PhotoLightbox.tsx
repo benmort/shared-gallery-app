@@ -42,6 +42,7 @@ const REDUCED_VARIANTS = {
   center: { opacity: 1 },
   exit: { opacity: 0 },
 };
+const VIDEO_POSTER_FALLBACK = "/images/video-poster-fallback.svg";
 
 type Props = {
   photos: Photo[];
@@ -423,7 +424,7 @@ export default function PhotoLightbox({
                       controls
                       playsInline
                       preload="metadata"
-                      poster={current.thumbUrl}
+                      poster={current.thumbUrl ?? VIDEO_POSTER_FALLBACK}
                       className="max-h-[min(70vh,85dvh)] max-w-full rounded-lg object-contain"
                       onLoadedData={() => setLoaded(true)}
                     />
@@ -662,6 +663,7 @@ export default function PhotoLightbox({
                       muted
                       playsInline
                       preload="metadata"
+                      poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
                       className="h-full w-full object-cover"
                       aria-hidden
                     />

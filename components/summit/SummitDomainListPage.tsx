@@ -1,4 +1,5 @@
 import SummitEmpty from "@/components/summit/SummitEmpty";
+import SummitBatchedListGrid from "@/components/summit/SummitBatchedListGrid";
 import SummitListCard from "@/components/summit/SummitListCard";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -49,6 +50,11 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
     domain === "crew" && normalizedRoleFilter
       ? domainRecords.filter((record) => crewRolesForRecord(record).includes(normalizedRoleFilter))
       : domainRecords;
+  const cardItems = filteredRecords.map((record) => ({
+    id: record.id,
+    href: `/${domain}/${record.id}`,
+    item: buildListItem(domain, record),
+  }));
   const label = domainLabel(domain);
   const subtitle = SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN[domain] || label;
 
@@ -144,18 +150,28 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
         </div>
       ) : null}
       {filteredRecords.length ? (
-        <div className="grid gap-3 sm:grid-cols-2">
-          {filteredRecords.map((record) => (
-            <SummitListCard
-              key={record.id}
-              href={`/${domain}/${record.id}`}
-              item={buildListItem(domain, record)}
-              circularImage={CIRCULAR_IMAGE_DOMAINS.has(domain)}
-              showImage
-              showImageSkeleton={domain === "speakers"}
-            />
-          ))}
-        </div>
+        domain === "organisations" ? (
+          <SummitBatchedListGrid
+            items={cardItems}
+            batchSize={20}
+            circularImage={CIRCULAR_IMAGE_DOMAINS.has(domain)}
+            showImage
+            showImageSkeleton={domain === "speakers"}
+          />
+        ) : (
+          <div className="grid gap-3 sm:grid-cols-2">
+            {cardItems.map((entry) => (
+              <SummitListCard
+                key={entry.id}
+                href={entry.href}
+                item={entry.item}
+                circularImage={CIRCULAR_IMAGE_DOMAINS.has(domain)}
+                showImage
+                showImageSkeleton={domain === "speakers"}
+              />
+            ))}
+          </div>
+        )
       ) : (
         <SummitEmpty
           title="No matching crew roles yet"

@@ -1,12 +1,29 @@
 import { NextResponse } from "next/server";
 import { getPhotoStorage } from "@/lib/storage";
 import { isAllowedMediaType, maxBytesForMime } from "@/lib/types/photo";
+import { classifyUploadError, safeErrorMessage } from "@/lib/upload-errors";
+import { logUploadEvent } from "@/lib/upload-logging";
+import { ensureUploadAuthorized, ensureUploadRateLimit } from "@/lib/upload-security";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   try {
     const u = new URL(request.url);
+    const ids = (u.searchParams.get("ids") || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    if (ids.length) {
+      const storage = getPhotoStorage();
+      if (!storage.listByIds) {
+        const photos = await storage.list();
+        const byId = new Map(photos.map((p) => [p.id, p]));
+        return NextResponse.json(ids.map((id) => byId.get(id)).filter(Boolean));
+      }
+      const photos = await storage.listByIds(ids);
+      return NextResponse.json(photos);
+    }
     const hasPaged =
       u.searchParams.has("offset") || u.searchParams.has("limit");
     if (!hasPaged) {
@@ -26,6 +43,8 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    await ensureUploadAuthorized(request);
+    ensureUploadRateLimit(request, "multipart-upload");
     const formData = await request.formData();
     const entries = formData.getAll("file") as File[];
     if (!entries.length) {
@@ -66,11 +85,24 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ photos: created });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Upload failed";
+    const message = safeErrorMessage(e, "Upload failed");
+    const cls = classifyUploadError(e);
+    logUploadEvent(
+      "multipart-upload.failed",
+      {
+        error: message,
+        class: cls,
+      },
+      "warn",
+    );
     const status =
       message === "Unsupported media type" || message === "File too large"
         ? 400
-        : 500;
-    return NextResponse.json({ error: message }, { status });
+        : message === "Unauthorized"
+          ? 401
+          : message.startsWith("Rate limited")
+            ? 429
+            : 500;
+    return NextResponse.json({ error: message, class: cls }, { status });
   }
 }

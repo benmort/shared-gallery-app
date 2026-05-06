@@ -14,6 +14,8 @@
     "start": "next start",
     "lint": "eslint .",
     "test": "tsx --test tests/**/*.test.ts",
+    "test:uploads": "tsx --test tests/uploads/**/*.test.ts",
+    "loadtest:uploads": "tsx scripts/load-test-upload.ts",
     "generate:summit-qr": "tsx scripts/generate-summit-qr.ts"
   },
   "dependencies": {

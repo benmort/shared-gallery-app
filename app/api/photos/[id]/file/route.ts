@@ -5,7 +5,22 @@ import type { FileVariant } from "@/lib/storage/types";
 
 export const dynamic = "force-dynamic";
 
-const CACHE = "public, max-age=31536000, immutable";
+const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
+const VIDEO_CACHE = "public, max-age=60, s-maxage=86400, stale-while-revalidate=86400";
+
+function cacheControlForMime(mime: string): string {
+  return mime.startsWith("video/") ? VIDEO_CACHE : IMMUTABLE_CACHE;
+}
+
+function commonHeaders(mime: string) {
+  return {
+    "Content-Type": mime,
+    "Accept-Ranges": "bytes",
+    "Cache-Control": cacheControlForMime(mime),
+    "Content-Disposition": "inline",
+    Vary: "Range",
+  };
+}
 
 function variantFromUrl(request: Request): FileVariant {
   const u = new URL(request.url);
@@ -31,10 +46,8 @@ export async function GET(
     return new NextResponse(new Uint8Array(data.buffer), {
       status: 200,
       headers: {
-        "Content-Type": data.mime,
+        ...commonHeaders(data.mime),
         "Content-Length": String(data.buffer.length),
-        "Accept-Ranges": "bytes",
-        "Cache-Control": CACHE,
       },
     });
   }
@@ -47,10 +60,8 @@ export async function GET(
     return new NextResponse(new Uint8Array(data.buffer), {
       status: 200,
       headers: {
-        "Content-Type": data.mime,
+        ...commonHeaders(data.mime),
         "Content-Length": String(data.buffer.length),
-        "Accept-Ranges": "bytes",
-        "Cache-Control": CACHE,
       },
     });
   }
@@ -78,10 +89,8 @@ export async function GET(
     return new NextResponse(new Uint8Array(data.buffer), {
       status: 200,
       headers: {
-        "Content-Type": data.mime,
+        ...commonHeaders(data.mime),
         "Content-Length": String(data.buffer.length),
-        "Accept-Ranges": "bytes",
-        "Cache-Control": CACHE,
       },
     });
   }
@@ -94,11 +103,9 @@ export async function GET(
   return new NextResponse(new Uint8Array(data.buffer), {
     status: 206,
     headers: {
-      "Content-Type": data.mime,
+      ...commonHeaders(data.mime),
       "Content-Length": String(data.buffer.length),
       "Content-Range": `bytes ${parsed.start}-${parsed.end}/${data.totalSize}`,
-      "Accept-Ranges": "bytes",
-      "Cache-Control": CACHE,
     },
   });
 }

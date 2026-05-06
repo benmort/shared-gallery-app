@@ -1,10 +1,13 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
 import { getPhotoStorage } from "@/lib/storage";
-import {
-  isAllowedMediaType,
-  maxBytesForMime,
-} from "@/lib/types/photo";
+import { classifyUploadError, safeErrorMessage } from "@/lib/upload-errors";
+import { logUploadEvent } from "@/lib/upload-logging";
+import { parseClientUploadPayload } from "@/lib/upload-payload";
+import { getUploadSessionStore } from "@/lib/upload-session-store";
+import { ensureUploadAuthorized, ensureUploadRateLimit } from "@/lib/upload-security";
+import { isUploadV2Enabled } from "@/lib/upload-config";
+import { maxBytesForMime } from "@/lib/types/photo";
 
 export const dynamic = "force-dynamic";
 
@@ -25,10 +28,19 @@ export async function POST(request: Request) {
       { status: 503 },
     );
   }
+  if (!isUploadV2Enabled()) {
+    return NextResponse.json(
+      { error: "Client blob uploads are disabled" },
+      { status: 503 },
+    );
+  }
 
   const body = (await request.json()) as HandleUploadBody;
 
   try {
+    await ensureUploadAuthorized(request);
+    ensureUploadRateLimit(request, "blob-token");
+    const sessions = getUploadSessionStore();
     const jsonResponse = await handleUpload({
       body,
       request,
@@ -36,56 +48,82 @@ export async function POST(request: Request) {
         if (!pathname.startsWith("album-img/")) {
           throw new Error("Invalid pathname");
         }
-        let mime = "";
-        if (clientPayload) {
-          try {
-            const p = JSON.parse(clientPayload) as { mime?: string };
-            mime = (p.mime || "").toLowerCase();
-          } catch {
-            throw new Error("Invalid client payload");
-          }
+        const payload = parseClientUploadPayload(clientPayload);
+        if (payload.pathname !== pathname) {
+          throw new Error("Payload pathname mismatch");
         }
-        if (!mime || !isAllowedMediaType(mime)) {
-          throw new Error("Unsupported media type");
-        }
-        const maximumSizeInBytes = maxBytesForMime(mime);
+        const maximumSizeInBytes = maxBytesForMime(payload.mime);
         return {
           allowedContentTypes: ALLOWED_TYPES,
           maximumSizeInBytes,
           addRandomSuffix: false,
-          tokenPayload: clientPayload,
+          tokenPayload: JSON.stringify(payload),
         };
       },
       onUploadCompleted: async ({ blob, tokenPayload }) => {
         const storage = getPhotoStorage();
         if (!storage.registerClientUpload) return;
-        let filename = "";
-        let mime = "application/octet-stream";
-        if (tokenPayload) {
-          try {
-            const p = JSON.parse(tokenPayload) as {
-              filename?: string;
-              mime?: string;
-            };
-            filename = p.filename || "";
-            mime = p.mime || mime;
-          } catch {
-            /* ignore */
-          }
-        }
-        await storage.registerClientUpload({
-          pathname: blob.pathname,
-          filename,
-          mime,
+        const payload = parseClientUploadPayload(tokenPayload);
+        await sessions.patchFile(payload.sessionId, payload.fileClientId, {
+          status: "uploaded",
+          uploadedAt: new Date().toISOString(),
+          incrementAttempts: true,
         });
+        try {
+          const photo = await storage.registerClientUpload({
+            pathname: blob.pathname,
+            filename: payload.filename,
+            mime: payload.mime,
+          });
+          await sessions.markPhotoRegistered(payload.sessionId, payload.fileClientId, photo.id);
+          logUploadEvent("blob-upload.completed", {
+            sessionId: payload.sessionId,
+            fileClientId: payload.fileClientId,
+            photoId: photo.id,
+            pathname: blob.pathname,
+            mime: payload.mime,
+          });
+        } catch (error) {
+          const message = safeErrorMessage(error);
+          await sessions.patchFile(payload.sessionId, payload.fileClientId, {
+            status: "failed",
+            error: message,
+          });
+          logUploadEvent(
+            "blob-upload.failed",
+            {
+              sessionId: payload.sessionId,
+              fileClientId: payload.fileClientId,
+              pathname: blob.pathname,
+              mime: payload.mime,
+              error: message,
+              class: classifyUploadError(error),
+            },
+            "error",
+          );
+          throw error;
+        }
       },
     });
     return NextResponse.json(jsonResponse);
   } catch (e) {
-    console.error(e);
+    const message = safeErrorMessage(e);
+    const retryAfterMs = (e as Error & { retryAfterMs?: number })?.retryAfterMs;
+    logUploadEvent(
+      "blob-upload.request-failed",
+      {
+        error: message,
+        class: classifyUploadError(e),
+      },
+      "warn",
+    );
     return NextResponse.json(
-      { error: (e as Error).message },
-      { status: 400 },
+      {
+        error: message,
+        class: classifyUploadError(e),
+        retryAfterMs: retryAfterMs ?? null,
+      },
+      { status: message === "Unauthorized" ? 401 : message.startsWith("Rate limited") ? 429 : 400 },
     );
   }
 }

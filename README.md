@@ -40,19 +40,25 @@ Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 
 ### Vercel Blob notes
 
-- With **`BLOB_READ_WRITE_TOKEN`** set, [`getPhotoStorage()`](lib/storage/index.ts) uses **Vercel Blob** ([`lib/storage/vercel-blob.ts`](lib/storage/vercel-blob.ts)) with **`access: 'private'`** only. Use a **private** Blob store. Media files live at `album-img/{id}.{ext}`, manifest at **`album-manifest.json`**. Full-size assets are always served through **`/api/photos/[id]/file`** (server uses the Blob SDK [`get()`](https://vercel.com/docs/vercel-blob/private-storage)) with **`Accept-Ranges`** and **`206 Partial Content`** for byte-range requests (needed for video seeking).
-- **Server upload body limit** on Vercel is about **4.5 MB** per request. **Videos larger than that will fail** on **`POST /api/photos`** until you add a [client upload](https://vercel.com/docs/vercel-blob/client-upload) path (not implemented here). Locally, videos may be up to **50 MB** (see [`lib/types/photo.ts`](lib/types/photo.ts) `MAX_VIDEO_BYTES`).
+- With **`BLOB_READ_WRITE_TOKEN`** set, [`getPhotoStorage()`](lib/storage/index.ts) uses **Vercel Blob** ([`lib/storage/vercel-blob.ts`](lib/storage/vercel-blob.ts)) with **`access: 'private'`** only. Use a **private** Blob store.
+- Media files live at `album-img/{id}.{ext}`. Metadata is sharded under `album-manifests/{yyyy-mm}.json` with index `album-manifests/index.json`.
+- Uploads use Vercel Blob **client uploads** (`/api/blob/upload`) plus upload sessions (`/api/photos/upload-sessions/*`) for deterministic multi-file completion.
+- Full-size assets are served through **`/api/photos/[id]/file`** with **`Accept-Ranges`** and **`206 Partial Content`** for video seeking.
+- **Server upload body limit** on Vercel (~4.5 MB) still applies to fallback multipart endpoint **`POST /api/photos`**; production uploads should use client upload mode.
 - Locally, leave the token unset to keep using **`data/`** on disk.
 - If you previously set **`BLOB_STORE_ACCESS`**, remove it from Vercel env (it is no longer read).
 
 ## Scripts
 
-| Command       | Description              |
+| Command | Description |
 | ------------- | ------------------------ |
-| `pnpm dev`    | Development server       |
-| `pnpm build`  | Production build         |
-| `pnpm start`  | Start production server  |
-| `pnpm lint`   | ESLint                   |
+| `pnpm dev` | Development server |
+| `pnpm build` | Production build |
+| `pnpm start` | Start production server |
+| `pnpm lint` | ESLint |
+| `pnpm test` | Full test suite |
+| `pnpm test:uploads` | Upload-focused tests |
+| `pnpm loadtest:uploads` | Upload load-test scenario |
 
 ## Project layout
 
@@ -94,8 +100,10 @@ The project started from the Next.js **`with-cloudinary`** (Vercel “Image Gall
 ## Video
 
 - **Types:** `video/mp4`, `video/webm`, `video/quicktime` (common for `.mov`).
-- **Limits:** **50 MB** per video (app validation); images stay **10 MB**. There is **no server-side transcoding** — grid tiles use `<video preload="metadata">` (first-frame preview depends on the browser).
-- **Vercel:** The platform **request body** cap (~**4.5 MB**) applies to **`POST /api/photos`**. Clips under that limit can upload today; larger files require a future client-to-Blob upload implementation.
+- **Limits:** **250 MB** per video (app + token + server validation); images stay **10 MB**.
+- **Playback:** media route supports byte ranges with cache policy tuned for seek-heavy video playback.
+- **Processing:** image uploads generate derivative assets; video uploads use a metadata-first fast registration path (no full-buffer derivative pipeline).
+- **Optional enterprise path:** evaluate Mux + Vercel when adaptive bitrate streaming / managed transcoding becomes mandatory.
 
 ## Swapping in real cloud storage
 
@@ -115,6 +123,14 @@ For another provider (Supabase, S3, Cloudinary), implement the same methods and 
 | `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked private Blob store). Omit locally for `./data/` storage. |
 | `MODERATION_SECRET` | **Moderation mode** (`?moderation=true`): at least **16** characters; signs the HTTP-only session cookie. |
 | `MODERATION_PASSWORD` | **Moderation mode**: at least **8** characters; the password operators use to sign in. |
+| `MOMENTS_UPLOAD_V2_ENABLED` | Enable advanced client-upload/session flow (default `true`). |
+| `MOMENTS_UPLOAD_PARALLELISM` | Client upload worker count (default `3`, clamp `1-6`). |
+| `MOMENTS_UPLOAD_RETRY_COUNT` | Retry attempts for retryable client upload failures (default `3`). |
+| `MOMENTS_UPLOAD_RATE_LIMIT` | Best-effort per-IP fixed window request cap for upload APIs (default `120`). |
+| `MOMENTS_UPLOAD_RATE_WINDOW_MS` | Rate limit window (default `60000`). |
+| `MOMENTS_UPLOAD_BEARER_TOKEN` | Optional bearer requirement for upload APIs. |
+| `MOMENTS_UPLOAD_REQUIRE_MODERATION` | When true, upload APIs require moderation session cookie. |
+| `CRON_SECRET` | Optional auth secret for `/api/cron/reconcile-uploads`. |
 
 Without both moderation variables, the app shows a warning on the moderation page and moderation login and deletes are disabled.
 
@@ -136,10 +152,18 @@ See [`.env.example`](.env.example).
 - Rollout/rollback runbook: [`docs/summit-migration/rollout-runbook.md`](docs/summit-migration/rollout-runbook.md)
 - Native decommission notes: [`docs/summit-migration/decommission-native.md`](docs/summit-migration/decommission-native.md)
 
+## Upload operations
+
+- Incident runbook: [`docs/moments-upload-runbook.md`](docs/moments-upload-runbook.md)
+- Admin shard repair endpoint: `POST /api/photos/admin/repair`
+- Reconciliation cron endpoint: `GET /api/cron/reconcile-uploads`
+
 ## Manual QA checklist
 
 - [ ] Upload one and multiple images from the library; thumbnails and upload bar behave well on a narrow screen.
-- [ ] Upload a short **MP4** (under Vercel body limit if deployed); confirm grid tile, lightbox playback, and seek.
+- [ ] Upload multiple images/videos in one batch and verify per-item spinner/check/fail states.
+- [ ] Verify remove (`X`) controls are large and disappear once upload starts.
+- [ ] Upload an **MP4** near the 250 MB cap (client upload path) and confirm seek/playback.
 - [ ] Reject oversize / wrong type files (client + server messages).
 - [ ] **Photo capture** and **Video capture** on iOS Safari and Android Chrome.
 - [ ] **No photos yet** copy in the hero when the grid only shows the upload card.
