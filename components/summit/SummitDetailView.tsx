@@ -33,7 +33,6 @@ export default function SummitDetailView({
   const defaultImageClass = isCircularDetail
     ? `h-52 w-52 rounded-full object-cover ring-2 ring-white/20 sm:h-60 sm:w-60 ${crewImageFilterClass}`
     : `h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20 ${crewImageFilterClass}`;
-  const isSvgLogo = Boolean(detail.imageUrl && /\.svg(?:$|[?#])/i.test(detail.imageUrl));
 
   return (
     <div className="space-y-6">
@@ -42,22 +41,14 @@ export default function SummitDetailView({
           {detail.imageUrl ? (
             <div className="inline-flex">
               {isOrganisationDetail ? (
-                isSvgLogo ? (
-                  <img
-                    src={detail.imageUrl}
-                    alt={detail.title}
-                    className={organisationLogoImageClass}
-                  />
-                ) : (
-                  <Image
-                    src={detail.imageUrl}
-                    alt={detail.title}
-                    width={640}
-                    height={480}
-                    className={organisationLogoImageClass}
-                    unoptimized
-                  />
-                )
+                <Image
+                  src={detail.imageUrl}
+                  alt={detail.title}
+                  width={640}
+                  height={480}
+                  className={organisationLogoImageClass}
+                  unoptimized
+                />
               ) : (
                 <Image
                   src={detail.imageUrl}

@@ -77,7 +77,7 @@ type SessionTone = {
   summaryClass: string;
 };
 
-function toneForSessionLabel(sessionLabel: string, _isTalk: boolean): SessionTone {
+function toneForSessionLabel(sessionLabel: string): SessionTone {
   const normalized = sessionLabel.trim().toLowerCase();
   const isWhite =
     (normalized.includes("break") && !normalized.includes("breakout")) ||
@@ -111,7 +111,7 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
   const speakerSubLabel = slot.organisation || locationLabel;
   const speakerSubLabelIsLocation = !slot.organisation && !!locationLabel;
   const sessionLabel = slot.formatLabel || (slot.talk ? "Talk" : "Event");
-  const tone = toneForSessionLabel(sessionLabel, slot.talk);
+  const tone = toneForSessionLabel(sessionLabel);
   const cardClass = `relative overflow-hidden rounded-xl border p-3.5 transition sm:p-4 ${tone.cardClass}`;
 
   return (

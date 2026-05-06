@@ -24,7 +24,7 @@ const CIRCULAR_IMAGE_DOMAINS = new Set<SummitListDomain>([
   "attractions",
 ]);
 
-function crewRoles(record: SummitRecord): string[] {
+function crewRolesForRecord(record: SummitRecord): string[] {
   const roles = fieldList(record, "Role").filter(Boolean);
   if (roles.length > 0) return roles;
   const fallbackRole = fieldString(record, "Role").trim();
@@ -41,13 +41,13 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
         )
       : records;
   const normalizedRoleFilter = roleFilter?.trim() || "";
-  const crewRoles =
+  const crewRoleOptions =
     domain === "crew"
-      ? Array.from(new Set(domainRecords.flatMap((record) => crewRoles(record)))).sort()
+      ? Array.from(new Set(domainRecords.flatMap((record) => crewRolesForRecord(record)))).sort()
       : [];
   const filteredRecords =
     domain === "crew" && normalizedRoleFilter
-      ? domainRecords.filter((record) => crewRoles(record).includes(normalizedRoleFilter))
+      ? domainRecords.filter((record) => crewRolesForRecord(record).includes(normalizedRoleFilter))
       : domainRecords;
   const label = domainLabel(domain);
   const subtitle = SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN[domain] || label;
@@ -64,7 +64,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
   return (
     <div className="space-y-4">
       <SummitPageHeader title={label} subtitle={subtitle} />
-      {domain === "crew" && crewRoles.length > 0 ? (
+      {domain === "crew" && crewRoleOptions.length > 0 ? (
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-300">Filter by role</p>
           <div className="grid grid-cols-2 gap-2">
@@ -101,7 +101,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
                 All roles
               </span>
             </Link>
-            {crewRoles.map((role) => {
+            {crewRoleOptions.map((role) => {
               const selected = normalizedRoleFilter === role;
               return (
                 <Link
