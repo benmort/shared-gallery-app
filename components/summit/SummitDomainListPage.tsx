@@ -9,7 +9,7 @@ import { buildListItem } from "@/lib/summit/domains";
 import { domainLabel, getDomainRecords } from "@/lib/summit/domain-data";
 import { fieldList, fieldString } from "@/lib/summit/fields";
 import { SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN } from "@/lib/summit/page-descriptors";
-import type { SummitListDomain } from "@/lib/summit/types";
+import type { SummitListDomain, SummitRecord } from "@/lib/summit/types";
 
 type Props = {
   domain: SummitListDomain;
@@ -24,6 +24,13 @@ const CIRCULAR_IMAGE_DOMAINS = new Set<SummitListDomain>([
   "attractions",
 ]);
 
+function crewRoles(record: SummitRecord): string[] {
+  const roles = fieldList(record, "Role").filter(Boolean);
+  if (roles.length > 0) return roles;
+  const fallbackRole = fieldString(record, "Role").trim();
+  return fallbackRole ? [fallbackRole] : [];
+}
+
 export default async function SummitDomainListPage({ domain, roleFilter }: Props) {
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
@@ -36,11 +43,11 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
   const normalizedRoleFilter = roleFilter?.trim() || "";
   const crewRoles =
     domain === "crew"
-      ? Array.from(new Set(domainRecords.map((record) => fieldString(record, "Role")).filter(Boolean))).sort()
+      ? Array.from(new Set(domainRecords.flatMap((record) => crewRoles(record)))).sort()
       : [];
   const filteredRecords =
     domain === "crew" && normalizedRoleFilter
-      ? domainRecords.filter((record) => fieldString(record, "Role") === normalizedRoleFilter)
+      ? domainRecords.filter((record) => crewRoles(record).includes(normalizedRoleFilter))
       : domainRecords;
   const label = domainLabel(domain);
   const subtitle = SUMMIT_DOMAIN_SUBTITLE_BY_DOMAIN[domain] || label;

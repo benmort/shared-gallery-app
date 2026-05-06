@@ -15,6 +15,7 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
     ? "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-700/90 via-zinc-900/85 to-zinc-950/92 p-5"
     : "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5";
   const isOrganisationDetail = detail.id.startsWith("organisation-");
+  const isCrewDetail = detail.id.startsWith("crew-");
   const isCircularDetail = CIRCULAR_DETAIL_PREFIXES.some((prefix) => detail.id.startsWith(prefix));
   const usesWhiteLogoBackground = isOrganisationDetail && hasOffWhiteLogoBackground(detail.id);
   const organisationLogoImageBaseClass =
@@ -22,9 +23,10 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
   const organisationLogoImageClass = usesWhiteLogoBackground
     ? `${organisationLogoImageBaseClass} bg-white`
     : `${organisationLogoImageBaseClass} bg-black`;
+  const crewImageFilterClass = isCrewDetail ? "grayscale contrast-125 brightness-110" : "";
   const defaultImageClass = isCircularDetail
-    ? "h-52 w-52 rounded-full object-cover ring-2 ring-white/20 sm:h-60 sm:w-60"
-    : "h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20";
+    ? `h-52 w-52 rounded-full object-cover ring-2 ring-white/20 sm:h-60 sm:w-60 ${crewImageFilterClass}`
+    : `h-auto max-h-72 w-auto max-w-full rounded-xl object-contain ring-2 ring-white/20 ${crewImageFilterClass}`;
   const isSvgLogo = Boolean(detail.imageUrl && /\.svg(?:$|[?#])/i.test(detail.imageUrl));
 
   return (

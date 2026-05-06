@@ -232,11 +232,12 @@ export function buildDetail(
       };
     }
     case "crew": {
+      const crewRoles = fieldList(record, "Role");
       return {
         id: record.id,
         title: fieldString(record, "Shortname"),
         subtitle: fieldFirst(record, "Organisation [Network Data]"),
-        secondSubtitle: fieldString(record, "Role"),
+        secondSubtitle: crewRoles.length > 0 ? crewRoles.join(" \u00b7 ") : fieldString(record, "Role"),
         imageUrl: fieldAttachmentUrl(record, "Headshot", { headshot: true }),
         tags: fieldList(record, "Job category [Network Data]"),
         body: asLines(fieldString(record, "Bio")),

@@ -18,26 +18,8 @@ import {
   isAllowedVideoType,
   maxBytesForMime,
 } from "../types/photo";
-import {
-  dbConfigured,
-  deleteMediaRecord,
-  enqueueProcessingJob,
-  getMediaById,
-  getMediaByUploadId,
-  getMediaByUploadIds,
-  listMediaAll,
-  listMediaPaged,
-  upsertMediaRecord,
-} from "./postgres-metadata";
 import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
 import { recordToPhoto } from "./types";
-import {
-  uploadDbOnlyEnabled,
-  uploadDbReadEnabled,
-  uploadDualWriteEnabled,
-  uploadProcessingQueueEnabled,
-} from "@/lib/upload/flags";
-import { trackUploadEvent } from "@/lib/upload/observability";
 
 /** Single JSON index in the blob store (stable pathname, no random suffix). */
 const MANIFEST_PATH = "album-manifest.json";
@@ -46,26 +28,6 @@ const IMG_PREFIX = "album-img/";
 
 /** Private blobs only — requires a [private Vercel Blob store](https://vercel.com/docs/vercel-blob/private-storage). */
 const ACCESS = "private" as const;
-
-function dbEnabled(): boolean {
-  return dbConfigured();
-}
-
-function dbReadEnabled(): boolean {
-  return dbEnabled() && uploadDbReadEnabled();
-}
-
-function dbOnlyEnabled(): boolean {
-  return dbEnabled() && uploadDbOnlyEnabled();
-}
-
-function dbWriteEnabled(): boolean {
-  return dbEnabled() && (uploadDualWriteEnabled() || uploadDbReadEnabled() || uploadDbOnlyEnabled());
-}
-
-function manifestWriteEnabled(): boolean {
-  return !dbOnlyEnabled();
-}
 
 /** Same store-id extraction as `@vercel/blob` `get()` for pathname → URL. */
 function getStoreIdFromToken(t: string): string {
@@ -194,60 +156,6 @@ async function readManifest(token: string): Promise<PhotoRecord[]> {
   }
 }
 
-async function readRecords(token: string): Promise<PhotoRecord[]> {
-  if (dbReadEnabled()) {
-    try {
-      return await listMediaAll();
-    } catch {
-      if (dbOnlyEnabled()) return [];
-    }
-  }
-  return readManifest(token);
-}
-
-async function readRecordById(token: string, id: string): Promise<PhotoRecord | null> {
-  if (dbReadEnabled()) {
-    try {
-      const record = await getMediaById(id);
-      if (record) return record;
-    } catch {
-      if (dbOnlyEnabled()) return null;
-    }
-  }
-  if (dbOnlyEnabled()) return null;
-  const records = await readManifest(token);
-  return records.find((r) => r.id === id) ?? null;
-}
-
-async function writeRecord(token: string, record: PhotoRecord): Promise<void> {
-  const writes: Promise<unknown>[] = [];
-  if (manifestWriteEnabled()) {
-    writes.push(
-      mutateManifest(token, (records) => {
-        const next = records.filter(
-          (r) => r.id !== record.id && r.uploadId !== record.uploadId,
-        );
-        return [record, ...next];
-      }),
-    );
-  }
-  if (dbWriteEnabled()) {
-    writes.push(upsertMediaRecord(record));
-  }
-  await Promise.all(writes);
-}
-
-async function removeRecord(token: string, id: string): Promise<void> {
-  const writes: Promise<unknown>[] = [];
-  if (manifestWriteEnabled()) {
-    writes.push(mutateManifest(token, (prev) => prev.filter((r) => r.id !== id)));
-  }
-  if (dbWriteEnabled()) {
-    writes.push(deleteMediaRecord(id));
-  }
-  await Promise.all(writes);
-}
-
 function variantStoredName(
   rec: PhotoRecord,
   variant: FileVariant,
@@ -269,19 +177,11 @@ function variantStoredName(
 export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
   return {
     async list() {
-      const records = await readRecords(token);
+      const records = await readManifest(token);
       return records.map(recordToPhoto);
     },
 
     async listPaged(offset: number, limit: number) {
-      if (dbReadEnabled()) {
-        try {
-          const { records, total } = await listMediaPaged(offset, limit);
-          return { photos: records.map(recordToPhoto), total };
-        } catch {
-          if (dbOnlyEnabled()) return { photos: [], total: 0 };
-        }
-      }
       const records = await readManifest(token);
       const total = records.length;
       const slice = records.slice(offset, offset + limit);
@@ -289,7 +189,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async getFileMeta(id: string, variant: FileVariant = "original") {
-      const rec = await readRecordById(token, id);
+      const records = await readManifest(token);
+      const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
@@ -303,7 +204,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async createFromBuffer(input) {
-      const { buffer, filename, mime, uploadId } = input;
+      const { buffer, filename, mime } = input;
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
@@ -312,7 +213,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         throw new Error("File too large");
       }
 
-      const id = uploadId || randomUUID();
+      const id = randomUUID();
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const pathname = `${IMG_PREFIX}${storedName}`;
@@ -325,14 +226,13 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       });
 
       const isVideo = isAllowedVideoType(mime);
-      const queueEnabled = dbEnabled() && uploadProcessingQueueEnabled();
       let thumbStoredName: string | undefined;
       let displayStoredName: string | undefined;
       const [blurDataUrl, meta] = isVideo
         ? [undefined, {}] as [undefined, { width?: number; height?: number }]
         : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
 
-      if (!isVideo && !queueEnabled) {
+      if (!isVideo) {
         const { thumb, display } = await makeImageDerivatives(buffer);
         thumbStoredName = `${id}-thumb.webp`;
         displayStoredName = `${id}-display.jpg`;
@@ -352,12 +252,10 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
 
       const record: PhotoRecord = {
         id,
-        uploadId: id,
         filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
         uploadedAt: new Date().toISOString(),
         storedName,
         mime,
-        processingStatus: isVideo || !queueEnabled ? "done" : "processing",
         blurDataUrl,
         width: meta.width,
         height: meta.height,
@@ -366,23 +264,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       };
 
       try {
-        await writeRecord(token, record);
-        await trackUploadEvent({
-          uploadId: id,
-          event: "upload_complete",
-          payload: { source: "server", kind: isVideo ? "video" : "image" },
-        });
-        if (!isVideo && queueEnabled) {
-          await enqueueProcessingJob({
-            uploadId: id,
-            photoId: id,
-          });
-          await trackUploadEvent({
-            uploadId: id,
-            event: "job_enqueued",
-            payload: { source: "server" },
-          });
-        }
+        await mutateManifest(token, (records) => [record, ...records]);
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
@@ -412,7 +294,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       range?: ReadFileRange,
       variant: FileVariant = "original",
     ): Promise<ReadFileResult | null> {
-      const rec = await readRecordById(token, id);
+      const records = await readManifest(token);
+      const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
@@ -456,47 +339,9 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       }
     },
 
-    async readFileResponse(
-      id: string,
-      range?: ReadFileRange,
-      variant: FileVariant = "original",
-    ): Promise<Response | null> {
-      const rec = await readRecordById(token, id);
-      if (!rec) return null;
-      const pick = variantStoredName(rec, variant);
-      if (!pick) return null;
-      const pathname = `${IMG_PREFIX}${pick.name}`;
-      try {
-        const result = await get(pathname, {
-          access: ACCESS,
-          token,
-          headers: range ? { Range: `bytes=${range.start}-${range.end}` } : undefined,
-        });
-        if (!result?.stream) return null;
-        const status = result.statusCode as number;
-        if (status !== 200 && status !== 206) return null;
-        const contentLength =
-          result.headers.get("content-length") ||
-          (result.blob?.size ? String(result.blob.size) : null);
-        const headers: Record<string, string> = {
-          "Content-Type": pick.mime,
-          "Accept-Ranges": "bytes",
-          "Cache-Control": "public, max-age=31536000, immutable",
-        };
-        if (contentLength) headers["Content-Length"] = contentLength;
-        const contentRange = result.headers.get("content-range");
-        if (contentRange) headers["Content-Range"] = contentRange;
-        return new Response(result.stream as ReadableStream, {
-          status,
-          headers,
-        });
-      } catch {
-        return null;
-      }
-    },
-
     async deleteById(id: string) {
-      const rec = await readRecordById(token, id);
+      const records = await readManifest(token);
+      const rec = records.find((r) => r.id === id);
       if (!rec) return false;
       const paths = [
         `${IMG_PREFIX}${rec.storedName}`,
@@ -510,55 +355,46 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           /* best-effort */
         }
       }
-      await removeRecord(token, id);
+      await mutateManifest(token, (prev) => prev.filter((r) => r.id !== id));
       return true;
     },
 
     async registerClientUpload(input: {
-      uploadId?: string;
       pathname: string;
       filename: string;
       mime: string;
-      size?: number;
     }) {
-      const { pathname, filename, mime, size, uploadId } = input;
+      const { pathname, filename, mime } = input;
       if (!pathname.startsWith(IMG_PREFIX)) {
         throw new Error("Invalid upload pathname");
       }
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
-      const existingUploadId = uploadId || pathname.slice(IMG_PREFIX.length).split(".")[0];
-      if (dbEnabled()) {
-        const existing = await getMediaByUploadId(existingUploadId);
-        if (existing) return recordToPhoto(existing);
+      const result = await get(pathname, { access: ACCESS, token });
+      if (!result || result.statusCode !== 200 || !result.stream) {
+        throw new Error("Uploaded blob not found");
       }
-      const blobMeta = await head(pathname, { token });
-      const actualSize = size ?? blobMeta.size;
+      const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
       const limit = maxBytesForMime(mime);
-      if (actualSize > limit) {
+      if (buffer.length > limit) {
         throw new Error("File too large");
       }
 
       const baseName = pathname.slice(IMG_PREFIX.length);
       const dot = baseName.lastIndexOf(".");
-      const id = uploadId || (dot > 0 ? baseName.slice(0, dot) : baseName);
+      const id = dot > 0 ? baseName.slice(0, dot) : baseName;
       const storedName = baseName;
       const extFromName = dot > 0 ? baseName.slice(dot + 1) : extensionForMime(mime);
 
       const isVideo = isAllowedVideoType(mime);
-      const queueEnabled = dbEnabled() && uploadProcessingQueueEnabled();
       let thumbStoredName: string | undefined;
       let displayStoredName: string | undefined;
-      let blurDataUrl: string | undefined;
-      let meta: { width?: number; height?: number } = {};
-      if (!isVideo && !queueEnabled) {
-        const result = await get(pathname, { access: ACCESS, token });
-        if (!result || result.statusCode !== 200 || !result.stream) {
-          throw new Error("Uploaded blob not found");
-        }
-        const buffer = Buffer.from(await new Response(result.stream).arrayBuffer());
-        [blurDataUrl, meta] = await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
+      const [blurDataUrl, meta] = isVideo
+        ? [undefined, {}] as [undefined, { width?: number; height?: number }]
+        : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
+
+      if (!isVideo) {
         const { thumb, display } = await makeImageDerivatives(buffer);
         thumbStoredName = `${id}-thumb.webp`;
         displayStoredName = `${id}-display.jpg`;
@@ -578,12 +414,10 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
 
       const record: PhotoRecord = {
         id,
-        uploadId: id,
         filename: filename || (isVideo ? `video.${extFromName}` : `photo.${extFromName}`),
         uploadedAt: new Date().toISOString(),
         storedName,
         mime,
-        processingStatus: isVideo || !queueEnabled ? "done" : "processing",
         blurDataUrl,
         width: meta.width,
         height: meta.height,
@@ -592,23 +426,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       };
 
       try {
-        await writeRecord(token, record);
-        await trackUploadEvent({
-          uploadId: id,
-          event: "upload_complete",
-          payload: { source: "blob", kind: isVideo ? "video" : "image" },
-        });
-        if (!isVideo && queueEnabled) {
-          await enqueueProcessingJob({
-            uploadId: id,
-            photoId: id,
-          });
-          await trackUploadEvent({
-            uploadId: id,
-            event: "job_enqueued",
-            payload: { source: "blob" },
-          });
-        }
+        await mutateManifest(token, (records) => [record, ...records]);
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
@@ -631,45 +449,6 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       }
 
       return recordToPhoto(record);
-    },
-
-    async initUploadSession(input) {
-      const ext = extensionForMime(input.mime);
-      const pathname = `${IMG_PREFIX}${input.uploadId}.${ext}`;
-      await trackUploadEvent({
-        uploadId: input.uploadId,
-        event: "upload_init",
-        payload: { mime: input.mime, size: input.size },
-      });
-      return { uploadId: input.uploadId, pathname };
-    },
-
-    async reconcileUploads(uploadIds) {
-      if (dbEnabled()) {
-        const records = await getMediaByUploadIds(uploadIds);
-        const byUploadId = new Map(records.map((record) => [record.uploadId || record.id, record]));
-        const pendingUploadIds = uploadIds.filter((id) => {
-          const rec = byUploadId.get(id);
-          if (!rec) return true;
-          return rec.processingStatus === "processing";
-        });
-        return {
-          photos: records.map(recordToPhoto),
-          pendingUploadIds,
-        };
-      }
-      const records = await readManifest(token);
-      const byUploadId = new Map(
-        records.map((record) => [record.uploadId || record.id, record]),
-      );
-      const pendingUploadIds = uploadIds.filter((id) => !byUploadId.has(id));
-      return {
-        photos: uploadIds
-          .map((id) => byUploadId.get(id))
-          .filter(Boolean)
-          .map((record) => recordToPhoto(record as PhotoRecord)),
-        pendingUploadIds,
-      };
     },
   };
 }

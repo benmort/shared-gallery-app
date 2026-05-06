@@ -1756,16 +1756,504 @@
   ],
   "crew": [
     {
-      "id": "crew-tarneen-onus-browne",
+      "id": "crew-alex-hill",
       "fields": {
-        "Shortname": "Tarneen Onus-Browne",
-        "Role": "Wellbeing and Grievance Coordinator",
+        "Shortname": "Alex Hill",
+        "Role": [
+          "Speaker Management"
+        ],
         "Bio": "Summit crew contact.",
         "Headshot": [
           {
-            "url": "/images/crew/tarneen.png"
+            "url": "/images/crew/headshots/alex.jpeg"
           }
         ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U08SRFKB0ES-2def71ec3773-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0437 316 331",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-allara-briggs-pattison",
+      "fields": {
+        "Shortname": "Allara Briggs Pattison",
+        "Role": [
+          "Airport + Travel"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/allara.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U0AU2Q7MX6H-f63963c5a93c-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-bek-hatfield",
+      "fields": {
+        "Shortname": "Bek Hatfield",
+        "Role": [
+          "Media"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/rebekah.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U0APZMT8DMX-e2a965af24aa-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-ben-mort",
+      "fields": {
+        "Shortname": "Ben Mort",
+        "Role": [
+          "Tech"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/ben.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/ben.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0481 656 866",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-brandon-sheehan",
+      "fields": {
+        "Shortname": "Brandon Sheehan",
+        "Role": [
+          "Media"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/brandon.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U0AN6J8MTAP-96af60ed602f-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-jay-knapp",
+      "fields": {
+        "Shortname": "Jay Knapp",
+        "Role": [
+          "Logistics"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/jay.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U0B1DGKJZPU-a34623631708-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-julie-waradoo",
+      "fields": {
+        "Shortname": "Julie Waradoo",
+        "Role": [
+          "Logistics"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/julie-waradoo.png"
+          }
+        ],
+        "Headshot Source Url": "https://ui-avatars.com/api/?name=Julie+Waradoo&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-kirsty-albion",
+      "fields": {
+        "Shortname": "Kirsty Albion",
+        "Role": [
+          "Logistics"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/kirsty.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/kirsty.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0425 138 806",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-larissa-baldwin-roberts",
+      "fields": {
+        "Shortname": "Larissa Baldwin-Roberts",
+        "Role": [
+          "Facilitator"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/larissa.webp"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/larissa.webp",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0431 316 019",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-madi-weston",
+      "fields": {
+        "Shortname": "Madi Weston",
+        "Role": [
+          "Delegate Management"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/madi-weston.png"
+          }
+        ],
+        "Headshot Source Url": "https://ui-avatars.com/api/?name=Madi+Weston&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-manny-williams",
+      "fields": {
+        "Shortname": "Manny Williams",
+        "Role": [
+          "Facilitator"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/manny.png"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/manny.png",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-melissa-clarke",
+      "fields": {
+        "Shortname": "Melissa Clarke",
+        "Role": [
+          "Airport + Travel"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/melissa.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/melissa.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-nicole-jenkins",
+      "fields": {
+        "Shortname": "Nicole Jenkins",
+        "Role": [
+          "Facilitator",
+          "Wellbeing and Grievance Coordinator"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/nicole.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/nicole.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0428 402 599",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-renaire-druery",
+      "fields": {
+        "Shortname": "Renaire Druery",
+        "Role": [
+          "Airport + Travel"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/renaire.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/renaire.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0432 854 570",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-shikerra-thorne",
+      "fields": {
+        "Shortname": "Shikerra Thorne",
+        "Role": [
+          "Summit Lead"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/shikierra.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U09QE27PJRJ-3e264b152fbd-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0413 200 232",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-sylvia-soo",
+      "fields": {
+        "Shortname": "Sylvia Soo",
+        "Role": [
+          "Airport + Travel"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/sylvia.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/sylvia.jpeg",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-tamika-sadler",
+      "fields": {
+        "Shortname": "Tamika Sadler",
+        "Role": [
+          "Facilitator"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/tamika.jpeg"
+          }
+        ],
+        "Headshot Source Url": "https://ca.slack-edge.com/T08SRFK8HLN-U091ZA3SKQU-0c5cd7602013-512",
+        "Organisation [Network Data]": [
+          "Common Threads"
+        ],
+        "Job category [Network Data]": [
+          "Crew"
+        ],
+        "Location [Network Data]": [
+          "Adelaide"
+        ],
+        "Phone [Network Data]": "0476 002 657",
+        "Languages": [
+          "English"
+        ]
+      }
+    },
+    {
+      "id": "crew-tarneen-onus-browne",
+      "fields": {
+        "Shortname": "Tarneen Onus Browne",
+        "Role": [
+          "Facilitator"
+        ],
+        "Bio": "Summit crew contact.",
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/tarneen.jpeg"
+          }
+        ],
+        "Headshot Source Url": "/public/images/crew/headshots/tarneen.jpeg",
         "Organisation [Network Data]": [
           "Common Threads"
         ],
@@ -1782,16 +2270,19 @@
       }
     },
     {
-      "id": "crew-amelia-millie-telford",
+      "id": "crew-teia-warradoo",
       "fields": {
-        "Shortname": "Amelia (Millie) Telford",
-        "Role": "Event Coordinator",
+        "Shortname": "Teia Warradoo",
+        "Role": [
+          "Media"
+        ],
         "Bio": "Summit crew contact.",
         "Headshot": [
           {
-            "url": "/images/crew/millie.png"
+            "url": "/images/crew/teia-warradoo.png"
           }
         ],
+        "Headshot Source Url": "https://ui-avatars.com/api/?name=Teia+Warradoo&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png",
         "Organisation [Network Data]": [
           "Common Threads"
         ],
@@ -1801,10 +2292,10 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0413 249 073",
         "Languages": [
           "English"
-        ]
+        ],
+        "Phone [Network Data]": "0448 626 304"
       }
     }
   ],
@@ -1847,7 +2338,7 @@
       "id": "attraction-south-australian-museum-aboriginal-cultures-gallery",
       "fields": {
         "Title": "South Australian Museum, Australian Aboriginal Cultures Gallery",
-        "Description": "One of the major museum-based Aboriginal culture experiences in Adelaide, with more than 3,000 items across two floors. The Museum says it holds one of the world’s most comprehensive collections of Australian Aboriginal cultural material.",
+        "Description": "One of the major museum-based Aboriginal culture experiences in Adelaide, with more than 3,000 items across two floors. The Museum says it holds one of the world\u2019s most comprehensive collections of Australian Aboriginal cultural material.",
         "Tags": [
           "Museum",
           "Culture"
@@ -1915,7 +2406,7 @@
       "id": "attraction-glenthorne-national-park-ityamaiitpinna-yarta",
       "fields": {
         "Title": "Glenthorne National Park-Ityamaiitpinna Yarta",
-        "Description": "A Kaurna-significant national park south of the city, with interpretive signage, carvings, sculptures and the “Walking with Winaityinaityi” trail.",
+        "Description": "A Kaurna-significant national park south of the city, with interpretive signage, carvings, sculptures and the \u201cWalking with Winaityinaityi\u201d trail.",
         "Tags": [
           "National Park",
           "Kaurna"
@@ -1949,7 +2440,7 @@
       "id": "attraction-tarnanthi-art-gallery-south-australia",
       "fields": {
         "Title": "Tarnanthi / Art Gallery of South Australia",
-        "Description": "Tarnanthi is AGSA’s major festival and platform for contemporary Aboriginal and Torres Strait Islander art. Worth checking current exhibitions before visiting, as programming changes.",
+        "Description": "Tarnanthi is AGSA\u2019s major festival and platform for contemporary Aboriginal and Torres Strait Islander art. Worth checking current exhibitions before visiting, as programming changes.",
         "Tags": [
           "Art",
           "Exhibitions"
@@ -2452,7 +2943,7 @@
       "fields": {
         "Name": "Fisher's Oysters Pty Ltd",
         "Country": "Australia",
-        "Summary": "Fishers of Freycinet is a Tasmania-based seafood and oyster business associated with the Fisher family’s farmed oyster operations.",
+        "Summary": "Fishers of Freycinet is a Tasmania-based seafood and oyster business associated with the Fisher family\u2019s farmed oyster operations.",
         "Status": "Listed",
         "Languages": [
           "English"
@@ -2590,7 +3081,7 @@
       "fields": {
         "Name": "Wardliparingga - SAHMRI",
         "Country": "Australia",
-        "Summary": "Wardliparingga is SAHMRI’s Aboriginal Health Equity research theme focused on improving health and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples.",
+        "Summary": "Wardliparingga is SAHMRI\u2019s Aboriginal Health Equity research theme focused on improving health and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples.",
         "Status": "Listed",
         "Languages": [
           "English"
@@ -2636,7 +3127,7 @@
       "fields": {
         "Name": "Social Reinvestment WA",
         "Country": "Australia",
-        "Summary": "Social Reinvestment WA is an Aboriginal-led coalition advocating justice reinvestment and reforms to reduce Aboriginal over-representation in WA’s justice system.",
+        "Summary": "Social Reinvestment WA is an Aboriginal-led coalition advocating justice reinvestment and reforms to reduce Aboriginal over-representation in WA\u2019s justice system.",
         "Status": "Listed",
         "Languages": [
           "English"
@@ -2728,7 +3219,7 @@
       "fields": {
         "Name": "ARDS Aboriginal Corporation",
         "Country": "Australia",
-        "Summary": "ARDS Aboriginal Corporation is a Yolŋu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
+        "Summary": "ARDS Aboriginal Corporation is a Yol\u014bu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
         "Status": "Listed",
         "Languages": [
           "English"
@@ -4060,7 +4551,7 @@
       "fields": {
         "Name": "ARDS - Yolngu corporation and Traditional Owner",
         "Country": "Australia",
-        "Summary": "ARDS Aboriginal Corporation is a Yolŋu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
+        "Summary": "ARDS Aboriginal Corporation is a Yol\u014bu-led organisation that supports language, culture, education, and community development in Northeast Arnhem Land.",
         "Status": "Listed",
         "Languages": [
           "English"
@@ -4862,84 +5353,48 @@
       "id": "whatsapp-channel-summit-announcements",
       "fields": {
         "Name": "Summit Announcements",
-        "Description": "One-way official updates (timing changes, urgent notices, daily schedule reminders)."
-      }
-    },
-    {
-      "id": "whatsapp-channel-registration-help-desk",
-      "fields": {
-        "Name": "Registration + Help Desk",
-        "Description": "Check-in questions, lost and found, and on-site support."
-      }
-    },
-    {
-      "id": "whatsapp-channel-today-at-summit",
-      "fields": {
-        "Name": "Today at Summit",
-        "Description": "Daily run sheet, what's next, and room changes."
-      }
-    },
-    {
-      "id": "whatsapp-channel-venue-wayfinding",
-      "fields": {
-        "Name": "Venue + Wayfinding",
-        "Description": "Adelaide Oval and hotel navigation, entry points, and accessibility routes."
-      }
-    },
-    {
-      "id": "whatsapp-channel-meals-dietary-updates",
-      "fields": {
-        "Name": "Meals + Dietary Updates",
-        "Description": "Tea/lunch timing, dietary notes, and dinner/social event details."
-      }
-    },
-    {
-      "id": "whatsapp-channel-airport-transport",
-      "fields": {
-        "Name": "Airport + Transport",
-        "Description": "Transfer info, travel scholarship transport coordination, and luggage support."
-      }
-    },
-    {
-      "id": "whatsapp-channel-social-event",
-      "fields": {
-        "Name": "Social Event",
-        "Description": "Venue, time, transport, and participation details."
+        "Description": "One-way official updates (timing changes, urgent notices, daily schedule reminders).",
+        "Url": "https://chat.whatsapp.com/ChB0djqZK36HUPWG10Jz0D"
       }
     },
     {
       "id": "whatsapp-channel-parents-carers",
       "fields": {
         "Name": "Parents + Carers",
-        "Description": "Child-friendly coordination and practical support for caregivers."
+        "Description": "Child-friendly coordination and practical support for caregivers.",
+        "Url": "https://chat.whatsapp.com/LPM7SlbKE3IJ9mopSj9q9g"
       }
     },
     {
       "id": "whatsapp-channel-health-illness-guidance",
       "fields": {
         "Name": "Health + Illness Guidance",
-        "Description": "Masks/tests/sanitiser info and what to do if unwell."
+        "Description": "Masks/tests/sanitiser info and what to do if unwell.",
+        "Url": "https://chat.whatsapp.com/Kj6yQtTA6U14TAuU8S0rjv"
       }
     },
     {
       "id": "whatsapp-channel-accessibility-support",
       "fields": {
         "Name": "Accessibility Support",
-        "Description": "Access requests, mobility/support coordination, and contact pathways."
+        "Description": "Access requests, mobility/support coordination, and contact pathways.",
+        "Url": "https://chat.whatsapp.com/GRtJvk7fXC6JOIifBQUQSE"
       }
     },
     {
       "id": "whatsapp-channel-wellbeing-yarn-space",
       "fields": {
         "Name": "Wellbeing Yarn Space",
-        "Description": "Culturally safe wellbeing check-ins and support availability."
+        "Description": "Culturally safe wellbeing check-ins and support availability.",
+        "Url": "https://chat.whatsapp.com/HWOHlfUZ3WVLhZJpavyoVV"
       }
     },
     {
       "id": "whatsapp-channel-nearby-essentials",
       "fields": {
         "Name": "Nearby Essentials",
-        "Description": "Pharmacy, supermarket, convenience updates, and local tips."
+        "Description": "Pharmacy, supermarket, convenience updates, and local tips.",
+        "Url": "https://chat.whatsapp.com/Gmf6n34RDVVLmnHIRYQv9e"
       }
     }
   ],

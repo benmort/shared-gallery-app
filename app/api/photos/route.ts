@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { getPhotoStorage } from "@/lib/storage";
 import { isAllowedMediaType, maxBytesForMime } from "@/lib/types/photo";
-import { UploadError, uploadErrorResponse } from "@/lib/upload/errors";
-import { newCorrelationId, trackUploadEvent } from "@/lib/upload/observability";
 
 export const dynamic = "force-dynamic";
 
@@ -27,72 +25,52 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const correlationId = newCorrelationId();
   try {
     const formData = await request.formData();
     const entries = formData.getAll("file") as File[];
-    const uploadIdField = formData.get("uploadId");
-    const uploadId = typeof uploadIdField === "string" ? uploadIdField : undefined;
-    const uploadIdBase = uploadId || crypto.randomUUID();
     if (!entries.length) {
-      throw new UploadError({
-        code: "VALIDATION_ERROR",
-        message: "No file provided",
-        status: 400,
-      });
+      return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
     const storage = getPhotoStorage();
     const created: Awaited<ReturnType<typeof storage.createFromBuffer>>[] = [];
 
-    for (const [index, file] of entries.entries()) {
+    for (const file of entries) {
       if (!(file instanceof File) || file.size === 0) continue;
       const mime = file.type || "application/octet-stream";
       if (!isAllowedMediaType(mime)) {
-        throw new UploadError({
-          code: "VALIDATION_ERROR",
-          message: `Unsupported type for "${file.name}"`,
-          status: 400,
-        });
+        return NextResponse.json(
+          { error: `Unsupported type for "${file.name}"` },
+          { status: 400 },
+        );
       }
       const maxBytes = maxBytesForMime(mime);
       if (file.size > maxBytes) {
-        throw new UploadError({
-          code: "VALIDATION_ERROR",
-          message: `File "${file.name}" exceeds maximum size`,
-          status: 400,
-        });
+        return NextResponse.json(
+          { error: `File "${file.name}" exceeds maximum size` },
+          { status: 400 },
+        );
       }
       const buffer = Buffer.from(await file.arrayBuffer());
       const photo = await storage.createFromBuffer({
-        uploadId: entries.length === 1 ? uploadIdBase : `${uploadIdBase}-${index}`,
         buffer,
         filename: file.name,
         mime,
       });
       created.push(photo);
-      await trackUploadEvent({
-        uploadId: photo.uploadId || photo.id,
-        event: "upload_complete",
-        correlationId,
-        payload: { source: "multipart" },
-      });
     }
 
     if (!created.length) {
-      throw new UploadError({
-        code: "VALIDATION_ERROR",
-        message: "No valid files uploaded",
-        status: 400,
-      });
+      return NextResponse.json({ error: "No valid files uploaded" }, { status: 400 });
     }
 
-    return NextResponse.json({ photos: created, correlationId });
+    return NextResponse.json({ photos: created });
   } catch (e) {
-    const err = uploadErrorResponse(e);
-    return NextResponse.json(
-      { ...err.body, correlationId },
-      { status: err.status },
-    );
+    const message = e instanceof Error ? e.message : "Upload failed";
+    const status =
+      message === "Unsupported media type" || message === "File too large"
+        ? 400
+        : 500;
+    return NextResponse.json({ error: message }, { status });
   }
 }

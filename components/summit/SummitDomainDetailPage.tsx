@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ChevronLeftIcon } from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import SummitDetailView from "@/components/summit/SummitDetailView";
 import SummitVenueMapGallery from "@/components/summit/SummitVenueMapGallery";
 import { getSummitContext } from "@/lib/summit/context";
@@ -15,6 +15,18 @@ type Props = {
   id: string;
 };
 
+function crewPhoneToWhatsappUrl(phone: string): string | null {
+  const trimmed = phone.trim();
+  if (!trimmed) return null;
+
+  const digitsOnly = trimmed.replace(/\D/g, "");
+  if (!digitsOnly) return null;
+
+  // Summit crew numbers are local AU mobile numbers; WhatsApp needs country code format.
+  const whatsappPhone = digitsOnly.startsWith("0") ? `61${digitsOnly.slice(1)}` : digitsOnly;
+  return whatsappPhone ? `https://wa.me/${whatsappPhone}` : null;
+}
+
 export default async function SummitDomainDetailPage({ domain, id }: Props) {
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
@@ -24,6 +36,20 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
   const detail = buildDetail(domain, record);
   const pronouncedHeader = domain === "speakers" || domain === "events" || domain === "crew";
   const venueGalleryItems = domain === "venues" ? venueGalleryForName(fieldString(record, "Name")) : [];
+  const crewWhatsappUrl =
+    domain === "crew" ? crewPhoneToWhatsappUrl(fieldString(record, "Phone [Network Data]")) : null;
+  const action =
+    domain === "crew" && crewWhatsappUrl ? (
+      <a
+        href={crewWhatsappUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
+      >
+        Contact on WhatsApp
+        <ChevronRightIcon className="h-4 w-4" />
+      </a>
+    ) : undefined;
 
   return (
     <div className="space-y-4">
@@ -34,7 +60,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         <ChevronLeftIcon className="h-3.5 w-3.5" />
         {`BACK TO ${domain.toUpperCase()}`}
       </Link>
-      <SummitDetailView detail={detail} pronouncedHeader={pronouncedHeader} />
+      <SummitDetailView detail={detail} action={action} pronouncedHeader={pronouncedHeader} />
       {domain === "venues" && venueGalleryItems.length > 0 ? (
         <SummitVenueMapGallery items={venueGalleryItems} />
       ) : null}

@@ -16,8 +16,4 @@ export function getPhotoStorage(): PhotoStorage {
   return singleton;
 }
 
-export function __resetPhotoStorageForTests(): void {
-  singleton = null;
-}
-
 export type { PhotoStorage } from "./types";

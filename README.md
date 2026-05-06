@@ -41,27 +41,9 @@ Vercel will run `pnpm install` (lockfile detected) and `pnpm build`.
 ### Vercel Blob notes
 
 - With **`BLOB_READ_WRITE_TOKEN`** set, [`getPhotoStorage()`](lib/storage/index.ts) uses **Vercel Blob** ([`lib/storage/vercel-blob.ts`](lib/storage/vercel-blob.ts)) with **`access: 'private'`** only. Use a **private** Blob store. Media files live at `album-img/{id}.{ext}`, manifest at **`album-manifest.json`**. Full-size assets are always served through **`/api/photos/[id]/file`** (server uses the Blob SDK [`get()`](https://vercel.com/docs/vercel-blob/private-storage)) with **`Accept-Ranges`** and **`206 Partial Content`** for byte-range requests (needed for video seeking).
-- **Client upload pipeline is implemented** via `POST /api/photos/upload-session` + `POST /api/blob/upload` + `POST /api/photos/reconcile`. This bypasses request-body limits for large media while keeping blobs private.
-- The legacy multipart endpoint **`POST /api/photos`** still exists for local/fallback workflows and small payloads.
+- **Server upload body limit** on Vercel is about **4.5 MB** per request. **Videos larger than that will fail** on **`POST /api/photos`** until you add a [client upload](https://vercel.com/docs/vercel-blob/client-upload) path (not implemented here). Locally, videos may be up to **50 MB** (see [`lib/types/photo.ts`](lib/types/photo.ts) `MAX_VIDEO_BYTES`).
 - Locally, leave the token unset to keep using **`data/`** on disk.
 - If you previously set **`BLOB_STORE_ACCESS`**, remove it from Vercel env (it is no longer read).
-
-## Enterprise upload pipeline
-
-The Moments upload system now supports an enterprise-oriented flow:
-
-1. Client creates an upload session (`/api/photos/upload-session`) and receives a stable `uploadId`.
-2. Client uploads directly to private Blob with signed token issuance (`/api/blob/upload`).
-3. Server performs idempotent metadata registration (`registerClientUpload`) and stores metadata in Postgres when configured.
-4. Client reconciles uploaded IDs (`/api/photos/reconcile`) to render immediate gallery state.
-5. Background jobs (`/api/photos/jobs/process`) generate image derivatives with retry + DLQ semantics.
-
-Operational APIs:
-
-- `GET /api/photos/metrics` — in-process upload counters.
-- `GET /api/photos/consistency` — manifest vs DB compare during dual-write.
-- `GET /api/photos/jobs/reprocess` and `POST /api/photos/jobs/reprocess` — inspect/requeue DLQ jobs.
-- `GET /api/photos/jobs/reconcile-orphans` — DB/blob orphan checks.
 
 ## Scripts
 
@@ -71,8 +53,6 @@ Operational APIs:
 | `pnpm build`  | Production build         |
 | `pnpm start`  | Start production server  |
 | `pnpm lint`   | ESLint                   |
-| `pnpm backfill:media-db` | Backfill/verify Blob manifest into Postgres metadata |
-| `pnpm loadtest:moments-upload` | Upload load test (concurrency, latency, failure rate) |
 
 ## Project layout
 
@@ -114,9 +94,8 @@ The project started from the Next.js **`with-cloudinary`** (Vercel “Image Gall
 ## Video
 
 - **Types:** `video/mp4`, `video/webm`, `video/quicktime` (common for `.mov`).
-- **Limits:** **250 MB** per video (app validation + token enforcement); images stay **10 MB**.
-- **Vercel:** large videos should use the direct Blob upload path (`/api/photos/upload-session` + `/api/blob/upload`); multipart `POST /api/photos` remains for fallback and local usage.
-- **Processing:** image derivatives run through the async processing queue when DB mode is enabled; videos are marked done without derivative generation.
+- **Limits:** **50 MB** per video (app validation); images stay **10 MB**. There is **no server-side transcoding** — grid tiles use `<video preload="metadata">` (first-frame preview depends on the browser).
+- **Vercel:** The platform **request body** cap (~**4.5 MB**) applies to **`POST /api/photos`**. Clips under that limit can upload today; larger files require a future client-to-Blob upload implementation.
 
 ## Swapping in real cloud storage
 
@@ -134,13 +113,6 @@ For another provider (Supabase, S3, Cloudinary), implement the same methods and 
 | Variable | When |
 | -------- | ---- |
 | `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked private Blob store). Omit locally for `./data/` storage. |
-| `POSTGRES_URL` | Enables DB-backed metadata storage, background queue state, and dual-write/read cutover controls. |
-| `UPLOAD_ROLLOUT_STAGE` | `legacy` \| `internal` \| `limited` \| `full` rollout stage marker for the upload pipeline. |
-| `UPLOAD_DUAL_WRITE_ENABLED` | Write metadata to both manifest and DB during migration (default: true when DB configured). |
-| `UPLOAD_DB_READ_ENABLED` | Read listing metadata from DB (default: true when DB configured). |
-| `UPLOAD_DB_ONLY_ENABLED` | Disable manifest writes and use DB as sole metadata store. |
-| `UPLOAD_PROCESSING_QUEUE_ENABLED` | Enable async derivative processing jobs for image uploads. |
-| `UPLOAD_JOB_SECRET` | Secret used to protect maintenance/job endpoints. |
 | `MODERATION_SECRET` | **Moderation mode** (`?moderation=true`): at least **16** characters; signs the HTTP-only session cookie. |
 | `MODERATION_PASSWORD` | **Moderation mode**: at least **8** characters; the password operators use to sign in. |
 
@@ -163,8 +135,6 @@ See [`.env.example`](.env.example).
 - Parity checklist: [`docs/summit-migration/parity-checklist.md`](docs/summit-migration/parity-checklist.md)
 - Rollout/rollback runbook: [`docs/summit-migration/rollout-runbook.md`](docs/summit-migration/rollout-runbook.md)
 - Native decommission notes: [`docs/summit-migration/decommission-native.md`](docs/summit-migration/decommission-native.md)
-- Moments upload runbook: [`docs/moments-upload-runbook.md`](docs/moments-upload-runbook.md)
-- Moments upload QA checklist: [`docs/moments-upload-qa-checklist.md`](docs/moments-upload-qa-checklist.md)
 
 ## Manual QA checklist
 

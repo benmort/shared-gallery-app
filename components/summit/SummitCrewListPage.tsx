@@ -6,7 +6,7 @@ import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitListCard from "@/components/summit/SummitListCard";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { buildListItem } from "@/lib/summit/domains";
-import { fieldString } from "@/lib/summit/fields";
+import { fieldList, fieldString } from "@/lib/summit/fields";
 import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
 import { roleFromHash, roleHash } from "@/lib/summit/crew-filters";
 import type { SummitRecord } from "@/lib/summit/types";
@@ -15,9 +15,16 @@ type Props = {
   records: SummitRecord[];
 };
 
+function crewRoles(record: SummitRecord): string[] {
+  const roles = fieldList(record, "Role").filter(Boolean);
+  if (roles.length > 0) return roles;
+  const fallbackRole = fieldString(record, "Role").trim();
+  return fallbackRole ? [fallbackRole] : [];
+}
+
 export default function SummitCrewListPage({ records }: Props) {
   const roles = useMemo(
-    () => Array.from(new Set(records.map((record) => fieldString(record, "Role")).filter(Boolean))).sort(),
+    () => Array.from(new Set(records.flatMap((record) => crewRoles(record)))).sort(),
     [records],
   );
   const [activeRole, setActiveRole] = useState<string | null | undefined>(undefined);
@@ -52,7 +59,7 @@ export default function SummitCrewListPage({ records }: Props) {
   }, [activeRole]);
 
   const filteredRecords = activeRole
-    ? records.filter((record) => fieldString(record, "Role") === activeRole)
+    ? records.filter((record) => crewRoles(record).includes(activeRole))
     : records;
 
   function moveFocus(nextIndex: number) {

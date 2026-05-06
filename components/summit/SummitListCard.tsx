@@ -22,13 +22,15 @@ export default function SummitListCard({
   showImageSkeleton = false,
 }: Props) {
   const isOrganisationCard = item.id.startsWith("organisation-");
+  const isCrewCard = item.id.startsWith("crew-");
   const usesOffWhiteLogoBackground = !circularImage && hasOffWhiteLogoBackground(item.id);
   const rectangularImageBackgroundClass = isOrganisationCard
     ? (usesOffWhiteLogoBackground ? "bg-white" : "bg-black")
     : "bg-white/5";
+  const crewImageFilterClass = isCrewCard ? "grayscale contrast-125 brightness-110" : "";
   const imageClass = circularImage
-    ? "h-20 w-20 rounded-full object-cover"
-    : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass} object-contain p-1`;
+    ? `h-20 w-20 rounded-full object-cover ${crewImageFilterClass}`
+    : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass} object-contain p-1 ${crewImageFilterClass}`;
   const placeholderClass = circularImage
     ? "h-20 w-20 rounded-full bg-white/5"
     : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass}`;
