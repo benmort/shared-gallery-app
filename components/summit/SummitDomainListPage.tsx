@@ -156,7 +156,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
             batchSize={20}
             circularImage={CIRCULAR_IMAGE_DOMAINS.has(domain)}
             showImage
-            showImageSkeleton={domain === "speakers"}
+            showImageSkeleton={false}
           />
         ) : (
           <div className="grid gap-3 sm:grid-cols-2">
