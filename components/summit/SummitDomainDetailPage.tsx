@@ -44,7 +44,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         href={crewWhatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
+        className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400"
       >
         Contact on WhatsApp
         <ChevronRightIcon className="h-4 w-4" />
@@ -60,7 +60,12 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         <ChevronLeftIcon className="h-3.5 w-3.5" />
         {`BACK TO ${domain.toUpperCase()}`}
       </Link>
-      <SummitDetailView detail={detail} action={action} pronouncedHeader={pronouncedHeader} />
+      <SummitDetailView
+        detail={detail}
+        action={action}
+        actionBelowHeader={domain === "crew"}
+        pronouncedHeader={pronouncedHeader}
+      />
       {domain === "venues" && venueGalleryItems.length > 0 ? (
         <SummitVenueMapGallery items={venueGalleryItems} />
       ) : null}

@@ -5,12 +5,18 @@ import { hasOffWhiteLogoBackground } from "@/lib/summit/logo-background";
 type Props = {
   detail: DetailView;
   action?: React.ReactNode;
+  actionBelowHeader?: boolean;
   pronouncedHeader?: boolean;
 };
 
 const CIRCULAR_DETAIL_PREFIXES = ["event-", "crew-", "venue-", "speaker-", "attraction-"] as const;
 
-export default function SummitDetailView({ detail, action, pronouncedHeader = false }: Props) {
+export default function SummitDetailView({
+  detail,
+  action,
+  actionBelowHeader = false,
+  pronouncedHeader = false,
+}: Props) {
   const headerClass = pronouncedHeader
     ? "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-700/90 via-zinc-900/85 to-zinc-950/92 p-5"
     : "rounded-2xl border border-white/10 bg-gradient-to-b from-stone-800/80 to-zinc-950/80 p-5";
@@ -83,9 +89,15 @@ export default function SummitDetailView({ detail, action, pronouncedHeader = fa
               ))}
             </div>
           ) : null}
-          {action}
+          {!actionBelowHeader ? action : null}
         </div>
       </header>
+
+      {actionBelowHeader && action ? (
+        <section className="p-4">
+          <div className="flex justify-center">{action}</div>
+        </section>
+      ) : null}
 
       {detail.body ? (
         <section className="rounded-xl border border-white/10 bg-white/5 p-4">

@@ -59,7 +59,6 @@ export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
     titleField: "Shortname",
     subtitleField: "Organisation [Network Data]",
     subtitleFirstOnly: true,
-    descriptionField: "Bio",
     tagsField: "Role",
   },
   attractions: {
@@ -233,31 +232,34 @@ export function buildDetail(
     }
     case "crew": {
       const crewRoles = fieldList(record, "Role");
+      const crewEmail = fieldString(record, "Work Email [Network Data]");
+      const crewPhone = fieldString(record, "Phone [Network Data]");
+      const hasDirectContact = Boolean(crewEmail || crewPhone);
       return {
         id: record.id,
         title: fieldString(record, "Shortname"),
         subtitle: fieldFirst(record, "Organisation [Network Data]"),
-        secondSubtitle: crewRoles.length > 0 ? crewRoles.join(" \u00b7 ") : fieldString(record, "Role"),
+        secondSubtitle: null,
         imageUrl: fieldAttachmentUrl(record, "Headshot", { headshot: true }),
-        tags: fieldList(record, "Job category [Network Data]"),
-        body: asLines(fieldString(record, "Bio")),
+        tags: crewRoles.length > 0 ? crewRoles : [fieldString(record, "Role")].filter(Boolean),
+        body: null,
         videoUrl: fieldFirst(record, "Video Bio"),
-        sections: [
-          { label: "Location", value: fieldFirst(record, "Location [Network Data]") },
-          {
-            label: "Work Email",
-            value: fieldString(record, "Work Email [Network Data]"),
-            href: `mailto:${fieldString(record, "Work Email [Network Data]")}`,
-          },
-          {
-            label: "Phone",
-            value: fieldString(record, "Phone [Network Data]"),
-            href: `tel:${fieldString(record, "Phone [Network Data]")}`,
-          },
-          { label: "Slack", value: fieldString(record, "Slack"), href: fieldString(record, "Slack") },
-          { label: "Whatsapp", value: fieldString(record, "Whatsapp"), href: fieldString(record, "Whatsapp") },
-          { label: "Languages", value: fieldList(record, "Languages").join(", ") },
-        ].filter((section) => section.value),
+        sections: hasDirectContact
+          ? [
+              {
+                label: "Work Email",
+                value: crewEmail,
+                href: `mailto:${crewEmail}`,
+              },
+              {
+                label: "Phone",
+                value: crewPhone,
+                href: `tel:${crewPhone}`,
+              },
+              { label: "Slack", value: fieldString(record, "Slack"), href: fieldString(record, "Slack") },
+              { label: "Whatsapp", value: fieldString(record, "Whatsapp"), href: fieldString(record, "Whatsapp") },
+            ].filter((section) => section.value)
+          : [],
       };
     }
     case "attractions": {
