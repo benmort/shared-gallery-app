@@ -2,7 +2,7 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { roleHash } from "@/lib/summit/crew-filters";
 
@@ -23,10 +23,9 @@ type ContentBlock =
   | { type: "section"; section: ConductSection }
   | { type: "principlesButton" };
 
-const PRINCIPLES_LINE = "Please read principles and full code of conduct here.";
+const PRINCIPLES_LINE = "Please find the pintable PDF version here.";
 const WELLBEING_ROLE = "Wellbeing and Grievance Coordinator";
 const DUMMY_PDF_PATH = "/documents/common-threads-code-of-conduct.pdf";
-const DUMMY_PDF_EMBED_PATH = `${DUMMY_PDF_PATH}#toolbar=0&navpanes=0&scrollbar=0`;
 const SUPPORT_EMAIL = "summit@commonthreads.org.au";
 
 const SECTION_TITLE_HINTS = new Set([
@@ -147,20 +146,7 @@ function toContentBlocks(contentBody: string): ContentBlock[] {
 }
 
 export default function SummitCodeConductContent({ title, pageSubtitle, contentBody }: Props) {
-  const [showPdf, setShowPdf] = useState(false);
   const blocks = useMemo(() => toContentBlocks(contentBody), [contentBody]);
-  const closePdf = () => setShowPdf(false);
-
-  useEffect(() => {
-    if (!showPdf) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closePdf();
-      }
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [showPdf]);
 
   return (
     <>
@@ -171,13 +157,14 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
             if (block.type === "principlesButton") {
               return (
                 <article key={`principles-${index}`} className="rounded-xl border border-white/10 bg-zinc-900/70 p-4 sm:p-5">
-                  <button
-                    type="button"
-                    onClick={() => setShowPdf(true)}
+                  <a
+                    href={DUMMY_PDF_PATH}
+                    target="_blank"
+                    rel="noreferrer"
                     className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
                   >
                     {PRINCIPLES_LINE}
-                  </button>
+                  </a>
                 </article>
               );
             }
@@ -230,9 +217,21 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
           })}
 
           <article className="rounded-xl border border-white/10 bg-zinc-900/70 p-4 sm:p-5">
+            <a
+              href={DUMMY_PDF_PATH}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+            >
+              {PRINCIPLES_LINE}
+            </a>
+            <p className="mt-4 text-sm leading-relaxed text-stone-200">
+              If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to
+              our wellbeing and grievance coordinators for a confidential conversation.
+            </p>
             <Link
               href={`/crew${roleHash(WELLBEING_ROLE)}`}
-              className="inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+              className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
             >
               Contact wellbeing and grievance coordinators
               <ChevronRightIcon className="h-5 w-5 shrink-0" aria-hidden />
@@ -240,29 +239,6 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
           </article>
         </div>
       </div>
-
-      {showPdf ? (
-        <div className="fixed inset-0 z-[350] flex flex-col bg-black">
-          <header className="border-b border-white/10 bg-zinc-950/90 backdrop-blur">
-            <div className="mx-auto flex w-full max-w-[1100px] items-center justify-end px-4 py-3 sm:px-6">
-              <button
-                type="button"
-                onClick={closePdf}
-                className="rounded-full border border-white/20 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-stone-200 transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
-                aria-label="Close full code of conduct PDF"
-              >
-                Close
-              </button>
-            </div>
-          </header>
-          <iframe
-            title="Code of Conduct PDF"
-            src={DUMMY_PDF_EMBED_PATH}
-            className="min-h-0 flex-1 w-full"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
-        </div>
-      ) : null}
     </>
   );
 }
