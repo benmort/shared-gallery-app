@@ -2295,10 +2295,10 @@
         "Bio": "Summit crew contact.",
         "Headshot": [
           {
-            "url": "/images/crew/teia-warradoo.png"
+            "url": "/images/crew/headshots/teia.jpg"
           }
         ],
-        "Headshot Source Url": "https://ui-avatars.com/api/?name=Teia+Warradoo&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png",
+        "Headshot Source Url": "/public/images/crew/headshots/teia.jpg",
         "Organisation [Network Data]": [
           "Common Threads"
         ],
@@ -5418,8 +5418,8 @@
   "codeConduct": {
     "id": "code-conduct-2026",
     "fields": {
-      "Subtitle": "How We Show Up In The Space",
-      "Content Body": "We are committed to creating a safe and inclusive experience at Common Threads for everyone, regardless of your gender, gender identity, sexual orientation, ethnicity, nationality, disability, physical appearance, body size, race, age, religion, economic status, immigration status or refugee status. We do not tolerate harassment of participants, staff or volunteers in any form, and any person who violates these rules may be removed from the event without a refund.\\n\\nWith over 300 First Nations campaigners, community organisers, communicators and changemakers coming together from all corners of the country, there is huge strength in our shared values and collective vision for the future, as well as strength in the diversity of our opinions, perspectives, experiences and approaches to creating change.\\n\\nThere is a responsibility on all of us to help create such a space. As such, we've developed a set of principles for how we show up in the space, alongside a code of conduct.\\nPlease read principles and full code of conduct here.\\n\\nIf someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to our wellbeing and grievance coordinators x and x for a confidential conversation (contact details below)."
+      "Subtitle": "Code of Conduct - A Shared Commitment",
+      "Content Body": "This space will be grounded in respect, care, and collective responsibility where everyone can speak, listen, learn, connect and belong.\\n\\nOur Shared Commitments\\nBy being here, we agree to:\\n- Respect all identities, experiences, and perspectives.\\n- Listen - even in disagreements.\\n- Create a safe place for ourselves and other participants.\\n- Prevent and speak out against any forms of lateral violence.\\n- Contribute to a safe and inclusive environment.\\n- Hold space for others, especially unheard voices.\\n- Protect confidentiality of shared stories.\\n\\nHow We Show Up\\n- Speak from your own experience.\\n- Address ideas, not people.\\n- Share space (step up, step back).\\n- Be mindful of accessibility.\\n\\nCare, Safety & Community\\n- Child-friendly and family-supportive space.\\n- Quiet space available for rest and privacy.\\n- Keep spaces accessible (clear walkways, low fragrance, respect service animals).\\n\\nShared Responsibility\\nCreating this space is something we do together. Let's show up with care, courage, and respect and make this a place where everyone has a place to belong. Common Threads staff are available throughout the summit if you need assistance, support or guidance."
     }
   },
   "securityGuidelines": {
