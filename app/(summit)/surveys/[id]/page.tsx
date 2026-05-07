@@ -34,10 +34,6 @@ export default async function Page({ params }: Props) {
           sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
           referrerPolicy="strict-origin-when-cross-origin"
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute bottom-0 left-0 h-14 w-14 bg-stone-100"
-        />
       </div>
     </div>
   );
