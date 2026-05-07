@@ -20,7 +20,7 @@ export type FileMeta = {
  * Swap this implementation for Supabase, S3, Cloudinary, etc.
  * Keep the same surface area for uploads and listing.
  */
-export type FileVariant = "original" | "thumb" | "display";
+export type FileVariant = "original" | "wall" | "thumb" | "display";
 
 export interface PhotoStorage {
   list(): Promise<Photo[]>;
@@ -56,6 +56,10 @@ export interface PhotoStorage {
 export function recordToPhoto(r: PhotoRecord): Photo {
   const base = `/api/photos/${r.id}/file`;
   const kind = mediaKindFromMime(r.mime);
+  const wallUrl =
+    kind === "image" && r.wallStoredName
+      ? `${base}?variant=wall`
+      : undefined;
   const thumbUrl =
     kind === "image" && r.thumbStoredName
       ? `${base}?variant=thumb`
@@ -68,6 +72,7 @@ export function recordToPhoto(r: PhotoRecord): Photo {
     id: r.id,
     filename: r.filename,
     url: base,
+    wallUrl,
     thumbUrl,
     displayUrl,
     uploadedAt: r.uploadedAt,

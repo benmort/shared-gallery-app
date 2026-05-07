@@ -6,6 +6,8 @@ export type Photo = {
   filename: string;
   /** Path to fetch full media (same-origin) */
   url: string;
+  /** Smallest image for moments wall; falls back to thumb/display/full */
+  wallUrl?: string;
   /** Smaller image for grid; falls back to `url` for video or legacy rows */
   thumbUrl?: string;
   /** Medium image for lightbox; falls back to `url` */
@@ -28,6 +30,8 @@ export type PhotoRecord = {
   blurDataUrl?: string;
   width?: number;
   height?: number;
+  /** Optional WebP wall image blob name (smaller than thumb) */
+  wallStoredName?: string;
   /** Optional WebP thumbnail blob name (same prefix as storedName parent path) */
   thumbStoredName?: string;
   /** Optional JPEG display blob name */

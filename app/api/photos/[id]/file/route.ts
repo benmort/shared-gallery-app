@@ -25,7 +25,7 @@ function commonHeaders(mime: string) {
 function variantFromUrl(request: Request): FileVariant {
   const u = new URL(request.url);
   const v = u.searchParams.get("variant");
-  if (v === "thumb" || v === "display") return v;
+  if (v === "wall" || v === "thumb" || v === "display") return v;
   return "original";
 }
 

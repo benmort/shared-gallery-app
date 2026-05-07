@@ -73,6 +73,7 @@ async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: numb
 }
 
 function variantMime(variant: FileVariant, recMime: string): string {
+  if (variant === "wall") return "image/webp";
   if (variant === "thumb") return "image/webp";
   if (variant === "display") return "image/jpeg";
   return recMime;
@@ -106,10 +107,13 @@ export function createFilesystemStorage(): PhotoStorage {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
+      if (variant === "wall" && !rec.wallStoredName) return null;
       if (variant === "thumb" && !rec.thumbStoredName) return null;
       if (variant === "display" && !rec.displayStoredName) return null;
       const name =
-        variant === "thumb" && rec.thumbStoredName
+        variant === "wall" && rec.wallStoredName
+          ? rec.wallStoredName
+          : variant === "thumb" && rec.thumbStoredName
           ? rec.thumbStoredName
           : variant === "display" && rec.displayStoredName
             ? rec.displayStoredName
@@ -142,6 +146,7 @@ export function createFilesystemStorage(): PhotoStorage {
       await fs.writeFile(filePath, buffer);
 
       const isVideo = isAllowedVideoType(mime);
+      let wallStoredName: string | undefined;
       let thumbStoredName: string | undefined;
       let displayStoredName: string | undefined;
       const [blurDataUrl, meta] = isVideo
@@ -149,9 +154,11 @@ export function createFilesystemStorage(): PhotoStorage {
         : await Promise.all([makeBlurDataUrl(buffer), readMeta(buffer)]);
 
       if (!isVideo) {
-        const { thumb, display } = await makeImageDerivatives(buffer);
+        const { wall, thumb, display } = await makeImageDerivatives(buffer);
+        wallStoredName = `${id}-wall.webp`;
         thumbStoredName = `${id}-thumb.webp`;
         displayStoredName = `${id}-display.jpg`;
+        await fs.writeFile(path.join(UPLOADS_DIR, wallStoredName), wall);
         await fs.writeFile(path.join(UPLOADS_DIR, thumbStoredName), thumb);
         await fs.writeFile(path.join(UPLOADS_DIR, displayStoredName), display);
       }
@@ -165,6 +172,7 @@ export function createFilesystemStorage(): PhotoStorage {
         blurDataUrl,
         width: meta.width,
         height: meta.height,
+        wallStoredName,
         thumbStoredName,
         displayStoredName,
       };
@@ -184,10 +192,13 @@ export function createFilesystemStorage(): PhotoStorage {
       const records = await readIndex();
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
+      if (variant === "wall" && !rec.wallStoredName) return null;
       if (variant === "thumb" && !rec.thumbStoredName) return null;
       if (variant === "display" && !rec.displayStoredName) return null;
       const fileName =
-        variant === "thumb" && rec.thumbStoredName
+        variant === "wall" && rec.wallStoredName
+          ? rec.wallStoredName
+          : variant === "thumb" && rec.thumbStoredName
           ? rec.thumbStoredName
           : variant === "display" && rec.displayStoredName
             ? rec.displayStoredName
@@ -222,6 +233,7 @@ export function createFilesystemStorage(): PhotoStorage {
       await writeIndex(next);
       const paths = [
         path.join(UPLOADS_DIR, rec.storedName),
+        rec.wallStoredName && path.join(UPLOADS_DIR, rec.wallStoredName),
         rec.thumbStoredName && path.join(UPLOADS_DIR, rec.thumbStoredName),
         rec.displayStoredName && path.join(UPLOADS_DIR, rec.displayStoredName),
       ].filter(Boolean) as string[];

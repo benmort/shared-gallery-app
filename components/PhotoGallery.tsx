@@ -107,7 +107,7 @@ export default function PhotoGallery({
             ) : galleryImageSrcSet(photo) ? (
               // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
               <img
-                src={photo.thumbUrl ?? photo.url}
+                src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
                 srcSet={galleryImageSrcSet(photo)}
                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
                 alt={photo.filename}
@@ -125,7 +125,7 @@ export default function PhotoGallery({
                 style={{ transform: "translate3d(0, 0, 0)" }}
                 placeholder={photo.blurDataUrl ? "blur" : "empty"}
                 blurDataURL={photo.blurDataUrl}
-                src={photo.thumbUrl ?? photo.url}
+                src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
                 width={photo.width ?? 720}
                 height={photo.height ?? 480}
                 sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"

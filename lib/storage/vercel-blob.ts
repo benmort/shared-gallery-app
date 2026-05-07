@@ -167,6 +167,10 @@ function variantStoredName(
   if (variant === "original") {
     return { name: rec.storedName, mime: rec.mime };
   }
+  if (variant === "wall") {
+    if (!rec.wallStoredName) return null;
+    return { name: rec.wallStoredName, mime: "image/webp" };
+  }
   if (variant === "thumb") {
     if (!rec.thumbStoredName) return null;
     return { name: rec.thumbStoredName, mime: "image/webp" };
@@ -396,8 +400,15 @@ async function buildImageRecord(
     readMeta(buffer),
     withTimeout(makeImageDerivatives(buffer), "image derivatives"),
   ]);
+  const wallStoredName = `${id}-wall.webp`;
   const thumbStoredName = `${id}-thumb.webp`;
   const displayStoredName = `${id}-display.jpg`;
+  await put(`${IMG_PREFIX}${wallStoredName}`, derivatives.wall, {
+    access: ACCESS,
+    addRandomSuffix: false,
+    contentType: "image/webp",
+    token,
+  });
   await put(`${IMG_PREFIX}${thumbStoredName}`, derivatives.thumb, {
     access: ACCESS,
     addRandomSuffix: false,
@@ -419,6 +430,7 @@ async function buildImageRecord(
     blurDataUrl,
     width: meta.width,
     height: meta.height,
+    wallStoredName,
     thumbStoredName,
     displayStoredName,
   };
@@ -525,6 +537,9 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
+          if (record.wallStoredName) {
+            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.wallStoredName}`, token), token);
+          }
           if (record.thumbStoredName) {
             await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.thumbStoredName}`, token), token);
           }
@@ -600,6 +615,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       if (!rec) return false;
       const paths = [
         `${IMG_PREFIX}${rec.storedName}`,
+        rec.wallStoredName && `${IMG_PREFIX}${rec.wallStoredName}`,
         rec.thumbStoredName && `${IMG_PREFIX}${rec.thumbStoredName}`,
         rec.displayStoredName && `${IMG_PREFIX}${rec.displayStoredName}`,
       ].filter(Boolean) as string[];
