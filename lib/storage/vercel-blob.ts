@@ -182,6 +182,33 @@ function variantStoredName(
   return null;
 }
 
+function variantCandidates(rec: PhotoRecord): string[] {
+  const names = new Set<string>();
+  if (rec.storedName) names.add(rec.storedName);
+  if (rec.wallStoredName) names.add(rec.wallStoredName);
+  if (rec.thumbStoredName) names.add(rec.thumbStoredName);
+  if (rec.displayStoredName) names.add(rec.displayStoredName);
+
+  const baseNames = new Set<string>();
+  if (rec.id) baseNames.add(rec.id);
+  const storedBase = rec.storedName.replace(/\.[^.]+$/, "");
+  if (storedBase) baseNames.add(storedBase);
+
+  const uploadId = (rec as Record<string, unknown>).uploadId;
+  if (typeof uploadId === "string" && uploadId.trim()) {
+    baseNames.add(uploadId.trim());
+  }
+
+  for (const base of baseNames) {
+    names.add(`${base}-wall.webp`);
+    names.add(`${base}-thumb.webp`);
+    names.add(`${base}-display.jpg`);
+    names.add(`${base}-display.jpeg`);
+  }
+
+  return [...names];
+}
+
 async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
   try {
     const out = await withTimeout(
@@ -613,12 +640,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     async deleteById(id: string) {
       const rec = await findRecord(token, (r) => r.id === id);
       if (!rec) return false;
-      const paths = [
-        `${IMG_PREFIX}${rec.storedName}`,
-        rec.wallStoredName && `${IMG_PREFIX}${rec.wallStoredName}`,
-        rec.thumbStoredName && `${IMG_PREFIX}${rec.thumbStoredName}`,
-        rec.displayStoredName && `${IMG_PREFIX}${rec.displayStoredName}`,
-      ].filter(Boolean) as string[];
+      const paths = variantCandidates(rec).map((name) => `${IMG_PREFIX}${name}`);
       for (const p of paths) {
         try {
           await deleteBlobMedia(privateBlobUrl(p, token), token);

@@ -79,6 +79,33 @@ function variantMime(variant: FileVariant, recMime: string): string {
   return recMime;
 }
 
+function variantCandidates(rec: PhotoRecord): string[] {
+  const names = new Set<string>();
+  if (rec.storedName) names.add(rec.storedName);
+  if (rec.wallStoredName) names.add(rec.wallStoredName);
+  if (rec.thumbStoredName) names.add(rec.thumbStoredName);
+  if (rec.displayStoredName) names.add(rec.displayStoredName);
+
+  const baseNames = new Set<string>();
+  if (rec.id) baseNames.add(rec.id);
+  const storedBase = rec.storedName.replace(/\.[^.]+$/, "");
+  if (storedBase) baseNames.add(storedBase);
+
+  const uploadId = (rec as Record<string, unknown>).uploadId;
+  if (typeof uploadId === "string" && uploadId.trim()) {
+    baseNames.add(uploadId.trim());
+  }
+
+  for (const base of baseNames) {
+    names.add(`${base}-wall.webp`);
+    names.add(`${base}-thumb.webp`);
+    names.add(`${base}-display.jpg`);
+    names.add(`${base}-display.jpeg`);
+  }
+
+  return [...names];
+}
+
 export function createFilesystemStorage(): PhotoStorage {
   return {
     async list() {
@@ -231,12 +258,7 @@ export function createFilesystemStorage(): PhotoStorage {
       if (!rec) return false;
       const next = records.filter((r) => r.id !== id);
       await writeIndex(next);
-      const paths = [
-        path.join(UPLOADS_DIR, rec.storedName),
-        rec.wallStoredName && path.join(UPLOADS_DIR, rec.wallStoredName),
-        rec.thumbStoredName && path.join(UPLOADS_DIR, rec.thumbStoredName),
-        rec.displayStoredName && path.join(UPLOADS_DIR, rec.displayStoredName),
-      ].filter(Boolean) as string[];
+      const paths = variantCandidates(rec).map((name) => path.join(UPLOADS_DIR, name));
       for (const filePath of paths) {
         try {
           await fs.unlink(filePath);
