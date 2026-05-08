@@ -13,7 +13,7 @@ function HomeFallback() {
   );
 }
 
-export default async function MomentsPage() {
+export default async function ModerationPage() {
   const whatsappChannels = await getWhatsappChannelsStatic();
 
   return (
@@ -22,7 +22,7 @@ export default async function MomentsPage() {
         <SummitPageHeader title="Moments" subtitle={SUMMIT_PAGE_SUBTITLE.moments} />
       </div>
       <Suspense fallback={<HomeFallback />}>
-        <HomePage mode="gallery" />
+        <HomePage mode="moderation" />
       </Suspense>
     </SummitShell>
   );

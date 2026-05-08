@@ -29,6 +29,26 @@ function variantFromUrl(request: Request): FileVariant {
   return "original";
 }
 
+export async function HEAD(
+  request: Request,
+  context: { params: Promise<{ id: string }> },
+) {
+  const { id } = await context.params;
+  const storage = getPhotoStorage();
+  const variant = variantFromUrl(request);
+  const meta = await storage.getFileMeta(id, variant);
+  if (!meta) {
+    return new NextResponse(null, { status: 404 });
+  }
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      "Content-Type": meta.mime,
+      "Content-Length": String(meta.totalSize),
+    },
+  });
+}
+
 export async function GET(
   request: Request,
   context: { params: Promise<{ id: string }> },

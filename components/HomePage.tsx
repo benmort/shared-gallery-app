@@ -7,12 +7,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import {
   useCallback,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
 import type { Photo } from "@/lib/types/photo";
-import { galleryPath } from "@/utils/galleryUrl";
+import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
 import ModerationLogin from "./ModerationLogin";
 import PhotoGallery from "./PhotoGallery";
 import PhotoModal from "./PhotoModal";
@@ -23,24 +22,17 @@ import ShowreelFooter from "./ShowreelFooter";
 
 const PAGE = 48;
 
-export default function HomePage() {
+type Props = {
+  mode?: GalleryMode;
+};
+
+export default function HomePage({ mode = "gallery" }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const showreel = searchParams?.get("showreel") === "true";
-  const moderation = searchParams?.get("moderation") === "true";
-  const preserveUrlParams = useMemo(() => {
-    const p: Record<string, string> = {};
-    if (showreel) p.showreel = "true";
-    if (moderation) p.moderation = "true";
-    return Object.keys(p).length ? p : null;
-  }, [showreel, moderation]);
+  const showreel = mode === "showreel";
+  const moderation = mode === "moderation";
 
-  /** Home URL without moderation (still preserves showreel when set). */
-  const homeHref = useMemo(() => {
-    const p: Record<string, string> = {};
-    if (showreel) p.showreel = "true";
-    return galleryPath(null, Object.keys(p).length ? p : null);
-  }, [showreel]);
+  const homeHref = galleryPath(null, "gallery");
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [total, setTotal] = useState(0);
@@ -50,7 +42,38 @@ export default function HomePage() {
   const [moderationConfigured, setModerationConfigured] = useState(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+  const [brokenIds, setBrokenIds] = useState<Set<string>>(new Set());
+  const brokenIdsRef = useRef(brokenIds);
+  brokenIdsRef.current = brokenIds;
   const loadMoreSentinelRef = useRef<HTMLDivElement>(null);
+
+  const markBroken = useCallback((id: string) => {
+    setBrokenIds((prev) => {
+      if (prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+  }, []);
+
+  const validatePhotos = useCallback(
+    (list: Photo[]) => {
+      const known = brokenIdsRef.current;
+      const unchecked = list.filter((p) => !known.has(p.id));
+      if (!unchecked.length) return;
+      void Promise.allSettled(
+        unchecked.map(async (p) => {
+          try {
+            const res = await fetch(p.url, { method: "HEAD" });
+            if (!res.ok) markBroken(p.id);
+          } catch {
+            markBroken(p.id);
+          }
+        }),
+      );
+    },
+    [markBroken],
+  );
 
   const normalizePhoto = useCallback((p: Photo): Photo => ({
     ...p,
@@ -76,6 +99,7 @@ export default function HomePage() {
           const list = (data as Photo[]).map(normalizePhoto);
           setPhotos(list);
           setTotal(list.length);
+          validatePhotos(list);
           return;
         }
         const body = data as {
@@ -85,15 +109,17 @@ export default function HomePage() {
         if (!Array.isArray(body.photos) || typeof body.total !== "number") {
           throw new Error("bad");
         }
-        setPhotos(body.photos.map(normalizePhoto));
+        const list = body.photos.map(normalizePhoto);
+        setPhotos(list);
         setTotal(body.total);
+        validatePhotos(list);
       })
       .catch(() => {
         setError("We couldn’t load photos. Pull to refresh or try again.");
         setPhotos(null);
         setTotal(0);
       });
-  }, [normalizePhoto, photoId]);
+  }, [normalizePhoto, photoId, validatePhotos]);
 
   const loadMoreInFlight = useRef(false);
 
@@ -108,11 +134,10 @@ export default function HomePage() {
       .then((data: unknown) => {
         const body = data as { photos?: Photo[]; total?: number };
         if (!Array.isArray(body.photos)) throw new Error("bad");
-        setPhotos((prev) => [
-          ...(prev ?? []),
-          ...body.photos!.map(normalizePhoto),
-        ]);
+        const newPhotos = body.photos.map(normalizePhoto);
+        setPhotos((prev) => [...(prev ?? []), ...newPhotos]);
         if (typeof body.total === "number") setTotal(body.total);
+        validatePhotos(newPhotos);
       })
       .catch(() => {
         setError("Couldn’t load more photos.");
@@ -120,7 +145,7 @@ export default function HomePage() {
       .finally(() => {
         loadMoreInFlight.current = false;
       });
-  }, [photos, total, normalizePhoto]);
+  }, [photos, total, normalizePhoto, validatePhotos]);
 
   useEffect(() => {
     const el = loadMoreSentinelRef.current;
@@ -187,9 +212,9 @@ export default function HomePage() {
     if (!photoId || photos === null || photos.length === 0) return;
     const ok = photos.some((p) => p.id === photoId);
     if (!ok) {
-      router.replace(galleryPath(null, preserveUrlParams), { scroll: false });
+      router.replace(galleryPath(null, mode), { scroll: false });
     }
-  }, [photoId, photos, router, preserveUrlParams]);
+  }, [photoId, photos, router, mode]);
 
   const toggleSelect = useCallback((id: string) => {
     setSelectedIds((prev) => {
@@ -258,14 +283,15 @@ export default function HomePage() {
           <ShowreelCarousel
             photos={photos}
             loading={photos === null && !error}
+            brokenIds={brokenIds}
           />
           <ShowreelFooter />
         </div>
         {photos && photos.length > 0 && (
           <PhotoModal
             photos={photos}
-            preserveSearchParams={preserveUrlParams}
-            moderation={moderation}
+            mode={mode}
+            brokenIds={brokenIds}
             onPhotosReload={load}
           />
         )}
@@ -327,7 +353,7 @@ export default function HomePage() {
                         className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm font-medium text-stone-100 backdrop-blur-sm transition hover:bg-white/10"
                       >
                         <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden />
-                        BACK TO HOME
+                        BACK TO GALLERY
                       </Link>
                       {moderationActive && selectedIds.size > 0 && (
                         <button
@@ -351,8 +377,9 @@ export default function HomePage() {
               }
               photos={photos}
               photosLoading={photos === null && !error}
-              preserveSearchParams={preserveUrlParams}
+              mode={mode}
               moderationMode={moderationActive}
+              brokenIds={brokenIds}
               selectedIds={selectedIds}
               onToggleSelect={toggleSelect}
             />
@@ -383,8 +410,8 @@ export default function HomePage() {
         {photos && photos.length > 0 && showGallery && (
           <PhotoModal
             photos={photos}
-            preserveSearchParams={preserveUrlParams}
-            moderation={moderationActive}
+            mode={mode}
+            brokenIds={brokenIds}
             onPhotosReload={load}
           />
         )}

@@ -5,6 +5,7 @@ import type { Photo } from "@/lib/types/photo";
 type Props = {
   photos: Photo[] | null;
   loading?: boolean;
+  brokenIds?: Set<string>;
 };
 
 /** Build at least two copies for seamless translateX(-50%) loop. */
@@ -16,8 +17,10 @@ function loopSlides(photos: Photo[]): Photo[] {
   return [...photos, ...photos];
 }
 
-export default function ShowreelCarousel({ photos, loading }: Props) {
-  const list = (photos ?? []).filter((p) => p.kind === "image");
+export default function ShowreelCarousel({ photos, loading, brokenIds }: Props) {
+  const broken = brokenIds ?? new Set<string>();
+  const list = (photos ?? [])
+    .filter((p) => p.kind === "image" && !broken.has(p.id));
   const slides = loopSlides(list);
   const hasSlides = slides.length > 0;
 
@@ -41,12 +44,12 @@ export default function ShowreelCarousel({ photos, loading }: Props) {
       )}
 
       {hasSlides && (
-        <div className="relative flex min-h-0 flex-1 items-center overflow-hidden py-3 sm:py-4">
+        <div className="relative flex min-h-0 flex-1 items-center overflow-hidden py-4">
           <div className="flex w-max animate-showreel-marquee items-stretch gap-5 pl-5 pr-5 motion-reduce:animate-none sm:gap-6 sm:pl-6 sm:pr-6">
             {slides.map((photo, i) => (
               <div
                 key={`${photo.id}-${i}`}
-                className="relative h-[min(78dvh,820px)] w-max shrink-0 sm:h-[min(82dvh,880px)]"
+                className="relative h-[min(78dvh,820px)] w-max shrink-0"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element -- height-anchored intrinsic width; next/image width/height attrs block h-full */}
                 <img

@@ -27,6 +27,7 @@ export type ListItemView = {
   description?: string | null;
   imageUrl?: string | null;
   tags?: string[];
+  hasPhone?: boolean;
 };
 
 export type DetailView = {

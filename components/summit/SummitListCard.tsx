@@ -1,5 +1,6 @@
 "use client";
 
+import { PhoneIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import type { ListItemView } from "@/lib/summit/types";
@@ -64,7 +65,14 @@ export default function SummitListCard({
           : <div className={placeholderClass} />
         : null}
       <div className="min-w-0 flex-1">
-        <h3 className="text-sm font-semibold text-white break-words">{item.title}</h3>
+        <div className="flex items-start gap-2">
+          <h3 className="text-sm font-semibold text-white break-words">{item.title}</h3>
+          {isCrewCard && item.hasPhone ? (
+            <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center text-amber-200">
+              <PhoneIcon className="h-4 w-4" aria-hidden />
+            </span>
+          ) : null}
+        </div>
         {item.subtitle ? (
           <p className="mt-1 text-xs text-stone-300 break-words">{item.subtitle}</p>
         ) : null}

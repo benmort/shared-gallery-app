@@ -14,23 +14,27 @@ import {
 import useKeypress from "react-use-keypress";
 import type { Photo } from "@/lib/types/photo";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
-import { galleryPath } from "@/utils/galleryUrl";
+import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
 import PhotoLightbox from "./PhotoLightbox";
 
 type Props = {
   photos: Photo[];
-  /** Keep e.g. `showreel=true` when navigating lightbox / close. */
-  preserveSearchParams?: Record<string, string> | null;
-  moderation?: boolean;
+  mode?: GalleryMode;
+  brokenIds?: Set<string>;
   onPhotosReload?: () => Promise<void>;
 };
 
 export default function PhotoModal({
-  photos,
-  preserveSearchParams,
-  moderation = false,
+  photos: allPhotos,
+  mode = "gallery",
+  brokenIds,
   onPhotosReload,
 }: Props) {
+  const moderation = mode === "moderation";
+  const photos = useMemo(() => {
+    if (moderation || !brokenIds?.size) return allPhotos;
+    return allPhotos.filter((p) => !brokenIds.has(p.id));
+  }, [allPhotos, brokenIds, moderation]);
   const router = useRouter();
   const searchParams = useSearchParams();
   const photoId = searchParams?.get("photoId") ?? null;
@@ -39,7 +43,6 @@ export default function PhotoModal({
   const [, startTransition] = useTransition();
 
   const [activePhotoId, setActivePhotoId] = useState<string | null>(photoId);
-  const preserve = preserveSearchParams ?? null;
 
   useEffect(() => {
     const pendingPhotoId = pendingPhotoIdRef.current;
@@ -63,10 +66,10 @@ export default function PhotoModal({
     (nextPhotoId: string | null) => {
       pendingPhotoIdRef.current = nextPhotoId;
       startTransition(() => {
-        router.replace(galleryPath(nextPhotoId, preserve), { scroll: false });
+        router.replace(galleryPath(nextPhotoId, mode), { scroll: false });
       });
     },
-    [preserve, router, startTransition],
+    [mode, router, startTransition],
   );
 
   const handleClose = useCallback(() => {

@@ -1778,7 +1778,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0437 316 331",
         "Languages": [
           "English"
         ],
@@ -1866,7 +1865,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0481 656 866",
         "Languages": [
           "English"
         ],
@@ -1983,7 +1981,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0425 138 806",
         "Languages": [
           "English"
         ],
@@ -2013,7 +2010,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0431 316 019",
         "Languages": [
           "English"
         ],
@@ -2160,7 +2156,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0432 854 570",
         "Languages": [
           "English"
         ],
@@ -2190,7 +2185,6 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0413 200 232",
         "Languages": [
           "English"
         ],
@@ -2248,41 +2242,10 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
-        "Phone [Network Data]": "0476 002 657",
         "Languages": [
           "English"
         ],
         "Work Email [Network Data]": "tamika@commonthreads.org.au"
-      }
-    },
-    {
-      "id": "crew-tarneen-onus-browne",
-      "fields": {
-        "Shortname": "Tarneen Onus Browne",
-        "Role": [
-          "Facilitator"
-        ],
-        "Bio": "Summit crew contact.",
-        "Headshot": [
-          {
-            "url": "/images/crew/headshots/tarneen.jpeg"
-          }
-        ],
-        "Headshot Source Url": "/public/images/crew/headshots/tarneen.jpeg",
-        "Organisation [Network Data]": [
-          "Common Threads"
-        ],
-        "Job category [Network Data]": [
-          "Crew"
-        ],
-        "Location [Network Data]": [
-          "Adelaide"
-        ],
-        "Phone [Network Data]": "0439 233 446",
-        "Languages": [
-          "English"
-        ],
-        "Work Email [Network Data]": "tarneen@commonthreads.org.au"
       }
     },
     {
@@ -2311,7 +2274,6 @@
         "Languages": [
           "English"
         ],
-        "Phone [Network Data]": "0448 626 304",
         "Work Email [Network Data]": "summit@commonthreads.org.au"
       }
     }

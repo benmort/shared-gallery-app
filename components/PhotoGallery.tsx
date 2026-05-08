@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useRef, useEffect, useState, type ReactNode } from "react";
 import type { Photo } from "@/lib/types/photo";
 import { galleryImageSrcSet } from "@/utils/galleryImageSrcSet";
-import { galleryPath } from "@/utils/galleryUrl";
+import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
 type Props = {
@@ -14,9 +14,9 @@ type Props = {
   lead: ReactNode;
   photos: Photo[] | null;
   photosLoading?: boolean;
-  /** Keep e.g. `moderation=true` on photo tile links */
-  preserveSearchParams?: Record<string, string> | null;
+  mode?: GalleryMode;
   moderationMode?: boolean;
+  brokenIds?: Set<string>;
   selectedIds?: Set<string>;
   onToggleSelect?: (id: string) => void;
 };
@@ -27,11 +27,13 @@ export default function PhotoGallery({
   lead,
   photos,
   photosLoading,
-  preserveSearchParams,
+  mode = "gallery",
   moderationMode = false,
+  brokenIds: brokenIdsProp,
   selectedIds = new Set(),
   onToggleSelect,
 }: Props) {
+  const brokenIds = brokenIdsProp ?? new Set<string>();
   const searchParams = useSearchParams();
   const photoIdOpen = searchParams?.get("photoId") ?? null;
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
@@ -61,80 +63,90 @@ export default function PhotoGallery({
           Loading photos…
         </div>
       )}
-      {photos?.map((photo) => (
-        <div
-          key={photo.id}
-          className="group relative mb-3 break-inside-avoid sm:mb-4"
-        >
-          {moderationMode && onToggleSelect && (
-            <label
-              className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <input
-                type="checkbox"
-                checked={selectedIds.has(photo.id)}
-                onChange={() => onToggleSelect(photo.id)}
-                className="h-4 w-4 rounded border-white/40"
-                aria-label={`Select ${photo.filename}`}
-              />
-              Select
-            </label>
-          )}
-          <Link
-            href={galleryPath(photo.id, preserveSearchParams ?? null)}
-            scroll={false}
-            ref={photo.id === lastViewedPhoto ? lastRef : undefined}
-            onClick={(event) => {
-              if (!isMobileViewport) return;
-              event.preventDefault();
-            }}
-            className="after:content relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:cursor-zoom-in"
+      {photos?.map((photo) => {
+        const isBroken = brokenIds.has(photo.id);
+        if (isBroken && !moderationMode) return null;
+
+        return (
+          <div
+            key={photo.id}
+            className={`group relative mb-3 break-inside-avoid sm:mb-4${isBroken ? " opacity-40" : ""}`}
           >
-            {photo.kind === "video" ? (
-              <video
-                src={photo.url}
-                poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
-                muted
-                playsInline
-                preload="metadata"
-                className="w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-                width={photo.width ?? 1280}
-                height={photo.height ?? 720}
-                aria-label={photo.filename}
-              />
-            ) : galleryImageSrcSet(photo) ? (
-              // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
-              <img
-                src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
-                srcSet={galleryImageSrcSet(photo)}
-                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                alt={photo.filename}
-                width={photo.width ?? 720}
-                height={photo.height ?? 480}
-                loading="lazy"
-                decoding="async"
-                className="h-auto w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-              />
-            ) : (
-              <Image
-                alt={photo.filename}
-                className="transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                style={{ transform: "translate3d(0, 0, 0)" }}
-                placeholder={photo.blurDataUrl ? "blur" : "empty"}
-                blurDataURL={photo.blurDataUrl}
-                src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
-                width={photo.width ?? 720}
-                height={photo.height ?? 480}
-                sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                unoptimized
-              />
+            {isBroken && moderationMode && (
+              <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
+                Missing file
+              </span>
             )}
-          </Link>
-        </div>
-      ))}
+            {moderationMode && onToggleSelect && (
+              <label
+                className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedIds.has(photo.id)}
+                  onChange={() => onToggleSelect(photo.id)}
+                  className="h-4 w-4 rounded border-white/40"
+                  aria-label={`Select ${photo.filename}`}
+                />
+                Select
+              </label>
+            )}
+            <Link
+              href={galleryPath(photo.id, mode)}
+              scroll={false}
+              ref={photo.id === lastViewedPhoto ? lastRef : undefined}
+              onClick={(event) => {
+                if (!isMobileViewport) return;
+                event.preventDefault();
+              }}
+              className="after:content relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:cursor-zoom-in"
+            >
+              {photo.kind === "video" ? (
+                <video
+                  src={photo.url}
+                  poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  width={photo.width ?? 1280}
+                  height={photo.height ?? 720}
+                  aria-label={photo.filename}
+                />
+              ) : galleryImageSrcSet(photo) ? (
+                // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
+                <img
+                  src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
+                  srcSet={galleryImageSrcSet(photo)}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  alt={photo.filename}
+                  width={photo.width ?? 720}
+                  height={photo.height ?? 480}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                />
+              ) : (
+                <Image
+                  alt={photo.filename}
+                  className="transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
+                  style={{ transform: "translate3d(0, 0, 0)" }}
+                  placeholder={photo.blurDataUrl ? "blur" : "empty"}
+                  blurDataURL={photo.blurDataUrl}
+                  src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
+                  width={photo.width ?? 720}
+                  height={photo.height ?? 480}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  unoptimized
+                />
+              )}
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -121,7 +121,7 @@ For another provider (Supabase, S3, Cloudinary), implement the same methods and 
 | Variable | When |
 | -------- | ---- |
 | `BLOB_READ_WRITE_TOKEN` | **Vercel production** (auto from linked private Blob store). Omit locally for `./data/` storage. |
-| `MODERATION_SECRET` | **Moderation mode** (`?moderation=true`): at least **16** characters; signs the HTTP-only session cookie. |
+| `MODERATION_SECRET` | **Moderation mode** (`/moments/moderation`): at least **16** characters; signs the HTTP-only session cookie. |
 | `MODERATION_PASSWORD` | **Moderation mode**: at least **8** characters; the password operators use to sign in. |
 | `MOMENTS_UPLOAD_V2_ENABLED` | Enable advanced client-upload/session flow (default `true`). |
 | `MOMENTS_UPLOAD_PARALLELISM` | Client upload worker count (default `3`, clamp `1-6`). |
