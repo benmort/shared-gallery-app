@@ -130,8 +130,8 @@ export default function SummitCrewListPage({ records }: Props) {
                 }}
                 className={
                   item.selected
-                    ? "group relative min-h-[62px] w-full overflow-hidden rounded-xl border border-amber-300/45 bg-gradient-to-br from-amber-200 to-amber-100 px-3 py-2.5 text-left text-zinc-900 shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-                    : "group relative min-h-[62px] w-full overflow-hidden rounded-xl border border-dashed border-stone-500/55 bg-zinc-950/40 px-3 py-2.5 text-left text-stone-300/95 transition hover:-translate-y-0.5 hover:border-amber-300/45 hover:bg-zinc-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80 disabled:opacity-85 disabled:hover:translate-y-0 disabled:hover:border-stone-500/55 disabled:hover:bg-zinc-950/40"
+                    ? "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-amber-300/45 bg-gradient-to-br from-amber-200 to-amber-100 px-3 py-2 text-left text-zinc-900 shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
+                    : "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-dashed border-stone-500/55 bg-zinc-950/40 px-3 py-2 text-left text-stone-300/95 transition hover:-translate-y-0.5 hover:border-amber-300/45 hover:bg-zinc-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80 disabled:opacity-85 disabled:hover:translate-y-0 disabled:hover:border-stone-500/55 disabled:hover:bg-zinc-950/40"
                 }
               >
                 <span

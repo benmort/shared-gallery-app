@@ -15,12 +15,6 @@ type DomainMeta = {
   tagsField?: string;
 };
 
-const CREW_PHONE_ICON_IDS = new Set([
-  "crew-allara-briggs-pattison",
-  "crew-jay-knapp",
-  "crew-nicole-jenkins",
-]);
-
 export const summitDomainMeta: Record<SummitListDomain, DomainMeta> = {
   speakers: {
     table: "Speakers",
@@ -104,9 +98,10 @@ export function isSummitDomain(value: string): value is SummitListDomain {
 export function buildListItem(domain: SummitListDomain, record: SummitRecord): ListItemView {
   const meta = summitDomainMeta[domain];
   const title = fieldString(record, meta.titleField) || "Untitled";
+  const crewPhone = fieldString(record, "Phone [Network Data]") || fieldString(record, "Phone");
   const hasCrewPhone =
     domain === "crew"
-      && (fieldString(record, "Phone [Network Data]").trim().length > 0 || CREW_PHONE_ICON_IDS.has(record.id));
+      && hasPhoneNumber(crewPhone);
   const subtitle = meta.subtitleField
     ? meta.subtitleFirstOnly
       ? fieldFirst(record, meta.subtitleField)
@@ -129,6 +124,11 @@ export function buildListItem(domain: SummitListDomain, record: SummitRecord): L
     tags,
     hasPhone: hasCrewPhone,
   };
+}
+
+function hasPhoneNumber(value: string): boolean {
+  const digitsOnly = value.replace(/\D/g, "");
+  return digitsOnly.length >= 8;
 }
 
 function asLines(value: string | null | undefined): string | null {
