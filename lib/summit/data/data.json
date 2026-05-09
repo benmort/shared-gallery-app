@@ -26,7 +26,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/d0e61752-dc9b-445c-ad29-eb6dc2036383.jpeg@original"
+            "url": "/images/speakers/speaker-ngarra-murray.jpeg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -63,7 +63,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/48889408-6834-4588-912d-f627fd2e8462.png@original"
+            "url": "/images/speakers/speaker-dr-anne-poelina.png"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -100,7 +100,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/4fece66d-454b-42c4-ae01-2065ce5b3bf9.jpg@original"
+            "url": "/images/speakers/speaker-celeste-liddle.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -137,7 +137,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/a5bd2e9c-539a-406e-8e09-4e47b682bbbf.jpg@original"
+            "url": "/images/speakers/speaker-leeroy-bilney.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -174,7 +174,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/93195ab1-dceb-4bf9-90d5-aa25d047b9c3.JPG@original"
+            "url": "/images/speakers/speaker-josie-alec.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -211,7 +211,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/db0846af-10e2-4df5-9a81-6af061873ce3.jpg@original"
+            "url": "/images/speakers/speaker-karina-lester.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -248,7 +248,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/32c7c723-ef29-490a-9c77-245019983ad2.jpg@original"
+            "url": "/images/speakers/speaker-dr-jackie-huggins.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -322,7 +322,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://images.humanitix.com/i/4cd3b3b2-f8d2-43eb-9500-175a495c770e.jpeg@original"
+            "url": "/images/speakers/speaker-mililma-may.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -433,7 +433,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://ui-avatars.com/api/?name=Bronson+Richards&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+            "url": "/images/speakers/speaker-bronson-richards.jpeg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -507,7 +507,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://ui-avatars.com/api/?name=Tiana+Jakicevich&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+            "url": "/images/speakers/speaker-tiana-jakicevich.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -544,7 +544,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://ui-avatars.com/api/?name=Jordy+Edwards&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+            "url": "/images/speakers/speaker-jordy-edwards.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -567,9 +567,9 @@
       }
     },
     {
-      "id": "speaker-billie-jade",
+      "id": "speaker-billie-jade-braund",
       "fields": {
-        "Full Name": "Billie-Jade",
+        "Full Name": "Billie-Jade Braund",
         "Title": "Panel discussion contributor: Talking Treaty",
         "Organisation": [
           "Common Threads Summit"
@@ -618,7 +618,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://ui-avatars.com/api/?name=Daniel+Rosendale&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+            "url": "/images/speakers/speaker-daniel-rosendale.png"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -641,43 +641,6 @@
       }
     },
     {
-      "id": "speaker-larissa-baldwin-roberts-youth-day",
-      "fields": {
-        "Full Name": "Larissa Baldwin-Roberts",
-        "Title": "Social change strategy",
-        "Organisation": [
-          "Common Threads Summit"
-        ],
-        "Bio": "Facilitator for social change strategy session during Youth Day.",
-        "Description": "Social change strategy session during Youth Day.",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/speakers/speaker-larissa-baldwin-roberts.jpg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-05-11T14:00:00+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-05-11T15:00:00+10:00"
-        ],
-        "Venue Name": [
-          "Intercontinental Hotel, North Terrace, Adelaide"
-        ],
-        "Room/Area": "Main plenary hall",
-        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
-        "Schedule": [
-          "schedule-slot-36"
-        ],
-        "Talk Format": [
-          "Plenary"
-        ]
-      }
-    },
-    {
       "id": "speaker-lala-gutchen",
       "fields": {
         "Full Name": "Lala Gutchen",
@@ -692,7 +655,7 @@
         ],
         "Headshot": [
           {
-            "url": "https://ui-avatars.com/api/?name=Lala+Gutchen&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+            "url": "/images/speakers/speaker-lala-gutchen.jpg"
           }
         ],
         "DateTime Start [Schedule]": [
@@ -2562,6 +2525,7 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
+        "Phone [Network Data]": "+61413200232",
         "Languages": [
           "English"
         ],
@@ -2573,7 +2537,7 @@
       "fields": {
         "Shortname": "Allara Briggs Pattison",
         "Role": [
-          "Airport + Travel"
+          "Participant Support"
         ],
         "Bio": "Summit crew contact.",
         "Headshot": [
@@ -2591,6 +2555,7 @@
         "Location [Network Data]": [
           "Adelaide"
         ],
+        "Phone [Network Data]": "+61450913350",
         "Languages": [
           "English"
         ],
