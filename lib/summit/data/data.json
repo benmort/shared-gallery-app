@@ -5,7 +5,7 @@
       "fields": {
         "Name": "Common Threads Summit 2026: The Next Horizon",
         "Location": "Adelaide, South Australia",
-        "Start Date": "2026-05-12",
+        "Start Date": "2026-05-11",
         "End Date": "2026-05-14"
       }
     }
@@ -412,6 +412,302 @@
         "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
         "Schedule": [
           "schedule-slot-17"
+        ],
+        "Talk Format": [
+          "Lightning Talk"
+        ]
+      }
+    },
+    {
+      "id": "speaker-bronson-richards",
+      "fields": {
+        "Full Name": "Bronson Richards",
+        "Title": "Guest speaker: Opening the Day",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Guest speaker for Youth Day.",
+        "Description": "Guest speaker during Youth Day opening session.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Bronson+Richards&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T09:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T11:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-32"
+        ],
+        "Talk Format": [
+          "Guest Speaker"
+        ]
+      }
+    },
+    {
+      "id": "speaker-tamika-sadler-youth-day",
+      "fields": {
+        "Full Name": "Tamika Sadler",
+        "Title": "Panel discussion contributor: Protecting Country",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Panel contributor for Youth Day yarning circles.",
+        "Description": "Panel contributor in Protecting Country during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/crew/headshots/tamika.jpeg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "speaker-tiana-jakicevich",
+      "fields": {
+        "Full Name": "Tiana Jakicevich",
+        "Title": "Panel discussion contributor: Protecting Country",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Panel contributor for Youth Day yarning circles.",
+        "Description": "Panel contributor in Protecting Country during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Tiana+Jakicevich&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "speaker-jordy-edwards",
+      "fields": {
+        "Full Name": "Jordy Edwards",
+        "Title": "Panel discussion contributor: Talking Treaty",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Panel contributor for Youth Day yarning circles.",
+        "Description": "Panel contributor in Talking Treaty during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Jordy+Edwards&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "speaker-billie-jade",
+      "fields": {
+        "Full Name": "Billie-Jade",
+        "Title": "Panel discussion contributor: Talking Treaty",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Panel contributor for Youth Day yarning circles.",
+        "Description": "Panel contributor in Talking Treaty during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Billie-Jade&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "speaker-daniel-rosendale",
+      "fields": {
+        "Full Name": "Daniel Rosendale",
+        "Title": "Panel discussion contributor: Talking Treaty",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Panel contributor for Youth Day yarning circles.",
+        "Description": "Panel contributor in Talking Treaty during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Daniel+Rosendale&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "speaker-larissa-baldwin-roberts-youth-day",
+      "fields": {
+        "Full Name": "Larissa Baldwin-Roberts",
+        "Title": "Social change strategy",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Facilitator for social change strategy session during Youth Day.",
+        "Description": "Social change strategy session during Youth Day.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/speakers/speaker-larissa-baldwin-roberts.jpg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T14:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T15:00:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-36"
+        ],
+        "Talk Format": [
+          "Plenary"
+        ]
+      }
+    },
+    {
+      "id": "speaker-lala-gutchen",
+      "fields": {
+        "Full Name": "Lala Gutchen",
+        "Title": "Lightning talk contributor",
+        "Organisation": [
+          "Common Threads Summit"
+        ],
+        "Bio": "Lightning talk contributor for Youth Day reportbacks.",
+        "Description": "Lightning talk contributor in Youth Day reportbacks.",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "https://ui-avatars.com/api/?name=Lala+Gutchen&background=18181b&color=f5f5f5&size=512&rounded=true&bold=true&format=png"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T15:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T16:30:00+10:00"
+        ],
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-38"
         ],
         "Talk Format": [
           "Lightning Talk"
@@ -1261,6 +1557,329 @@
           "schedule-slot-29"
         ]
       }
+    },
+    {
+      "id": "event-youth-day-doors-open-registration",
+      "fields": {
+        "Title": "Doors open for registration",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Arrival, registration, and check-in for Youth Day participants.",
+        "Tags": [
+          "Logistics"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-doors-open-registration/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T08:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T09:00:00+10:00"
+        ],
+        "Room/Area": "Registration desk",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-30"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-welcome-country",
+      "fields": {
+        "Title": "Welcome to Country",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Formal Welcome to Country to open Youth Day.",
+        "Tags": [
+          "Opening"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-welcome-country/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T09:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T09:30:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-31"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-opening-the-day",
+      "fields": {
+        "Title": "Opening the Day",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Introductions and housekeeping, getting to know each other, and guest speaker Bronson Richards.",
+        "Tags": [
+          "Opening",
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-opening-the-day/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T09:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T11:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-32"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-morning-tea",
+      "fields": {
+        "Title": "Morning tea",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Morning tea break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-morning-tea/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "Room/Area": "Catering foyer",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-33"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-panel-discussions-yarning-circles",
+      "fields": {
+        "Title": "Panel Discussions & Yarning Circles",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Protecting Country: Tamika Sadler and Tiana Jakicevich. Talking Treaty: Jordy Edwards, Billie-Jade and Daniel Rosendale.",
+        "Tags": [
+          "Panel",
+          "Yarning"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-panel-discussions-yarning-circles/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-34"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-lunch",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Lunch break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-lunch/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T14:00:00+10:00"
+        ],
+        "Room/Area": "Dining hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-35"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-how-change-happens",
+      "fields": {
+        "Title": "How change happens",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Social change strategy with Larissa Baldwin-Roberts, followed by breakout discussions and activities.",
+        "Tags": [
+          "Workshop",
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-how-change-happens/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T14:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T15:00:00+10:00"
+        ],
+        "Room/Area": "Breakout rooms",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-36"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-afternoon-tea",
+      "fields": {
+        "Title": "Afternoon tea",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Afternoon tea break.",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-afternoon-tea/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T15:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T15:30:00+10:00"
+        ],
+        "Room/Area": "Catering foyer",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-37"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-reportbacks",
+      "fields": {
+        "Title": "Reportbacks",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Groups sharing their ideas, with a lightning talk from Lala Gutchen.",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-reportbacks/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T15:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T16:30:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-38"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-wrap-up",
+      "fields": {
+        "Title": "Wrap up and preparing for Common Threads general summit",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "Description": "Closing wrap up and preparation for the Common Threads general summit.",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-wrap-up/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T16:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T18:00:00+10:00"
+        ],
+        "Room/Area": "Main plenary hall",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-39"
+        ]
+      }
+    },
+    {
+      "id": "event-youth-day-optional-group-dinner",
+      "fields": {
+        "Title": "Optional group dinner",
+        "Venue Name": [
+          "Yitpi Yartapuultiku Cultural Centre, Port Adelaide"
+        ],
+        "Description": "Dinner included for all participants from 6-8pm at Yitpi Yartapuultiku Cultural Centre. Transport available from the Intercontinental Hotel.",
+        "Tags": [
+          "Dinner",
+          "Social"
+        ],
+        "Headshot": [
+          {
+            "url": "https://picsum.photos/seed/event-youth-day-optional-group-dinner/640/640"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T18:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T20:00:00+10:00"
+        ],
+        "Room/Area": "Offsite dinner venue",
+        "Presentation": "https://www.commonthreads.org.au/summit-2026/agenda-overview",
+        "Schedule": [
+          "schedule-slot-40"
+        ]
+      }
     }
   ],
   "schedule": [
@@ -1696,6 +2315,171 @@
         ],
         "DateTime End [Schedule]": [
           "2026-05-14T16:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-30",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T08:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T09:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-31",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T09:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T09:30:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-32",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T09:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T11:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-33",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-34",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T11:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-35",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T13:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T14:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-36",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T14:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T15:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-37",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T15:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T15:30:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-38",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T15:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T16:30:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-39",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Intercontinental Hotel, North Terrace, Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T16:30:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T18:00:00+10:00"
+        ]
+      }
+    },
+    {
+      "id": "schedule-slot-40",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": [
+          "Yitpi Yartapuultiku Cultural Centre, Port Adelaide"
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-05-11T18:00:00+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-05-11T20:00:00+10:00"
         ]
       }
     }
