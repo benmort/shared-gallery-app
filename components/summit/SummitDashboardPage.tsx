@@ -182,7 +182,7 @@ export default async function SummitDashboardPage() {
   const upcomingSpeakers = speakersWithTimes
     .filter(({ start }) => start !== Number.MAX_SAFE_INTEGER && start >= now)
     .sort((a, b) => a.start - b.start)
-    .slice(0, 5)
+    .slice(0, 6)
     .map(({ speaker }) => speaker);
   const latestSessionEnd = speakersWithTimes.reduce(
     (latest, { end }) => (end !== Number.MAX_SAFE_INTEGER ? Math.max(latest, end) : latest),
